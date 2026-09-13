@@ -15,6 +15,11 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    # One feed write at a time: a manual dispatch racing the daily cron (or a
+    # second dispatch) would both commit jobs.json and one push gets rejected.
+    concurrency:
+      group: refresh-jobs
+      cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4
 
@@ -67,6 +72,10 @@ jobs:
           if [[ -n "$(git status --porcelain src/data/jobs.json src/data/translation-cache.json src/data/ingest-flags.json)" ]]; then
             git add src/data/jobs.json src/data/translation-cache.json src/data/ingest-flags.json
             git commit -m "chore(data): refresh jobs feed"
+            # Rebase over any feed commit that landed while we ingested (~50 min),
+            # then push. Fails only on a real conflict; the feed file is
+            # regenerated, so conflicts are practically impossible.
+            git pull --rebase origin main || (git rebase --abort && exit 1)
             git push
           else
             echo "No changes in jobs feed"
