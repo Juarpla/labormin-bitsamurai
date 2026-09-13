@@ -407,6 +407,29 @@ function splitLocation(raw) {
   return { city: city || null, rest: rest.join(', ') };
 }
 
+/** US state tokens for loose location segments ("Climax, CO") — superset of
+ *  the SAFE_ISO2 collision-safe set (no country-code clashes like CA/ID/GA). */
+const US_STATE_SEGMENTS = new Set(['az', 'co', 'nm', 'tx', 'nv', 'ut', 'ak', 'us']);
+
+/** Segment-exact country detection for the location-truth policy: a segment
+ *  "names" a supported country only when it EQUALS a full hint. Substring hits
+ *  don't count — "Santiago de Surco, Lima" is Lima, Peru (not Santiago, Chile)
+ *  and "Santiago de Chuco, La Libertad" is Peru too; bare "Santiago, RM" is
+ *  Chile. Falls back to a trailing US state token ("Climax, CO" → US). */
+function detectCountryBySegments(loc) {
+  const segments = (loc || '')
+    .split(',')
+    .map((s) => deaccent(s).toLowerCase().replace(/\u00a0/g, ' ').trim())
+    .filter(Boolean);
+  for (const seg of segments) {
+    if (US_STATE_SEGMENTS.has(seg)) return 'US';
+    for (const [code, hints] of Object.entries(COUNTRY_HINTS)) {
+      if (hints.includes(seg)) return code;
+    }
+  }
+  return 'GLOBAL';
+}
+
 /* ----------------------- location-truth policy (owner) --------------------- */
 
 /** Country names OUTSIDE the supported mining-country set. Only the
@@ -461,8 +484,12 @@ async function readJsonSafe(file, fallback) {
   }
 }
 
-/** Location-truth policy — owner decisions (2026-09-09):
- *  1. The location string names a supported country → that code wins (warn on change).
+/** Location-truth policy — owner decisions (2026-09-09, amended 2026-09-13):
+ *  1. The location string names a supported country → that code wins (warn on
+ *     change). "Names" is segment-exact (detectCountryBySegments): a segment
+ *     must equal a full hint — "Santiago de Surco, Lima" and "Santiago de
+ *     Chuco, La Libertad" are Peru ("santiago" is a partial hint inside a
+ *     Peruvian place name), while bare "Santiago, RM" is Chile.
  *  2. The location string names a NON-supported country → the job is excluded
  *     from the feed entirely (country-bound remotes included: "Remote, United
  *     Kingdom" is not global). Only the source location is trusted to say where
@@ -498,10 +525,9 @@ async function applyLocationPolicy(candidates) {
     const loc = (j.locationRaw || '').trim();
     let named = 'GLOBAL';
     if (loc) {
-      // City (first comma segment) first — it is the unambiguous part; extra
-      // segments can mislead ("Lima, Santiago De Surco" is Peru, not Chile).
-      named = detectCountry(splitLocation(loc).city || '');
-      if (named === 'GLOBAL') named = detectCountry(loc);
+      // Segment-exact only (see detectCountryBySegments): a partial hint inside
+      // a longer place name never re-corrects the source country.
+      named = detectCountryBySegments(loc);
     }
     const other = loc ? detectOtherCountry(loc) : null;
     // Bare uppercase ISO-2 corroboration (safe set only, match-never-contradict).
