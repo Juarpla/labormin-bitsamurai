@@ -337,10 +337,10 @@ function mkJob({ source, id, company, title, country, city = null, locationRaw =
 /* --------------------------- country detection ---------------------------- */
 
 const COUNTRY_HINTS = {
-  AU: ['australia', 'perth', 'kalgoorlie', 'brisbane', 'mount isa', 'newman', 'port hedland', 'adelaide', 'melbourne', 'sydney', 'western australia', 'queensland', 'pilbara', 'new south wales', 'roxby downs', 'olympic dam', 'karratha', 'boddington', 'telfer', 'south australia', 'tasmania', 'rosebery'],
+  AU: ['australia', 'perth', 'kalgoorlie', 'brisbane', 'mount isa', 'newman', 'port hedland', 'adelaide', 'melbourne', 'sydney', 'western australia', 'queensland', 'pilbara', 'new south wales', 'roxby downs', 'olympic dam', 'karratha', 'boddington', 'telfer', 'south australia', 'tasmania', 'rosebery', 'dugald river mine'],
   CA: ['canada', 'vancouver', 'toronto', 'sudbury', "val-d'or", 'elkford', 'sparwood', 'yellowknife', 'timmins', 'rouyn-noranda', 'british columbia', 'quebec', 'ontario', 'labrador', 'nunavut', 'elk valley', 'detour lake', 'malartic', 'baker lake', 'hope bay', 'calgary', 'edmonton', 'saskatchewan', 'manitoba', 'snow lake', 'flin flon'],
   CL: ['chile', 'santiago', 'antofagasta', 'atacama', 'calama', 'copiapo', 'iquique', 'maria elena', 'pica', 'huasco', 'vallenar', 'mejillones', 'sierra gorda', 'los andes', 'el teniente', 'rancagua', 'machali', 'coquimbo', 'la serena', 'radomiro tomic', 'collahuasi', 'tierra amarilla', 'andacollo'],
-  PE: ['peru', 'lima', 'arequipa', 'cajamarca', 'cusco', 'piura', 'tacna', 'moquegua', 'ilo', 'toquepala', 'cuajone', 'morococha', 'yauli', 'apurimac', 'cotabambas', 'espinar', 'marcona', 'cerro de pasco', 'pasco', 'las bambas', 'san miguel de pallaques', 'hualgayoc', 'chala', 'anasayaco', 'nazca', 'ica', 'junin', 'jauja', 'la oroya', 'morococha district', 'huancavelica'],
+  PE: ['peru', 'lima', 'arequipa', 'cajamarca', 'cusco', 'piura', 'tacna', 'moquegua', 'ilo', 'toquepala', 'cuajone', 'morococha', 'yauli', 'apurimac', 'cotabambas', 'espinar', 'marcona', 'cerro de pasco', 'pasco', 'las bambas', 'san miguel de pallaques', 'hualgayoc', 'chala', 'anasayaco', 'nazca', 'ica', 'junin', 'jauja', 'la oroya', 'morococha district', 'huancavelica', 'la libertad', 'puno', 'cuzco', 'ayacucho', 'ancash', 'callao', 'trujillo', 'huaraz'],
   ZA: ['south africa', 'johannesburg', 'pretoria', 'rustenburg', 'kathu', 'mpumalanga', 'limpopo', 'kuruman', 'welkom', 'north west province', 'gamsberg', 'aggeneys', 'hotazel', 'klerksdorp', 'carletonville', 'gauteng', 'burgersfort', 'postmasburg', 'mokopane', 'steelpoort', 'free state', 'ekurhuleni', 'secunda', 'middelburg'],
   US: ['united states', 'usa', 'nevada', 'reno', 'elko', 'winnemucca', 'phoenix', 'tucson', 'denver', 'salt lake city', 'utah', 'alaska', 'arizona', 'morenci', 'sierrita', 'bagdad', 'safford', 'casa grande', 'rosemont', 'silver city', 'tyrone', 'henderson', 'cortez', 'carlin', 'twin creeks', 'turquoise ridge', 'south jordan', 'new mexico', 'missouri', 'kansas', 'san francisco', 'bay area', 'california', 'new orleans',
     // Comma-anchored state codes: match "Climax, CO" but never bare words ("co").
@@ -349,7 +349,7 @@ const COUNTRY_HINTS = {
   GH: ['ghana', 'accra', 'tarkwa', 'obuasi', 'ahafo', 'kumasi', 'damang', 'akyem'],
   BR: ['brazil', 'brasil', 'belo horizonte', 'parauapebas', 'carajas', 'brumadinho', 'minas gerais', 'sao paulo', 'rio de janeiro', 'onca puma', 'canaa dos carajas', 'mariana', 'ouro preto', 'paracatu', 'goias', 'mato grosso', 'salobo'],
   MX: ['mexico', 'hermosillo', 'sonora', 'zacatecas', 'chihuahua', 'durango', 'guanajuato', 'cananea', 'sinaloa', 'la caridad', 'nacozari', 'fresnillo', 'sombrerete', 'taxco', 'morelos', 'coahuila', 'san luis potosi'],
-  ZM: ['zambia', 'kitwe', 'ndola', 'lusaka', 'chingola', 'solwezi', 'copperbelt', 'kalulushi', 'kalumbila', 'chambishi', 'kansanshi', 'sentinel', 'lumwana', 'mufulira', 'kafue'],
+  ZM: ['zambia', 'kitwe', 'ndola', 'lusaka', 'chingola', 'solwezi', 'copperbelt', 'kalulushi', 'kalumbila', 'chambishi', 'kansanshi', 'sentinel', 'lumwana', 'mufulira', 'kafue', 'chililabombwe'],
   CD: ['dr congo', 'democratic republic', 'congo (', 'congo,', 'drc', 'lubumbashi', 'kolwezi', 'kinshasa', 'manono', 'fungurume', 'lualaba', 'katanga', 'kamoa', 'kakula', 'kinsevere', 'mutanda', 'kipushi', 'kisanfu', 'kakanda'],
   MN: ['mongolia', 'ulaanbaatar', 'omnogovi', 'khanbogd', 'south gobi', 'erdenet', 'tsagaan suvarga'],
   KZ: ['kazakhstan', 'almaty', 'astana', 'karaganda', 'zhezkazgan', 'aktobe', 'balkhash', 'bozshakol', 'aktogay', 'satpayev', 'satbayev'],
@@ -445,7 +445,7 @@ const OTHER_COUNTRY_NAMES = {
   BO: ['bolivia'],
   CN: ['china', 'shanghai'],
   GA: ['gabon', 'libreville', 'liverville'],
-  GB: ['united kingdom', 'reino unido', 'england', 'inglaterra'],
+  GB: ['united kingdom', 'reino unido', 'england', 'inglaterra', 'kidlington'],
   MA: ['morocco', 'marruecos', 'casablanca'],
   NC: ['new caledonia', 'noumea', 'nouméa'],
   NO: ['norway', 'noruega', 'hammerfest'],
@@ -2749,7 +2749,9 @@ async function main() {
 
   // Adzuna runs LAST so direct/official sources win the dedupe when keys are present.
   if (process.env.ADZUNA_APP_ID && process.env.ADZUNA_APP_KEY) {
-    const codes = ['PE', 'CL', 'CA', 'US', 'AU']; // solo el nicho
+    // Adzuna no tiene boards pe/cl (404 permanente con credenciales válidas;
+    // ca/au/us → 200, verificado 2026-09-14) — solo los países del nicho con board.
+    const codes = ['CA', 'US', 'AU'];
     for (const code of codes) {
       try {
         const jobs = await fetchAdzuna({ code });

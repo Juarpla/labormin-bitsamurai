@@ -23,7 +23,7 @@ original guides/FAQ.
                   │    Bumeran, Laborum — Navent API)            │
                   │  • Government (Job Bank Canada, fglo=1)      │
                   │  • Arbeitnow / Remotive / RemoteOK /         │
-                  │    Adzuna (keyed, solo los 5 países)         │
+                  │    Adzuna (keyed, solo CA/US/AU — pe/cl no existen como boards)  │
                   │  • LinkedIn top-50 seed via Apify (keyed)    │
                   └────────────────────┬─────────────────────────┘
                                        │  scripts/ingest.mjs (node 22, keys optional)
@@ -152,7 +152,7 @@ UAs), and respects `robots.txt` and per-site crawl-delays. Config lives in
 | Source | Platform | Notes |
 | --- | --- | --- |
 | Arbeitnow, Remotive, RemoteOK | generic | mining-keyword filtered; RemoteOK added 2026-09-10 to reinforce the remote tier |
-| Adzuna | `optionalKeyed` | **nicho: PE/CL/CA/US/AU only**; runs LAST so official sources win dedupe |
+| Adzuna | `optionalKeyed` | **nicho: CA/US/AU only** (pe/cl no existen como boards — 404 permanente); runs LAST so official sources win dedupe |
 | LinkedIn (keyword markets) | `apify-linkedin` | `kaix/linkedin-jobs-scraper` — **guest keyword+location search** via the LinkedIn public guest API (no account/cookies). One actor run per market×keyword, markets in priority order **PE → CL → CA → US** (keywords `minería`+`mining` in PE/CL); cap 100 is the **total per-run budget**, each query gets the remaining budget so PE fills first. `fetchDetails: true` keeps descriptions (title translation + description views need them). Replaces the 50-company seed (removed 2026-09-11 with `linkedin-company-ids.json`). Runs Mon/Wed/Fri |
 | Indeed | `apify-indeed` | `factden/indeed-jobs-scraper`, pay-per-result. Markets in priority order **PE → CL → CA → US** (keywords `minería`+`mining` in PE/CL); cap 100 is the **total per-run budget** and each query gets the remaining budget, so PE/CL fill first. Country = search scope. Runs Tue+Thu |
 | Seek (AU) | `apify-seek` | `epicscrapers/seek-job-scraper`, AU national keyword search. Search-result fields only (teaser + bullets, verbatim); URL built from the listing's own `roleId`/`id`. cap 50. Runs Sat+Tue |
