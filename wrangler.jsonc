@@ -1,4 +1,8 @@
 {
   "name": "labormin-bitsamurai",
-  "compatibility_date": "2026-09-08"
+  "compatibility_date": "2026-09-08",
+  // Pública por diseño (termina en el HTML + ads.txt): acepta pub-... o ca-pub-...
+  "vars": {
+    "PUBLIC_ADSENSE_CLIENT": "pub-1972487168739114"
+  }
 }
