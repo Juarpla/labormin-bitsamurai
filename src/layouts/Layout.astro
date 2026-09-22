@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { localePath, type Locale } from '../lib/i18n';
 import { useTranslations } from '../lib/i18n';
+import { adsenseClient } from '../lib/ads';
 
 interface Props {
   title: string;
@@ -17,7 +18,7 @@ const { title, description, locale = 'es', path = '/' } = Astro.props;
 const t = useTranslations(locale);
 const site = Astro.site ?? new URL('https://labormin.com');
 const canonical = new URL(localePath(locale, path), site);
-const adsClient = import.meta.env.PUBLIC_ADSENSE_CLIENT as string | undefined;
+const adsClient = adsenseClient(import.meta.env.PUBLIC_ADSENSE_CLIENT as string | undefined);
 
 const ogImage = new URL('/favicon.svg', site).toString();
 ---

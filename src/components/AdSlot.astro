@@ -1,5 +1,6 @@
 ---
 import { useTranslations, type Locale } from '../lib/i18n';
+import { adsenseClient } from '../lib/ads';
 
 interface Props {
   locale?: Locale;
@@ -29,7 +30,7 @@ const {
   class: className = '',
 } = Astro.props;
 const t = useTranslations(locale);
-const client = import.meta.env.PUBLIC_ADSENSE_CLIENT as string | undefined;
+const client = adsenseClient(import.meta.env.PUBLIC_ADSENSE_CLIENT as string | undefined);
 const live = Boolean(client && import.meta.env.PROD && slotId);
 
 const sizeLabel = size ? `${size.w} x ${size.h} px` : 'responsivo';
