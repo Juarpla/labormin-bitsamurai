@@ -1,8 +1,1 @@
-# ads.txt — REQUERIDO para monetizar con Google AdSense.
-#
-# Al recibir la aprobación de la cuenta, reemplaza el ID de abajo por tu
-# publisher ID real (formato pub-XXXXXXXXXXXXXXXX, lo ves en AdSense → Cuenta)
-# y DESCOMENTA la línea. El archivo debe quedar en la raíz del dominio
-# (https://labormin.com/ads.txt) — así lo sirve public/ en el build.
-#
-# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+google.com, pub-1972487168739114, DIRECT, f08c47fec0942fa0
