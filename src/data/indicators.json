@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-10T20:00:50.273Z",
+  "generatedAt": "2026-10-04T11:40:12.320Z",
   "series": [
     {
       "id": "copper-price",
@@ -7,10 +7,6 @@
       "unit": "USD/tm",
       "sourceId": "wb-pink-sheet",
       "points": [
-        {
-          "date": "2024-09",
-          "value": 9237
-        },
         {
           "date": "2024-10",
           "value": 9534
@@ -102,6 +98,10 @@
         {
           "date": "2026-08",
           "value": 14326
+        },
+        {
+          "date": "2026-09",
+          "value": 14474
         }
       ]
     },
@@ -111,10 +111,6 @@
       "unit": "USD/oz",
       "sourceId": "wb-pink-sheet",
       "points": [
-        {
-          "date": "2024-09",
-          "value": 2571
-        },
         {
           "date": "2024-10",
           "value": 2690
@@ -206,6 +202,10 @@
         {
           "date": "2026-08",
           "value": 4411
+        },
+        {
+          "date": "2026-09",
+          "value": 4319
         }
       ]
     }
@@ -313,13 +313,13 @@
       "id": "wb-pink-sheet",
       "name": "Banco Mundial — Commodity Price Data (Pink Sheet)",
       "officialUrl": "https://www.worldbank.org/en/research/commodity-markets",
-      "lastVerifiedAt": "2026-09-10"
+      "lastVerifiedAt": "2026-10-04"
     },
     {
       "id": "minem-units-map",
       "name": "MINEM — Mapa de Principales Unidades Mineras en Producción (edición anual vigente)",
       "officialUrl": "https://www.gob.pe/institucion/minem/informes-publicaciones/6911615-mapa-principales-unidades-mineras-en-produccion-2025",
-      "lastVerifiedAt": "2026-09-10"
+      "lastVerifiedAt": "2026-10-04"
     }
   ]
 }
