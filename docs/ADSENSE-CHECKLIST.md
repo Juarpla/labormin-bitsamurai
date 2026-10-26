@@ -68,7 +68,7 @@ propiedad legal, publicación de mensajes ni la configuración del despliegue.
 - [ ] Crear/consultar las unidades de anuncio y configurar sus IDs reales como
   JSON en `PUBLIC_ADSENSE_SLOTS`; se documenta en `.env.example`. No se
   inventaron IDs. Comprobar `PUBLIC_ADSENSE_CLIENT` en el despliegue.
-- [ ] Publicar los cambios revisados y comprobar las páginas públicas,
+- [x] Publicar los cambios revisados y comprobar las páginas públicas,
   respuestas HTTP, anuncios, sitemap y destinos de postulación.
 - [ ] Validar en Resultados enriquecidos una ficha publicada que disponga de
   fecha original y descripción completa. Las fichas migradas sin fecha original o con texto incompleto y las tres
@@ -113,3 +113,60 @@ correspondiente. No crear otra para eludir el rechazo.
 
 No hay una cantidad de artículos o de ofertas que garantice admisión. La
 selección editorial responde a necesidades del visitante, no a una cuota.
+
+
+## Publicación y comprobación pública · 26/10/2026
+
+La versión `9556f0b` se publicó en `https://labormin.com` mediante Workers
+Builds, con resultado exitoso. Se conservaron las actualizaciones del feed,
+eventos e indicadores de `origin/main` antes de publicar.
+
+- 20 rutas públicas comprobadas con HTTP 200, incluidos robots, ads.txt,
+  sitemaps, nuevas guías y muestras de ficha vigente e histórica. Una ruta
+  inexistente devuelve 404.
+- Sitemap público: 725 fichas activas, 899 fichas históricas excluidas.
+- Cargador único de AdSense en inicio, editor coincidente con ads.txt y ninguna
+  unidad manual con ID ficticio. No hay unidades manuales numéricas configuradas.
+  Su creación es pendiente para monetizar esos espacios; no se presenta como
+  requisito previo para solicitar revisión usando el cargador de verificación.
+- El propietario confirmó `labormin.com@gmail.com` como contacto público.
+  Se sustituye el antiguo `contact@labormin.com` en contacto, metodología,
+  privacidad y mensajes de límite de IA. Los resolutores 1.1.1.1 y 8.8.8.8
+  no devolvieron registros MX para el dominio. No se envió correo de prueba.
+- Se elimina el cargador publicitario global en páginas con `noindex`,
+  especialmente fichas archivadas; no basta con omitir sus unidades manuales.
+- Comprobación posterior del correo: contacto, privacidad y metodología en
+  Chromium y WebKit, a 375 y 1280 px, sin desbordamientos. Build, 19 pruebas,
+  enlaces internos y ausencia de AdSense en las 899 fichas históricas correctos.
+- Los enlaces de las siete opciones educativas responden HTTP 200. El portal
+  de Jóvenes Productivos falló con Node fetch, pero respondió 200 con curl.
+- `www.labormin.com` no resuelve en esta consulta. La URL canónica sin www
+  funciona; añadir el alias y redirección es una mejora opcional de dominio.
+
+### Antes de pulsar Resubmit
+
+1. **Leer el motivo exacto de Google.** La sesión de AdSense continúa mostrando
+   «Your account wasn't approved» y confirmación de políticas, sin diagnóstico
+   específico. Revisar el correo de rechazo; no atribuirlo automáticamente a
+   contenido escaso, CMP u otra causa no demostrada.
+2. **Revisar el valor editorial del catálogo.** Hay cuatro guías propias y
+   fuentes transparentes, pero 722 de las 725 fichas conservan integridad de
+   descripción `unknown`, visible como extracto; tres tienen texto completo.
+   Esto no demuestra que 722 textos estén incompletos, ni garantiza que Google
+   considere suficiente el valor añadido. La guía oficial sobre rechazo pide
+   contenido original útil y advierte sobre código publicitario en páginas
+   automáticas sin contenido original. Recuperar textos completos y revisar
+   dónde se monetizan fichas reproducidas sigue siendo una prioridad editorial.
+3. **Consentimiento y datos del operador.** El menú actual de la cuenta no
+   permite comprobar «Privacidad y mensajes». Google permite elegir CMP tras
+   pedir revisión; no es un impedimento absoluto demostrado para reenviar.
+   Debe verificarse una CMP certificada y su cobertura antes de personalizar
+   anuncios para EEE/Reino Unido/Suiza. Completar datos del operador y plazos
+   de conservación con información real cuando se definan.
+
+No se reenvió la solicitud. No existe una cantidad garantizada de artículos,
+una espera fija ni un resultado de aprobación derivable de estas pruebas.
+
+Fuentes adicionales consultadas:
+- [Cuenta no aprobada: diagnóstico específico y contenido](https://support.google.com/adsense/answer/81904?hl=es).
+- [Requisitos para participar y contenido original](https://support.google.com/adsense/answer/9724?hl=es).

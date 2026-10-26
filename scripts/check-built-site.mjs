@@ -32,3 +32,9 @@ if (loaderTags.length) {
 }
 assert.equal([...home.matchAll(/data-ad-slot="(?![0-9]+")/g)].length,0,'Non-numeric ad unit');
 console.log({adsenseLoaders:loaderTags.length,invalidAdUnits:0});
+
+for (const job of archived) {
+  const html = fs.readFileSync(path.join(root, 'jobs', job.slug, 'index.html'), 'utf8');
+  assert.equal(html.includes('adsbygoogle.js'), false, 'Archived page must not load AdSense: ' + job.slug);
+}
+console.log({ archivedPagesWithoutAdsense: archived.length });

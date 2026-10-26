@@ -391,7 +391,7 @@ const es: Dictionary = {
   'job.clarityLimitBody':
     'Cada visitante puede generar una cantidad limitada de versiones claras por hora, para mantener el sitio rápido para todos. Vuelve a intentarlo en unos minutos, o escríbenos si necesitas más.',
   'job.clarityLimitClose': 'Entendido',
-  'job.clarityLimitContact': 'Escribir a contact@labormin.com',
+  'job.clarityLimitContact': 'Escribir a labormin.com@gmail.com',
   'job.clarityLimitTiktok': 'Escríbenos por TikTok',
   'card.remote': 'Remoto',
   'card.details': 'Detalles',

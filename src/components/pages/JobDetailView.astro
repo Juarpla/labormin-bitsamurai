@@ -17,7 +17,7 @@ const backHref = locale === 'es' ? '/jobs' : `/${locale}/jobs`;
 const needsTranslation = detectLang(job.description) !== locale;
 const descText = job.description.replace(/<[^>]*>/g, ' ').trim();
 const showClarity = descText.length >= 80;
-const CONTACT_EMAIL = 'contact@labormin.com';
+const CONTACT_EMAIL = 'labormin.com@gmail.com';
 /* Slot listo para el futuro: al definir el handle (ej. 'https://tiktok.com/@labormin'),
  * el CTA de TikTok del modal de límite aparece solo. */
 const TIKTOK_URL = '';
