@@ -70,6 +70,10 @@ Solo tras una acción explícita carga la etiqueta oficial de Google, con
 crear unidades. Es una excepción de diagnóstico a la ausencia de cargadores;
 las páginas públicas habituales conservan la pausa global. Permite observar
 el mensaje y revisar la decisión sin habilitar monetización.
+La primera prueba real no mostró el mensaje ni su API en Chromium/WebKit
+limpios y Brave. Solo se observaron scripts de Google, sin peticiones de
+anuncios ni Funding Choices; los flujos de decisiones siguen pendientes.
+Evidencia y límite de la prueba: [CONSENT-LIVE-CHECK.md](./CONSENT-LIVE-CHECK.md).
 
 No se añade un banner propio para simular una CMP certificada. El pie mantiene
 preparada la API `googlefc` de revocación y solo muestra el control cuando la
