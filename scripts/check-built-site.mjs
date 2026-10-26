@@ -51,7 +51,14 @@ for (const job of current) {
 // When serving is paused, no other page may enqueue a manual request either.
 if (!loaderTags.length) for (const file of walk(root)) {
   const html = fs.readFileSync(file, 'utf8');
-  assert.equal(html.includes('adsbygoogle.js'), false, file);
+  if (path.relative(root,file) === 'comprobar-consentimiento/index.html') {
+    // Isolated, opt-in diagnostic: no initial Google tag and never resumes ads.
+    assert.equal(/<script[^>]*src=["'][^"']*adsbygoogle/.test(html),false);
+    assert.ok(html.includes('pauseAdRequests=1'));
+    assert.equal(/pauseAdRequests\s*=\s*0/.test(html),false);
+    assert.ok(html.includes('noindex, follow'));
+    assert.equal(xml.includes('/comprobar-consentimiento'),false);
+  } else assert.equal(html.includes('adsbygoogle.js'), false, file);
   assert.equal(html.includes('data-ad-slot='), false, file);
 }
 console.log({jobPagesWithGuidance:guidance,jobPostingPages:structured,verificationPublisher:publisher,adServingPaused:!loaderTags.length});

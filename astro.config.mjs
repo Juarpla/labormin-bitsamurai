@@ -16,7 +16,7 @@ export default defineConfig({
   // namespace binding in the deployed Worker.
   session: false,
   // /ops/* es el panel interno — fuera del sitemap público.
-  integrations: [sitemap({ filter: (page) => !page.includes('/ops/') && !archivedSlugs.has(new URL(page).pathname.replace(/\/$/, '')) })],
+  integrations: [sitemap({ filter: (page) => !page.includes('/ops/') && !page.includes('/comprobar-consentimiento') && !archivedSlugs.has(new URL(page).pathname.replace(/\/$/, '')) })],
   i18n: {
     defaultLocale: 'es',
     // Solo español: la audiencia es Perú/LatAm hispanohablante (en/pt quedaron fuera del build)

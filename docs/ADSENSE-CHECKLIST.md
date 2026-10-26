@@ -50,10 +50,26 @@ el sitio **sin solicitar anuncios**. La guía de Google admite esos métodos y
 permite elegir una CMP después de solicitar revisión.
 [Conexión y revisión del sitio](https://support.google.com/adsense/answer/7584263?hl=es).
 
-La cuenta existente muestra «Your account wasn't approved», confirmación de
-políticas y botón Resubmit. Se volvió a comprobar la sesión: no ofrece acceso
-a «Privacidad y mensajes». No se marcó la confirmación ni se pulsó Resubmit.
-No se creó otra cuenta ni se publicó una CMP que no pudiera verificarse.
+La primera inspección mostró «Your account wasn't approved» sin acceso a
+«Privacidad y mensajes». Después de que el propietario completara la conexión
+del sitio, el 26 de octubre de 2026 el panel ya permite acceder a los mensajes.
+Se encontró un mensaje europeo publicado desde septiembre para labormin.com.
+Se corrigieron y publicaron su URL de privacidad (https://labormin.com/privacy/),
+idioma predeterminado español y botón «No consentir» en todas sus regiones.
+Se desactivó la optimización que alternaba el mensaje estándar y limitado para
+comprobar una variante estable. El mensaje de goatlab.win no se modificó.
+La publicación en el panel no prueba carga real ni aprobación del sitio.
+En Settings se observaron 198 proveedores comunes incluidos automáticamente,
+cobertura de mensajes de respaldo activada, interés legítimo habilitado por
+defecto, cero finalidades propias y Consent Mode desactivado. Se documentaron
+sin alterar ajustes que afectan también a otros sitios de la cuenta.
+
+La ruta `/comprobar-consentimiento/` está fuera del sitemap y lleva `noindex`.
+Solo tras una acción explícita carga la etiqueta oficial de Google, con
+`pauseAdRequests=1` fijado antes de cargarla y sin reanudar solicitudes ni
+crear unidades. Es una excepción de diagnóstico a la ausencia de cargadores;
+las páginas públicas habituales conservan la pausa global. Permite observar
+el mensaje y revisar la decisión sin habilitar monetización.
 
 No se añade un banner propio para simular una CMP certificada. El pie mantiene
 preparada la API `googlefc` de revocación y solo muestra el control cuando la
@@ -64,8 +80,9 @@ La investigación y las fuentes están en
 
 ### Antes de reactivar publicidad
 
-- [ ] Publicar una CMP certificada para el sitio, comprobar la URL de privacidad,
-  idioma, proveedores y cobertura aplicable. Google exige CMP certificada para
+- [x] Publicar el mensaje europeo de Google con español, URL de privacidad y
+  opciones de consentir, no consentir y gestionar preferencias.
+- [ ] Verificar proveedores y cobertura aplicable. Google exige CMP certificada para
   anuncios personalizados en EEE, Reino Unido y Suiza; Perú como público editorial
   no excluye visitas desde esos territorios.
 - [ ] Probar aceptar, rechazar, persistencia y revocar en el dominio real,

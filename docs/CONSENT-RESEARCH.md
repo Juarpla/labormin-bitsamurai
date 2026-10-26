@@ -144,3 +144,24 @@ fuentes, no requisitos literales de Google para obtener la aprobación.
 
 El motivo específico del rechazo debe obtenerse del mensaje de Google. Una
 mejora técnica o la publicación de una CMP no garantiza aprobación.
+
+## Prueba separada de la activación de anuncios
+
+Tras habilitarse el panel, se confirmó y corrigió el mensaje publicado para
+Labormin; ver el checklist para los ajustes observados. La pausa global inicial
+impide también cargar el mensaje, porque el cargador de AdSense lo despliega.
+
+La ruta de diagnóstico `/comprobar-consentimiento/` carga la etiqueta únicamente
+tras pulsar un botón, fija antes `adsbygoogle.pauseAdRequests=1`, no contiene
+unidades y nunca asigna cero a ese indicador. Google documenta esta API para
+impedir solicitudes de anuncios mientras siguen cargándose sus scripts. Puede
+leer cookies existentes de dominios Google; la pausa no significa ausencia de
+todo tratamiento. La ruta informa de la carga de Google y de que la CMP puede
+guardar la elección. No se habilita esa carga en las páginas habituales.
+[Fuente: pausar solicitudes de anuncios](https://support.google.com/adsense/answer/7670312?hl=en).
+
+La vista `?fc=alwaysshow&fctype=gdpr` fuerza el mensaje para depuración, pero
+no sirve para demostrar que una elección persiste: esa comprobación debe
+repetirse sin los parámetros. Ningún estado simulado sustituye la prueba del
+mensaje real publicado. El panel advierte que una publicación puede tardar
+hasta una hora en aparecer.

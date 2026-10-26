@@ -1,0 +1,68 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { adsenseClient } from '../lib/ads';
+const client = adsenseClient(import.meta.env.PUBLIC_ADSENSE_CLIENT);
+---
+
+<Layout title="Comprobar consentimiento — Labormin" description="Prueba del aviso de privacidad sin solicitar anuncios." path="/comprobar-consentimiento" noindex ads={false}>
+  <section class="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-20" data-consent-check data-client={client}>
+    <h1 class="font-display text-3xl font-semibold text-graphite-100 sm:text-4xl">Comprobar el consentimiento</h1>
+    <p class="mt-5 text-base leading-relaxed text-graphite-200">Esta página permite probar el mensaje de privacidad de Google. Solo carga sus servicios cuando pulsas el botón. Las solicitudes de anuncios permanecerán en pausa, incluso si aceptas.</p>
+    <p class="mt-4 text-base leading-relaxed text-graphite-200">La prueba puede guardar tu elección de privacidad. No cambia la configuración publicitaria del sitio. Puedes consultar nuestra <a class="text-brand-400 underline underline-offset-4" href="/privacy/">política de privacidad</a>.</p>
+    <div class="mt-8 flex flex-wrap gap-4">
+      <button class="min-h-11 rounded-full bg-brand-400 px-6 py-3 text-sm font-semibold text-graphite-950 transition-colors hover:bg-brand-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-400 disabled:cursor-default disabled:opacity-60" type="button" id="lm-consent-load">Cargar consentimiento de Google</button>
+      <button class="hidden min-h-11 rounded-full border border-graphite-600 px-6 py-3 text-sm font-semibold text-graphite-100 hover:border-brand-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-400" type="button" id="lm-consent-reopen">Cambiar mi elección</button>
+    </div>
+    <p id="lm-consent-status" role="status" aria-live="polite" class="mt-6 text-base leading-relaxed text-graphite-200">Sin iniciar. No se han cargado los servicios publicitarios de Google.</p>
+    <p class="mt-8 text-sm leading-relaxed text-graphite-400">Para forzar el aviso fuera de Europa, abre la <a class="text-brand-400 underline underline-offset-4" href="/comprobar-consentimiento/?fc=alwaysshow&amp;fctype=gdpr">vista de prueba del mensaje europeo</a>. Para comprobar que recuerda tu elección, vuelve a esta página sin esos parámetros y carga el consentimiento de nuevo.</p>
+  </section>
+</Layout>
+
+<script>
+  const surface = document.querySelector<HTMLElement>('[data-consent-check]');
+  const loadButton = document.querySelector<HTMLButtonElement>('#lm-consent-load');
+  const reopenButton = document.querySelector<HTMLButtonElement>('#lm-consent-reopen');
+  const status = document.querySelector<HTMLElement>('#lm-consent-status');
+  const apiWindow = window as any;
+  let timeout: ReturnType<typeof setTimeout>;
+  const report = (message: string) => { if (status) status.textContent = message; };
+
+  loadButton?.addEventListener('click', () => {
+    const client = surface?.dataset.client;
+    if (!client) { report('Falta el identificador del editor. La prueba no se ha iniciado.'); return; }
+    loadButton.disabled = true;
+    loadButton.textContent = 'Prueba iniciada';
+    // Google's documented pause API must be set BEFORE its async tag loads.
+    // Never resume requests here; this route must not contain any ad units.
+    apiWindow.adsbygoogle = apiWindow.adsbygoogle || [];
+    apiWindow.adsbygoogle.pauseAdRequests = 1;
+    apiWindow.googlefc = apiWindow.googlefc || {};
+    apiWindow.googlefc.callbackQueue = apiWindow.googlefc.callbackQueue || [];
+    apiWindow.googlefc.callbackQueue.push({ CONSENT_API_READY: () => {
+      clearTimeout(timeout);
+      report('La herramienta de consentimiento está disponible. Solicitudes de anuncios en pausa.');
+      if (typeof apiWindow.googlefc.showRevocationMessage === 'function') reopenButton?.classList.remove('hidden');
+      if (typeof apiWindow.__tcfapi === 'function') {
+        apiWindow.__tcfapi('addEventListener', 2, (data: any, success: boolean) => {
+          if (!success) return;
+          if (data.eventStatus === 'useractioncomplete' || data.eventStatus === 'tcloaded') {
+            clearTimeout(timeout);
+            const storage = data.purpose?.consents?.[1] === true ? 'permitido' : 'no autorizado';
+            report(`Elección disponible. Almacenamiento publicitario: ${storage}. Solicitudes de anuncios en pausa.`);
+          }
+        });
+      }
+    }});
+    report('Cargando la herramienta de consentimiento. Las solicitudes de anuncios están en pausa.');
+    timeout = setTimeout(() => report('Google no ha confirmado la carga del consentimiento. Comprueba el mensaje publicado y si el navegador bloquea sus servicios. No actives anuncios con esta prueba pendiente.'), 20000);
+    const tag = document.createElement('script');
+    tag.async = true;
+    tag.crossOrigin = 'anonymous';
+    tag.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(client)}`;
+    tag.onerror = () => { clearTimeout(timeout); report('El navegador o la red ha bloqueado la carga de Google. Prueba en una sesión limpia. Los anuncios siguen en pausa.'); };
+    document.head.append(tag);
+  });
+  reopenButton?.addEventListener('click', () => {
+    apiWindow.googlefc?.showRevocationMessage?.();
+  });
+</script>
