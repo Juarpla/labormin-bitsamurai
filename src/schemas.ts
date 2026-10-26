@@ -2,10 +2,13 @@ import { z } from 'astro/zod';
 
 export const SalarySchema = z
   .object({
-    min: z.number(),
+    kind: z.enum(['exact', 'range', 'minimum', 'maximum']),
+    min: z.number().nullable(),
     max: z.number().nullable(),
     currency: z.string(),
-    period: z.enum(['year', 'month', 'day', 'hour']).default('year'),
+    period: z.enum(['year', 'month', 'day', 'hour']),
+    raw: z.string(),
+    country: z.string().optional(),
   })
   .nullable();
 
@@ -21,6 +24,16 @@ export const JobSchema = z.object({
   city: z.string().nullable(),
   locationRaw: z.string(),
   remote: z.boolean(),
+  remoteEligibility: z.object({
+    status: z.enum(['peru-supported', 'restricted', 'unknown']),
+    countries: z.array(z.string()),
+    evidence: z.array(z.string()),
+  }),
+  visa: z.object({
+    status: z.enum(['offered', 'not-offered', 'authorization-required', 'relocation-only', 'unknown', 'conflicting']),
+    evidence: z.array(z.string()),
+  }),
+  policyVersion: z.number(),
   /** Heuristic visa-sponsorship signal — shown as "reported", never guaranteed */
   visaReported: z.boolean(),
   /** Listing source explicitly opens the job to international candidates
@@ -31,9 +44,16 @@ export const JobSchema = z.object({
   internship: z.boolean().optional(),
   category: z.string(),
   salary: SalarySchema,
+  /** Sorting/TTL reference; not necessarily the employer publication date. */
   postedAt: z.string(),
+  publishedAt: z.string().nullable(),
+  validThrough: z.string().nullable().optional(),
+  fetchedAt: z.string().optional(),
+  employmentType: z.enum(['FULL_TIME', 'PART_TIME', 'CONTRACTOR', 'TEMPORARY', 'INTERN', 'OTHER']).optional(),
   url: z.string().url(),
   description: z.string(),
+  excerpt: z.string(),
+  descriptionStatus: z.enum(['full', 'source-extract', 'unknown']),
   /** Auto-translated job titles (descriptions are only AI-translated on demand, view-layer). */
   translations: z
     .object({

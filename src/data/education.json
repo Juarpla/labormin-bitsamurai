@@ -1,0 +1,117 @@
+[
+  {
+    "id": "capacita-t",
+    "group": "cursos",
+    "name": "CAPACÍTA-T · Ministerio de Trabajo",
+    "location": "Virtual · desde Perú",
+    "program": "Cursos de competencias digitales, empleabilidad y seguridad y salud en el trabajo; revisa el catálogo vigente.",
+    "cost": "Cursos y certificación gratuitos.",
+    "duration": "Según el curso; aprendizaje asincrónico.",
+    "credential": "Certificado o constancia por curso aprobado. Las rutas formativas no tienen certificación propia según su FAQ.",
+    "admission": "Crear una cuenta y aprobar las evaluaciones. No es una carrera minera ni sustituye la inducción de una operación.",
+    "status": "Catálogo permanente; comprueba la vigencia de cada curso.",
+    "officialUrl": "https://capacitacionlaboral.trabajo.gob.pe/preguntas-frecuentes/",
+    "actionUrl": "https://capacitacionlaboral.trabajo.gob.pe/cursos/",
+    "lastVerifiedAt": "2026-10-26"
+  },
+  {
+    "id": "jovenes-productivos",
+    "group": "cursos",
+    "name": "Jóvenes Productivos · MTPE",
+    "location": "Perú · según servicio y convocatoria",
+    "program": "Capacitación laboral para personas en situación de vulnerabilidad socioeconómica.",
+    "cost": "Capacitación gratuita; confirma las condiciones del servicio elegido.",
+    "duration": "Depende del curso y la modalidad.",
+    "credential": "Consulta qué constancia o certificado entrega la convocatoria concreta.",
+    "admission": "La elegibilidad y los cupos dependen de las bases. No confirmamos una convocatoria minera abierta.",
+    "status": "Consultar convocatorias; no hay cupo minero verificado en esta guía.",
+    "officialUrl": "https://comunidad.jovenesproductivos.gob.pe/capacitacion_laboral/",
+    "actionUrl": "https://www.gob.pe/jovenes-productivos",
+    "lastVerifiedAt": "2026-10-26"
+  },
+  {
+    "id": "cetpro-juliaca",
+    "group": "oficios",
+    "name": "CETPRO Horacio Zeballos Gámez",
+    "location": "Juliaca · Puno",
+    "program": "El centro publica formación en electricidad/electrónica y dibujo técnico, entre otras opciones.",
+    "cost": "Su web declara sin matrícula ni pensiones. Indica un pago de mantenimiento de máquinas, sin publicar el monto.",
+    "duration": "Un año académico, según su página de admisión; confirma el programa y horario.",
+    "credential": "Auxiliar técnico, según el centro. No se confirmó bachiller técnico.",
+    "admission": "Publica edad mínima de 14 años y DNI. Consulta cupos, herramientas y requisitos del programa elegido.",
+    "status": "Condiciones publicadas; vacantes y costo de mantenimiento por confirmar.",
+    "officialUrl": "https://cetprohzgj.edu.pe/admision",
+    "actionUrl": "https://cetprohzgj.edu.pe/",
+    "lastVerifiedAt": "2026-10-26"
+  },
+  {
+    "id": "promae-comas",
+    "group": "oficios",
+    "name": "CETPRO PROMAE Comas",
+    "location": "Comas · Lima · presencial",
+    "program": "Instalaciones eléctricas y formación modular, según su portal.",
+    "cost": "Precio no publicado. La institución indica que varía y debe consultarse; no lo clasificamos como gratuito.",
+    "duration": "Por confirmar para el módulo y horario elegidos.",
+    "credential": "Confirma si el programa conduce a certificado o título y su denominación exacta.",
+    "admission": "Publica acceso desde los 14 años, identificación y fotos. Verifica los documentos vigentes con el centro.",
+    "status": "Oferta publicada; calendario, cupos y tarifario por consultar.",
+    "officialUrl": "https://www.promaecomas.edu.pe/",
+    "actionUrl": "https://www.promaecomas.edu.pe/",
+    "lastVerifiedAt": "2026-10-26"
+  },
+  {
+    "id": "jose-carlos-mariategui",
+    "group": "carreras",
+    "name": "IES Público José Carlos Mariátegui",
+    "location": "Sede principal de Samegua · Mariscal Nieto · Moquegua · presencial",
+    "program": "Electrónica Industrial. La página del programa incluye el sector minero entre sus campos de trabajo.",
+    "cost": "Admisión publicada: S/210. El tarifario 2026 señala matrícula/ratificación base de S/100, más conceptos adicionales. Costo total de estudios y grado por confirmar.",
+    "duration": "Seis periodos académicos, tres años; 126 créditos según el anexo de licenciamiento.",
+    "credential": "El programa publica bachiller técnico y título profesional técnico. El licenciamiento de la sede y programa está respaldado por RM 655-2024-MINEDU; obtener el grado exige cumplir los requisitos académicos, de idioma y trámites aplicables.",
+    "admission": "Revisa el prospecto y consulta el desglose vigente de pagos. La licencia del instituto está renovada hasta el 23 de noviembre de 2030; no equivale a una beca o empleo garantizado.",
+    "status": "No confirmamos una etapa de postulación actualmente abierta ni una beca para este programa.",
+    "officialUrl": "https://iesjcm.edu.pe/newsites/index.php/electronica-industrial/",
+    "actionUrl": "https://iesjcm.edu.pe/newsites/index.php/admision/",
+    "additionalSources": [
+      {
+        "label": "Tarifario oficial 2026",
+        "url": "https://iesjcm.edu.pe/newsites/index.php/tusne-2026/"
+      },
+      {
+        "label": "Resolución de licenciamiento y anexos",
+        "url": "https://iesjcm.edu.pe/newsites/wp-content/uploads/2024/12/6331830-rm_n-_655-2024-minedu.pdf"
+      }
+    ],
+    "lastVerifiedAt": "2026-10-26"
+  },
+  {
+    "id": "narciso-villanueva",
+    "group": "carreras",
+    "name": "IESTP Narciso Villanueva Manzo",
+    "location": "Conchucos · Pallasca · Áncash",
+    "program": "Explotación Minera.",
+    "cost": "S/0 en mensualidades de enseñanza, según el instituto. Matrícula, materiales, prácticas y titulación: costo total no confirmado.",
+    "duration": "Tres años · seis semestres.",
+    "credential": "Publica título de profesional técnico en Explotación Minera. No confirmamos bachiller técnico para este programa.",
+    "admission": "Solicita identidad y estudios secundarios. Revisa el cronograma y los requisitos de la siguiente admisión.",
+    "status": "La convocatoria 2026-I figura cerrada. El portal mezcla referencias a 2027-I; confirma el calendario directamente.",
+    "officialUrl": "https://iesnarcisovillanuevamanzo.edu.pe/",
+    "actionUrl": "https://iesnarcisovillanuevamanzo.edu.pe/",
+    "lastVerifiedAt": "2026-10-26"
+  },
+  {
+    "id": "chalhuahuacho",
+    "group": "carreras",
+    "name": "IESTP Chalhuahuacho",
+    "location": "Challhuahuacho · Cotabambas · Apurímac",
+    "program": "Explotación Minera y Mecánica de Producción Industrial, entre la oferta publicada en 2026.",
+    "cost": "El examen de admisión 2026-I costaba S/180. Ese importe no es el costo de la carrera; tarifario total no confirmado.",
+    "duration": "El instituto describe seis ciclos; confirma el plan del programa elegido.",
+    "credential": "Consulta el título exacto. No confirmamos licenciamiento obtenido ni bachiller técnico.",
+    "admission": "La convocatoria publicada pedía educación básica concluida y documentos de identidad, entre otros requisitos.",
+    "status": "El cronograma consultado terminó el 16 de abril de 2026. No se presenta como admisión abierta.",
+    "officialUrl": "https://iestpchalhuahuacho.edu.pe/admision/",
+    "actionUrl": "https://iestpchalhuahuacho.edu.pe/presentacion/",
+    "lastVerifiedAt": "2026-10-26"
+  }
+]

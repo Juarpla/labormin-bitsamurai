@@ -19,7 +19,7 @@ export const prerender = false;
  * explicit relative path. */
 import { callProvider, extractJson, resolveChain, withFailover } from '/src/lib/llm.js';
 
-const LANGS = new Set(['es', 'en', 'pt']);
+const LANGS = new Set(['es']);
 const LANG_NAMES: Record<string, string> = { es: 'Spanish', en: 'English', pt: 'Portuguese' };
 const MAX_HTML = 10_000;
 const DEFAULT_RATE_LIMIT_PER_HOUR = 30;
@@ -128,33 +128,38 @@ function systemPrompt(lang: string): string {
 }
 
 function clean(s: unknown, max: number): string {
-  return typeof s === 'string' ? s.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim().slice(0, max) : '';
+  if (typeof s !== 'string') throw new Error('invalid text field');
+  const text = s.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
+  if (text.length > max) throw new Error('AI field too long; keep original');
+  return text;
 }
 
 function parseClarity(raw: string): Clarity {
   const obj = JSON.parse(extractJson(raw));
-  const summary = clean(obj?.summary, 400);
+  if (obj?.facts?.length > 80 || obj?.sections?.length > 80) throw new Error('AI structure too long; keep original');
+  const summary = clean(obj?.summary, MAX_HTML);
   const facts: Fact[] = Array.isArray(obj?.facts)
     ? obj.facts
-        .slice(0, 8)
+
         .map((f: Record<string, unknown>) => ({
           icon: ICON_WHITELIST.includes(f?.icon as never) ? String(f.icon) : 'generic',
           label: clean(f?.label, 60),
-          value: clean(f?.value, 160),
+          value: clean(f?.value, MAX_HTML),
         }))
-        .filter((f: Fact) => f.label && f.value)
+
     : [];
   const sections: Section[] = Array.isArray(obj?.sections)
     ? obj.sections
-        .slice(0, 6)
+
         .map((s: Record<string, unknown>) => ({
           heading: clean(s?.heading, 120),
           bullets: Array.isArray(s?.bullets)
-            ? s.bullets.slice(0, 12).map((b: unknown) => clean(b, 400)).filter(Boolean)
+            ? s.bullets.map((b: unknown) => clean(b, MAX_HTML)).filter(Boolean)
             : [],
         }))
-        .filter((s: Section) => s.heading && s.bullets.length > 0)
+
     : [];
+  if (facts.some(f => !f.label || !f.value) || sections.some(s => !s.heading || !s.bullets.length)) throw new Error('incomplete AI structure; keep original');
   if (!summary && facts.length === 0 && sections.length === 0) throw new Error('empty clarity');
   return { summary, facts, sections };
 }
@@ -184,13 +189,14 @@ async function plainTranslate(html: string, lang: string, chain: Chain, log: (m:
         });
         const arr = JSON.parse(extractJson(raw))?.translations;
         if (!Array.isArray(arr) || arr.length !== batch.length) throw new Error('translation shape mismatch');
+        if (!arr.every(item => typeof item === 'string' && item.trim())) throw new Error('invalid translation field');
         return arr;
       },
       log,
     );
     batch.forEach((t, k) => map.set(t, String(out[k] || t).trim()));
   }
-  return tokens.map((t) => (t.startsWith('<') ? t : (map.get(t) ?? t))).join('');
+  return tokens.map((t) => (t.startsWith('<') ? t : (esc(map.get(t) ?? t)))).join('');
 }
 
 /* --- deterministic HTML rendering (everything escaped) --- */

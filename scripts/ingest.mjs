@@ -13,6 +13,8 @@
  *               APIFY_TOKEN (enables apify-linkedin/indeed/seek)
  *               LM_SOURCES (comma list; CI schedules Apify sources by weekday)
  */
+import { decodeHTML } from 'entities';
+import { inNiche, parseSalary, visaHeuristic, certifyJob, POLICY_VERSION, isExpired } from '../src/lib/job-policy.mjs';
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -33,10 +35,12 @@ try {
 const TTL_DAYS = 30;
 let MAX_PER_SOURCE = 1500; // overridden by companies.json `maxPerSource`
 const UA = { 'User-Agent': 'LaborminBot/1.0 (+https://labormin.com/about)' };
-const DESC_MAX = 6000;
+// Keep all obtained source text: final paragraphs can contain eligibility restrictions.
 
 /** CI day-scheduling: refresh-jobs.yml derives LM_SOURCES from the weekday and
  *  only those Apify sources run. Empty/unset = run all sources (local dev). */
+const ONLY_SOURCE = process.argv.find(a => a.startsWith('--only='))?.slice(7);
+const selectedSource = src => !ONLY_SOURCE || src.name === ONLY_SOURCE || src.slug === ONLY_SOURCE;
 const LM_SOURCES = (process.env.LM_SOURCES || '')
   .split(',')
   .map((s) => s.trim())
@@ -65,10 +69,8 @@ const normTitle = (s) =>
     .replace(/[^a-z0-9]+/g, ' ').trim();
 
 function decodeEntities(s) {
-  return s
-    .replace(/&lt;/gi, '<').replace(/&gt;/gi, '>').replace(/&quot;/gi, '"')
-    .replace(/&#39;|&apos;/gi, "'").replace(/&nbsp;/gi, ' ').replace(/&amp;/gi, '&')
-    .replace(/&#x?[0-9a-f]+;/gi, ' ');
+  // Greenhouse sometimes double-escapes markup; decode both source layers.
+  return decodeHTML(decodeHTML(String(s)));
 }
 
 function stripHtml(html) {
@@ -270,9 +272,11 @@ function parseRss(xml) {
 /** Reuse previously-ingested fields for a job we already stored — avoids refetching details.
  *  Only trusts records with a real country: GLOBAL records (stubs or legacy-corrupted)
  *  return false so the detail fetch repairs them this run. */
-function hydrateFromPrev(prevById, job) {
+export function hydrateFromPrev(prevById, job) {
   const p = prevById.get(job.id);
   if (!p || !(p.description || '').trim()) return false;
+  if (p.policyVersion !== POLICY_VERSION || p.descriptionStatus !== 'full') return false;
+  if (!p.fetchedAt || Date.parse(p.fetchedAt) < Date.now() - 7 * 86400000) return false;
   if (!p.country || p.country === 'GLOBAL') return false; // incomplete record — refetch to repair
   job.title = p.title || job.title;
   job.company = p.company || job.company;
@@ -282,13 +286,17 @@ function hydrateFromPrev(prevById, job) {
   job.city = p.city ?? job.city;
   job.locationRaw = p.locationRaw || job.locationRaw;
   job.remote = Boolean(p.remote);
-  job.visaReported = Boolean(p.visaReported);
+  // Reclassify the obtained source text; never trust old flags.
   job.category = p.category || job.category;
-  job.salary = p.salary ?? job.salary ?? null;
+  job.salary = p.salary?.kind ? p.salary : null;
   job.description = p.description;
+  job.descriptionStatus = p.descriptionStatus;
+  job.fetchedAt = p.fetchedAt;
+  job.publishedAt = p.publishedAt || null;
   job.excerpt = p.excerpt || excerpt(stripTags(p.description));
   if (p.postedAt) job.postedAt = p.postedAt; // keep stable "posted" age across runs
   if (p.translations) job.translations = p.translations; // keep cached translations
+  Object.assign(job, certifyJob(job));
   return true;
 }
 
@@ -309,7 +317,7 @@ const effectiveCap = (src, maxPerSource) => {
  *  attribute) rather than text detection — the location policy still
  *  auto-corrects/excludes them, but does not queue them for review. It is a
  *  runtime-only marker: applyLocationPolicy strips it before the feed write. */
-function mkJob({ source, id, company, title, country, city = null, locationRaw = '', remote = false, description = '', postedAt, url, salary = null, trustedCountry = false }) {
+export function mkJob({ source, id, company, title, country, city = null, locationRaw = '', remote = false, description = '', postedAt, url, salary = null, trustedCountry = false }) {
   const text = stripTags(decodeEntities(description || ''));
   const iso = isoDate(postedAt);
   return {
@@ -328,8 +336,11 @@ function mkJob({ source, id, company, title, country, city = null, locationRaw =
     category: classifyCategory(title),
     salary,
     postedAt: iso,
+    publishedAt: null,
+    fetchedAt: new Date().toISOString(),
+    descriptionStatus: 'source-extract',
     url,
-    description: htmlify(text.slice(0, DESC_MAX)),
+    description: htmlify(text),
     excerpt: excerpt(text),
   };
 }
@@ -603,10 +614,10 @@ async function applyLocationPolicy(candidates) {
   // countryTrusted is a runtime-only marker — never leak it into the feed.
   for (const j of out) delete j.countryTrusted;
 
-  await writeFile(
-    FLAGS_FILE,
-    JSON.stringify({ generatedAt: today, flags, excluded: excluded.slice(0, 300) }, null, 2)
-  );
+  const candidateIds = new Set(candidates.map(j => j.id));
+  const remainingFlags = ONLY_SOURCE ? (prev.flags || []).filter(j => !candidateIds.has(j.id)) : [];
+  const remainingExcluded = ONLY_SOURCE ? (prev.excluded || []).filter(j => !candidateIds.has(j.id)) : [];
+  await writeFile(FLAGS_FILE, JSON.stringify({generatedAt: today, flags: [...remainingFlags, ...flags], excluded: [...remainingExcluded, ...excluded].slice(-300)}, null, 2));
   console.log(
     `✓ location policy: ${autoFixed} auto-corrected · ${excluded.length} excluded (unsupported) · ${flags.length} flagged for review · ${out.length} jobs kept`
   );
@@ -644,50 +655,6 @@ function classifyCategory(title) {
   return 'other';
 }
 
-const VISA_RE = /visa sponsorship|sponsorship available|will sponsor|provide visa|work permit|relocation (support|package|assistance)|right to work|eligible to work|work authorization|work visa|\b482\b|\b462\b|working holiday|immigration support|relocate to/i;
-function visaHeuristic(...texts) {
-  return texts.some((t) => VISA_RE.test(t || ''));
-}
-
-function parseSalary(text, country) {
-  if (!text) return null;
-  const currencyByCountry = { US: 'USD', CA: 'CAD', AU: 'AUD', ZA: 'ZAR', BR: 'BRL', CL: 'CLP', PE: 'PEN', MX: 'MXN' };
-
-  const amounts = [...text.matchAll(/(?<![\w,.])(\d{1,3}(?:[.,]\d{3}){1,2}(?:\.\d+)?|\d{2,6})(?!\s?[%°])/g)]
-    .map((m) => ({
-      n: parseFloat(m[1].replace(/[.,](?=\d{3}\b)/g, '').replace(/,(?=\d{1,2}\b)/, '.')),
-      // ±24 chars around each amount: currency/period markers must sit next to
-      // the figure — a bare "CAD" elsewhere (e.g. the design software) must not win.
-      ctx: text.slice(Math.max(0, m.index - 24), m.index + m[0].length + 24),
-    }))
-    .filter((m) => m.n >= 10000 && m.n <= 2000000);
-  if (amounts.length === 0) return null;
-  const ctx = amounts.map((m) => m.ctx).join('\n');
-
-  let currency = null;
-  if (/€/.test(ctx)) currency = 'EUR';
-  if (/£/.test(ctx)) currency = 'GBP';
-  if (/r\$|\bbrl\b/i.test(ctx)) currency = 'BRL';
-  if (/\bzar\b|\br\s?\d{2,3}[,.]\d{3}\b/i.test(ctx)) currency = 'ZAR';
-  if (/\baud\b|a\$/.test(ctx)) currency = 'AUD';
-  if (/\bcad\b|c\$/.test(ctx)) currency = 'CAD';
-  if (/\busd\b|us\$/.test(ctx)) currency = 'USD';
-  // Bare "$": not a country signal — Latin American postings write "$776.648"
-  // for pesos, so defer to the posting's country currency (USD as last resort).
-  if (!currency && /(?<![\w$])\$/.test(ctx)) currency = currencyByCountry[country] || 'USD';
-  if (!currency) currency = currencyByCountry[country] || null;
-  if (!currency) return null;
-
-  const nums = amounts.map((m) => m.n);
-  const min = Math.min(...nums);
-  const max = Math.max(...nums);
-  let period = 'year';
-  if (/\/\s*(hour|hr|hora)|\bper\s+(hour|hr)|\ban\s+hour\b|\bpor\s+hora\b|\bla\s+hora\b/i.test(ctx)) period = 'hour';
-  else if (/\/\s*(day|d[ií]a)|\bper\s+day\b|\ba\s+day\b|\bpor\s+d[ií]a\b|\bal\s+d[ií]a\b/i.test(ctx)) period = 'day';
-  else if (/\/\s*month\b|\bper\s+month\b|\ba\s+month\b|\bmensual\b|\bpor\s+mes\b|\bal\s+mes\b/i.test(ctx)) period = 'month';
-  return { min, max: max > min ? max : null, currency, period };
-}
-
 /* -------------------------------- sources -------------------------------- */
 
 async function fetchGreenhouse({ name, slug }) {
@@ -715,8 +682,11 @@ async function fetchGreenhouse({ name, slug }) {
       category: classifyCategory(j.title),
       salary: parseSalary(text, country),
       postedAt: (j.updated_at || new Date().toISOString()).slice(0, 10),
+      publishedAt: j.first_published ? isoDate(j.first_published, null) : null,
+      fetchedAt: new Date().toISOString(),
+      descriptionStatus: 'full',
       url: j.absolute_url,
-      description: htmlify(text.slice(0, DESC_MAX)),
+      description: htmlify(text),
       excerpt: excerpt(text),
     };
   });
@@ -748,8 +718,11 @@ async function fetchLever({ name, slug }) {
       category: classifyCategory(j.text),
       salary: parseSalary(text, country),
       postedAt: new Date(j.createdAt || Date.now()).toISOString().slice(0, 10),
+      publishedAt: j.createdAt ? isoDate(j.createdAt, null) : null,
+      fetchedAt: new Date().toISOString(),
+      descriptionStatus: 'full',
       url: j.hostedUrl,
-      description: htmlify(text.slice(0, DESC_MAX)),
+      description: htmlify(text),
       excerpt: excerpt(text),
     };
   });
@@ -789,7 +762,7 @@ async function fetchArbeitnow() {
         salary: parseSalary(text, country),
         postedAt: new Date((j.created_at || Date.now() / 1000) * 1000).toISOString().slice(0, 10),
         url: j.url,
-        description: htmlify(text.slice(0, DESC_MAX)),
+        description: htmlify(text),
         excerpt: excerpt(text),
       });
     }
@@ -824,7 +797,7 @@ async function fetchRemotive() {
         salary: parseSalary(j.salary || text, country),
         postedAt: (j.publication_date || new Date().toISOString()).slice(0, 10),
         url: j.url,
-        description: htmlify(text.slice(0, DESC_MAX)),
+        description: htmlify(text),
         excerpt: excerpt(text),
       };
     });
@@ -863,7 +836,7 @@ async function fetchRemoteok() {
         salary: parseSalary(text, country),
         postedAt,
         url: r.url,
-        description: htmlify(text.slice(0, DESC_MAX)),
+        description: htmlify(text),
         excerpt: excerpt(text),
       };
     });
@@ -902,7 +875,7 @@ async function fetchAdzuna({ code }) {
       salary,
       postedAt: (j.created || new Date().toISOString()).slice(0, 10),
       url: j.redirect_url,
-      description: htmlify(text.slice(0, DESC_MAX)),
+      description: htmlify(text),
       excerpt: excerpt(text),
     };
   });
@@ -929,6 +902,11 @@ async function fetchSccCapper(src) {
       url: src.url,
     })
   );
+}
+
+export function hiringroomDescription(html) {
+  const blocks = [...html.matchAll(/<div\b[^>]*class=["'][^"']*\bjob-description-content\b[^"']*["'][^>]*>([\s\S]*?)<\/div>/gi)];
+  return blocks.map(m => stripTags(decodeEntities(m[1]))).filter(Boolean).join('\n\n');
 }
 
 // 2) HiringRoom (Chinalco, Cerro Verde, Hochschild) — SSR cards + og:description detail
@@ -976,9 +954,11 @@ async function fetchHiringroom(src, prevById) {
     try {
       const dhtml = await fetchText(job.url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } });
       const og = (dhtml.match(/<meta[^>]+property=["']og:description["'][^>]+content=["']([\s\S]*?)["']/i) || [])[1] || '';
-      const main = stripTags(decodeEntities(og || '')).trim();
+      const full = hiringroomDescription(dhtml);
+      const main = full || stripTags(decodeEntities(og || '')).trim();
+      job.descriptionStatus = full ? 'full' : 'source-extract';
       if (main) {
-        job.description = htmlify(main.slice(0, DESC_MAX));
+        job.description = htmlify(main);
         job.excerpt = excerpt(main);
       }
       out.push(job);
@@ -1087,11 +1067,13 @@ async function fetchSapsfCsb(src, prevById) {
       base.countryTrusted = Boolean(src.country);
       base.salary = parseSalary(`${p.raw} ${p.description.slice(0, 2000)}`, base.country);
       if (p.description) {
-        base.description = htmlify(p.description.slice(0, DESC_MAX));
+        base.description = htmlify(p.description);
         base.excerpt = excerpt(p.description);
       }
       base.postedAt = isoDate(p.datePosted || stub.lastmod);
-      if (p.validThrough) base._validThrough = isoDate(p.validThrough); // internal hint; dropped by schema
+      base.publishedAt = isoDate(p.datePosted, null);
+      if (p.description) base.descriptionStatus = 'full';
+      if (p.validThrough) base._validThrough = isoDate(p.validThrough, null); // internal hint; dropped by schema
       jobs.push(base);
     } catch (err) {
       jobs.push(base); // keep stub (empty description) — next run can retry
@@ -1162,7 +1144,7 @@ async function fetchOracleHcm(src, prevById) {
       const full = [d.ExternalDescriptionStr, d.ExternalQualificationsStr].filter(Boolean).join('\n\n');
       const text = stripTags(decodeEntities(full || ''));
       if (text) {
-        job.description = htmlify(text.slice(0, DESC_MAX));
+        job.description = htmlify(text);
         job.excerpt = excerpt(text);
       }
     } catch {
@@ -1216,10 +1198,12 @@ async function fetchPageup(src, prevById) {
       if (jp) {
         job.title = (jp.title || job.title).trim();
         job.postedAt = isoDate(jp.datePosted);
+        job.publishedAt = isoDate(jp.datePosted, null);
+        if (jp.description) job.descriptionStatus = 'full';
         job.salary = parseSalary(`${JSON.stringify(jp.jobLocation || '')} ${jp.description || ''}`.slice(0, 3000), job.country);
         const text = stripTags(decodeEntities(jp.description || ''));
         if (text) {
-          job.description = htmlify(text.slice(0, DESC_MAX));
+          job.description = htmlify(text);
           job.excerpt = excerpt(text);
         }
       }
@@ -1309,7 +1293,7 @@ async function fetchJobiqo(src, prevById) {
         job.salary = parseSalary(JSON.stringify(jp.baseSalary || ''), job.country);
         const text = stripTags(decodeEntities(jp.description || ''));
         if (text) {
-          job.description = htmlify(text.slice(0, DESC_MAX));
+          job.description = htmlify(text);
           job.excerpt = excerpt(text);
         }
       }
@@ -1364,12 +1348,14 @@ async function fetchBrunel(src, prevById) {
         job.city = splitLocation(addr.addressLocality || '').city;
         job.country = COUNTRY_HINTS[cc] ? cc : detectCountry(`${raw} ${job.title}`);
         job.postedAt = isoDate(jp.datePosted);
+        job.publishedAt = isoDate(jp.datePosted, null);
+        if (jp.description) job.descriptionStatus = 'full';
         const sal = jp.baseSalary || jp.estimatedSalary;
         job.salary = parseSalary(JSON.stringify(sal || ''), job.country);
         if (text0) {
           // Brunel's mining facet leaks other markets — keep mining-relevant roles only.
           if (!MINING_RE.test(job.title) && !MINING_RE.test(text0.slice(0, 600))) continue;
-          job.description = htmlify(text0.slice(0, DESC_MAX));
+          job.description = htmlify(text0);
           job.excerpt = excerpt(text0);
         }
       }
@@ -1415,10 +1401,12 @@ async function fetchGlobe247(src, prevById) {
         job.locationRaw = raw;
         job.country = src.country || detectCountry(`${raw} ${job.title} ${String(jp.description || '').slice(0, 800)}`);
         job.postedAt = isoDate(jp.datePosted);
+        job.publishedAt = isoDate(jp.datePosted, null);
+        if (jp.description) job.descriptionStatus = 'full';
         job.salary = parseSalary(String(jp.baseSalary ?? '') + ' ' + String(jp.description || '').slice(0, 1500), job.country);
         const text = stripTags(decodeEntities(jp.description || ''));
         if (text) {
-          job.description = htmlify(text.slice(0, DESC_MAX));
+          job.description = htmlify(text);
           job.excerpt = excerpt(text);
         }
       }
@@ -1474,7 +1462,7 @@ async function fetchCamining(src, prevById) {
       job.country = detectCountryFrom(`${job.locationRaw} ${title}`, text);
       if (!MINING_RE.test(title) && !MINING_RE.test(text.slice(0, 500))) continue; // CA Global publishes non-mining content too
       if (text) {
-        job.description = htmlify(text.slice(0, DESC_MAX));
+        job.description = htmlify(text);
         job.excerpt = excerpt(text);
       }
     } catch {
@@ -1542,7 +1530,7 @@ async function fetchJobbank(src, prevById) {
       const main = dhtml.match(/<main[\s\S]*?<\/main>/i);
       const text = stripTags(decodeEntities(main ? main[0] : dhtml)).trim();
       if (text) {
-        job.description = htmlify(text.slice(0, DESC_MAX));
+        job.description = htmlify(text);
         job.excerpt = excerpt(text);
       }
       const sal = dhtml.match(/itemprop="baseSalary"[\s\S]{0,600}?itemprop="value"[\s\S]{0,300}?content="([\d.,]+)"[\s\S]{0,200}?itemprop="unitText"\s+content="(\w+)"/i);
@@ -1651,10 +1639,10 @@ async function fetchPnet(src, prevById) {
       const jp = collectJobPostings(extractJsonLd(dhtml))[0];
       const text = jp ? stripTags(decodeEntities(jp.description || '')) : '';
       if (text) {
-        job.description = htmlify(text.slice(0, DESC_MAX));
+        job.description = htmlify(text);
         job.excerpt = excerpt(text);
         if (jp.datePosted) job.postedAt = isoDate(jp.datePosted);
-        if (jp.validThrough) job._validThrough = isoDate(jp.validThrough);
+        if (jp.validThrough) job._validThrough = isoDate(jp.validThrough, null);
       }
     } catch {
       /* keep snippet */
@@ -1892,7 +1880,7 @@ async function fetchRadancy(src, prevById) {
     job.locationRaw = raw;
     job.postedAt = isoDate(meta.datePosted, isoDate(stub.lastmod));
     if (text) {
-      job.description = htmlify(text.slice(0, DESC_MAX));
+      job.description = htmlify(text);
       job.excerpt = excerpt(text);
     }
     out.push(job);
@@ -1968,9 +1956,11 @@ async function fetchGupy(src, prevById) {
       job.locationRaw = [addr.addressLocality, addr.addressRegion].filter(Boolean).join(', ');
       job.salary = salary;
       job.postedAt = isoDate(jp.datePosted);
-      if (jp.validThrough) job._validThrough = isoDate(jp.validThrough); // internal hint; dropped by schema
+      job.publishedAt = isoDate(jp.datePosted, null);
+      if (jp.description) job.descriptionStatus = 'full';
+      if (jp.validThrough) job._validThrough = isoDate(jp.validThrough, null); // internal hint; dropped by schema
       if (text) {
-        job.description = htmlify(text.slice(0, DESC_MAX));
+        job.description = htmlify(text);
         job.excerpt = excerpt(text);
       }
       out.push(job);
@@ -2026,7 +2016,7 @@ async function fetchSmartrecruiters(src, prevById) {
         .join('\n\n');
       const text = stripTags(decodeEntities(html));
       if (text) {
-        job.description = htmlify(text.slice(0, DESC_MAX));
+        job.description = htmlify(text);
         job.excerpt = excerpt(text);
       }
     } catch {
@@ -2470,104 +2460,9 @@ async function translateTitles(jobs) {
  *  by description boilerplate) and re-parses `salary` with the current parser.
  *  Never touches source content; keeps slugs so existing URLs stay valid.
  *  Run: node scripts/ingest.mjs --repair */
-/** Local-currency fallbacks (mirrors parseSalary) — a stored salary whose currency
- *  belongs to a country other than the job's is a stale/wrong fallback. */
-const LOCAL_CURRENCY = { CAD: 'CA', AUD: 'AU', ZAR: 'ZA', BRL: 'BR', CLP: 'CL', PEN: 'PE', MXN: 'MX' };
-/** Explicitly text-derived currencies worth keeping if a re-parse comes up empty
- *  (descriptions are stored truncated, so the original figures may be gone). */
-const SAFE_CURRENCY = (cur, oldCountry) =>
-  ['USD', 'EUR', 'GBP'].includes(cur) ||
-  (cur === 'CAD' && oldCountry === 'CA') ||
-  (cur === 'AUD' && oldCountry === 'AU');
-const garbagePeriod = (s) => s && (s.period === 'day' || s.period === 'hour') && s.min >= 10000;
-
-async function repair() {
-  const feed = JSON.parse(await readFile(OUT, 'utf8'));
-  const jobs = Array.isArray(feed) ? feed : feed.jobs || [];
-  let fixedCountry = 0;
-  let fixedSalary = 0;
-  for (const j of jobs) {
-    const oldSalary = j.salary ?? null;
-    const oldCountry = j.country;
-    let countryChanged = false;
-    if (j.locationRaw) {
-      // City (first comma segment) first — it is the unambiguous part; extra
-      // segments can mislead ("Lima, Santiago De Surco" is Peru, not Chile).
-      // Full location string as fallback ("St. George, Utah"). If nothing
-      // resolves, keep the stored country — no description fallback here.
-      const { city } = splitLocation(j.locationRaw);
-      let c = detectCountry(city || '');
-      if (c === 'GLOBAL') c = detectCountry(j.locationRaw);
-      if (c !== 'GLOBAL' && c !== j.country) {
-        console.log(`country ${j.country} → ${c}: ${j.company} · ${j.locationRaw} (${j.slug})`);
-        j.country = c;
-        fixedCountry++;
-        countryChanged = true;
-      } else if (c === 'GLOBAL' && j.country !== 'GLOBAL') {
-        // Location names no supported country: if the stored country only matches
-        // via the legacy substring rule, it is an artifact ("Dominican" → PE).
-        const legacy = detectCountryLegacy(j.locationRaw);
-        if (legacy !== 'GLOBAL' && legacy === j.country) {
-          console.log(`country ${j.country} → GLOBAL (substring artifact): ${j.company} · ${j.locationRaw} (${j.slug})`);
-          j.country = 'GLOBAL';
-          fixedCountry++;
-          countryChanged = true;
-        }
-      }
-    } else if (j.source === 'sapsf-csb' && j.title) {
-      // CSB titles embed the posting location ("(Round Mountain, NV, US)") —
-      // employer-provided structure. Records ingested via the Google-base RSS
-      // path predate locationRaw and would otherwise stay stuck forever.
-      const loc = parseTitleLocation(j.title);
-      if (loc) {
-        if (!j.locationRaw) j.locationRaw = loc.locationRaw;
-        if (!j.city) j.city = loc.city;
-        if (loc.code !== j.country) {
-          console.log(`country ${j.country} → ${loc.code} (title location): ${j.company} · ${j.title} (${j.slug})`);
-          j.country = loc.code;
-          fixedCountry++;
-          countryChanged = true;
-        }
-      }
-    }
-    // Re-parse salary only where the stored value is affected by the bugs this
-    // repair fixes: the country changed, the currency is a stale fallback, or
-    // the period is implausible ("150,000/day" = a yearly figure mis-flagged).
-    const staleCurrency =
-      oldSalary && LOCAL_CURRENCY[oldSalary.currency] && LOCAL_CURRENCY[oldSalary.currency] !== j.country;
-    if (j.description && (countryChanged || staleCurrency || garbagePeriod(oldSalary))) {
-      const s = parseSalary(stripTags(decodeEntities(j.description)), j.country);
-      // Keep an explicitly-derived value when the re-parse finds nothing.
-      if (s !== null || !oldSalary || !SAFE_CURRENCY(oldSalary.currency, oldCountry)) {
-        if (JSON.stringify(s) !== JSON.stringify(oldSalary)) fixedSalary++;
-        j.salary = s;
-      }
-    }
-  }
-  await writeFile(OUT, JSON.stringify({ ...feed, jobs }, null, 2));
-  console.log('---');
-  console.log(`Repair done: ${fixedCountry} countries, ${fixedSalary} salaries updated → ${path.relative(ROOT, OUT)}`);
-}
-
 /* --------------------------------- main ----------------------------------- */
 
 /* ------------------------- niche filter (2026-09-10) ----------------------- */
-
-const ALLOWED_COUNTRIES = new Set(['PE', 'CL', 'CA', 'US', 'AU']);
-
-/** Jerarquía del nicho — lo ÚNICO que entra al feed:
- *  tier 1 → Perú; tier 2 → remoto desde Perú (potencias o GLOBAL);
- *  tier 3 → extranjero (CL/CA/US/AU) que reporta visa o declara apertura a
- *  candidatos internacionales (Job Bank fglo=1). Todo lo demás: fuera. */
-function inNiche(j) {
-  if (j.country === 'PE') return true;
-  if (ALLOWED_COUNTRIES.has(j.country)) {
-    if (j.remote) return true;
-    return j.visaReported === true || j.openToInternational === true;
-  }
-  if (j.country === 'GLOBAL') return j.remote === true;
-  return false;
-}
 
 /* -------------------- prácticas / trainee (2026-09-11) --------------------- */
 
@@ -2601,29 +2496,6 @@ function stampInternships(jobs) {
 /** Offline prune of the existing feed — applies the niche rules + TTL without
  *  re-fetching any source (keeps Apify/Adzuna rows captured with CI secrets).
  *  Run: node scripts/ingest.mjs --prune */
-async function prune() {
-  const feed = JSON.parse(await readFile(OUT, 'utf8'));
-  const jobs = Array.isArray(feed) ? feed : feed.jobs || [];
-  const cutoff = Date.now() - TTL_DAYS * 86400000;
-  const niche = jobs.filter((j) => {
-    const t = Date.parse(j.postedAt);
-    return Number.isFinite(t) && t >= cutoff && t <= Date.now() + 86400000 && inNiche(j);
-  });
-  niche.sort((a, b) => b.postedAt.localeCompare(a.postedAt));
-  stampInternships(niche);
-  await writeFile(
-    OUT,
-    JSON.stringify({ generatedAt: new Date().toISOString(), jobs: niche }, null, 2)
-  );
-  console.log('---');
-  console.log(
-    `Prune done: ${niche.length}/${jobs.length} jobs kept (nicho PE/CL/CA/US/AU) → ${path.relative(ROOT, OUT)}`
-  );
-  const byCountry = {};
-  for (const j of niche) byCountry[j.country] = (byCountry[j.country] || 0) + 1;
-  console.log('By country:', JSON.stringify(byCountry));
-}
-
 async function main() {
   const config = JSON.parse(await readFile(CONFIG, 'utf8'));
   MAX_PER_SOURCE = config.maxPerSource || MAX_PER_SOURCE;
@@ -2639,7 +2511,7 @@ async function main() {
     /* first run */
   }
 
-  for (const board of config.boards) {
+  for (const board of config.boards.filter(selectedSource)) {
     const fetcher = { greenhouse: fetchGreenhouse, lever: fetchLever }[board.platform];
     if (!fetcher) {
       errors.push(`unsupported platform ${board.platform} (${board.name})`);
@@ -2655,7 +2527,7 @@ async function main() {
     }
   }
 
-  for (const g of config.generic) {
+  for (const g of config.generic.filter(selectedSource)) {
     const fetcher = { arbeitnow: fetchArbeitnow, remotive: fetchRemotive, remoteok: fetchRemoteok }[g.platform];
     if (!fetcher) {
       errors.push(`unsupported generic platform ${g.platform}`);
@@ -2693,7 +2565,7 @@ async function main() {
     empleosmineros: fetchEmpleosmineros,
   };
 
-  for (const src of config.direct || []) {
+  for (const src of (config.direct || []).filter(selectedSource)) {
     const fetcher = DIRECT_FETCHERS[src.platform];
     if (!fetcher) {
       errors.push(`unsupported direct platform ${src.platform} (${src.name})`);
@@ -2709,7 +2581,7 @@ async function main() {
     }
   }
 
-  if (config.linkedin?.platform === 'apify-linkedin') {
+  if (!ONLY_SOURCE && config.linkedin?.platform === 'apify-linkedin') {
     if (!lmActive('linkedin')) {
       console.log(`ℹ apify-linkedin skipped (not in LM_SOURCES: ${LM_SOURCES.join(',')})`);
     } else {
@@ -2732,7 +2604,7 @@ async function main() {
   ];
   for (const [key, fetcher] of APIFY_MARKETPLACES) {
     const cfg = config[key];
-    if (!cfg) continue;
+    if (!cfg || ONLY_SOURCE) continue;
     if (!lmActive(key)) {
       console.log(`ℹ ${cfg.platform || key} skipped (not in LM_SOURCES: ${LM_SOURCES.join(',')})`);
       continue;
@@ -2748,7 +2620,7 @@ async function main() {
   }
 
   // Adzuna runs LAST so direct/official sources win the dedupe when keys are present.
-  if (process.env.ADZUNA_APP_ID && process.env.ADZUNA_APP_KEY) {
+  if (!ONLY_SOURCE && process.env.ADZUNA_APP_ID && process.env.ADZUNA_APP_KEY) {
     // Adzuna no tiene boards pe/cl (404 permanente con credenciales válidas;
     // ca/au/us → 200, verificado 2026-09-14) — solo los países del nicho con board.
     const codes = ['CA', 'US', 'AU'];
@@ -2770,20 +2642,22 @@ async function main() {
   // countries from the location string, exclude jobs located in unsupported
   // countries, and flag uncorroborated countries for manual review — see
   // applyLocationPolicy. Overrides from the ops panel win over everything.
-  const located = await applyLocationPolicy(all);
+  if (!all.length && errors.length) throw new Error('All selected sources failed; feed was preserved.');
+  if (ONLY_SOURCE && !all.length) throw new Error('Selected source returned no records; feed was preserved.');
+  const located = (await applyLocationPolicy(all)).map(j => certifyJob({...j, fetchedAt: j.fetchedAt || new Date().toISOString()}));
 
   // TTL: drop postings older than TTL_DAYS (and impossible future dates)
   const cutoff = Date.now() - TTL_DAYS * 86400000;
   const fresh = located.filter((j) => {
     const t = Date.parse(j.postedAt);
-    return Number.isFinite(t) && t >= cutoff && t <= Date.now() + 86400000;
+    return Number.isFinite(t) && t >= cutoff && t <= Date.now() + 86400000 && !isExpired(j);
   });
   let dropped = all.length - fresh.length;
 
   // Nicho estricto (owner decisions 2026-09-10): solo PE/CL/CA/US/AU.
   // GLOBAL entra únicamente si es remoto; del extranjero solo lo que reporta
   // visa o declara apertura a candidatos internacionales (hard-hide del resto).
-  const niche = fresh.filter(inNiche);
+  const niche = fresh.filter(j => inNiche(j) && stripTags(j.description || '').length >= 80 && /^https?:\/\//.test(j.url));
   dropped += fresh.length - niche.length;
 
   // Dedupe by company+title+country
@@ -2794,11 +2668,19 @@ async function main() {
   }
   const jobs = [...seen.values()].sort((a, b) => b.postedAt.localeCompare(a.postedAt));
 
+  if (ONLY_SOURCE) {
+    const currentIds = new Set(jobs.map(j => j.id));
+    for (const old of prevById.values()) {
+      const candidate = certifyJob(old, {legacy: old.policyVersion !== POLICY_VERSION});
+      if (!currentIds.has(old.id) && Date.parse(old.postedAt) >= cutoff && !isExpired(candidate) && inNiche(candidate)) jobs.push(candidate);
+    }
+  }
+
   // Marca de prácticas/trainee/becario → /practicas (display-only split).
   stampInternships(jobs);
 
   // Auto-translated titles (es/en/pt) — descriptions are never translated.
-  await translateTitles(jobs);
+  if (!ONLY_SOURCE) await translateTitles(jobs);
 
   const byCountry = {};
   for (const j of jobs) byCountry[j.country] = (byCountry[j.country] || 0) + 1;
@@ -2815,19 +2697,11 @@ async function main() {
   if (errors.length) console.log('Errors:', JSON.stringify(errors, null, 2));
 }
 
-if (process.argv.includes('--prune')) {
-  prune().catch((err) => {
-    console.error('Prune failed:', err);
-    process.exit(1);
-  });
-} else if (process.argv.includes('--repair')) {
-  repair().catch((err) => {
-    console.error('Repair failed:', err);
-    process.exit(1);
-  });
-} else {
-  main().catch((err) => {
-    console.error('Ingestion failed:', err);
-    process.exit(1);
-  });
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  if (process.argv.includes('--prune') || process.argv.includes('--repair')) {
+    const { repairStoredFeed } = await import('./repair-job-feed.mjs');
+    await repairStoredFeed({write:true});
+  } else {
+    main().catch(err => { console.error('Ingestion failed:',err); process.exitCode = 1; });
+  }
 }

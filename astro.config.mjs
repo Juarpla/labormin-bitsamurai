@@ -1,8 +1,11 @@
 // @ts-check
+import { readFileSync } from 'node:fs';
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import cloudflare from '@astrojs/cloudflare';
 import sitemap from '@astrojs/sitemap';
+
+const archivedSlugs = new Set(JSON.parse(readFileSync(new URL('./src/data/jobs-archive.json', import.meta.url), 'utf8')).map(j => `/jobs/${j.slug}`));
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,7 +16,7 @@ export default defineConfig({
   // namespace binding in the deployed Worker.
   session: false,
   // /ops/* es el panel interno — fuera del sitemap público.
-  integrations: [sitemap({ filter: (page) => !page.includes('/ops/') })],
+  integrations: [sitemap({ filter: (page) => !page.includes('/ops/') && !archivedSlugs.has(new URL(page).pathname.replace(/\/$/, '')) })],
   i18n: {
     defaultLocale: 'es',
     // Solo español: la audiencia es Perú/LatAm hispanohablante (en/pt quedaron fuera del build)

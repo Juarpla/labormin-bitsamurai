@@ -2,10 +2,13 @@
 // Ops panel (ruta interna) — cola de flags de ubicación del ingest.
 // Acceso: Cloudflare Access protege /ops/* al borde (OTP por email); esta
 // página no renderiza nada sensible sin él y no forma parte del sitemap.
+import jobsJson from '../../data/jobs.json';
+import archiveJson from '../../data/jobs-archive.json';
 import flagsJson from '../../data/ingest-flags.json';
 import overridesJson from '../../data/overrides.json';
 import { miningCountries, GLOBAL, countryName } from '../../lib/i18n';
 
+const availableSlugs = new Set([...jobsJson.jobs, ...archiveJson].map(j => j.slug));
 const flags = (flagsJson.flags ?? []) as Array<Record<string, unknown>>;
 const excluded = (flagsJson.excluded ?? []) as Array<Record<string, unknown>>;
 const corrections = Object.keys(overridesJson.corrections ?? {}).length;
@@ -48,6 +51,7 @@ const esc = (s: unknown) => String(s ?? '').replace(/[&<>"']/g, (ch) => `&#${ch.
             >
               <div class="flex flex-wrap items-start justify-between gap-3">
                 <div class="min-w-0">
+                  {availableSlugs.has(String(f.slug)) ? (
                   <a
                     class="font-medium text-graphite-100 underline decoration-graphite-600 underline-offset-2"
                     href={`/jobs/${f.slug}`}
@@ -56,6 +60,7 @@ const esc = (s: unknown) => String(s ?? '').replace(/[&<>"']/g, (ch) => `&#${ch.
                   >
                     {esc(f.title)}
                   </a>
+                  ) : <span class="font-medium text-graphite-100">{String(f.title)} · ficha no publicada</span>}
                   <p class="text-sm text-graphite-400">
                     {esc(f.company)} · {esc(f.source)} ·
                     <span class="text-graphite-200">país almacenado: {esc(f.country)}</span>

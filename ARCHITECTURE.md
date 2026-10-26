@@ -70,12 +70,17 @@ Schemas live in `src/schemas.ts` (Zod) and are enforced at build time by
 | `source` | platform id (see §3) |
 | `country` | ISO-2 of a niche country (PE/CL/CA/US/AU), else `GLOBAL` (remotes only) |
 | `city`, `locationRaw` | split from source location string |
-| `remote` | boolean |
+| `remote` | modalidad; no acredita elegibilidad desde Perú |
+| `remoteEligibility` | status `peru-supported/restricted/unknown`, países y evidencia literal |
+| `visa` | estado offered/not-offered/authorization-required/relocation-only/unknown/conflicting + evidencia |
+| `policyVersion`, `fetchedAt` | versión de clasificación y consulta; detalle completo se reutiliza hasta 7 días |
 | `visaReported` | keyword heuristic — surfaced as "reported", never guaranteed |
 | `openToInternational?` | set for Job Bank `fglo=1` rows (government-declared international candidacy); surfaces as a badge and counts as tier 3 |
 | `category` | `exploration · drill-blast · geology · hse · maintenance · processing · engineering · operations · other` |
-| `salary` | `{min, max, currency, period}` or null (parsed heuristically) |
-| `postedAt` | ISO date; **older than 30 days is dropped at ingest** |
+| `salary` | `{kind, min, max, currency, period, raw, country?}` o null; kind exact/range/minimum/maximum; moneda, periodo y contexto inequívocos |
+| `postedAt` | fecha de referencia para orden/TTL; puede ser observación o actualización; más de 30 días se retira |
+| `publishedAt` | fecha de publicación original confirmada o null; nunca se reemplaza por fecha de importación en JobPosting |
+| `descriptionStatus`, `excerpt` | full/source-extract/unknown; extracto de búsqueda declarado en Zod |
 | `url` | original posting — every UI path must link back here |
 | `description` | sanitized HTML (tags stripped → entities decoded → paragraphs). Never translated at ingest; the view layer can render an on-demand AI "clear version" (see §4) |
 | `translations?` | `{es,en,pt}` auto-translated **titles** with a visible "auto-translated" flag in the UI |
@@ -322,3 +327,31 @@ respect `prefers-reduced-motion`.
 4. Salary slider + active age filter in the pathways matrix
 5. `/api/jobs` search endpoint (edge cache) if the client-side index outgrows memory
 6. Email alerts by nationality/country
+
+## Revisión de fiabilidad de octubre de 2026
+
+`src/lib/job-policy.mjs` concentra clasificación, normalización salarial,
+formato y JobPosting sin red. Todos los adaptadores pasan por `certifyJob`
+antes de `inNiche`. Se conservará toda la descripción obtenida; los extractos
+se identifican. Se omite marcado cuando faltan fecha de publicación respaldada,
+descripción completa o ubicación coherente. No se inventa jornada completa.
+
+Reparación offline: `node scripts/repair-job-feed.mjs` simula y `--write`
+aplica; `ingest.mjs --repair`/`--prune` son alias que escriben. Mantiene la fecha
+de generación original, guarda informe y un archivo mínimo de fichas retiradas
+(`jobs-archive.json`). Esas rutas tienen noindex, sin JobPosting y fuera del
+sitemap; noindex no es control de acceso ni medida de privacidad. Las rutas
+que nunca existieron conservan el tratamiento 404 del sitio.
+
+`node scripts/ingest.mjs --only="Minera Chinalco Perú"` limita la consulta a
+una fuente pública por nombre exacto, desactiva Apify/Adzuna/LLM y conserva los
+registros aún recientes de las demás fuentes. Las consultas limitadas no
+certifican el resto del catálogo. Si fallan todas las fuentes se conserva el
+archivo anterior. El selector `--only` no se usa para fuentes pagadas.
+
+La guía de formación usa `src/data/education.json` con fuente y fecha por
+ficha. Investigación y límites en `docs/FORMACION-ACCESIBLE-PERU.md`. No se
+clasifica calidad ni se presume bachiller técnico por duración o gratuidad.
+Las nuevas guías comparten `GuideLayout.astro` y las colocaciones `guias-*`.
+Los IDs reales de unidades se resuelven desde `PUBLIC_ADSENSE_SLOTS`; nombres
+internos no se envían a Google como IDs de unidades.

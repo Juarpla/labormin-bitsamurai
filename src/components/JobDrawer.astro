@@ -31,13 +31,17 @@ const t = useTranslations(locale);
   const dialog = document.getElementById('lm-drawer');
   const body = document.getElementById('lm-drawer-body');
 
-  function openDrawer(job) {
+  function openDrawer(rawJob) {
+    const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const job = Object.fromEntries(Object.entries(rawJob).map(([key,value]) => [key, typeof value === 'string' ? escape(value) : value]));
+    if (rawJob.translations) job.translations = Object.fromEntries(Object.entries(rawJob.translations).map(([key,value]) => [key,escape(value)]));
     const prefix = locale === 'es' ? '' : `/${locale}`;
     const shown = (job.translations && job.translations[locale]) || job.title;
     const auto = shown !== job.title;
     body.innerHTML = `
       <h3 class="font-display text-xl font-semibold leading-snug">${shown}${auto ? ` <span class="align-middle text-[10px] font-medium uppercase tracking-wide text-graphite-500">✦ ${drawerT.auto}</span>` : ''}</h3>
       <p class="mt-2 text-sm text-graphite-200">${job.company}${job.location ? ' · ' + job.location : ''} ${job.salaryText ? ' · ' + job.salaryText : ''}</p>
+      ${auto ? `<p class="mt-2 text-xs italic text-graphite-400">Original: ${job.title}</p>` : ''}
       ${job.excerpt ? `<p class="mt-4 text-sm leading-relaxed text-graphite-400">${job.excerpt}</p>` : ''}
       <p class="mt-4 rounded-xl border border-graphite-700 bg-graphite-850 p-3 text-xs text-graphite-400">${drawerT.visaNote}</p>
       <div class="mt-5 flex flex-wrap gap-3">

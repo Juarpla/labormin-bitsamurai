@@ -129,6 +129,7 @@ const payload = JSON.stringify({
   </div>
 </section>
 
+{peChapterJobs.length > 0 && (
 <Chapter kicker={t('chapter.inCountry.kicker')} title={t('chapter.inCountry.title')} lead={t('chapter.inCountry.lead')} id="chapter-pe-section">
   <div class="grid gap-4 sm:grid-cols-2">
     {peChapterJobs.map((job) => <JobCard job={job} locale={locale} />)}
@@ -137,6 +138,7 @@ const payload = JSON.stringify({
     {t('common.viewAll')} →
   </a>
 </Chapter>
+)}
 
 <SectorPulse locale={locale} />
 
@@ -171,6 +173,7 @@ const payload = JSON.stringify({
 
 <Chapter kicker={t('chapter.remote.kicker')} title={t('chapter.remote.title')} lead={t('chapter.remote.lead')} full>
   <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    {remotes.length === 0 && <p class="max-w-xl text-sm leading-relaxed text-graphite-200">Todavía no hemos confirmado ofertas remotas compatibles con trabajar desde Perú en este catálogo. Consulta <a href="/guias/verificar-oferta-remota-visa-salario" class="text-brand-400 underline">cómo verificar los países admitidos</a>.</p>}
     {remotes.map((job) => <JobCard job={job} locale={locale} variant="compact" />)}
   </div>
   <a
@@ -185,6 +188,7 @@ const payload = JSON.stringify({
 
 <Chapter kicker={t('chapter.abroad.kicker')} title={t('chapter.abroad.title')} lead={t('chapter.abroad.lead')} full>
   <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    {abroad.length === 0 && <p class="max-w-xl text-sm leading-relaxed text-graphite-200">No hay ofertas internacionales con evidencia suficiente en el catálogo actual. Puedes consultar las rutas oficiales de visa y volver a revisar las ofertas más adelante.</p>}
     {abroad.map((job) => <JobCard job={job} locale={locale} variant="compact" />)}
   </div>
   <a
@@ -233,6 +237,10 @@ const payload = JSON.stringify({
       <h3 class="font-display text-lg font-semibold text-graphite-100 group-hover:text-brand-400">📚 {t('nav.guias')}</h3>
       <p class="text-sm text-graphite-400">{t('chapter.guides.lead')}</p>
     </a>
+    <a href="/guias/formacion-minera-gratuita-economica-peru" class="group flex flex-col gap-2 rounded-2xl border border-graphite-800 bg-graphite-900 p-6 transition-colors hover:border-brand-500">
+      <h3 class="font-display text-lg font-semibold text-graphite-100 group-hover:text-brand-400">Formación con poco presupuesto</h3>
+      <p class="text-sm text-graphite-400">Cursos gratuitos, CETPRO e institutos públicos en Perú: compara el costo total y la credencial.</p>
+    </a>
     <a
       href={localePath(locale, '/faq')}
       class="group flex flex-col gap-2 rounded-2xl border border-graphite-800 bg-graphite-900 p-6 transition-colors hover:border-brand-500"
@@ -258,7 +266,7 @@ const payload = JSON.stringify({
 
 <JobDrawer locale={locale} />
 
-<script type="application/json" id="lm-data" set:html={payload} />
+<script type="application/json" id="lm-data" set:html={payload.replace(/</g, '\\u003c')} />
 
 <script>
   // Solo el drawer necesita el índice de empleos (las tarjetas ya son estáticas).

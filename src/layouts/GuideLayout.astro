@@ -1,0 +1,44 @@
+---
+import Layout from './Layout.astro';
+import AdSlot from '../components/AdSlot.astro';
+interface Props {title:string; description:string; path:string; updatedAt?:string;}
+const {title,description,path,updatedAt='26 de octubre de 2026'} = Astro.props;
+---
+<Layout title={`${title} — Labormin`} description={description} path={path}>
+  <div class="xl:grid xl:grid-cols-[160px_56rem_160px] xl:justify-center xl:gap-4">
+    <AdSlot slotId="guias-side-1" size={{w:160,h:600}} media="(min-width: 1280px)" class="sticky top-24 hidden w-fit self-start xl:col-start-1 xl:row-start-1 xl:block" />
+    <article class="mx-auto w-full max-w-4xl min-w-0 px-4 py-12 sm:px-8 sm:py-16 xl:col-start-2 xl:row-start-1">
+      <nav aria-label="Ubicación" class="mb-8 text-sm text-graphite-400"><a href="/guias" class="hover:text-brand-400">← Todas las guías</a></nav>
+      <header class="max-w-[68ch]">
+        <h1 class="text-balance font-display text-3xl font-semibold leading-tight text-graphite-100 sm:text-5xl">{title}</h1>
+        <p class="mt-5 text-lg leading-relaxed text-graphite-200">{description}</p>
+        <p class="mt-5 text-sm leading-relaxed text-graphite-400">Investigación de Labormin · Bit SamurAI<br />Fuentes consultadas el {updatedAt}</p>
+      </header>
+      <AdSlot slotId="guias-top-1" size={{w:320,h:50}} media="(max-width: 1023.98px)" class="mx-auto w-fit lg:hidden" />
+      <div class="guide-copy mt-10 max-w-[68ch] space-y-5 text-base leading-relaxed text-graphite-200">
+        <slot />
+      </div>
+      <footer class="mt-12 max-w-[68ch] border-t border-graphite-800 pt-6 text-sm leading-relaxed text-graphite-400">
+        <p>Esta guía combina fuentes oficiales y criterios editoriales de comparación. No garantiza admisión, beca ni empleo. Las condiciones pueden cambiar.</p>
+        <p class="mt-3">Si detectas un dato incorrecto, <a href="/contact" class="text-brand-400 hover:underline">envíanos la fuente y la corrección</a>. <a href="/about#metodologia" class="text-brand-400 hover:underline">Nuestra metodología</a>.</p>
+      </footer>
+    </article>
+    <AdSlot slotId="guias-side-2" size={{w:160,h:600}} media="(min-width: 1280px)" class="sticky top-24 hidden w-fit self-start xl:col-start-3 xl:row-start-1 xl:block" />
+  </div>
+  <AdSlot slotId="guias-bottom-desktop-1" size={{w:970,h:90}} media="(min-width: 1024px)" class="mx-auto w-fit hidden lg:block" />
+  <AdSlot slotId="guias-bottom-mobile-1" size={{w:320,h:100}} media="(max-width: 1023.98px)" class="mx-auto w-fit lg:hidden" />
+</Layout>
+<style>
+  .guide-copy :global(h2) {font-family:var(--font-display); font-size:1.65rem; font-weight:600; line-height:1.25; color:var(--color-graphite-100); margin-top:3.5rem; margin-bottom:1rem; text-wrap:balance; scroll-margin-top:6rem;}
+  .guide-copy :global(h3) {font-family:var(--font-display); font-size:1.25rem; font-weight:600; line-height:1.35; color:var(--color-graphite-100); margin-top:2rem; margin-bottom:.75rem;}
+  .guide-copy :global(a) {color:var(--color-brand-400); text-decoration:underline; text-underline-offset:3px; overflow-wrap:anywhere;}
+  .guide-copy :global(a:hover) {color:var(--color-brand-300);}
+  .guide-copy :global(ul), .guide-copy :global(ol) {padding-left:1.35rem;}
+  .guide-copy :global(ul) {list-style:disc;}
+  .guide-copy :global(ol) {list-style:decimal;}
+  .guide-copy :global(li + li) {margin-top:.75rem;}
+  .guide-copy :global(strong) {color:var(--color-graphite-100);}
+  .guide-copy :global(section + section) {border-top:1px solid var(--color-graphite-800); padding-top:1rem; margin-top:2.5rem;}
+  .guide-copy :global(dt) {font-size:.75rem; color:var(--color-graphite-400); margin-top:.75rem;}
+  .guide-copy :global(dd) {font-size:.95rem;}
+</style>

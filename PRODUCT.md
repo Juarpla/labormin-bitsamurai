@@ -89,7 +89,7 @@ Capacidades confirmadas:
   inversión"; Yahoo es agregador, no fuente primaria.
 - Páginas: `/` (capítulos por tier), `/jobs` (feed por tiers + filtros, con
   prefiltro `?q=` desde los enlaces de /bolsa), `/bolsa` (análisis de las
-  12 mineras), `/visa-pathways`, `/eventos`, `/guias` (2 guías), `/faq`,
+  12 mineras), `/visa-pathways`, `/eventos`, `/guias` (4 guías), `/faq`,
   `/about`, `/privacy`, `/terms`, `/contact`, y detalle de cada empleo con
   JobPosting JSON-LD.
 - Vista IA de descripciones bajo demanda (`/api/translate-description`) con
@@ -137,11 +137,11 @@ por decisión del owner; la ruta de visa de Chile queda como referencia.
 - Cotizaciones de mineras: `src/data/stocks.json` — 8 empresas con operaciones
   en Perú (Yahoo Finance, semilla real 2026-09-10: NEXA +172%, NGLOY +54,8%);
   empresa/minas curados en `scripts/ingest-stocks.mjs`.
-- Contenido propio: 2 guías + FAQ.
+- Contenido propio: 4 guías + FAQ. Se añaden formación accesible en Perú y verificación de remoto/visa/salario (26/10/2026), con fuentes y límites visibles.
 
 **Ausencias que el trabajo futuro no debe fabricar**: sin investigación de
-usuarios, sin testimonios, sin cifras de tráfico, sin prensa, y sin cuenta de
-AdSense todavía (ver `docs/ADSENSE-CHECKLIST.md`). Tier 2 (remoto) es el más
+usuarios, sin testimonios, sin cifras de tráfico, sin prensa, y sin aprobación de
+AdSense confirmada (la cuenta fue visible el 26/10/2026; ver `docs/ADSENSE-CHECKLIST.md`). Tier 2 (remoto) es el más
 chico del feed — reforzar fuentes remotas es mejora continua.
 
 ## Product Principles

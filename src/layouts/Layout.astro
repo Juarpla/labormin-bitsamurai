@@ -12,9 +12,10 @@ interface Props {
   locale?: Locale;
   /** Relative path of the current page, used for canonical + locale alternates */
   path?: string;
+  noindex?: boolean;
 }
 
-const { title, description, locale = 'es', path = '/' } = Astro.props;
+const { title, description, locale = 'es', path = '/', noindex = false } = Astro.props;
 const t = useTranslations(locale);
 const site = Astro.site ?? new URL('https://labormin.com');
 const canonical = new URL(localePath(locale, path), site);
@@ -30,6 +31,7 @@ const ogImage = new URL('/favicon.svg', site).toString();
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />

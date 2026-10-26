@@ -1,0 +1,669 @@
+{
+  "reviewedAt": "2026-10-26T18:25:06.885Z",
+  "originalGeneratedAt": "2026-10-26T10:17:53.083Z",
+  "input": 833,
+  "corrected": 830,
+  "visaFlagsRemoved": 78,
+  "salariesChanged": 45,
+  "remoteUnconfirmed": 27,
+  "incompleteDescriptions": 830,
+  "excluded": 108,
+  "active": 725,
+  "reasons": {
+    "eligibility-unverified": 104,
+    "insufficient-content": 4
+  },
+  "records": [
+    {
+      "id": "csb-kinross-gold-1442878200",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1442877200",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1434730200",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1440124400",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1434917000",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1439789000",
+      "reason": "eligibility-unverified",
+      "visaStatus": "relocation-only",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1435786200",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1440077000",
+      "reason": "eligibility-unverified",
+      "visaStatus": "relocation-only",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1384874900",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1399798500",
+      "reason": "eligibility-unverified",
+      "visaStatus": "relocation-only",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1437088100",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1381057300",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1440123600",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1434728100",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1429947400",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1406132000",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1440691800",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1385943100",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1421362000",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1429881100",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1426572900",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1344207200",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1355903800",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1416014300",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1442423800",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1381056500",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1377065800",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1418393700",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1434726400",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1427844500",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1303391400",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1442990400",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1425898300",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1430863600",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1398150100",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1421226800",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1403033300",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1417870500",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1232811500",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1416906000",
+      "reason": "eligibility-unverified",
+      "visaStatus": "relocation-only",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1429871400",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1375896700",
+      "reason": "eligibility-unverified",
+      "visaStatus": "relocation-only",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1421362500",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1396063500",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1429742800",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1408613500",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1416462800",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1429945900",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1304019000",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1429947000",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1373698600",
+      "reason": "eligibility-unverified",
+      "visaStatus": "relocation-only",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1441402300",
+      "reason": "eligibility-unverified",
+      "visaStatus": "relocation-only",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1381701100",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1418472100",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1374747900",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1435349400",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1442076900",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1418207000",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1430435900",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1441149100",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1403494900",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1429776300",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1380025600",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1442427700",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1429737600",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "csb-kinross-gold-1400065800",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "gh-koboldmetals-4678567005",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "lv-evr-adbd9ac2-13ea-4f24-8b9d-fe4480f62b3a",
+      "reason": "eligibility-unverified",
+      "visaStatus": "relocation-only",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "gh-koboldmetals-4728512005",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "jb-3701076",
+      "reason": "insufficient-content",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "lv-evr-99df295c-5220-4f7a-a429-b02990b892d1",
+      "reason": "eligibility-unverified",
+      "visaStatus": "relocation-only",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "lv-evr-a2f5f0f9-c7df-4472-9694-277d74a153e5",
+      "reason": "eligibility-unverified",
+      "visaStatus": "relocation-only",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "gh-koboldmetals-4578850005",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "restricted"
+    },
+    {
+      "id": "gh-koboldmetals-4305917005",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "gh-koboldmetals-4677639005",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "gh-koboldmetals-4677631005",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "gh-koboldmetals-4713557005",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "restricted"
+    },
+    {
+      "id": "gh-koboldmetals-4735150005",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "gh-koboldmetals-4286209005",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "restricted"
+    },
+    {
+      "id": "gh-koboldmetals-4717888005",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "gh-koboldmetals-4643087005",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "restricted"
+    },
+    {
+      "id": "gh-koboldmetals-4698412005",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "gh-koboldmetals-4350560005",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "gh-koboldmetals-4731301005",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "restricted"
+    },
+    {
+      "id": "gh-koboldmetals-4708591005",
+      "reason": "eligibility-unverified",
+      "visaStatus": "authorization-required",
+      "remoteStatus": "restricted"
+    },
+    {
+      "id": "gh-koboldmetals-4624637005",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "gh-koboldmetals-4624038005",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "gh-koboldmetals-4725284005",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "gh-koboldmetals-4510145005",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "gh-koboldmetals-4707690005",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "gh-koboldmetals-4715900005",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "lv-evr-171870d9-f40d-406a-b103-bfb2d00321e0",
+      "reason": "eligibility-unverified",
+      "visaStatus": "relocation-only",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "lv-evr-0e4b6e09-b165-44bf-a853-41cb74af39a0",
+      "reason": "eligibility-unverified",
+      "visaStatus": "relocation-only",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "pu-coordinador-a-de-gestion-de-pe",
+      "reason": "insufficient-content",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "gh-koboldmetals-4728043005",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "gh-koboldmetals-4672513005",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "gh-koboldmetalsdrc-4685023005",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "pu-dejanos-tu-cv-mmg-las-bambas",
+      "reason": "insufficient-content",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "jb-3695883",
+      "reason": "insufficient-content",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "az-CA-5925563688",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "az-CA-5923170721",
+      "reason": "eligibility-unverified",
+      "visaStatus": "relocation-only",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "lv-evr-8b0198bb-e5b7-4e68-8ec9-e4d30b589417",
+      "reason": "eligibility-unverified",
+      "visaStatus": "relocation-only",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "lv-evr-9ed9e5ce-b2fa-41bd-b343-4ffb0e788413",
+      "reason": "eligibility-unverified",
+      "visaStatus": "relocation-only",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "az-AU-5918567990",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "gh-bluemoonmetals-4323808009",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "gh-bluemoonmetals-4336530009",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "lv-evr-d32b8106-b8b8-48c0-987f-2b53df6529b7",
+      "reason": "eligibility-unverified",
+      "visaStatus": "relocation-only",
+      "remoteStatus": "unknown"
+    },
+    {
+      "id": "az-US-5902617073",
+      "reason": "eligibility-unverified",
+      "visaStatus": "unknown",
+      "remoteStatus": "unknown"
+    }
+  ],
+  "sourceRevision": "9b6a89a",
+  "sourceRepository": "https://github.com/Juarpla/labormin-bitsamurai",
+  "note": "Latest committed feed, with three current Chinalco descriptions obtained directly from HiringRoom. Historical archive also retains the earlier local snapshot."
+}

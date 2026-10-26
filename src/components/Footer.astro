@@ -33,9 +33,23 @@ const year = new Date().getFullYear();
         <li><a class="hover:text-brand-400" href={localePath(locale, '/terms')}>{t('footer.terms')}</a></li>
         <li><a class="hover:text-brand-400" href={localePath(locale, '/contact')}>{t('footer.contact')}</a></li>
       </ul>
+      <button id="lm-privacy-options" class="mt-4 hidden text-left text-brand-400 underline underline-offset-4" type="button">Revisar preferencias de privacidad</button>
       <p class="mt-4">{t('footer.disclaimer')}</p>
       <p class="mt-2">{t('footer.adsDisclosure')}</p>
       <p class="mt-4">{t('footer.rights', { year })}</p>
     </div>
   </div>
 </footer>
+
+<script>
+  const privacyButton = document.getElementById('lm-privacy-options');
+  const googlePrivacy = () => (window as any).googlefc;
+  const showPrivacyOptions = () => {
+    const fc = googlePrivacy();
+    if (typeof fc?.showRevocationMessage === 'function') privacyButton?.classList.remove('hidden');
+  };
+  (window as any).googlefc = (window as any).googlefc || {};
+  (window as any).googlefc.callbackQueue = (window as any).googlefc.callbackQueue || [];
+  (window as any).googlefc.callbackQueue.push({CONSENT_API_READY: showPrivacyOptions});
+  privacyButton?.addEventListener('click', () => googlePrivacy()?.showRevocationMessage?.());
+</script>

@@ -117,7 +117,7 @@ const payload = JSON.stringify({
 
 <JobDrawer locale={locale} />
 
-<script type="application/json" id="lm-jobs-data" set:html={payload} />
+<script type="application/json" id="lm-jobs-data" set:html={payload.replace(/</g, '\\u003c')} />
 
 <script>
   const data = JSON.parse(document.getElementById('lm-jobs-data')!.textContent!);

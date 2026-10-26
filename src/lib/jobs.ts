@@ -1,3 +1,4 @@
+import { formatSalaryValue } from './job-policy.mjs';
 import raw from '../data/jobs.json';
 import { JobFileSchema, type Job } from '../schemas';
 import { GLOBAL, countryName, useTranslations, type Locale } from './i18n';
@@ -9,9 +10,9 @@ export type Tier = 1 | 2 | 3;
 
 /** Jerarquía de nicho: 1 = Perú, 2 = remoto desde Perú (potencias/global),
  *  3 = extranjero con visa reportada o abierto a internacionales. */
-export function tierOf(job: Pick<Job, 'country' | 'remote' | 'visaReported' | 'openToInternational'>): Tier {
+export function tierOf(job: Pick<Job, 'country' | 'remote' | 'remoteEligibility' | 'visaReported' | 'openToInternational'>): Tier {
   if (job.country === 'PE') return 1;
-  if (job.remote) return 2;
+  if (job.remote && job.remoteEligibility.status === 'peru-supported') return 2;
   if (
     (ABROAD_COUNTRIES as readonly string[]).includes(job.country) &&
     (job.visaReported || job.openToInternational === true)
@@ -134,7 +135,7 @@ export function byCountry(code: string): Job[] {
 }
 
 export function remoteJobs(): Job[] {
-  return jobs.filter((j) => j.remote);
+  return jobs.filter((j) => j.remote && j.remoteEligibility.status === 'peru-supported');
 }
 
 export function relatedJobs(job: Job, n = 4): Job[] {
@@ -144,12 +145,7 @@ export function relatedJobs(job: Job, n = 4): Job[] {
 }
 
 export function formatSalary(job: Job): string | null {
-  if (!job.salary) return null;
-  const { min, max, currency, period } = job.salary;
-  const fmt = (n: number) => new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(n);
-  const range = max ? `${fmt(min)}–${fmt(max)}` : `${fmt(min)}+`;
-  const suffix = period === 'year' ? '/yr' : period === 'month' ? '/mo' : period === 'day' ? '/day' : '/hr';
-  return `${range} ${currency}${suffix}`;
+  return formatSalaryValue(job.salary);
 }
 
 export function formatDate(iso: string, locale: Locale): string {

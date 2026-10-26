@@ -11,13 +11,17 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "visual": "node scripts/visual-walkthrough.mjs"
+    "visual": "node scripts/visual-walkthrough.mjs",
+    "test": "node --test scripts/tests/*.test.mjs",
+    "verify:site": "node scripts/verify-site.mjs",
+    "check:built": "node scripts/check-built-site.mjs"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^14.3.0",
     "@astrojs/sitemap": "^3.7.4",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.3.1",
+    "entities": "^8.1.0",
     "tailwindcss": "^4.3.3",
     "zod": "^4.5.4"
   },

@@ -1,17 +1,29 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { useTranslations } from '../lib/i18n';
-
-const locale = 'es' as const;
-const t = useTranslations(locale);
 ---
-
-<Layout title={`${t('privacy.title')} — Labormin`} description={t('privacy.body').slice(0, 150)} locale={locale} path="/privacy">
+<Layout title="Política de privacidad — Labormin" description="Qué información se procesa al navegar, consultar anuncios, escribirnos o pedir una vista con IA en Labormin." path="/privacy">
   <article class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-    <h1 class="font-display text-4xl font-semibold text-graphite-100">{t('privacy.title')}</h1>
-    <p class="mt-6 leading-relaxed text-graphite-200">{t('privacy.body')}</p>
-    <p class="mt-4 text-sm text-graphite-400">
-      <a class="text-brand-400 hover:underline" href="/contact">{t('nav.contact')}</a>
-    </p>
+    <h1 class="font-display text-4xl font-semibold text-graphite-100">Política de privacidad</h1>
+    <p class="mt-4 text-sm text-graphite-400">Actualizada el 26 de octubre de 2026.</p>
+    <div class="mt-8 space-y-5 leading-relaxed text-graphite-200 [&_h2]:mt-10 [&_h2]:font-display [&_h2]:text-2xl [&_h2]:font-semibold [&_a]:text-brand-400 [&_a]:underline [&_a]:underline-offset-4">
+      <h2>Quién opera el servicio</h2>
+      <p>Labormin es un producto de Bit SamurAI. Para consultas sobre esta política o tus datos, escribe a <a href="mailto:contact@labormin.com">contact@labormin.com</a>.</p>
+      <h2>Navegación y alojamiento</h2>
+      <p>No necesitas crear una cuenta para consultar el sitio. No ofrecemos carga de currículums ni recibimos postulaciones. Los filtros funcionan en tu navegador. El público del sitio es Perú y no se determina tu país mediante IP ni se guardan preferencias de país o idioma.</p>
+      <p>El alojamiento y las funciones de servidor utilizan Cloudflare. Para entregar páginas, proteger el servicio y diagnosticar fallos se pueden procesar dirección IP, URL solicitada, fecha, tipo de navegador y registros técnicos. No hay una herramienta de analítica de audiencia incorporada en el código revisado; los servicios de alojamiento y publicidad pueden generar sus propios registros. Consulta la <a href="https://www.cloudflare.com/privacypolicy/">política de Cloudflare</a>.</p>
+      <h2>Publicidad, cookies y opciones</h2>
+      <p>El sitio integra Google AdSense. Cuando se cargan sus servicios, Google y otros proveedores publicitarios pueden utilizar cookies u otros identificadores para publicar y medir anuncios basándose en visitas a este y otros sitios. Google puede usar cookies publicitarias para que sus socios y él publiquen anuncios según esas visitas. La disponibilidad de anuncios personalizados depende de la configuración publicitaria y de tus opciones de consentimiento.</p>
+      <p>Puedes gestionar la personalización en <a href="https://myadcenter.google.com/">Mi centro de anuncios de Google</a> y consultar cómo <a href="https://policies.google.com/technologies/partner-sites?hl=es">Google utiliza información de sitios asociados</a>. Para opciones de otros proveedores, consulta <a href="https://www.aboutads.info/choices/">las opciones publicitarias de AboutAds</a>. También puedes bloquear o borrar cookies en tu navegador; esto puede modificar cómo funcionan algunos servicios.</p>
+      <p>Si se muestra un mensaje de consentimiento, utiliza sus controles para aceptar, rechazar o revisar tus preferencias. La publicación y cobertura del mensaje dependen de la configuración de la cuenta publicitaria. El enlace de preferencias al pie solo se activa cuando la herramienta de Google está disponible; esta política no afirma que un mensaje esté publicado en todos los territorios.</p>
+      <h2>Vista de descripciones con inteligencia artificial</h2>
+      <p>La descripción original se muestra por defecto. Al pedir una vista con IA, tu navegador envía a nuestro servidor el texto del anuncio mostrado y el idioma español. El servidor lo envía al proveedor configurado disponible: Mistral, Cloudflare Workers AI u OpenCode Go. Si falla uno, puede probar el siguiente. No adjuntes datos personales a esa función: está destinada a anuncios públicos.</p>
+      <p>La función puede almacenar temporalmente el resultado durante 24 horas, asociado a una huella del contenido y el idioma. Para limitar abuso, el servidor utiliza la dirección IP en una clave técnica y un contador horario. No se envía un currículum ni una candidatura a los proveedores a través de esta función. Sus condiciones de tratamiento pueden consultarse en <a href="https://legal.mistral.ai/terms/privacy-policy">Mistral</a>, <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare</a> y <a href="https://opencode.ai/legal/privacy-policy">OpenCode</a>.</p>
+      <h2>Contacto, fuentes y otros servicios</h2>
+      <p>El enlace de contacto abre tu aplicación de correo. Si nos escribes, recibimos los datos y el contenido que incluyas para responder y atender el reporte. No envíes documentos de identidad o datos sensibles que no sean necesarios. No hay un formulario de contacto ni un registro de usuarios en el código del sitio.</p>
+      <p>Las fuentes tipográficas se solicitan a Google Fonts, lo que genera conexiones con Google. Al abrir ofertas, cursos, becas o enlaces externos accedes a servicios independientes, sujetos a sus propias políticas. Las tareas internas de importación consultan portales públicos y pueden usar Apify y proveedores de IA para títulos; no requieren enviar información de visitantes.</p>
+      <h2>Conservación y solicitudes</h2>
+      <p>Conservamos las comunicaciones necesarias para atender tu consulta y los registros técnicos según la operación y configuración de los proveedores. No declaramos un plazo general único que no hayamos verificado. Puedes solicitar información, corrección o eliminación de datos que hayas enviado a Labormin, indicando el contexto de tu solicitud en <a href="mailto:contact@labormin.com">contact@labormin.com</a>. Los datos que entregues al postular en otra web deben gestionarse con ese servicio.</p>
+      <p>Actualizaremos esta página cuando cambien las funciones o los tratamientos descritos. La fecha del encabezado identifica la revisión de este texto.</p>
+    </div>
   </article>
 </Layout>

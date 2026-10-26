@@ -2,20 +2,28 @@
 import Layout from '../../layouts/Layout.astro';
 import JobDetailView from '../../components/pages/JobDetailView.astro';
 import { allJobs } from '../../lib/jobs';
+import archive from '../../data/jobs-archive.json';
 
 export function getStaticPaths() {
-  return allJobs.map((job) => ({ params: { slug: job.slug }, props: { job } }));
+  const current = new Set(allJobs.map(j => j.slug));
+  return [
+    ...allJobs.map(job => ({params:{slug:job.slug},props:{job,archived:false}})),
+    ...archive.filter(job => !current.has(job.slug)).map(job => ({params:{slug:job.slug},props:{job,archived:true}})),
+  ];
 }
-
-const locale = 'es' as const;
-const { job } = Astro.props;
+const {job,archived} = Astro.props;
 ---
-
-<Layout
-  title={`${job.title} — ${job.company} | Labormin`}
-  description={job.excerpt}
-  locale={locale}
-  path={`/jobs/${job.slug}`}
->
-  <JobDetailView job={job} locale={locale} />
+<Layout title={`${job.title} — ${job.company} | Labormin`} description={archived ? 'Esta oferta fue retirada del catálogo activo de Labormin. Consulta oportunidades actuales y verifica cualquier condición en la fuente original.' : job.excerpt} path={`/jobs/${job.slug}`} noindex={archived}>
+  {archived ? <article class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+    <p class="text-sm text-graphite-400">Oferta fuera del catálogo activo</p>
+    <h1 class="mt-4 font-display text-3xl font-semibold leading-tight text-graphite-100">{job.title}</h1>
+    <p class="mt-4 text-lg text-graphite-200">{job.company}</p>
+    <p class="mt-6 leading-relaxed text-graphite-200">{job.reason === 'stale' ? 'La fecha de referencia de esta oferta superó los 30 días. No confirmamos que continúe abierta ni que el empleador la haya cerrado.' : 'Retiramos esta ficha porque no reúne las condiciones de publicación o de elegibilidad del catálogo. Esto no determina el estado de la contratación en la empresa.'}</p>
+    <p class="mt-4 text-sm text-graphite-400">Fecha de referencia: {job.referenceDate}. Retirada del catálogo: {job.removedAt}. No se conservan etiquetas salariales ni de elegibilidad como afirmaciones vigentes.</p>
+    <div class="mt-8 flex flex-wrap gap-4">
+      <a href="/jobs" class="rounded-full bg-brand-500 px-5 py-3 text-sm font-semibold text-graphite-950">Ver ofertas actuales</a>
+      <a href={job.url} target="_blank" rel="noopener nofollow" class="rounded-full border border-graphite-600 px-5 py-3 text-sm text-graphite-100">Consultar el enlace original</a>
+    </div>
+    <p class="mt-8 text-sm text-graphite-400">Prepárate con nuestra <a href="/guias/formacion-minera-gratuita-economica-peru" class="text-brand-400 underline">guía de formación accesible en Perú</a> o consulta <a href="/about#metodologia" class="text-brand-400 underline">cómo seleccionamos las ofertas</a>.</p>
+  </article> : <JobDetailView job={job} />}
 </Layout>

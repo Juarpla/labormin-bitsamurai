@@ -178,6 +178,14 @@ async function main() {
             await page.setViewportSize({ width, height });
             await page.goto(url, { waitUntil: 'networkidle' });
             await new Promise((r) => setTimeout(r, STABILIZE_MS));
+            // Activate existing reveal content through real scrolling before capture.
+            const contentHeight = await page.evaluate(() => document.documentElement.scrollHeight);
+            for (let y = 0; y < contentHeight; y += 600) {
+              await page.evaluate(top => window.scrollTo(0, top), y);
+              await page.waitForTimeout(80);
+            }
+            await page.evaluate(() => window.scrollTo(0,0));
+            await page.waitForTimeout(700);
             await page.screenshot({ path: file, fullPage: true, animations: 'disabled' });
             console.log(`✓ ${label} -> ${file}`);
           } catch (err) {
