@@ -1,9 +1,13 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {adsenseClient,adsenseSlot} from '../../src/lib/ads.ts';
+import {adsenseClient,adsenseSlot,adsenseServingEnabled} from '../../src/lib/ads.ts';
 test('only a valid publisher identifier can load the verification script',()=>{
   assert.equal(adsenseClient('pub-1972487168739114'),'ca-pub-1972487168739114');
   assert.equal(adsenseClient('invalid'),undefined);
+});
+test('an existing publisher or ad unit never opts visitors into advertising',()=>{
+  for (const value of [undefined, '', 'false', '1', 'TRUE']) assert.equal(adsenseServingEnabled(value),false);
+  assert.equal(adsenseServingEnabled('true'),true);
 });
 test('placement names never become ad unit identifiers without an account mapping',()=>{
   assert.equal(adsenseSlot('jobs-top-1',undefined),undefined);

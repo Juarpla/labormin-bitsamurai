@@ -26,8 +26,8 @@ console.log({internalAnchorsChecked:checked,missing:0,activeJobsInSitemap:curren
 const home = fs.readFileSync(path.join(root,'index.html'),'utf8');
 const loaderTags = [...home.matchAll(/src="[^"]*adsbygoogle\.js[^\"]*"/g)];
 assert.ok(loaderTags.length <= 1, 'Duplicate AdSense script');
-if (loaderTags.length) {
-  const publisher = loaderTags[0][0].match(/ca-(pub-\d+)/)?.[1];
+const publisher = home.match(/name="google-adsense-account" content="ca-(pub-\d+)"/)?.[1];
+if (publisher) {
   assert.ok(fs.readFileSync('public/ads.txt','utf8').includes(publisher), 'Publisher mismatch');
 }
 assert.equal([...home.matchAll(/data-ad-slot="(?![0-9]+")/g)].length,0,'Non-numeric ad unit');
@@ -38,3 +38,20 @@ for (const job of archived) {
   assert.equal(html.includes('adsbygoogle.js'), false, 'Archived page must not load AdSense: ' + job.slug);
 }
 console.log({ archivedPagesWithoutAdsense: archived.length });
+
+let guidance = 0, structured = 0;
+for (const job of current) {
+  const html = fs.readFileSync(path.join(root, 'jobs', job.slug, 'index.html'), 'utf8');
+  assert.ok(html.includes('data-application-guide'), 'Missing original application guidance: ' + job.slug);
+  assert.equal(html.includes('adsbygoogle.js'), false, 'Job details must stay outside monetization: ' + job.slug);
+  assert.equal(html.includes('data-ad-slot='), false);
+  if (html.includes('"@type":"JobPosting"')) structured++;
+  guidance++;
+}
+// When serving is paused, no other page may enqueue a manual request either.
+if (!loaderTags.length) for (const file of walk(root)) {
+  const html = fs.readFileSync(file, 'utf8');
+  assert.equal(html.includes('adsbygoogle.js'), false, file);
+  assert.equal(html.includes('data-ad-slot='), false, file);
+}
+console.log({jobPagesWithGuidance:guidance,jobPostingPages:structured,verificationPublisher:publisher,adServingPaused:!loaderTags.length});

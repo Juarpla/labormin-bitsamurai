@@ -209,20 +209,42 @@ function microdataProp(html, prop) {
   return '';
 }
 
-/** SuccessFactors CSB description: everything after itemprop="description" until the next itemprop/marker. */
-function csbDescription(html) {
-  const idx = html.search(/itemprop=["']description["']/i);
-  if (idx === -1) return '';
-  const rest = html.slice(idx);
-  const start = rest.indexOf('>') + 1;
-  let end = rest.length;
-  for (const marker of [/itemprop=["']/i, /<section/i, /<footer/i, /<!--/]) {
-    const m = rest.slice(start).search(marker);
-    if (m !== -1) end = Math.min(end, start + m);
+/** Read the entire marked description, including nested sections, but never
+ * footer/navigation text. A missing closing container is not a full posting. */
+function markedDescription(html) {
+  const opening = /<(span|div)\b[^>]*\bitemprop=["']description["'][^>]*>/i.exec(html);
+  if (!opening) return '';
+  const start = opening.index + opening[0].length;
+  const tags = new RegExp(`<\\/?${opening[1]}\\b[^>]*>`, 'gi');
+  tags.lastIndex = start;
+  let depth = 1;
+  for (let tag; (tag = tags.exec(html));) {
+    depth += /^<\//.test(tag[0]) ? -1 : 1;
+    if (!depth) return html.slice(start, tag.index);
   }
-  return stripTags(decodeEntities(rest.slice(start, end)))
-    .replace(/\n{3,}/g, '\n\n')
-    .trim();
+  return '';
+}
+
+function csbDescription(html) {
+  return stripTags(decodeEntities(markedDescription(html)));
+}
+
+/** Revalidate stored official postings without inventing dates or promoting
+ * social metadata / list snippets to a complete employer description. */
+export function sourceJobDetail(html) {
+  const postings = collectJobPostings(extractJsonLd(html));
+  // Multiple jobs on a search page are not a verified detail page.
+  if (postings.length > 1) return null;
+  const jp = postings[0];
+  const raw = jp?.description || markedDescription(html);
+  const text = stripTags(decodeEntities(String(raw || '')));
+  if (text.length < 80) return null;
+  return {
+    description: htmlify(text),
+    descriptionStatus: 'full',
+    publishedAt: isoDate(jp?.datePosted || microdataProp(html, 'datePosted'), null),
+    validThrough: isoDate(jp?.validThrough || microdataProp(html, 'validThrough'), null),
+  };
 }
 
 /** <loc> + optional <lastmod> entries from a sitemap (urlset or sitemapindex locs). */
@@ -1708,6 +1730,9 @@ async function fetchComputrabajo(src, prevById) {
             url: detailUrl,
             description: String(jp.description || ''),
           });
+          job.publishedAt = isoDate(jp.datePosted, null);
+          job.validThrough = isoDate(jp.validThrough, null);
+          if (jp.description) job.descriptionStatus = 'full';
         } catch {
           continue;
         }
@@ -2018,6 +2043,8 @@ async function fetchSmartrecruiters(src, prevById) {
       if (text) {
         job.description = htmlify(text);
         job.excerpt = excerpt(text);
+        job.descriptionStatus = 'full';
+        job.publishedAt = isoDate(d.releasedDate, null);
       }
     } catch {
       /* keep stub */

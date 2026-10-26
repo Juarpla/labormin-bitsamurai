@@ -13,7 +13,7 @@ export function getStaticPaths() {
 }
 const {job,archived} = Astro.props;
 ---
-<Layout title={`${job.title} — ${job.company} | Labormin`} description={archived ? 'Esta oferta fue retirada del catálogo activo de Labormin. Consulta oportunidades actuales y verifica cualquier condición en la fuente original.' : job.excerpt} path={`/jobs/${job.slug}`} noindex={archived}>
+<Layout title={`${job.title} — ${job.company} | Labormin`} description={archived ? 'Esta oferta fue retirada del catálogo activo de Labormin. Consulta oportunidades actuales y verifica cualquier condición en la fuente original.' : job.excerpt} path={`/jobs/${job.slug}`} noindex={archived} ads={false}>
   {archived ? <article class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
     <p class="text-sm text-graphite-400">Oferta fuera del catálogo activo</p>
     <h1 class="mt-4 font-display text-3xl font-semibold leading-tight text-graphite-100">{job.title}</h1>

@@ -1,172 +1,130 @@
-# Revisión de fiabilidad y preparación de AdSense
+# Preparación de Labormin para AdSense
 
-Revisión local: **26 de octubre de 2026**. Los hallazgos técnicos no son una
-confirmación de la causa del rechazo de Google. Mejorar el sitio no garantiza
-aprobación. No se reenvió la solicitud ni se creó otra cuenta.
+Estado revisado el **26 de octubre de 2026**. No se ha reenviado la solicitud.
+Estas comprobaciones no identifican por sí mismas la causa del rechazo ni
+aseguran la aprobación de Google.
 
-## Implementado en el código
+## Estado vigente
 
-- [x] Modalidad remota separada de elegibilidad desde Perú. La ingestión exige
-  evidencia compatible y conserva los fragmentos que fundamentan su decisión.
-- [x] Visa: patrocinio ofrecido, no ofrecido, autorización previa, reubicación,
-  desconocido y conflicto. Solo el ofrecimiento explícito activa la etiqueta.
-- [x] Salarios con contexto de remuneración, moneda, periodo y tipo exacto,
-  rango, mínimo o máximo. Cifras ambiguas se omiten; no se añade `+` por defecto.
-- [x] Eliminado el recorte de 6.000 caracteres de las descripciones obtenidas.
-  Los extractos se identifican; todos enlazan al original. HiringRoom ahora
-  extrae las secciones del puesto y requisitos, no solo el resumen social.
-- [x] Caché de detalles versionada, con plazo de siete días para textos completos.
-  Las clasificaciones se recalculan; no se copian booleanos antiguos.
-- [x] Reparación reproducible offline: `node scripts/repair-job-feed.mjs`
-  simula; `--write` aplica. `ingest.mjs --repair`/`--prune` usan la misma ruta.
-- [x] Se contrastó la copia local antigua con `origin/main` (9b6a89a, feed del
-  26/10/2026). De 833 registros actuales: 725 permanecen, 104 quedan fuera por
-  elegibilidad sin evidencia suficiente y 4 por contenido insuficiente. Se
-  retiraron 78 señales positivas de visa y cambiaron 45 salarios normalizados.
-  Son cambios de clasificación; no significan 108 ofertas cerradas ni 45
-  salarios falsos. El informe `docs/JOB-FEED-REPAIR.json` conserva el detalle.
-  El archivo histórico también conserva URLs de la copia local anterior.
-- [x] Enlaces históricos resuelven a una explicación de retiro, con `noindex`,
-  sin JobPosting ni anuncios de vacantes vigentes; fuera del sitemap.
-- [x] JobSchema conserva `excerpt`. JobPosting usa la descripción obtenida,
-  exige publicación respaldada y texto completo; no inventa FULL_TIME.
-  Los extractos o fechas desconocidas no emiten JobPosting.
-- [x] Metodología ampliada en `/about#metodologia`; contacto para correcciones.
-- [x] Dos guías nuevas: formación accesible en Perú y verificación de
-  remoto/visa/salario. Fuentes visibles, costos faltantes explícitos,
-  credenciales diferenciadas y convocatorias cerradas identificadas.
-- [x] Privacidad describe Cloudflare, publicidad, Google Fonts, correo,
-  vista IA, caché y límite por IP según el código inspeccionado.
-- [x] Descripción original por defecto; IA bajo demanda, badge y vuelta al
-  original. Los campos largos de IA no se cortan silenciosamente.
-- [x] Publicidad siempre identificada «Anuncio», fuera de grillas filtrables.
-  Los nombres internos requieren un ID numérico real mediante
-  `PUBLIC_ADSENSE_SLOTS`; no se envían nombres ficticios a AdSense.
-- [x] Un solo cargador de AdSense en Layout. Se mantiene como método de
-  verificación. ID normalizado y validado; `ads.txt` contiene el editor
-  `pub-1972487168739114`. El build contiene un solo cargador y cero unidades
-  con identificadores inválidos; todavía no hay unidades numéricas configuradas.
-- [x] Enlace para revisar consentimiento preparado para la API de Google;
-  solo aparece cuando esa API está disponible. No se agregó una segunda CMP.
+- [x] Contacto público confirmado por el propietario: **labormin.com@gmail.com**.
+- [x] Cuatro guías propias, incluida formación gratuita/económica en Perú con
+  fuentes oficiales y distinción entre curso, certificado, título y bachiller.
+- [x] Las 725 fichas incluyen orientación de Labormin separada del anuncio:
+  contraste de requisitos, preparación según el tipo de puesto, preguntas sobre
+  sueldo/ubicación/contrato y recursos de formación. No se presenta como
+  requisitos ni beneficios del empleador.
+- [x] Se volvieron a consultar 33 fichas de SuccessFactors, Gupy,
+  SmartRecruiters y PageUp, con descripción completa y fechas respaldadas por
+  su página pública. Ahora hay **36 textos completos y 689 de integridad
+  desconocida**; desconocido no significa necesariamente recortado. Los tres
+  textos completos anteriores no tienen fecha original precisa.
+- [x] Se mantienen los avisos de integridad desconocida y el enlace al original.
+  La IA solo trabaja con el texto disponible y no completa requisitos ausentes.
+- [x] La extracción de microdatos conserva secciones anidadas y restricciones
+  finales, excluyendo el pie de página del portal. Computrabajo y
+  SmartRecruiters conservan la integridad y fecha original cuando su respuesta
+  pública las respalda. Nunca se convierten metadatos sociales en texto completo.
+- [x] Auditoría reproducible sin LLM ni servicios de pago:
+  `node scripts/refresh-job-details.mjs` simula y `--write` aplica. No refresca
+  artificialmente la fecha del feed ni altera IDs, URLs o fechas de referencia.
+  Evidencias: [JOB-DETAIL-REFRESH.json](./JOB-DETAIL-REFRESH.json).
+- [x] La reparación offline posterior encuentra cero exclusiones nuevas.
+  Se conservan 725 ofertas activas y 899 páginas históricas fuera del sitemap.
+- [x] Solo las 33 fichas con publicación original y texto completo emiten
+  JobPosting. No se inventan tipo de contrato, salario ni publicación.
+- [x] Se retiran los espacios manuales de las fichas y su cargador global,
+  también si en el futuro se habilita publicidad en otras secciones. Recuperar
+  una descripción no equivale por sí solo a aportar contenido editorial propio.
 
-## Verificado en la cuenta, solo lectura
+## Consentimiento y publicidad
 
-Sesión existente de AdSense, editor `pub-1972487168739114`, el 26/10/2026:
-la pantalla de inicio muestra **«Your account wasn't approved»**, un control
-para confirmar políticas y **Resubmit**. El menú disponible muestra Home,
-Reports y opciones deshabilitadas; no hay acceso a «Privacidad y mensajes».
-No se marcó la confirmación ni se pulsó Resubmit.
+**La carga publicitaria está desactivada globalmente**, con
+`PUBLIC_ADSENSE_ENABLED=false` y estado apagado por defecto. Se aplica tanto al
+cargador como a las unidades manuales. En producción no se muestran espacios
+vacíos de publicidad; en desarrollo siguen disponibles para probar el diseño.
+La política de privacidad y el pie explican la pausa.
 
-El editor coincide con `public/ads.txt`. Esta coincidencia no confirma
-propiedad legal, publicación de mensajes ni la configuración del despliegue.
+Se mantienen la etiqueta `google-adsense-account` con
+`ca-pub-1972487168739114` y `public/ads.txt` con el mismo editor para verificar
+el sitio **sin solicitar anuncios**. La guía de Google admite esos métodos y
+permite elegir una CMP después de solicitar revisión.
+[Conexión y revisión del sitio](https://support.google.com/adsense/answer/7584263?hl=es).
 
-## Pendientes en la cuenta y producción
+La cuenta existente muestra «Your account wasn't approved», confirmación de
+políticas y botón Resubmit. Se volvió a comprobar la sesión: no ofrece acceso
+a «Privacidad y mensajes». No se marcó la confirmación ni se pulsó Resubmit.
+No se creó otra cuenta ni se publicó una CMP que no pudiera verificarse.
 
-- [ ] Confirmar el mensaje de consentimiento para Labormin y su URL de
-  privacidad cuando el panel lo permita. No se pudo comprobar publicación ni
-  cobertura territorial del mensaje.
-- [ ] Crear/consultar las unidades de anuncio y configurar sus IDs reales como
-  JSON en `PUBLIC_ADSENSE_SLOTS`; se documenta en `.env.example`. No se
-  inventaron IDs. Comprobar `PUBLIC_ADSENSE_CLIENT` en el despliegue.
-- [x] Publicar los cambios revisados y comprobar las páginas públicas,
-  respuestas HTTP, anuncios, sitemap y destinos de postulación.
-- [ ] Validar en Resultados enriquecidos una ficha publicada que disponga de
-  fecha original y descripción completa. Las fichas migradas sin fecha original o con texto incompleto y las tres
-  fichas de HiringRoom sin publicación precisa no emiten marcado.
-- [x] Confirmadas las cinco ejecuciones diarias recientes de `refresh-jobs.yml`,
-  todas exitosas. La del 26/10 está en
-  https://github.com/Juarpla/labormin-bitsamurai/actions/runs/40299311934 .
-  El retraso era de esta copia local, no un fallo demostrado del cron.
-- [ ] Revalidar el texto completo de registros migrados que conservan estado
-  de descripción `unknown`; se identifican como extractos. Se recuperó de
-  forma limitada el texto de tres ofertas de Chinalco. No se hicieron consultas
-  masivas de pago ni se comprobaron todos los destinos externos.
-- [ ] Confirmar datos identificativos y política de conservación del operador
-  que todavía no están documentados. No se inventaron domicilio, razón social
-  ni plazos generales.
-- [ ] Decidir el reenvío de la solicitud tras verificar el sitio publicado.
-  La falta de acceso a CMP en esta pantalla no se presenta como impedimento
-  absoluto para solicitar revisión.
+No se añade un banner propio para simular una CMP certificada. El pie mantiene
+preparada la API `googlefc` de revocación y solo muestra el control cuando la
+herramienta está disponible. Inicializar su cola no carga una CMP ni recoge
+consentimiento. Los anuncios limitados tampoco equivalen a ausencia de cookies.
+La investigación y las fuentes están en
+[CONSENT-RESEARCH.md](./CONSENT-RESEARCH.md).
 
-Mantener Labormin y los demás dominios del mismo editor en su cuenta
-correspondiente. No crear otra para eludir el rechazo.
+### Antes de reactivar publicidad
 
-## Verificación local ejecutada
+- [ ] Publicar una CMP certificada para el sitio, comprobar la URL de privacidad,
+  idioma, proveedores y cobertura aplicable. Google exige CMP certificada para
+  anuncios personalizados en EEE, Reino Unido y Suiza; Perú como público editorial
+  no excluye visitas desde esos territorios.
+- [ ] Probar aceptar, rechazar, persistencia y revocar en el dominio real,
+  escritorio y móvil. Probar solicitudes de red, no solo el aspecto del aviso.
+- [ ] Habilitar la publicidad únicamente después de esas comprobaciones.
+- [ ] Para unidades manuales, configurar IDs numéricos reales en
+  `PUBLIC_ADSENSE_SLOTS`. Nunca usar los nombres internos como IDs de cuenta.
 
-- `pnpm test`: 19 pruebas, incluidos casos reales de clasificación y regresión
-  de extractos, fechas límite y caché de detalles.
-- `pnpm build`: build estático y Worker correcto.
-- `pnpm visual`: Chromium y WebKit en 375, 768 y 1280 px. Inspección de capturas
-  en `screenshots/` y páginas editoriales en `screenshots/reliability/`.
-- `pnpm verify:site`: guías/metodología/privacidad, fichas y archivo a móvil y
-  escritorio, sin overflow; filtros, drawer y estados de IA simulados sin LLM.
-  Estas pruebas no verifican respuestas reales de los proveedores de IA.
+La revisión del sitio y la activación de anuncios son pasos distintos. La pausa
+no obliga a esperar por un panel inaccesible para solicitar revisión; evita
+servir publicidad con una configuración de consentimiento no comprobada.
 
-## Fuentes oficiales consultadas
+## Antes de volver a enviar
 
-- [JobPosting: propiedades, coherencia y ofertas caducadas](https://developers.google.com/search/docs/appearance/structured-data/job-posting?hl=es).
-- [Requisitos de privacidad de AdSense](https://support.google.com/adsense/answer/1348695?hl=es).
-- [CMP para EEE, Reino Unido y Suiza](https://support.google.com/adsense/answer/13554116?hl=es).
-- [API de privacidad y revisión de consentimiento](https://developers.google.com/funding-choices/fc-api-docs?hl=es-419).
-- [Conectar el sitio y solicitar revisión](https://support.google.com/adsense/answer/7584263?hl=es).
-- [Varios sitios del mismo editor](https://support.google.com/adsense/answer/9729?hl=es).
+- [x] Revisar en móvil y escritorio las fichas con texto completo y desconocido,
+  los enlaces de formación, privacidad y la navegación.
+- [x] Comprobar build, pruebas y enlaces internos; meta del editor y ads.txt;
+  ausencia de carga/unidades/solicitudes publicitarias durante la pausa.
+- [ ] **Leer el motivo exacto del correo de rechazo.** El panel sigue mostrando
+  una explicación genérica. No se atribuye automáticamente a contenido, CMP u
+  otra causa no demostrada. No se accedió al correo del propietario.
+- [ ] Completar datos identificativos y conservación del operador con datos
+  reales cuando se definan; no inventar domicilio, razón social o plazos.
+- [ ] Solicitar revisión cuando el propietario decida hacerlo, atendiendo al
+  motivo específico de Google. Ninguna cantidad de artículos u ofertas, ni una
+  espera fija, garantiza admisión.
 
-No hay una cantidad de artículos o de ofertas que garantice admisión. La
-selección editorial responde a necesidades del visitante, no a una cuota.
+## Validación de esta actualización
 
+- `pnpm test`: 22 pruebas, con regresiones de secciones finales, contenedores
+  incompletos, páginas con varios puestos y publicidad apagada por defecto.
+- `pnpm build` y `pnpm check:built`: 725 fichas con orientación, 33 JobPosting,
+  899 históricas excluidas, enlaces internos correctos y publicidad pausada.
+- `pnpm visual`: Chromium y WebKit en 375, 768 y 1280 px; capturas en
+  `screenshots/` e inspección de las superficies modificadas.
+- `pnpm verify:site`: texto desconocido/completo, privacidad y guías en móvil y
+  escritorio; sin overflow, filtros, drawer y estados IA con respuestas simuladas
+  (no se llama a un proveedor de pago); no se permiten peticiones publicitarias.
 
-## Publicación y comprobación pública · 26/10/2026
+## Historial y comprobaciones anteriores
 
-La versión `9556f0b` se publicó en `https://labormin.com` mediante Workers
-Builds, con resultado exitoso. Se conservaron las actualizaciones del feed,
-eventos e indicadores de `origin/main` antes de publicar.
+Las versiones `9556f0b` y `5634679` publicaron mejoras editoriales, de contacto y
+fiabilidad. La reparación del feed del 26/10 partió de 833 registros: permanecen
+725, con 104 exclusiones por elegibilidad sin evidencia suficiente y 4 por
+contenido insuficiente. No significa que esos 108 empleos estuvieran cerrados.
+El informe original está en [JOB-FEED-REPAIR.json](./JOB-FEED-REPAIR.json).
 
-- 20 rutas públicas comprobadas con HTTP 200, incluidos robots, ads.txt,
-  sitemaps, nuevas guías y muestras de ficha vigente e histórica. Una ruta
-  inexistente devuelve 404.
-- Sitemap público: 725 fichas activas, 899 fichas históricas excluidas.
-- Cargador único de AdSense en inicio, editor coincidente con ads.txt y ninguna
-  unidad manual con ID ficticio. No hay unidades manuales numéricas configuradas.
-  Su creación es pendiente para monetizar esos espacios; no se presenta como
-  requisito previo para solicitar revisión usando el cargador de verificación.
-- El propietario confirmó `labormin.com@gmail.com` como contacto público.
-  Se sustituye el antiguo `contact@labormin.com` en contacto, metodología,
-  privacidad y mensajes de límite de IA. Los resolutores 1.1.1.1 y 8.8.8.8
-  no devolvieron registros MX para el dominio. No se envió correo de prueba.
-- Se elimina el cargador publicitario global en páginas con `noindex`,
-  especialmente fichas archivadas; no basta con omitir sus unidades manuales.
-- Comprobación posterior del correo: contacto, privacidad y metodología en
-  Chromium y WebKit, a 375 y 1280 px, sin desbordamientos. Build, 19 pruebas,
-  enlaces internos y ausencia de AdSense en las 899 fichas históricas correctos.
-- Los enlaces de las siete opciones educativas responden HTTP 200. El portal
-  de Jóvenes Productivos falló con Node fetch, pero respondió 200 con curl.
-- `www.labormin.com` no resuelve en esta consulta. La URL canónica sin www
-  funciona; añadir el alias y redirección es una mejora opcional de dominio.
+Se verificaron las cinco ejecuciones diarias recientes del refresco, todas
+exitosas; el retraso estaba en la copia local, no en el cron demostrado.
+[Ejemplo del 26/10](https://github.com/Juarpla/labormin-bitsamurai/actions/runs/40299311934).
+`www.labormin.com` no resolvía; el dominio canónico sin www funciona. El alias y
+su redirección son una mejora de dominio opcional.
 
-### Antes de pulsar Resubmit
+## Fuentes oficiales
 
-1. **Leer el motivo exacto de Google.** La sesión de AdSense continúa mostrando
-   «Your account wasn't approved» y confirmación de políticas, sin diagnóstico
-   específico. Revisar el correo de rechazo; no atribuirlo automáticamente a
-   contenido escaso, CMP u otra causa no demostrada.
-2. **Revisar el valor editorial del catálogo.** Hay cuatro guías propias y
-   fuentes transparentes, pero 722 de las 725 fichas conservan integridad de
-   descripción `unknown`, visible como extracto; tres tienen texto completo.
-   Esto no demuestra que 722 textos estén incompletos, ni garantiza que Google
-   considere suficiente el valor añadido. La guía oficial sobre rechazo pide
-   contenido original útil y advierte sobre código publicitario en páginas
-   automáticas sin contenido original. Recuperar textos completos y revisar
-   dónde se monetizan fichas reproducidas sigue siendo una prioridad editorial.
-3. **Consentimiento y datos del operador.** El menú actual de la cuenta no
-   permite comprobar «Privacidad y mensajes». Google permite elegir CMP tras
-   pedir revisión; no es un impedimento absoluto demostrado para reenviar.
-   Debe verificarse una CMP certificada y su cobertura antes de personalizar
-   anuncios para EEE/Reino Unido/Suiza. Completar datos del operador y plazos
-   de conservación con información real cuando se definan.
-
-No se reenvió la solicitud. No existe una cantidad garantizada de artículos,
-una espera fija ni un resultado de aprobación derivable de estas pruebas.
-
-Fuentes adicionales consultadas:
-- [Cuenta no aprobada: diagnóstico específico y contenido](https://support.google.com/adsense/answer/81904?hl=es).
-- [Requisitos para participar y contenido original](https://support.google.com/adsense/answer/9724?hl=es).
+- [Rechazo de cuenta y contenido original](https://support.google.com/adsense/answer/81904?hl=es).
+- [Requisitos para participar](https://support.google.com/adsense/answer/9724?hl=es).
+- [Privacidad de AdSense](https://support.google.com/adsense/answer/1348695?hl=es).
+- [CMP certificada y territorios](https://support.google.com/adsense/answer/13554116?hl=es).
+- [API de privacidad y revocación](https://developers.google.com/funding-choices/fc-api-docs).
+- [Conectar y verificar el sitio](https://support.google.com/adsense/answer/7584263?hl=es).
+- [Marcado JobPosting](https://developers.google.com/search/docs/appearance/structured-data/job-posting?hl=es).

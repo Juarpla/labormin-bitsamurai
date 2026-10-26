@@ -10,6 +10,12 @@ export function adsenseClient(raw: string | undefined): string | undefined {
   return id.startsWith('ca-') ? id : `ca-${id}`;
 }
 
+/** Verification is independent of serving. Fail closed until the published CMP
+ * and its accept/reject/revoke flows have been checked on the live domain. */
+export function adsenseServingEnabled(raw: string | undefined): boolean {
+  return raw === 'true';
+}
+
 /** Human-readable placement names require a real numeric AdSense unit ID. */
 export function adsenseSlot(name: string | undefined, rawMap: string | undefined): string | undefined {
   if (!name) return undefined;

@@ -1,5 +1,6 @@
 ---
 import { localePath, useTranslations, defaultLocale, type Locale } from '../lib/i18n';
+import { adsenseServingEnabled } from '../lib/ads';
 
 interface Props {
   locale?: Locale;
@@ -7,6 +8,7 @@ interface Props {
 const { locale = defaultLocale } = Astro.props;
 const t = useTranslations(locale);
 const year = new Date().getFullYear();
+const serveAds = adsenseServingEnabled(import.meta.env.PUBLIC_ADSENSE_ENABLED);
 ---
 
 <footer class="border-t border-graphite-800 bg-graphite-900/60">
@@ -35,7 +37,7 @@ const year = new Date().getFullYear();
       </ul>
       <button id="lm-privacy-options" class="mt-4 hidden text-left text-brand-400 underline underline-offset-4" type="button">Revisar preferencias de privacidad</button>
       <p class="mt-4">{t('footer.disclaimer')}</p>
-      <p class="mt-2">{t('footer.adsDisclosure')}</p>
+      <p class="mt-2">{serveAds ? t('footer.adsDisclosure') : 'La publicidad está en pausa. Puedes consultar el sitio sin aceptar cookies publicitarias.'}</p>
       <p class="mt-4">{t('footer.rights', { year })}</p>
     </div>
   </div>

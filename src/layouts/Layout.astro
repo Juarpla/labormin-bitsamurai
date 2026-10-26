@@ -4,7 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { localePath, type Locale } from '../lib/i18n';
 import { useTranslations } from '../lib/i18n';
-import { adsenseClient } from '../lib/ads';
+import { adsenseClient, adsenseServingEnabled } from '../lib/ads';
 
 interface Props {
   title: string;
@@ -13,13 +13,15 @@ interface Props {
   /** Relative path of the current page, used for canonical + locale alternates */
   path?: string;
   noindex?: boolean;
+  ads?: boolean;
 }
 
-const { title, description, locale = 'es', path = '/', noindex = false } = Astro.props;
+const { title, description, locale = 'es', path = '/', noindex = false, ads = true } = Astro.props;
 const t = useTranslations(locale);
 const site = Astro.site ?? new URL('https://labormin.com');
 const canonical = new URL(localePath(locale, path), site);
 const adsClient = adsenseClient(import.meta.env.PUBLIC_ADSENSE_CLIENT as string | undefined);
+const serveAds = adsenseServingEnabled(import.meta.env.PUBLIC_ADSENSE_ENABLED);
 
 const ogImage = new URL('/favicon.svg', site).toString();
 ---
@@ -50,7 +52,8 @@ const ogImage = new URL('/favicon.svg', site).toString();
       rel="stylesheet"
     />
 
-    {adsClient && !noindex && (
+    {adsClient && <meta name="google-adsense-account" content={adsClient} />}
+    {adsClient && serveAds && ads && !noindex && (
       <script
         is:inline
         async

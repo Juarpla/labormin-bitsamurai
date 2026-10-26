@@ -1,7 +1,7 @@
 ---
 import { jobPosting } from '../../lib/job-policy.mjs';
 import type { Job } from '../../schemas';
-import AdSlot from '../AdSlot.astro';
+import JobApplicationGuide from '../JobApplicationGuide.astro';
 import JobCard from '../JobCard.astro';
 import { useTranslations, type Locale } from '../../lib/i18n';
 import { formatSalary, formatDate, relatedJobs, titleFor, isAutoTranslated, detectLang, locationLine } from '../../lib/jobs';
@@ -23,6 +23,8 @@ const CONTACT_EMAIL = 'labormin.com@gmail.com';
 const TIKTOK_URL = '';
 
 const jsonLd = jobPosting(job);
+const categoryLabels: Record<string, string> = { operations: 'Operaciones', maintenance: 'Mantenimiento', engineering: 'Ingeniería', geology: 'Geología', hse: 'Seguridad y ambiente', processing: 'Procesamiento', exploration: 'Exploración', other: 'Empleo minero' };
+const sourceHost = new URL(job.url).hostname.replace(/^www\./, '');
 ---
 
 <article class="mx-auto max-w-4xl px-4 py-12 sm:px-6">
@@ -32,13 +34,13 @@ const jsonLd = jobPosting(job);
 
   <header class="mt-6">
     <div class="flex flex-wrap items-center gap-2 text-xs text-graphite-400">
-      <span class="rounded-full bg-graphite-800 px-2.5 py-1">{job.category}</span>
-      <span class="rounded-full bg-graphite-800 px-2.5 py-1">{job.source}</span>
+      <span class="rounded-full bg-graphite-800 px-2.5 py-1">{categoryLabels[job.category] || 'Empleo minero'}</span>
+      <span class="break-all rounded-full bg-graphite-800 px-2.5 py-1">{sourceHost}</span>
       {job.remote && <span class="rounded-full bg-graphite-800 px-2.5 py-1 text-brand-300">↗ {t('card.remote')}</span>}
       {job.openToInternational && (
         <span class="rounded-full border border-brand-600/60 bg-brand-500/10 px-2.5 py-1 text-brand-400">✦ {t('card.international')}</span>
       )}
-      <time datetime={job.postedAt}>{job.publishedAt ? 'Publicado' : 'Fecha de referencia'} {formatDate(job.publishedAt || job.postedAt, locale)}</time>
+      <time datetime={job.publishedAt || job.postedAt}>{job.publishedAt ? 'Publicado' : 'Fecha de referencia'} {formatDate(job.publishedAt || job.postedAt, locale)}</time>
     </div>
     <h1 class="mt-4 font-display text-3xl font-semibold leading-tight text-graphite-100 sm:text-4xl">
       {titleFor(job, locale)}
@@ -88,7 +90,9 @@ const jsonLd = jobPosting(job);
   )}
 
   <aside class="mt-6 space-y-3 rounded-xl border border-graphite-700 bg-graphite-900 p-4 text-sm leading-relaxed text-graphite-200" aria-label="Alcance de la información">
-    <p>{job.descriptionStatus === 'full' ? 'Texto obtenido del anuncio original.' : 'Extracto obtenido de la fuente. Puede omitir condiciones; consulta el anuncio original antes de postular.'} Labormin automatiza la importación; la vigencia y los requisitos se confirman con el empleador.</p>
+    <p>{job.descriptionStatus === 'full' ? 'Texto completo obtenido del anuncio original.' : job.descriptionStatus === 'unknown' ? 'No hemos verificado si el texto obtenido está completo. Consulta el anuncio original antes de postular.' : 'Extracto obtenido de la fuente. Puede omitir condiciones; consulta el anuncio original antes de postular.'} Labormin automatiza la importación; la vigencia y los requisitos se confirman con el empleador.</p>
+    {job.fetchedAt && <p class="text-xs text-graphite-400">Texto consultado el {formatDate(job.fetchedAt, locale)}. Esta fecha no garantiza que la convocatoria siga abierta.</p>}
+    {job.validThrough && <p class="text-xs text-graphite-400">Cierre indicado por la fuente: {formatDate(job.validThrough, locale)}. Verifica posibles cambios en el anuncio.</p>}
     {job.remote && <p>{job.remoteEligibility.status === 'peru-supported' ? 'La fuente contiene una señal compatible con trabajar desde Perú. Confirma la contratación y tus condiciones con el empleador.' : 'La modalidad remota no confirma que se pueda trabajar desde Perú.'}</p>}
     {job.remoteEligibility.evidence.map(e => <blockquote class="break-words border-l-2 border-graphite-600 pl-3 text-xs text-graphite-400">{e}</blockquote>)}
     {job.visa.status === 'authorization-required' && <p>La fuente exige autorización laboral; esa condición no demuestra patrocinio de visa.</p>}
@@ -99,7 +103,7 @@ const jsonLd = jobPosting(job);
     <a href="/about#metodologia" class="ml-4 inline-block text-brand-400 hover:underline">Cómo seleccionamos las ofertas</a>
   </aside>
 
-  <AdSlot slotId="job-detail-1" format="horizontal" locale={locale} />
+  <h2 class="mt-10 font-display text-2xl font-semibold text-graphite-100">{job.descriptionStatus === 'full' ? 'Descripción de la fuente' : 'Texto disponible de la fuente'}</h2>
 
   {showClarity && (
     <div class="mt-6 flex flex-wrap items-center gap-3">
@@ -159,6 +163,8 @@ const jsonLd = jobPosting(job);
       <a href={`mailto:${CONTACT_EMAIL}`} class="text-brand-400 hover:underline">{CONTACT_EMAIL}</a>
     </p>
   </div>
+
+  <JobApplicationGuide job={job} />
 
   {showClarity && (
     <dialog
@@ -223,7 +229,6 @@ const jsonLd = jobPosting(job);
     </a>
   </div>
 
-  <AdSlot slotId="job-detail-2" format="horizontal" locale={locale} class="mt-10" />
 
   {related.length > 0 && (
     <section class="mt-16">

@@ -1,0 +1,43 @@
+---
+import type { Job } from '../schemas';
+import { formatSalary } from '../lib/jobs';
+
+interface Props { job: Job }
+const { job } = Astro.props;
+const technical = /electric|mec[aá]nic|manten|soldad|t[eé]cnic|instrument/i.test(job.title);
+const operations = /operador|operari|conductor|chofer|volquete/i.test(job.title);
+const earlyCareer = job.internship || /pr[aá]ctic|trainee|becari|sin experiencia/i.test(job.title);
+const preparation = earlyCareer
+  ? 'Si la convocatoria es de prácticas, distingue si pide estudiante o egresado y revisa qué constancia debe emitir tu centro de estudios. No asumas que ambos perfiles son intercambiables.'
+  : technical
+    ? 'Para un puesto técnico, identifica los equipos, especialidades y certificados que el anuncio nombre. Prepara ejemplos de trabajos que hayas realizado con ellos; un curso general no sustituye la experiencia específica que se pida.'
+    : operations
+      ? 'Para un puesto de operación o conducción, compara el equipo mencionado, la categoría de licencia y la experiencia solicitada con tus documentos vigentes. La experiencia en una máquina no acredita automáticamente otra.'
+      : 'Separa los requisitos obligatorios de los deseables. Junto a cada obligatorio, anota una evidencia real: estudio, certificado, proyecto o experiencia. Si el anuncio no distingue prioridades, consulta antes de descartar tu candidatura.';
+const questions = [
+  ...(job.salary ? [{title: 'Aclara qué incluye la remuneración', body: `La cifra normalizada disponible es ${formatSalary(job)}. Consulta si corresponde al importe bruto o neto, qué parte es fija y si bonos, viáticos o alojamiento se pagan aparte.`}] : [{title: 'Pregunta por el sueldo antes de comparar ofertas', body: 'No tenemos un importe con moneda y periodo verificables para mostrar. Pide el rango, si es bruto o neto y la parte fija; no lo estimes a partir del cargo o de otra empresa.'}]),
+  ...(job.remote ? [{title: 'Confirma el contrato desde Perú', body: 'Pregunta qué entidad contrata, en qué moneda paga, qué horario exige y si la relación es laboral o por servicios. La modalidad remota y la elegibilidad son verificaciones distintas.'}] : [{title: 'Calcula el costo de trabajar en esa ubicación', body: `El lugar publicado es ${job.locationRaw || job.city || (job.country === 'PE' ? 'Perú' : job.country)}. Confirma el punto de incorporación, régimen y descansos, y quién asume traslados, alimentación y alojamiento antes de presupuestar una mudanza.`}]),
+  ...(job.country !== 'PE' && !job.remote ? [{title: 'Verifica la vía migratoria de esta vacante', body: 'Que se acepten candidaturas internacionales no prueba patrocinio. Pide al empleador el permiso aplicable, qué apoyo ofrece y qué gastos cubre antes de pagar trámites o viajes.'}] : []),
+];
+---
+
+<section class="mt-12 border-t border-graphite-700 pt-8" aria-labelledby="application-guide-title" data-application-guide>
+  <h2 id="application-guide-title" class="font-display text-2xl font-semibold text-graphite-100">Prepara tu postulación</h2>
+  <p class="mt-3 max-w-prose text-sm leading-relaxed text-graphite-400">Orientación de Labormin para evaluar esta oportunidad. Estas recomendaciones no son requisitos ni beneficios declarados por el empleador.</p>
+
+  <h3 class="mt-6 text-base font-semibold text-graphite-100">Contrasta tu perfil con el anuncio</h3>
+  <p class="mt-2 max-w-prose leading-relaxed text-graphite-200">{preparation}</p>
+  {job.descriptionStatus !== 'full' && <p class="mt-3 max-w-prose text-sm leading-relaxed text-graphite-200">Como no hemos verificado el texto completo de esta ficha, haz esa comparación en el anuncio original. La ausencia de una condición aquí no significa que el empleador no la exija. La vista con IA tampoco recupera lo que falte.</p>}
+
+  <h3 class="mt-6 text-base font-semibold text-graphite-100">Resuelve estas dudas con quien contrata</h3>
+  <ul class="mt-3 max-w-prose space-y-5 text-sm leading-relaxed text-graphite-200">
+    {questions.map(question => <li><strong class="block text-graphite-100">{question.title}</strong><p class="mt-1">{question.body}</p></li>)}
+  </ul>
+
+  <h3 class="mt-6 text-base font-semibold text-graphite-100">Elige tu siguiente paso</h3>
+  <p class="mt-2 max-w-prose text-sm leading-relaxed text-graphite-200">Si identificas una brecha de formación, busca primero opciones gratuitas o públicas y comprueba que enseñen la competencia concreta que te falta. Compara matrícula, materiales, transporte y certificación antes de pagar; un curso por sí solo no garantiza conseguir este puesto.</p>
+  <ul class="mt-3 space-y-3 text-sm text-brand-400 [&_a]:underline [&_a]:underline-offset-4 [&_a:hover]:text-brand-300">
+    <li><a href="/guias/formacion-minera-gratuita-economica-peru">Comparar formación gratuita y económica en Perú</a></li>
+    <li><a href={earlyCareer ? '/guias/trabajar-en-mina-sin-experiencia' : '/guias/verificar-oferta-remota-visa-salario'}>{earlyCareer ? 'Preparar una primera postulación al sector' : 'Verificar sueldo, remoto y apoyo de visa'}</a></li>
+  </ul>
+</section>

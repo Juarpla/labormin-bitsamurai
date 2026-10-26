@@ -123,3 +123,24 @@ test('general work and shift requirements are not work authorization requirement
   assert.equal(visaEvidence('Must be a self-starter with the ability to work with others.').status,'unknown');
   assert.equal(visaEvidence('Must be legally authorized to work in the United States.').status,'authorization-required');
 });
+
+test('a marked description retains nested sections and final restrictions but excludes the footer', async () => {
+  const {sourceJobDetail} = await import('../ingest.mjs');
+  const html = '<meta itemprop="datePosted" content="2026-10-24"><div itemprop="description"><p>Responsibilities. '.repeat(1) +
+    'Maintain equipment safely.</p><section><div>Requirements: valid license and five years experience.</div></section>' +
+    '<p>No visa sponsorship available.</p></div><footer>Unrelated footer</footer>';
+  const detail = sourceJobDetail(html);
+  assert.ok(detail.description.includes('No visa sponsorship available.'));
+  assert.ok(detail.description.includes('five years experience.'));
+  assert.equal(detail.description.includes('Unrelated footer'),false);
+  assert.equal(detail.publishedAt,'2026-10-24');
+});
+
+test('a teaser, a broken container and a multi-job page never become verified full text', async () => {
+  const {sourceJobDetail} = await import('../ingest.mjs');
+  assert.equal(sourceJobDetail('<meta property="og:description" content="'+'Source teaser. '.repeat(20)+'">'),null);
+  assert.equal(sourceJobDetail('<div itemprop="description">'+'Unclosed content. '.repeat(20)),null);
+  const jp = {'@type':'JobPosting',description:'Source requirements. '.repeat(10)};
+  assert.equal(sourceJobDetail(`<script type="application/ld+json">${JSON.stringify([jp,jp])}</script>`),null);
+  assert.equal(sourceJobDetail(`<script type="application/ld+json">${JSON.stringify(jp)}</script>`).publishedAt,null);
+});

@@ -11,12 +11,15 @@ const pages = [
   ['verification','/guias/verificar-oferta-remota-visa-salario'],
   ['about','/about'],['privacy','/privacy'],['guides','/guias'],['jobs','/jobs'],
   ['job',`/jobs/${jobs[0].slug}`],['archive',`/jobs/${archive[0].slug}`],
+  ['full-job',`/jobs/${jobs.find(j=>j.descriptionStatus==='full' && j.publishedAt).slug}`],
 ];
 fs.mkdirSync('screenshots/reliability',{recursive:true});
 for (const [engine,type] of Object.entries({chromium,webkit})) {
   const browser = await type.launch();
   try {
     const page = await browser.newPage();
+    const adRequests=[];
+    page.on('request', request => {if (/googlesyndication\.com|doubleclick\.net|fundingchoicesmessages\.google\.com/.test(request.url())) adRequests.push(request.url());});
     const errors=[]; page.on('pageerror',err => errors.push(err.message));
     for (const width of [375,1280]) {
       await page.setViewportSize({width,height:900});
@@ -34,6 +37,12 @@ for (const [engine,type] of Object.entries({chromium,webkit})) {
         if (name === 'archive') {
           assert.equal(await page.locator('meta[name=robots]').getAttribute('content'),'noindex, follow');
           assert.equal(await page.locator('script[type="application/ld+json"]').count(),0);
+        }
+        if (name === 'job' || name === 'full-job') {
+          assert.equal(await page.locator('[data-application-guide]').count(),1);
+          assert.equal(await page.locator('.ad-wrap').count(),0);
+          assert.equal(await page.locator('script[src*="adsbygoogle"]').count(),0);
+          if (name === 'full-job') assert.equal(await page.locator('script[type="application/ld+json"]').count(),1);
         }
       }
     }
@@ -60,6 +69,7 @@ for (const [engine,type] of Object.entries({chromium,webkit})) {
       await page.unroute('**/api/translate-description');
     }
     assert.deepEqual(errors,[],`${engine}: browser errors`);
+    assert.deepEqual(adRequests,[],`${engine}: advertising must remain paused until CMP verification`);
     console.log(`✓ ${engine}: mobile/desktop, editorial pages, no overflow, archive, filters, quick view, AI success/error/limit/original`);
   } finally {await browser.close();}
 }

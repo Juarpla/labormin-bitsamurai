@@ -1,6 +1,6 @@
 ---
 import { useTranslations, type Locale } from '../lib/i18n';
-import { adsenseClient, adsenseSlot } from '../lib/ads';
+import { adsenseClient, adsenseSlot, adsenseServingEnabled } from '../lib/ads';
 
 interface Props {
   locale?: Locale;
@@ -32,12 +32,13 @@ const {
 const t = useTranslations(locale);
 const client = adsenseClient(import.meta.env.PUBLIC_ADSENSE_CLIENT as string | undefined);
 const unitId = adsenseSlot(slotId, import.meta.env.PUBLIC_ADSENSE_SLOTS);
-const live = Boolean(client && import.meta.env.PROD && unitId);
+const enabled = adsenseServingEnabled(import.meta.env.PUBLIC_ADSENSE_ENABLED);
+const live = Boolean(enabled && client && import.meta.env.PROD && unitId);
 
 const sizeLabel = size ? `${size.w} x ${size.h} px` : 'responsivo';
 ---
 
-<aside class:list={['ad-wrap my-8', className]} aria-label="Anuncio">
+{(enabled || import.meta.env.DEV) && <aside class:list={['ad-wrap my-8', className]} aria-label="Anuncio">
   <span class="ad-label">{t('ads.label')}</span>
   {
     live ? (
@@ -71,7 +72,7 @@ const sizeLabel = size ? `${size.w} x ${size.h} px` : 'responsivo';
       </div>
     )
   }
-</aside>
+</aside>}
 
 {
   live &&
