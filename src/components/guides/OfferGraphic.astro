@@ -1,0 +1,29 @@
+---
+interface Props { kind: 'remoto' | 'visa' | 'salario'; }
+const { kind } = Astro.props;
+---
+<svg class="offer-graphic" viewBox="0 0 180 104" fill="none" aria-hidden="true" focusable="false">
+  {kind === 'remoto' && <>
+    <rect x="14" y="16" width="105" height="66" rx="6"/>
+    <path class="muted" d="M14 31h105M24 24h2m6 0h2m6 0h2M54 82v12m-18 0h52"/>
+    <path d="m31 57 16-13 16 13v15H51V61h-9v11H31V57Z"/>
+    <path class="muted" stroke-dasharray="3 5" d="M76 53h27q16 0 16 16v6h15"/>
+    <path class="accent" d="M163 62c0 13-18 30-18 30s-18-17-18-30a18 18 0 1 1 36 0Z"/>
+    <circle class="accent" cx="145" cy="62" r="6"/>
+  </>}
+  {kind === 'visa' && <>
+    <path d="M30 88V16a5 5 0 0 1 5-5h67l20 20v57a5 5 0 0 1-5 5H35a5 5 0 0 1-5-5Z"/>
+    <path class="muted" d="M101 11v21h21M44 45h57M44 56h42M44 72h20m-20 9h31"/>
+    <rect class="paper" x="94" y="54" width="65" height="39" rx="5"/>
+    <path class="accent" d="m105 74 7 7 13-15"/><path class="muted" d="M135 69h13m-13 9h9"/>
+  </>}
+  {kind === 'salario' && <>
+    <rect x="26" y="12" width="128" height="81" rx="6"/>
+    <path class="muted" d="M26 34h128M39 24h28m55 0h19M39 48h46m17 0h39M39 61h36m27 0h39M39 75h28"/>
+    <path class="accent" d="M103 75h38m-38 7h38"/><path class="muted" stroke-dasharray="2 5" d="M92 42v42"/>
+  </>}
+</svg>
+<style>
+  .offer-graphic{display:block;width:180px;max-width:100%;height:auto;stroke:var(--color-graphite-200);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .muted{stroke:#a5b0c3}.accent{stroke:var(--color-brand-400)}.paper{fill:var(--color-graphite-900)}
+</style>

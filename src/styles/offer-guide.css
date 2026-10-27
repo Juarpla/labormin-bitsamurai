@@ -1,0 +1,83 @@
+/* Editorial sibling of the education guide. Ad inventory stays in GuideLayout. */
+.offer-hero{display:grid;grid-template-columns:1.5fr 1fr;align-items:end;gap:32px}
+.offer-hero h1{font:600 clamp(2.7rem,4vw,3.65rem)/1.08 var(--font-display);letter-spacing:-.03em;text-wrap:balance;color:var(--color-graphite-100)}
+.offer-hero em{font-style:normal;color:var(--color-brand-400)}
+.offer-deck{font-size:1rem;line-height:1.7;color:var(--color-graphite-200);max-width:30ch}
+.offer-byline{margin-top:18px;font-size:.75rem;line-height:1.7;color:#a5b0c3}
+.offer-guide{--offer-muted:#a5b0c3;--offer-line:var(--color-graphite-700);font-size:.9375rem;line-height:1.75;color:var(--color-graphite-200);scrollbar-color:var(--color-graphite-600) var(--color-graphite-950)}
+.offer-guide h2,.offer-guide h3{font-family:var(--font-display);font-weight:600;line-height:1.25;color:var(--color-graphite-100);text-wrap:balance}
+.offer-guide h2{font-size:2.15rem;letter-spacing:-.02em;scroll-margin-top:6rem}
+.offer-guide h3{font-size:1.4rem}
+.offer-guide a{color:var(--color-brand-400);text-decoration:underline;text-underline-offset:4px;overflow-wrap:anywhere}
+.offer-guide a:hover{color:var(--color-brand-300)}
+.offer-guide :is(a,summary):focus-visible{outline:2px solid var(--color-brand-400);outline-offset:5px;border-radius:3px}
+.offer-guide strong{font-weight:600;color:var(--color-graphite-100)}
+.offer-guide ::selection,.offer-hero ::selection{background:var(--color-brand-400);color:var(--color-graphite-950)}
+.offer-map{position:relative;background:var(--color-graphite-900);border-radius:16px;padding:28px 28px 0;overflow:hidden}
+.offer-map>h2{font-size:1.7rem;max-width:29ch}
+.offer-map nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:26px;padding-bottom:28px}
+.offer-map nav>a{display:block;text-decoration:none;min-width:0}
+.offer-map nav>a+a{border-left:1px solid var(--offer-line);padding-left:24px}
+.offer-map .offer-graphic{margin-bottom:20px}
+.offer-map h3{font-size:1.55rem}
+.offer-map p{font-size:.8125rem;color:var(--offer-muted);margin-top:8px}
+.offer-map a span{display:flex;align-items:center;gap:10px;margin-top:18px;font-size:.75rem;line-height:1.6}
+.offer-map a svg:not(.offer-graphic){width:16px;height:16px;flex-shrink:0;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.offer-rule{display:block;width:100%;height:1px;background:var(--color-brand-500);transform-origin:left}
+.offer-opening{max-width:70ch;margin:26px 0 0;color:var(--offer-muted);font-size:.875rem}
+.offer-chapter{padding:48px 0;border-bottom:1px solid var(--offer-line)}
+.offer-heading{display:grid;grid-template-columns:1.6fr 1fr;gap:32px;align-items:end;margin-bottom:28px}
+.offer-heading>p{font-size:.8125rem;color:var(--offer-muted)}
+.search-terms{display:grid;grid-template-columns:1fr 1.6fr;gap:26px;padding:22px 24px;background:var(--color-graphite-900);border-radius:12px}
+.search-terms h3{font:500 .8125rem/1.6 var(--font-sans)}
+.search-terms p{font-size:.8125rem;color:var(--offer-muted)}
+.location-cases{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:0 34px;margin-top:12px;padding:0}
+.location-cases li{padding:26px 0;border-bottom:1px solid var(--offer-line)}
+.location-cases p{margin-top:12px;color:var(--offer-muted);font-size:.875rem;max-width:70ch}
+.offer-guide details{border-top:1px solid var(--offer-line);margin-top:24px}
+.offer-guide .offer-example{border-top:0;margin-top:8px}
+.offer-guide summary{padding:16px 0;cursor:pointer;font-size:.8125rem;font-weight:500}
+.offer-guide summary:hover{color:var(--color-brand-400)}
+.offer-guide details p{font-size:.875rem;color:var(--offer-muted);max-width:70ch;padding-bottom:12px}
+.visa-terms>div{display:grid;grid-template-columns:1fr 1.45fr;gap:32px;padding:24px 0;border-top:1px solid var(--offer-line)}
+.visa-terms dt{font-size:.875rem;font-weight:500;overflow-wrap:anywhere}
+.visa-terms dd>strong{display:block;font-size:.875rem}
+.visa-terms dd p{font-size:.8125rem;color:var(--offer-muted);margin-top:7px;max-width:65ch}
+.official-note{padding:26px;background:var(--color-graphite-900);border-radius:14px;margin-top:20px}
+.official-note p{font-size:.875rem;max-width:70ch;margin-top:14px;color:var(--offer-muted)}
+.official-note .next-link{display:inline-block;font-size:.8125rem;margin-top:18px}
+.official-note .small-note{font-size:.75rem;margin-top:12px}
+.pay-checks{list-style:decimal;display:grid;grid-template-columns:1fr 1fr;gap:28px 40px;padding-left:24px;margin-top:32px}
+.pay-checks li{padding-left:8px}
+.pay-checks li::marker{color:var(--color-brand-400);font:600 1rem var(--font-sans);font-variant-numeric:tabular-nums}
+.pay-checks p{font-size:.875rem;color:var(--offer-muted);margin-top:12px}
+.destination-check{display:grid;grid-template-columns:1fr 1fr;gap:24px 36px;padding:44px 0;border-bottom:1px solid var(--offer-line)}
+.destination-check h2{font-size:1.85rem}
+.destination-check p{font-size:.875rem;color:var(--offer-muted);margin-top:16px;max-width:70ch}
+.destination-check ul{list-style:disc;padding-left:20px;font-size:.875rem}
+.destination-check li+li{margin-top:16px}
+.destination-check li::marker{color:var(--color-brand-400)}
+.destination-check .destination-source{grid-column:1/-1;margin-top:0;font-size:.75rem}
+.employer-question{padding:44px 0 0}
+.employer-question>p{font-size:.875rem;color:var(--offer-muted);margin-top:14px;max-width:70ch}
+.employer-question blockquote{font:500 1.3rem/1.65 var(--font-display);color:var(--color-graphite-100);margin-top:24px;padding:28px;background:var(--color-graphite-900);border-radius:14px}
+.employer-question .save-source{font-size:.8125rem;margin-top:24px}
+@media(max-width:700px){
+  .offer-hero{display:block}.offer-hero h1{font-size:clamp(2.55rem,8vw,3.3rem)}
+  .offer-deck{max-width:40ch;margin-top:22px}.offer-byline{margin-top:16px}
+  .offer-guide h2{font-size:1.85rem}.offer-map{padding:22px 22px 0}.offer-map>h2{font-size:1.55rem}
+  .offer-map nav{display:block;margin-top:10px;padding-bottom:0}
+  .offer-map nav>a,.offer-map nav>a+a{display:grid;grid-template-columns:96px minmax(0,1fr);gap:20px;align-items:center;padding:22px 0;border-left:0}
+  .offer-map nav>a+a{border-top:1px solid var(--offer-line)}
+  .offer-map .offer-graphic{width:96px;margin:0}.offer-map h3{font-size:1.4rem}.offer-map p{font-size:.75rem;line-height:1.6;margin-top:5px}.offer-map a span{font-size:.6875rem;margin-top:10px;gap:6px}
+  .offer-chapter{padding:36px 0}.offer-heading{display:block;margin-bottom:24px}.offer-heading>p{margin-top:16px}
+  .search-terms{display:block;padding:20px}.search-terms p{margin-top:10px;line-height:1.9}
+  .location-cases{grid-template-columns:1fr;gap:0}.location-cases li{padding-block:24px}
+  .visa-terms>div{grid-template-columns:1fr;gap:10px;padding-block:24px}.visa-terms dt{font-size:.8125rem;color:var(--offer-muted)}
+  .official-note{padding:22px}.pay-checks{grid-template-columns:1fr;gap:26px;padding-left:22px}.pay-checks h3{font-size:1.4rem}
+  .destination-check{display:block;padding-block:36px}.destination-check ul{margin-top:24px}.destination-check .destination-source{margin-top:24px}
+  .employer-question{padding-top:36px}.employer-question blockquote{font-size:1.2rem;padding:22px}
+}
+@media(max-width:359px){
+  .offer-hero h1{font-size:2.4rem}.offer-map nav>a,.offer-map nav>a+a{grid-template-columns:64px minmax(0,1fr);gap:14px}.offer-map .offer-graphic{width:64px}
+}
