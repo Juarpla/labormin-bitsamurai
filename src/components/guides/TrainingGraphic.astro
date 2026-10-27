@@ -1,0 +1,39 @@
+---
+interface Props { kind: 'cursos' | 'oficios' | 'carreras'; }
+const { kind } = Astro.props;
+---
+<svg class="training-graphic" viewBox="0 0 180 104" fill="none" aria-hidden="true" focusable="false">
+  {kind === 'cursos' && <>
+    <rect class="frame" x="15" y="12" width="126" height="77" rx="7" />
+    <path class="subtle" d="M15 29h126M25 21h2m6 0h2m6 0h2M66 89v9m-19 0h62" />
+    <rect class="subtle" x="27" y="41" width="47" height="34" rx="3" />
+    <path class="accent" d="m46 50 13 8-13 8V50Z" />
+    <path class="subtle" d="M85 43h40M85 53h27M85 65h17" />
+    <rect class="paper" x="118" y="57" width="47" height="37" rx="4" />
+    <path class="accent" d="m127 70 4 4 7-8M144 70h11m-28 13h28" />
+  </>}
+  {kind === 'oficios' && <>
+    <rect class="frame" x="18" y="15" width="144" height="76" rx="7" />
+    <path class="subtle" d="M30 27h12m96 0h12M30 79h12m96 0h12M47 38h20m46 30h20M47 38v30h20m46-30h20v30" />
+    <circle class="subtle" cx="90" cy="53" r="27" />
+    <path class="accent" d="m93 33-17 23h13l-3 17 18-25H91l2-15Z" />
+    <circle class="accent" cx="47" cy="38" r="4" /><circle class="accent" cx="133" cy="68" r="4" />
+    <path class="subtle" d="M57 98h66M66 91v7m48-7v7" />
+  </>}
+  {kind === 'carreras' && <>
+    <path class="frame" d="M21 81V27a5 5 0 0 1 5-5h50q14 0 14 10 0-10 14-10h50a5 5 0 0 1 5 5v54h-55q-14 0-14 9-1-9-14-9H21Z" />
+    <path class="subtle" d="M90 32v58M32 35h42M32 45h31m45-10h39m-39 10h28" />
+    <rect class="accent" x="32" y="58" width="11" height="12" rx="2" />
+    <rect class="accent" x="48" y="58" width="11" height="12" rx="2" />
+    <rect class="accent" x="64" y="58" width="11" height="12" rx="2" />
+    <path class="subtle" d="M108 59h14m-14 10h28" />
+    <path class="accent" d="m133 10 22 9-22 9-22-9 22-9Zm-12 14v10q12 8 24 0V24m10-5v16" />
+  </>}
+</svg>
+<style>
+  .training-graphic{display:block;width:180px;max-width:100%;height:auto;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .frame{stroke:var(--color-graphite-200)}
+  .subtle{stroke:#929fb4}
+  .accent{stroke:var(--color-brand-400)}
+  .paper{fill:var(--color-graphite-900);stroke:var(--color-graphite-200)}
+</style>

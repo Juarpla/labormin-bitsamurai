@@ -1,66 +1,56 @@
 ---
 import GuideLayout from '../../layouts/GuideLayout.astro';
+import TrainingGraphic from '../../components/guides/TrainingGraphic.astro';
+import GuideIcon from '../../components/guides/GuideIcon.astro';
+import TrainingOption from '../../components/guides/TrainingOption.astro';
+import TrainingNotes from '../../components/guides/TrainingNotes.astro';
 import options from '../../data/education.json';
+import '../../styles/training-guide.css';
 const groups = [
-  {id:'cursos',title:'Cursos gratuitos para empezar desde casa',intro:'Útiles para fortalecer una habilidad concreta. Revisa primero qué competencias pide el puesto que te interesa.'},
-  {id:'oficios',title:'CETPRO: aprender un oficio cerca de ti',intro:'Busca electricidad, soldadura, mecánica o dibujo técnico según tu objetivo. Un oficio industrial puede servir en distintos sectores; completar el curso no acredita por sí solo experiencia en mina.'},
-  {id:'carreras',title:'Institutos: una carrera técnica de varios años',intro:'Estas opciones publican formación vinculada a minería. Antes de trasladarte, confirma admisión, costos completos y credencial del programa.'},
+  {id:'cursos' as const, label:'Un curso', aim:'Refuerza una habilidad', title:'Empieza desde casa', intro:'Cursos gratuitos para sumar habilidades. Revisa cuáles necesita el puesto que buscas.', note:'Un curso no sustituye una carrera ni la inducción de una operación.'},
+  {id:'oficios' as const, label:'Un oficio', aim:'Aprende con práctica', title:'Aprende haciendo', intro:'Electricidad, electrónica o dibujo técnico: busca un oficio cerca de ti.', note:'Formarte en un oficio industrial no acredita experiencia en mina.'},
+  {id:'carreras' as const, label:'Una carrera', aim:'Construye una base técnica', title:'Piensa en varios años', intro:'Compara el costo completo, el plan y la credencial antes de trasladarte.', note:'Tres años de estudio no otorgan bachiller técnico automáticamente.'}
 ];
 ---
-<GuideLayout title="Dónde estudiar para minería con poco presupuesto en Perú" description="Cursos gratuitos, CETPRO e institutos públicos: qué puedes aprender, cuánto se sabe del costo y cómo comprobar el título antes de matricularte." path="/guias/formacion-minera-gratuita-economica-peru">
-  <p><strong>Sí hay alternativas sin mensualidades y capacitación estatal gratuita.</strong> La decisión depende de tu punto de partida: un curso para reforzar habilidades, un oficio o una carrera técnica. El costo de estudiar incluye también materiales, transporte y el trámite del título.</p>
-  <nav aria-label="Contenido de la guía" class="border-y border-graphite-800 py-5">
-    <p class="mb-3 text-sm text-graphite-400">Ve a lo que necesitas</p>
-    <ul class="space-y-2 text-sm">
-      <li><a href="#cursos">Quiero empezar con cursos gratuitos</a></li>
-      <li><a href="#oficios">Quiero aprender un oficio en un CETPRO</a></li>
-      <li><a href="#carreras">Busco una carrera técnica</a></li>
-      <li><a href="#bachiller">Quiero saber si puedo obtener bachiller técnico</a></li>
-      <li><a href="#comparar">Cómo comparar calidad y costo total</a></li>
-    </ul>
-  </nav>
-  <p class="text-sm text-graphite-400">Selección documental de Labormin, sin pagos de las instituciones por aparecer. Consultamos fuentes estatales y portales de los centros. No visitamos talleres ni medimos inserción laboral: esta selección no es un ranking de calidad.</p>
-
-  {groups.map(group => <section aria-labelledby={group.id}>
-    <h2 id={group.id}>{group.title}</h2>
-    <p>{group.intro}</p>
-    {options.filter(o => o.group === group.id).map(option => <section class="py-2">
-      <h3>{option.name}</h3>
-      <p class="text-sm text-graphite-400">{option.location}</p>
-      <p class="mt-3">{option.program}</p>
-      <dl class="mt-4 grid gap-x-8 sm:grid-cols-2">
-        <div><dt>Costo publicado</dt><dd>{option.cost}</dd></div>
-        <div><dt>Duración</dt><dd>{option.duration}</dd></div>
-        <div><dt>Credencial</dt><dd>{option.credential}</dd></div>
-        <div><dt>Acceso</dt><dd>{option.admission}</dd></div>
-      </dl>
-      <p class="mt-5 text-sm"><strong>Admisión y disponibilidad:</strong> {option.status}</p>
-      <p class="mt-4 text-sm"><a href={option.officialUrl} target="_blank" rel="noopener">Consultar la fuente</a>{option.actionUrl !== option.officialUrl && <> · <a href={option.actionUrl} target="_blank" rel="noopener">Ver la oferta del centro</a></>}</p>
-      {option.additionalSources && <ul class="mt-3 space-y-2 text-sm">{option.additionalSources.map(source => <li><a href={source.url} target="_blank" rel="noopener">{source.label}</a></li>)}</ul>}
-      <p class="mt-2 text-xs text-graphite-400">Consulta documental: 26/10/2026. Verifica condiciones antes de pagar o viajar.</p>
+<GuideLayout visual title="Dónde estudiar para minería con poco presupuesto en Perú" description="Cursos gratuitos, CETPRO e institutos públicos: compara costos, duración y credenciales con fuentes oficiales." path="/guias/formacion-minera-gratuita-economica-peru">
+  <header slot="hero" class="training-hero">
+    <h1>Hay más de una forma<br class="hero-break"/> de <em>empezar.</em></h1>
+    <div><p class="hero-deck">Dónde estudiar para minería con poco presupuesto en Perú.</p><p class="hero-byline">Investigación de Labormin · Bit SamurAI<br/>Fuentes: 26 de octubre de 2026</p></div>
+  </header>
+  <div class="training-guide">
+    <section class="route-chooser" aria-labelledby="elige-ruta" data-training-chooser>
+      <h2 id="elige-ruta">¿Qué quieres aprender?</h2>
+      <nav class="training-map" aria-label="Alternativas de formación">
+        {groups.map(group => <a href={`#${group.id}`}><TrainingGraphic kind={group.id}/><div><h3>{group.label}</h3><p>{group.aim}</p><span class="route-link">Explorar opciones <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3v14m-5-5 5 5 5-5"/></svg></span></div></a>)}
+      </nav>
+      <span class="quiet-rule" aria-hidden="true"></span>
+    </section>
+    <aside class="budget-note" aria-labelledby="presupuesto"><div><h2 id="presupuesto">El costo va más allá<br/> de la matrícula.</h2><a href="#comparar">Qué preguntar antes de pagar ↗</a></div><ul><li><GuideIcon kind="materials"/><span>Materiales<br/>y herramientas</span></li><li><GuideIcon kind="travel"/><span>Transporte<br/>y alojamiento</span></li><li><GuideIcon kind="credential"/><span>Certificados<br/>y título</span></li></ul></aside>
+    {groups.map(group => <section class:list={['training-chapter',`chapter-${group.id}`]} aria-labelledby={group.id}>
+      <header class="chapter-heading"><div><h2 id={group.id}>{group.title}</h2><p>{group.intro}</p></div><p class="chapter-note">{group.note}</p></header>
+      <div class="training-options">{options.filter(option => option.group === group.id).map(option => <TrainingOption option={option}/>)}</div>
     </section>)}
-  </section>)}
-
-  <h2>Cómo encontrar opciones en tu región</h2>
-  <p>Para Lima, consulta el <a href="https://www.gob.pe/institucion/regionlima-drelm/informes-publicaciones/7126867-directorio-de-los-cetpro-de-lima-metropolitana">directorio de CETPRO de la DRELM</a> y el <a href="https://www.gob.pe/51523-institutos-publicos-de-lima-metropolitana">directorio de institutos públicos</a>. Este último incluye a José Pardo (La Victoria) y Carlos Cueto Fernandini (Comas), con áreas como metalurgia, electrotecnia y mecánica de producción. No confirmamos sus tarifarios ni nuevas fechas de admisión.</p>
-  <p>En otras regiones, consulta la Dirección o Gerencia Regional de Educación y la UGEL de tu localidad. Amplía la búsqueda en <a href="https://micarrera.trabajo.gob.pe/">Mi Carrera del MTPE</a>. Usa el nombre exacto del centro, la sede y el programa al contrastar información; un anuncio en redes no sustituye la resolución o el prospecto.</p>
-
-  <h2 id="bachiller">¿Tres años me dan bachillerato?</h2>
-  <p><strong>El bachiller técnico tiene requisitos propios.</strong> El Minedu señala un programa licenciado de al menos 120 créditos, conocimiento de un idioma extranjero o lengua originaria y los requisitos de la institución. No es el bachiller universitario ni se obtiene automáticamente por estudiar tres años. Consulta los <a href="https://minedu.gob.pe/superiortecnologica/sistema-informacion.php">requisitos y registro del Minedu</a>.</p>
-  <p>La formación CETPRO distingue auxiliar técnico y técnico; la capacitación continua puede entregar un certificado. Son rutas diferentes de la educación superior tecnológica. La <a href="https://www.minedu.gob.pe/superiortecnologica/pdf/ds-n-004-2019-sobre-tecnico-productiva.pdf">norma oficial de educación técnico productiva</a> explica esos ciclos. Pregunta qué credencial entrega <em>ese programa</em>, con qué resolución y en qué sede.</p>
-  <p>Si tu prioridad es el bachiller técnico, pide la resolución de licenciamiento del programa y contrástala con el <a href="https://www.gob.pe/institucion/minedu/informes-publicaciones/4718331-lista-de-234-institutos-de-educacion-superior-licenciadas-por-minedu">listado oficial del Minedu</a>. El programa de Electrónica Industrial de José Carlos Mariátegui sí publica ese grado y cuenta con respaldo de licenciamiento en su sede principal de Samegua. Confirma los requisitos de idioma, egreso y trámite antes de matricularte. Para Narciso Villanueva Manzo y Chalhuahuacho no confirmamos bachiller técnico.</p>
-
-  <h2>¿Y las becas del Estado?</h2>
-  <p>Consulta las bases y el cronograma en <a href="https://www.pronabec.gob.pe/beca-tec/">Beca Tec</a> y <a href="https://www.pronabec.gob.pe/Beca-18/">Beca 18 de Pronabec</a>. La página de Beca Tec consultada corresponde a la edición 2025, ya cerrada. No confirmamos una nueva etapa abierta ni que los centros de esta selección sean elegibles. Cada concurso publica su propia lista de instituciones y programas.</p>
-
-  <h2 id="comparar">Cómo comparar calidad y precio antes de pagar</h2>
-  <p>El Minedu explica que los institutos públicos pueden ofrecer enseñanza sin mensualidades y cobrar admisión y matrícula por ciclo. <a href="https://www.gob.pe/institucion/minedu/noticias/1224200-oportunidad-para-jovenes-institutos-publicos-en-lima-abren-admision-con-carreras-gratuitas">Consulta la explicación oficial</a>. Para comparar dos opciones, pide por escrito:</p>
-  <ol>
-    <li><strong>Costo total:</strong> examen, matrícula de todos los ciclos, materiales, herramientas, EPP, prácticas, idioma, certificados y título. Suma transporte, internet y alojamiento. Un S/0 en enseñanza no responde todo esto.</li>
-    <li><strong>Práctica real:</strong> horas de taller, equipos disponibles por alumno, seguridad y experiencias formativas. Pide conocer el taller; las fotos promocionales no permiten evaluar su estado.</li>
-    <li><strong>Credencial verificable:</strong> nombre exacto, requisitos, resolución y procedimiento de registro. Distingue certificado de curso, título y grado.</li>
-    <li><strong>Compatibilidad:</strong> compara el plan con requisitos de varias <a href="/jobs?country=PE">ofertas reales en Perú</a>. Revisa horario y distancia para saber si podrás terminar.</li>
-  </ol>
-  <p>Si hoy tu presupuesto es cero, empieza por un curso gratuito, identifica un puesto objetivo y busca formación práctica cercana. Si puedes sostener varios años, compara institutos y la credencial que necesitas antes de asumir gastos de traslado.</p>
-  <details class="border-t border-graphite-800 pt-5 text-sm text-graphite-400"><summary class="cursor-pointer text-graphite-200">Fuentes y límites de la investigación</summary><p class="mt-3">Cada opción enlaza a quien publica sus condiciones. Algunas páginas de gob.pe bloquearon la apertura directa y se consultó su texto indexado; no se atribuye licenciamiento basándose en una descarga que no pudo comprobarse. Los precios sin tarifario y las admisiones futuras quedan por confirmar. No realizamos llamadas, inscripciones, pagos ni visitas a los centros.</p></details>
+    <TrainingNotes/>
+  </div>
 </GuideLayout>
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+  const chooser = document.querySelector('[data-training-chooser]');
+  if (chooser) {
+    const media = gsap.matchMedia();
+    media.add('(prefers-reduced-motion: no-preference)', () => {
+      gsap.fromTo(chooser.querySelector('.quiet-rule'), {scaleX:.12}, {
+        scaleX:1, duration:.7, ease:'expo.out',
+        scrollTrigger:{trigger:chooser, start:'top 85%', once:true}
+      });
+    });
+    // Native disclosures can change section positions; no scroll is intercepted.
+    document.querySelectorAll('.training-guide details').forEach(details => {
+      details.addEventListener('toggle', () => ScrollTrigger.refresh());
+    });
+    document.fonts.ready.then(() => ScrollTrigger.refresh());
+    window.addEventListener('pageshow', event => { if(event.persisted) ScrollTrigger.refresh(); });
+  }
+</script>

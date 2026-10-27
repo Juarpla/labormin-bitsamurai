@@ -1,0 +1,78 @@
+---
+import options from '../../data/education.json';
+type Option = (typeof options)[number];
+interface Props { option: Option; }
+const { option } = Astro.props;
+// Editorial summaries only. The verified source records remain unchanged and
+// are available in full in the native disclosure below each summary.
+const summaries: Record<string, {program:string; cost:string; time:string; credential:string; status:string}> = {
+  'capacita-t': {
+    program:'Competencias digitales, empleabilidad y seguridad en el trabajo.',
+    cost:'Cursos y certificación gratuitos.', time:'A tu ritmo · según el curso',
+    credential:'Certificado o constancia por curso. Las rutas no tienen certificación propia.',
+    status:'Catálogo permanente; revisa la vigencia del curso. No sustituye una carrera ni la inducción minera.'
+  },
+  'jovenes-productivos': {
+    program:'Capacitación laboral para personas en situación de vulnerabilidad socioeconómica.',
+    cost:'Gratuita; condiciones según el servicio.', time:'Según curso y modalidad',
+    credential:'Constancia o certificado: consulta las bases de la convocatoria.',
+    status:'Elegibilidad y cupos según bases. No hay convocatoria minera abierta verificada.'
+  },
+  'cetpro-juliaca': {
+    program:'Electricidad, electrónica y dibujo técnico, entre otras opciones.',
+    cost:'Sin matrícula ni pensiones. Mantenimiento de máquinas: monto por confirmar.', time:'Un año académico · confirma el programa',
+    credential:'Auxiliar técnico, según el centro. Bachiller técnico no confirmado.',
+    status:'Consulta vacantes, herramientas y pago de mantenimiento.'
+  },
+  'promae-comas': {
+    program:'Instalaciones eléctricas y formación modular.',
+    cost:'Precio por consultar. No se clasifica como gratuito.', time:'Según módulo · por confirmar',
+    credential:'Confirma si entrega certificado o título y su nombre exacto.',
+    status:'Calendario, cupos y tarifario por consultar.'
+  },
+  'jose-carlos-mariategui': {
+    program:'Electrónica Industrial, con campo de trabajo en el sector minero.',
+    cost:'Admisión: S/210. Matrícula base 2026: S/100 + adicionales. Total de estudios y grado por confirmar.',
+    time:'3 años · 6 periodos · 126 créditos',
+    credential:'Publica bachiller técnico y título profesional técnico. Programa y sede Samegua con licenciamiento; exige requisitos académicos, idioma y trámites.',
+    status:'No confirmamos postulación abierta ni beca para este programa.'
+  },
+  'narciso-villanueva': {
+    program:'Explotación Minera.',
+    cost:'S/0 en mensualidades de enseñanza. Matrícula, materiales, prácticas y titulación: total no confirmado.',
+    time:'3 años · 6 semestres',
+    credential:'Título de profesional técnico en Explotación Minera. Bachiller técnico no confirmado.',
+    status:'2026-I cerrada. El portal mezcla referencias a 2027-I: confirma el calendario.'
+  },
+  'chalhuahuacho': {
+    program:'Explotación Minera y Mecánica de Producción Industrial.',
+    cost:'Examen 2026-I: S/180. Es un importe histórico, no el costo de la carrera. Total por confirmar.',
+    time:'6 ciclos · confirma el plan',
+    credential:'Título exacto por consultar. Licenciamiento y bachiller técnico no confirmados.',
+    status:'El cronograma consultado terminó el 16/04/2026. No es una admisión abierta.'
+  }
+};
+const summary = summaries[option.id];
+---
+<article class="training-option" id={option.id}>
+  <header><p class="option-location">{option.location}</p><h3>{option.name}</h3><p class="option-program">{summary.program}</p></header>
+  <dl class="option-facts">
+    <div><dt>Costo publicado</dt><dd>{summary.cost}</dd></div>
+    <div><dt>Duración</dt><dd>{summary.time}</dd></div>
+    <div class="credential-fact"><dt>Credencial</dt><dd>{summary.credential}</dd></div>
+  </dl>
+  <p class="availability"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v5m0-9v1"/></svg>{summary.status}</p>
+  <details class="source-details"><summary>Ver requisitos y datos completos</summary><dl>
+    <div><dt>Programa</dt><dd>{option.program}</dd></div>
+    <div><dt>Costo</dt><dd>{option.cost}</dd></div>
+    <div><dt>Duración</dt><dd>{option.duration}</dd></div>
+    <div><dt>Credencial</dt><dd>{option.credential}</dd></div>
+    <div><dt>Acceso</dt><dd>{option.admission}</dd></div>
+    <div><dt>Disponibilidad</dt><dd>{option.status}</dd></div>
+  </dl></details>
+  <footer class="option-sources">
+    <a href={option.officialUrl} target="_blank" rel="noopener">Fuente oficial <span aria-hidden="true">↗</span></a>
+    {option.actionUrl !== option.officialUrl && <a href={option.actionUrl} target="_blank" rel="noopener">Oferta del centro <span aria-hidden="true">↗</span></a>}
+    {option.additionalSources?.map(source => <a href={source.url} target="_blank" rel="noopener">{source.label} <span aria-hidden="true">↗</span></a>)}
+  </footer>
+</article>
