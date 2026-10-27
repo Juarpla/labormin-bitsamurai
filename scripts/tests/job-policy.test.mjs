@@ -144,3 +144,12 @@ test('a teaser, a broken container and a multi-job page never become verified fu
   assert.equal(sourceJobDetail(`<script type="application/ld+json">${JSON.stringify([jp,jp])}</script>`),null);
   assert.equal(sourceJobDetail(`<script type="application/ld+json">${JSON.stringify(jp)}</script>`).publishedAt,null);
 });
+
+test('excerpt truncation never splits an emoji at the UTF-16 boundary', async () => {
+  const { certifyJob } = await import('../../src/lib/job-policy.mjs');
+  const description = 'a'.repeat(279) + '📆 resto de la oferta';
+  const job = certifyJob({country:'PE',remote:false,title:'Técnico',description});
+  assert.equal(job.excerpt.isWellFormed(),true);
+  assert.equal(description.startsWith(job.excerpt),true);
+  assert.equal(job.description,description);
+});

@@ -14,7 +14,7 @@
  *               LM_SOURCES (comma list; CI schedules Apify sources by weekday)
  */
 import { decodeHTML } from 'entities';
-import { inNiche, parseSalary, visaHeuristic, certifyJob, POLICY_VERSION, isExpired } from '../src/lib/job-policy.mjs';
+import { inNiche, parseSalary, visaHeuristic, certifyJob, POLICY_VERSION, isExpired, truncateSourceText } from '../src/lib/job-policy.mjs';
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -101,7 +101,7 @@ function htmlify(text) {
 }
 
 const excerpt = (text, n = 280) =>
-  text.replace(/\s+/g, ' ').slice(0, n).trim() + (text.length > n ? '…' : '');
+  truncateSourceText(text.replace(/\s+/g, ' '), n).trim() + (text.length > n ? '…' : '');
 
 /* --------------------- shared helpers (direct sources) --------------------- */
 

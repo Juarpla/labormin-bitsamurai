@@ -17,7 +17,8 @@ for(const file of walk(root)){
 assert.deepEqual(missing,[]);
 const xml=fs.readFileSync(path.join(root,'sitemap-0.xml'),'utf8');
 const current=JSON.parse(fs.readFileSync('src/data/jobs.json')).jobs;
-const archived=JSON.parse(fs.readFileSync('src/data/jobs-archive.json'));
+const activeSlugs=new Set(current.map(j=>j.slug));
+const archived=JSON.parse(fs.readFileSync('src/data/jobs-archive.json')).filter(j=>!activeSlugs.has(j.slug));
 assert.ok(xml.includes('/guias/formacion-minera-gratuita-economica-peru'));
 for(const j of current)assert.ok(xml.includes('/jobs/'+j.slug),j.slug);
 for(const j of archived)assert.equal(xml.includes('/jobs/'+j.slug),false,j.slug);

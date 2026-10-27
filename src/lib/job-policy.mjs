@@ -63,6 +63,8 @@ export function parseSalary(input, country) {
 const ALLOWED_COUNTRIES = new Set(['PE', 'CL', 'CA', 'US', 'AU']);
 
 export const POLICY_VERSION = 2;
+/** Keep a source prefix without cutting an astral character in half. */
+export const truncateSourceText = (text, length) => text.slice(0, length).replace(/[\uD800-\uDBFF]$/, '');
 export const sourceText = (html = '') => String(html)
   .replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/gi, ' ')
   .replace(/<[^>]+>/g, '\n').replace(/&nbsp;/gi, ' ').replace(/&amp;/gi, '&')
@@ -119,7 +121,7 @@ export function certifyJob(input, { legacy = false } = {}) {
   job.publishedAt = job.publishedAt || null;
   job.validThrough = job.validThrough || job._validThrough || null;
   delete job._validThrough;
-  job.excerpt = sourceText(job.description).replace(/\s+/g,' ').slice(0,280);
+  job.excerpt = truncateSourceText(sourceText(job.description).replace(/\s+/g,' '),280);
   return job;
 }
 
