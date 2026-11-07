@@ -25,8 +25,3 @@ export function adsenseSlot(name: string | undefined, rawMap: string | undefined
     return typeof value === 'string' && /^\d+$/.test(value) ? value : undefined;
   } catch { return undefined; }
 }
-
-/** Keep ad tags and manual slots on the same editorial routes. */
-export function isAdvertisingPath(path: string): boolean {
-  return path === '/' || /^\/guias\/[^/]+\/?$/.test(path);
-}

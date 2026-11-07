@@ -4,7 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { localePath, type Locale } from '../lib/i18n';
 import { useTranslations } from '../lib/i18n';
-import { adsenseClient, adsenseServingEnabled, isAdvertisingPath } from '../lib/ads';
+import { adsenseClient, adsenseServingEnabled } from '../lib/ads';
 
 interface Props {
   title: string;
@@ -53,7 +53,7 @@ const ogImage = new URL('/favicon.svg', site).toString();
     />
 
     {adsClient && <meta name="google-adsense-account" content={adsClient} />}
-    {adsClient && serveAds && ads && !noindex && isAdvertisingPath(Astro.url.pathname) && (
+    {adsClient && serveAds && ads && !noindex && (
       <script
         is:inline
         async

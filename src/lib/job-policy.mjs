@@ -101,17 +101,7 @@ export function remoteEligibility(job) {
   return { status: 'unknown', countries: [], evidence: [] };
 }
 
-// These marketplaces are available through external links only. This applies
-// to manual runs, scheduled imports and saved data from before the policy.
-const LINK_ONLY_SOURCES = new Set(['computrabajo', 'navent', 'apify-indeed', 'apify-linkedin', 'apify-seek']);
-const LINK_ONLY_DOMAINS = /(?:^|\.)(?:computrabajo\.com|bumeran\.com\.pe|laborum\.cl|indeed\.com|linkedin\.com|seek\.com\.au)$/i;
-
-export function isLinkOnlySource(source, url = '') {
-  return LINK_ONLY_SOURCES.has(source) || (URL.canParse(url) && LINK_ONLY_DOMAINS.test(new URL(url).hostname));
-}
-
 export function inNiche(job) {
-  if (isLinkOnlySource(job.source, job.url)) return false;
   if (job.country === 'PE') return true;
   if (!ALLOWED_COUNTRIES.has(job.country) && job.country !== 'GLOBAL') return false;
   if (job.remote && job.descriptionStatus !== 'unknown' && remoteEligibility(job).status === 'peru-supported') return true;

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { inNiche, isLinkOnlySource, parseSalary, visaHeuristic } from '../../src/lib/job-policy.mjs';
+import { inNiche, parseSalary, visaHeuristic } from '../../src/lib/job-policy.mjs';
 
 test('remote modality does not admit an applicant in Peru when the employer restricts countries', () => {
   assert.equal(inNiche({country:'GLOBAL', remote:true, visaReported:false,
@@ -152,12 +152,4 @@ test('excerpt truncation never splits an emoji at the UTF-16 boundary', async ()
   assert.equal(job.excerpt.isWellFormed(),true);
   assert.equal(description.startsWith(job.excerpt),true);
   assert.equal(job.description,description);
-});
-
-test('link-only boards cannot enter a feed even through a different importer', () => {
-  for (const source of ['computrabajo', 'navent', 'apify-indeed', 'apify-linkedin', 'apify-seek']) {
-    assert.equal(inNiche({ source, country: 'PE', title: 'Operador de mina' }), false);
-  }
-  assert.equal(inNiche({ source: 'adzuna', country: 'PE', url: 'https://pe.indeed.com/viewjob?jk=example' }), false);
-  assert.equal(isLinkOnlySource('hiringroom', 'https://minerachinalco.hiringroom.com/jobs/example'), false);
 });

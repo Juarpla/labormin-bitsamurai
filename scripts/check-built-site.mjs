@@ -2,7 +2,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
-import { isLinkOnlySource } from '../src/lib/job-policy.mjs';
 const root=path.resolve('dist/client');
 const walk=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(path.join(dir,e.name)):e.name.endsWith('.html')?[path.join(dir,e.name)]:[]);
 let checked=0;const missing=[];
@@ -18,7 +17,6 @@ for(const file of walk(root)){
 assert.deepEqual(missing,[]);
 const xml=fs.readFileSync(path.join(root,'sitemap-0.xml'),'utf8');
 const current=JSON.parse(fs.readFileSync('src/data/jobs.json')).jobs;
-assert.ok(current.every(job => !isLinkOnlySource(job.source, job.url)), 'Link-only listings in active feed');
 const activeSlugs=new Set(current.map(j=>j.slug));
 const archived=JSON.parse(fs.readFileSync('src/data/jobs-archive.json')).filter(j=>!activeSlugs.has(j.slug));
 assert.ok(xml.includes('/guias/formacion-minera-gratuita-economica-peru'));
@@ -39,11 +37,6 @@ console.log({adsenseLoaders:loaderTags.length,invalidAdUnits:0});
 for (const job of archived) {
   const html = fs.readFileSync(path.join(root, 'jobs', job.slug, 'index.html'), 'utf8');
   assert.equal(html.includes('adsbygoogle.js'), false, 'Archived page must not load AdSense: ' + job.slug);
-  if (job.reason === 'external-link-only' || isLinkOnlySource(undefined, job.url)) {
-    assert.ok(html.includes('Consulta la vacante en la fuente'), job.slug);
-    assert.ok(html.includes('name="robots" content="noindex, follow"'), job.slug);
-    assert.ok(!html.includes('data-application-guide') && !html.includes('"@type":"JobPosting"'), job.slug);
-  }
 }
 console.log({ archivedPagesWithoutAdsense: archived.length });
 

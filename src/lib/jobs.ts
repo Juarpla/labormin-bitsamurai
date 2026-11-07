@@ -1,4 +1,4 @@
-import { formatSalaryValue, isLinkOnlySource } from './job-policy.mjs';
+import { formatSalaryValue } from './job-policy.mjs';
 import raw from '../data/jobs.json';
 import { JobFileSchema, type Job } from '../schemas';
 import { GLOBAL, countryName, useTranslations, type Locale } from './i18n';
@@ -29,7 +29,7 @@ function tierSorted(list: Job[]): Job[] {
 }
 
 const parsed = JobFileSchema.parse(raw);
-export const allJobs: Job[] = tierSorted(parsed.jobs.filter(job => !isLinkOnlySource(job.source, job.url)));
+export const allJobs: Job[] = tierSorted(parsed.jobs);
 /** Pool general (/, /jobs): sin prácticas — viven solo en /practicas (Perú). */
 export const jobs: Job[] = allJobs.filter((j) => !(j.internship && j.country === 'PE'));
 /** Prácticas/trainee/becarios activos en Perú, postedAt desc. */

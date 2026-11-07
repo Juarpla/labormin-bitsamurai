@@ -3,7 +3,7 @@
  * corrected active feed, a minimal archive and an audit report. No network/LLM. */
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-import { certifyJob, isLinkOnlySource, inNiche, sourceText, POLICY_VERSION, isExpired } from '../src/lib/job-policy.mjs';
+import { certifyJob, inNiche, sourceText, POLICY_VERSION, isExpired } from '../src/lib/job-policy.mjs';
 
 export function repairFeed(feed, { now = new Date(), previousArchive = [] } = {}) {
   const cutoff = now.getTime() - 30 * 86400000;
@@ -18,7 +18,7 @@ export function repairFeed(feed, { now = new Date(), previousArchive = [] } = {}
     if (job.descriptionStatus !== 'full') report.incompleteDescriptions++;
     const time = Date.parse(job.postedAt);
     const key = `${job.companySlug}::${job.title.toLowerCase().replace(/\W+/g,' ')}::${job.country}`;
-    let reason = isLinkOnlySource(job.source, job.url) ? 'external-link-only' : isExpired(job, now) ? 'expired' : !Number.isFinite(time) || time > now.getTime()+86400000 ? 'invalid-date' : time < cutoff ? 'stale' : !/^https?:\/\//.test(job.url) ? 'invalid-url' : !inNiche(job) ? 'eligibility-unverified' : sourceText(job.description).length < 80 ? 'insufficient-content' : seen.has(key) ? 'duplicate' : null;
+    let reason = isExpired(job, now) ? 'expired' : !Number.isFinite(time) || time > now.getTime()+86400000 ? 'invalid-date' : time < cutoff ? 'stale' : !/^https?:\/\//.test(job.url) ? 'invalid-url' : !inNiche(job) ? 'eligibility-unverified' : sourceText(job.description).length < 80 ? 'insufficient-content' : seen.has(key) ? 'duplicate' : null;
     if (reason) {
       report.excluded++; report.reasons[reason] = (report.reasons[reason] || 0)+1;
       report.records.push({id:job.id,reason,visaStatus:job.visa.status,remoteStatus:job.remoteEligibility.status});

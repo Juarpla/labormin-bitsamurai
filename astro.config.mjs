@@ -4,9 +4,8 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import cloudflare from '@astrojs/cloudflare';
 import sitemap from '@astrojs/sitemap';
-import { isLinkOnlySource } from './src/lib/job-policy.mjs';
 
-const activeSlugs = new Set(JSON.parse(readFileSync(new URL('./src/data/jobs.json', import.meta.url), 'utf8')).jobs.filter(j => !isLinkOnlySource(j.source, j.url)).map(j => j.slug));
+const activeSlugs = new Set(JSON.parse(readFileSync(new URL('./src/data/jobs.json', import.meta.url), 'utf8')).jobs.map(j => j.slug));
 // A source may republish an archived listing; active routes take precedence.
 const archivedSlugs = new Set(JSON.parse(readFileSync(new URL('./src/data/jobs-archive.json', import.meta.url), 'utf8')).filter(j => !activeSlugs.has(j.slug)).map(j => `/jobs/${j.slug}`));
 
