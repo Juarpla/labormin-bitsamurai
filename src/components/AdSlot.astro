@@ -1,6 +1,6 @@
 ---
 import { useTranslations, type Locale } from '../lib/i18n';
-import { adsenseClient, adsenseSlot, adsenseServingEnabled } from '../lib/ads';
+import { adsenseClient, adsenseSlot, adsenseServingEnabled, isAdvertisingPath } from '../lib/ads';
 
 interface Props {
   locale?: Locale;
@@ -32,7 +32,7 @@ const {
 const t = useTranslations(locale);
 const client = adsenseClient(import.meta.env.PUBLIC_ADSENSE_CLIENT as string | undefined);
 const unitId = adsenseSlot(slotId, import.meta.env.PUBLIC_ADSENSE_SLOTS);
-const enabled = adsenseServingEnabled(import.meta.env.PUBLIC_ADSENSE_ENABLED);
+const enabled = adsenseServingEnabled(import.meta.env.PUBLIC_ADSENSE_ENABLED) && isAdvertisingPath(Astro.url.pathname);
 const live = Boolean(enabled && client && import.meta.env.PROD && unitId);
 
 const sizeLabel = size ? `${size.w} x ${size.h} px` : 'responsivo';

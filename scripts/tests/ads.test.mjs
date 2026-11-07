@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {adsenseClient,adsenseSlot,adsenseServingEnabled} from '../../src/lib/ads.ts';
+import {adsenseClient,adsenseSlot,adsenseServingEnabled,isAdvertisingPath} from '../../src/lib/ads.ts';
 test('only a valid publisher identifier can load the verification script',()=>{
   assert.equal(adsenseClient('pub-1972487168739114'),'ca-pub-1972487168739114');
   assert.equal(adsenseClient('invalid'),undefined);
@@ -13,4 +13,13 @@ test('placement names never become ad unit identifiers without an account mappin
   assert.equal(adsenseSlot('jobs-top-1',undefined),undefined);
   assert.equal(adsenseSlot('jobs-top-1','{"jobs-top-1":"not-an-id"}'),undefined);
   assert.equal(adsenseSlot('jobs-top-1','invalid-json'),undefined);
+});
+
+test('only the home page and individual guides qualify for ads', () => {
+  for (const path of ['/', '/guias/verificar-reclutador-minero-peru', '/guias/verificar-reclutador-minero-peru/']) {
+    assert.equal(isAdvertisingPath(path), true, path);
+  }
+  for (const path of ['/guias/', '/jobs/', '/jobs/example/', '/contact/', '/privacy/', '/eventos/']) {
+    assert.equal(isAdvertisingPath(path), false, path);
+  }
 });

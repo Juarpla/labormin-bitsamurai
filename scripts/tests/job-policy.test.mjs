@@ -153,3 +153,17 @@ test('excerpt truncation never splits an emoji at the UTF-16 boundary', async ()
   assert.equal(description.startsWith(job.excerpt),true);
   assert.equal(job.description,description);
 });
+
+test('general boards require evidence beyond keywords and optional experience', () => {
+  const listing = { source: 'computrabajo', country: 'PE', title: 'Asesor comercial B2B' };
+  assert.equal(inNiche({
+    ...listing,
+    description: '<p>Empresa del sector textil. Muy valorable experiencia con campamentos mineros.</p><p>Palabras clave: minería</p>',
+  }), false);
+  assert.equal(inNiche({
+    ...listing,
+    description: '<p>El puesto atiende una operación minera.</p><p>Deseable experiencia previa en minería.</p>',
+  }), true);
+  assert.equal(inNiche({ ...listing, title: 'Asesor comercial para minería', description: '<p>Ventas B2B.</p>' }), true);
+  assert.equal(inNiche({ ...listing, source: 'sapsf-csb', description: '<p>Ventas B2B.</p>' }), true);
+});
