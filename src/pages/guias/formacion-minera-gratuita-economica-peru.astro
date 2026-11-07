@@ -7,9 +7,9 @@ import TrainingNotes from '../../components/guides/TrainingNotes.astro';
 import options from '../../data/education.json';
 import '../../styles/training-guide.css';
 const groups = [
-  {id:'cursos' as const, label:'Un curso', aim:'Refuerza una habilidad', title:'Empieza desde casa', intro:'Cursos gratuitos para sumar habilidades. Revisa cuáles necesita el puesto que buscas.', note:'Un curso no sustituye una carrera ni la inducción de una operación.'},
-  {id:'oficios' as const, label:'Un oficio', aim:'Aprende con práctica', title:'Aprende haciendo', intro:'Electricidad, electrónica o dibujo técnico: busca un oficio cerca de ti.', note:'Formarte en un oficio industrial no acredita experiencia en mina.'},
-  {id:'carreras' as const, label:'Una carrera', aim:'Construye una base técnica', title:'Piensa en varios años', intro:'Compara el costo completo, el plan y la credencial antes de trasladarte.', note:'Tres años de estudio no otorgan bachiller técnico automáticamente.'}
+  {id:'cursos' as const, type:'habilidad', label:'Una habilidad', aim:'Aprende algo nuevo o mejora lo que sabes', title:'Cursos para sumar habilidades', intro:'Cursos gratuitos para sumar habilidades. Revisa cuáles necesita el puesto que buscas.', note:'Un curso no sustituye una carrera ni la inducción de una operación.'},
+  {id:'oficios' as const, type:'certificado', label:'Un certificado', aim:'Aprende con práctica', title:'Formación práctica y certificados', intro:'Electricidad, electrónica o dibujo técnico: compara programas cerca de ti y la credencial que entregan.', note:'Elige el programa por su contenido y confirma si entrega certificado o título. La formación no acredita experiencia en mina.'},
+  {id:'carreras' as const, type:'carrera', label:'Una carrera', aim:'Construye una base técnica', title:'Carreras técnicas', intro:'Compara el costo completo, el plan y la credencial antes de trasladarte.', note:'Tres años de estudio no otorgan bachiller técnico automáticamente.'}
 ];
 ---
 <GuideLayout visual title="Dónde estudiar para minería con poco presupuesto en Perú" description="Cursos gratuitos, CETPRO e institutos públicos: compara costos, duración y credenciales con fuentes oficiales." path="/guias/formacion-minera-gratuita-economica-peru">
@@ -18,19 +18,23 @@ const groups = [
     <div><p class="hero-deck">Dónde estudiar para minería con poco presupuesto en Perú.</p><p class="hero-byline">Investigación de Labormin · Bit SamurAI<br/>Fuentes: 26 de octubre de 2026</p></div>
   </header>
   <div class="training-guide">
+    <aside class="training-directory-link"><div><h2>¿Ya sabes qué quieres aprender?</h2><p>Explora las opciones por departamento, modalidad y costo.</p></div><a href="/formacion">Buscar formación →</a></aside>
+    <nav class="training-contents" aria-label="En esta guía"><span>En esta guía</span><a href="#comparar">Costos y preguntas</a><a href="#bachiller">Credenciales</a><a href="#directorios">Directorios y becas</a><a href="#opciones">Centros documentados</a></nav>
     <section class="route-chooser" aria-labelledby="elige-ruta" data-training-chooser>
-      <h2 id="elige-ruta">¿Qué quieres aprender?</h2>
+      <h2 id="elige-ruta">Tres formas de empezar</h2>
       <nav class="training-map" aria-label="Alternativas de formación">
-        {groups.map(group => <a href={`#${group.id}`}><TrainingGraphic kind={group.id}/><div><h3>{group.label}</h3><p>{group.aim}</p><span class="route-link">Explorar opciones <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3v14m-5-5 5 5 5-5"/></svg></span></div></a>)}
+        {groups.map(group => <a href={`/formacion?tipo=${group.type}`}><TrainingGraphic kind={group.id}/><div><h3>{group.label}</h3><p>{group.aim}</p><span class="route-link">Buscar opciones <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3v14m-5-5 5 5 5-5"/></svg></span></div></a>)}
       </nav>
       <span class="quiet-rule" aria-hidden="true"></span>
     </section>
     <aside class="budget-note" aria-labelledby="presupuesto"><div><h2 id="presupuesto">El costo va más allá<br/> de la matrícula.</h2><a href="#comparar">Qué preguntar antes de pagar ↗</a></div><ul><li><GuideIcon kind="materials"/><span>Materiales<br/>y herramientas</span></li><li><GuideIcon kind="travel"/><span>Transporte<br/>y alojamiento</span></li><li><GuideIcon kind="credential"/><span>Certificados<br/>y título</span></li></ul></aside>
+    <TrainingNotes/>
+    <section id="opciones" class="documented-centers" aria-labelledby="centros-title"><h2 id="centros-title">Las opciones, con sus fuentes</h2><p>Revisa lo documentado de cada centro. Las fichas conservan los costos publicados y lo que falta confirmar; no implican una admisión abierta.</p><a href="/formacion">Filtrar esta selección en Formación →</a></section>
     {groups.map(group => <section class:list={['training-chapter',`chapter-${group.id}`]} aria-labelledby={group.id}>
       <header class="chapter-heading"><div><h2 id={group.id}>{group.title}</h2><p>{group.intro}</p></div><p class="chapter-note">{group.note}</p></header>
-      <div class="training-options">{options.filter(option => option.group === group.id).map(option => <TrainingOption option={option}/>)}</div>
+      <a class="chapter-directory" href={`/formacion?tipo=${group.type}`}>Buscar por departamento y costo →</a><div class="training-options">{options.filter(option => option.group === group.id).map(option => <TrainingOption option={option}/>)}</div>
     </section>)}
-    <TrainingNotes/>
+
   </div>
 </GuideLayout>
 <script>

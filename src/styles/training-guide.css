@@ -128,3 +128,16 @@
   .training-map .training-graphic{width:64px}
   .training-hero h1{font-size:2.4rem}
 }
+/* The guide explains decisions; the connected catalog handles discovery. */
+.training-directory-link{display:flex;align-items:center;justify-content:space-between;gap:28px;padding:24px 0;border-block:1px solid var(--guide-line);margin-bottom:24px}
+.training-directory-link h2{font-size:1.55rem}
+.training-directory-link p{font-size:.875rem;color:var(--guide-muted);margin-top:8px}
+.training-directory-link>a{flex-shrink:0;font-size:.875rem;font-weight:600}
+.training-contents{display:flex;gap:12px 20px;flex-wrap:wrap;align-items:center;margin:0 0 32px;font-size:.8125rem}
+.training-contents>span{font-weight:600;color:var(--color-graphite-100)}
+.training-guide .documented-centers{padding-top:42px;border-top:1px solid var(--guide-line);scroll-margin-top:120px}
+.documented-centers>p{margin-top:16px;color:var(--guide-muted);max-width:68ch}
+.documented-centers>a{display:inline-block;margin-top:16px;font-size:.875rem}
+.training-guide .chapter-directory{display:inline-block;font-size:.8125rem;margin:-6px 0 24px}
+.training-guide [id],.training-option[id]{scroll-margin-top:120px}
+@media(max-width:700px){.training-directory-link{display:block;padding-block:22px}.training-directory-link>a{display:inline-flex;align-items:center;margin-top:16px;min-height:40px}.training-contents{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px}.training-contents>span{grid-column:1/-1}.training-directory-link h2{font-size:1.45rem}}

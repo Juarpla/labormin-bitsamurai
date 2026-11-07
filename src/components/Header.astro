@@ -10,8 +10,7 @@ const { locale = defaultLocale, path = '/' } = Astro.props;
 const t = useTranslations(locale);
 
 const links = [
-  { href: '/', label: t('nav.home') },
-  { href: '/visa-pathways', label: t('nav.pathways') },
+  { href: '/formacion', label: 'Formación' },
   { href: '/eventos', label: t('nav.eventos') },
   { href: '/guias', label: t('nav.guias') },
   // Owner sign-off 2026-09-11: "después de Empleos" = último link del nav,
@@ -21,7 +20,7 @@ const links = [
 ---
 
 <header class="sticky top-0 z-40 border-b border-graphite-800 bg-graphite-950/80 backdrop-blur">
-  <div class="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3 sm:px-6">
+  <div class="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3 sm:px-6">
     <a href={localePath(locale, '/')} class="flex items-center gap-2 font-display text-xl font-semibold tracking-tight text-graphite-100">
       <svg viewBox="0 0 24 24" class="h-6 w-6 text-brand-500" fill="currentColor" aria-hidden="true">
         <path d="M12 2 3 9l3 11h12l3-11-9-7Zm0 3.3L18.4 10 16.2 18H7.8L5.6 10 12 5.3ZM11 9h2v6h-2V9Z" />
@@ -29,12 +28,12 @@ const links = [
       Labormin
     </a>
 
-    <nav class="ml-auto hidden items-center gap-6 text-sm text-graphite-200 md:flex" aria-label="Main">
+    <nav class="ml-auto hidden items-center gap-6 text-sm text-graphite-200 md:flex" aria-label="Principal">
       {links.map((l) => (
         <a
           href={localePath(locale, l.href)}
           class="rounded-md px-2 py-1 transition-colors hover:text-brand-400"
-          aria-current={path === l.href ? 'page' : undefined}
+          aria-current={path.replace(/\/$/, '') === l.href ? 'page' : undefined}
         >
           {l.label}
         </a>
@@ -49,11 +48,11 @@ const links = [
     </a>
   </div>
 
-  <nav class="border-t border-graphite-800/60 px-4 py-2 md:hidden" aria-label="Mobile">
+  <nav class="border-t border-graphite-800/60 px-4 py-2 md:hidden" aria-label="Principal móvil">
     <div class="flex gap-4 overflow-x-auto text-sm text-graphite-200">
       {
         links.map((l) => (
-          <a href={localePath(locale, l.href)} class="whitespace-nowrap py-1 hover:text-brand-400">
+          <a href={localePath(locale, l.href)} class="whitespace-nowrap py-1 hover:text-brand-400" aria-current={path.replace(/\/$/, '') === l.href ? 'page' : undefined}>
             {l.label}
           </a>
         ))
@@ -61,3 +60,8 @@ const links = [
     </div>
   </nav>
 </header>
+<style>
+  nav a[aria-current="page"]{color:var(--color-graphite-100);text-decoration:underline;text-decoration-color:var(--color-brand-500);text-decoration-thickness:2px;text-underline-offset:12px;font-weight:600}
+  header a:focus-visible{outline:2px solid var(--color-brand-400);outline-offset:4px}
+  @media(max-width:767px){nav a[aria-current="page"]{text-underline-offset:7px}}
+</style>

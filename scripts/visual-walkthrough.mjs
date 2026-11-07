@@ -19,7 +19,11 @@ import path from 'node:path';
 import { chromium, webkit, firefox } from 'playwright';
 
 const PORT_RANGE = [4321, 4322, 4323, 4324, 4325, 4326];
-const VIEWPORTS = [
+const VIEWPORTS = process.env.VISUAL_VIEWPORTS ? process.env.VISUAL_VIEWPORTS.split(',').map(value => {
+  const match = /^(\d{3,4})x(\d{3,4})$/.exec(value);
+  if (!match) throw new Error(`Invalid VISUAL_VIEWPORTS size: ${value}`);
+  return { width: Number(match[1]), height: Number(match[2]) };
+}) : [
   { width: 375, height: 812 }, // mobile
   { width: 768, height: 1024 }, // tablet
   { width: 1280, height: 800 }, // desktop
@@ -163,7 +167,10 @@ async function main() {
     );
   }
 
-  const url = `http://localhost:${port}/`;
+  // Target a changed surface without replacing the shared homepage captures.
+  const route = process.env.VISUAL_PATH || '/';
+  const prefix = route === '/' ? '' : `${route.replace(/^\/+|\/+$/g, '').replace(/[^a-z0-9-]+/gi, '-')}-`;
+  const url = new URL(route, `http://localhost:${port}`).href;
   const failures = [];
   try {
     for (const name of browsers) {
@@ -172,7 +179,7 @@ async function main() {
         // One page reused across viewports: engines are light on memory.
         const page = await browser.newPage();
         for (const { width, height } of VIEWPORTS) {
-          const file = path.join(OUT_DIR, `${name}-${width}x${height}.png`);
+          const file = path.join(OUT_DIR, `${prefix}${name}-${width}x${height}.png`);
           const label = `${name} @ ${width}x${height}`;
           try {
             await page.setViewportSize({ width, height });

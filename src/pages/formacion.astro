@@ -1,0 +1,68 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { departments, education, trainingGroups, trainingGuidePath, verifiedDate } from '../lib/education';
+import '../styles/formation.css';
+const ordered = [...education].sort((a,b) => a.id === 'promae-comas' && b.id === 'cetpro-juliaca' ? -1 : a.id === 'cetpro-juliaca' && b.id === 'promae-comas' ? 1 : 0);
+const images = { habilidad: '/images/formacion/habilidad.png', certificado: '/images/formacion/certificado.png', carrera: '/images/formacion/carrera.png' };
+---
+<Layout title="Formación para el sector minero en Perú | Labormin" description="Explora cursos, formación práctica y carreras técnicas. Filtra por departamento, modalidad y costo; compara fuentes oficiales y credenciales." path="/formacion">
+  <section class="formation" aria-labelledby="formation-title">
+    <header class="formation-hero">
+      <h1 id="formation-title">¿Qué quieres <em>aprender?</em></h1>
+      <p>Empieza por el tipo de formación. Después, encuentra opciones cerca de ti.</p>
+    </header>
+    <nav class="formation-goals" aria-label="Tipo de formación">
+      {trainingGroups.map(group => <a class="formation-goal" data-type={group.id} href={`/formacion?tipo=${group.id}#resultados`}>
+        <img src={images[group.image]} alt="" width="180" height="104" fetchpriority="high"/>
+        <span><strong>{group.label}</strong><span>{group.description}</span></span>
+      </a>)}
+    </nav>
+    <a class="formation-all" href="/formacion#resultados" data-all>Ver toda la formación <span aria-hidden="true">→</span></a>
+    <form id="formation-filters" class="formation-filters" role="search" aria-label="Filtrar formación" hidden>
+      <div class="formation-search-tools">
+        <label class="formation-query" for="training-query">Buscar por programa o institución<input type="search" name="q" id="training-query" placeholder="Ej. electricidad, minería, CETPRO" autocomplete="off"/></label>
+        <button type="button" class="formation-clear" data-reset>Limpiar filtros</button>
+      </div>
+      <details class="formation-filter-details" id="training-filter-details" open>
+        <summary>Departamento, modalidad y costo<span id="formation-filter-feedback"></span></summary>
+        <div class="formation-selects">
+          <label>Departamento<select name="departamento" id="training-department"><option value="">Todos</option>{departments.map(department => <option value={department}>{department}</option>)}</select></label>
+          <label>Modalidad<select name="modalidad" id="training-mode"><option value="">Todas</option><option value="virtual">Virtual</option><option value="presencial">Presencial confirmada</option><option value="consultar">Por confirmar</option></select></label>
+          <label>Costo<select name="costo" id="training-cost"><option value="">Todos</option><option value="gratuito">Gratuito · según condiciones</option><option value="parcial">Pagos parciales publicados</option><option value="consultar">Precio por consultar</option></select></label>
+        </div>
+        <label class="formation-remote"><input type="checkbox" name="virtual" id="training-remote" checked/> Incluir opciones virtuales desde Perú</label>
+      </details>
+    </form>
+
+    <noscript><p class="formation-context">Estás viendo la selección completa. Activa JavaScript para filtrar; puedes consultar todas las fichas y fuentes a continuación.</p></noscript>
+    <section class="formation-results" aria-labelledby="resultados">
+      <div class="formation-result-heading"><h2 id="resultados" tabindex="-1">Explora opciones de formación</h2><p id="formation-count" role="status" aria-live="polite"></p></div>
+      <div id="formation-list">
+        {ordered.map(option => <article class="formation-row" data-training-row data-id={option.id} data-type={option.type} data-department={option.department} data-mode={option.mode} data-cost={option.costKind} data-search={`${option.title} ${option.name} ${option.location} ${option.program}`}>
+          <div class="formation-row-main">
+            <header><h3>{option.title}</h3><p>{option.name}</p><p class="formation-location"><img src="/icons/geo-alt.svg" alt="" width="16" height="16"/>{option.location}</p></header>
+            <div class="formation-cost"><strong>{option.costLabel}</strong><p>{option.costNote}</p>{option.id === 'cetpro-juliaca' && <p>Un año académico · confirma el programa</p>}</div>
+            <div class="formation-row-links"><a href={option.officialUrl} target="_blank" rel="noopener">Fuente oficial <span aria-hidden="true">↗</span><span class="sr-only"> de {option.name} (nueva pestaña)</span></a></div>
+          </div>
+          <details class="formation-details">
+            <summary><span class="details-closed">Ver detalles</span><span class="details-open">Cerrar detalles</span><span aria-hidden="true"> →</span><span class="sr-only"> de {option.name}</span></summary>
+            <div class="formation-details-body">
+              <dl>{[['Programa',option.program],['Costo completo',option.cost],['Duración',option.duration],['Credencial',option.credential],['Requisitos de acceso',option.admission],['Disponibilidad',option.status]].map(([label,value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
+              <div class="formation-detail-footer"><div class="formation-source-links">
+                {option.actionUrl !== option.officialUrl && <a href={option.actionUrl} target="_blank" rel="noopener">Oferta del centro ↗<span class="sr-only"> (nueva pestaña)</span></a>}
+                {option.additionalSources?.map(source => <a href={source.url} target="_blank" rel="noopener">{source.label} ↗<span class="sr-only"> (nueva pestaña)</span></a>)}
+                <a href={`${trainingGuidePath}#${option.id}`}>Esta opción en la guía →</a>
+              </div><p>Fuente consultada: <time datetime={option.lastVerifiedAt}>{verifiedDate(option.lastVerifiedAt)}</time></p></div>
+            </div>
+          </details>
+        </article>)}
+      </div>
+      <div class="formation-empty" id="formation-empty" hidden><h3>No encontramos opciones con estos filtros</h3><p>La selección aún no cubre todos los departamentos. Prueba otra modalidad o consulta los directorios oficiales de la guía.</p><button type="button" data-reset>Limpiar filtros</button><a href={`${trainingGuidePath}#directorios`}>Buscar en directorios oficiales →</a></div>
+    </section>
+    <p class="formation-context">Selección documentada de {education.length} opciones; aún no cubre todo el Perú. Incluye habilidades útiles para el sector y programas mineros. El objetivo “Un certificado” orienta la búsqueda: confirma la credencial, modalidad y cupos con cada centro. <a href={`${trainingGuidePath}#comparar`}>Cómo comparar costos y certificados →</a></p>
+    <aside class="formation-guide" aria-labelledby="formation-guide-title"><h2 id="formation-guide-title">Antes de elegir, compara bien.</h2><div><p>Costo completo, práctica y credencial: qué preguntar al centro.</p><a href={trainingGuidePath}>Leer la guía <span aria-hidden="true">↗</span></a></div><p>Datos de la guía · <time datetime="2026-10-26">26 oct 2026</time></p></aside>
+  </section>
+</Layout>
+<script>
+  import '../scripts/formation';
+</script>
