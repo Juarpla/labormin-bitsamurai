@@ -10,11 +10,10 @@
  *        --repair re-derives country/salary of stored jobs offline (no fetch).
  *        --prune re-filters the stored feed with the niche rules + TTL offline.
  * Optional env: ADZUNA_APP_ID, ADZUNA_APP_KEY (free tier, enables Adzuna)
- *               APIFY_TOKEN (enables apify-linkedin/indeed/seek)
- *               LM_SOURCES (comma list; CI schedules Apify sources by weekday)
+ * Legacy marketplace adapters are disabled by the link-only source policy.
  */
 import { decodeHTML } from 'entities';
-import { inNiche, parseSalary, visaHeuristic, certifyJob, POLICY_VERSION, isExpired, truncateSourceText } from '../src/lib/job-policy.mjs';
+import { isLinkOnlySource, inNiche, parseSalary, visaHeuristic, certifyJob, POLICY_VERSION, isExpired, truncateSourceText } from '../src/lib/job-policy.mjs';
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -37,10 +36,11 @@ let MAX_PER_SOURCE = 1500; // overridden by companies.json `maxPerSource`
 const UA = { 'User-Agent': 'LaborminBot/1.0 (+https://labormin.com/about)' };
 // Keep all obtained source text: final paragraphs can contain eligibility restrictions.
 
-/** CI day-scheduling: refresh-jobs.yml derives LM_SOURCES from the weekday and
- *  only those Apify sources run. Empty/unset = run all sources (local dev). */
+/** Optional source selection. The link-only policy takes precedence. */
 const ONLY_SOURCE = process.argv.find(a => a.startsWith('--only='))?.slice(7);
-const selectedSource = src => !ONLY_SOURCE || src.name === ONLY_SOURCE || src.slug === ONLY_SOURCE;
+const selectedSource = src =>
+  !isLinkOnlySource(src.platform, src.url ?? src.host) &&
+  (!ONLY_SOURCE || src.name === ONLY_SOURCE || src.slug === ONLY_SOURCE);
 const LM_SOURCES = (process.env.LM_SOURCES || '')
   .split(',')
   .map((s) => s.trim())
@@ -2608,7 +2608,7 @@ async function main() {
     }
   }
 
-  if (!ONLY_SOURCE && config.linkedin?.platform === 'apify-linkedin') {
+  if (!ONLY_SOURCE && config.linkedin && selectedSource(config.linkedin)) {
     if (!lmActive('linkedin')) {
       console.log(`ℹ apify-linkedin skipped (not in LM_SOURCES: ${LM_SOURCES.join(',')})`);
     } else {
@@ -2631,7 +2631,7 @@ async function main() {
   ];
   for (const [key, fetcher] of APIFY_MARKETPLACES) {
     const cfg = config[key];
-    if (!cfg || ONLY_SOURCE) continue;
+    if (!cfg || ONLY_SOURCE || !selectedSource(cfg)) continue;
     if (!lmActive(key)) {
       console.log(`ℹ ${cfg.platform || key} skipped (not in LM_SOURCES: ${LM_SOURCES.join(',')})`);
       continue;
@@ -2671,7 +2671,7 @@ async function main() {
   // applyLocationPolicy. Overrides from the ops panel win over everything.
   if (!all.length && errors.length) throw new Error('All selected sources failed; feed was preserved.');
   if (ONLY_SOURCE && !all.length) throw new Error('Selected source returned no records; feed was preserved.');
-  const located = (await applyLocationPolicy(all)).map(j => certifyJob({...j, fetchedAt: j.fetchedAt || new Date().toISOString()}));
+  const located = (await applyLocationPolicy(all.filter(job => !isLinkOnlySource(job.source, job.url)))).map(j => certifyJob({...j, fetchedAt: j.fetchedAt || new Date().toISOString()}));
 
   // TTL: drop postings older than TTL_DAYS (and impossible future dates)
   const cutoff = Date.now() - TTL_DAYS * 86400000;

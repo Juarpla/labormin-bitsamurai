@@ -101,24 +101,17 @@ export function remoteEligibility(job) {
   return { status: 'unknown', countries: [], evidence: [] };
 }
 
-const GENERAL_JOB_BOARDS = new Set(['computrabajo', 'apify-indeed']);
-const MINING_CONTEXT = /\b(?:min(?:a|as|ero|era|eros|eras|eria|e|es|ing|eral|erales)|geolo\w*|geo(?:tec|tech)\w*|metall?urg\w*|relaves?|tailings?|voladuras?|open[ -]pit|plantas? concentradoras?)\b/i;
-const OPTIONAL_CONTEXT = /\b(?:deseable(?:mente)?|preferible(?:mente)?|preferentemente|de preferencia|idealmente|valorabl\w*|se valor\w*|nice to have|preferred|desirable)\b/i;
+// These marketplaces are available through external links only. This applies
+// to manual runs, scheduled imports and saved data from before the policy.
+const LINK_ONLY_SOURCES = new Set(['computrabajo', 'navent', 'apify-indeed', 'apify-linkedin', 'apify-seek']);
+const LINK_ONLY_DOMAINS = /(?:^|\.)(?:computrabajo\.com|bumeran\.com\.pe|laborum\.cl|indeed\.com|linkedin\.com|seek\.com\.au)$/i;
 
-export function hasMiningConnection(job) {
-  // Employer-scoped sources already establish their connection at collection.
-  if (!GENERAL_JOB_BOARDS.has(job.source)) return true;
-  const normalize = text => text.normalize('NFD').replace(/\p{Diacritic}/gu, '');
-  if (MINING_CONTEXT.test(normalize(job.title ?? ''))) return true;
-  const lines = sourceText(job.description).split(/\n+|(?<=[!?]|\.)\s+/);
-  return lines.some(line => {
-    const text = normalize(line.trim());
-    return MINING_CONTEXT.test(text) && !/^(?:palabras clave|keywords)\b/i.test(text) && !OPTIONAL_CONTEXT.test(text);
-  });
+export function isLinkOnlySource(source, url = '') {
+  return LINK_ONLY_SOURCES.has(source) || (URL.canParse(url) && LINK_ONLY_DOMAINS.test(new URL(url).hostname));
 }
 
 export function inNiche(job) {
-  if (!hasMiningConnection(job)) return false;
+  if (isLinkOnlySource(job.source, job.url)) return false;
   if (job.country === 'PE') return true;
   if (!ALLOWED_COUNTRIES.has(job.country) && job.country !== 'GLOBAL') return false;
   if (job.remote && job.descriptionStatus !== 'unknown' && remoteEligibility(job).status === 'peru-supported') return true;
