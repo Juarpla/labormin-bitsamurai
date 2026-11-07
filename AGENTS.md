@@ -33,7 +33,6 @@ pnpm visual       # capture UI screenshots across chromium/webkit at
                   # mobile/tablet/desktop viewports into screenshots/
 node scripts/ingest.mjs         # refresh src/data/jobs.json from live sources
 node scripts/ingest.mjs --prune # offline: re-apply niche rules + TTL to the stored feed
-node scripts/ingest-events.mjs  # refresh src/data/events-scraped.json (official sites keyless; FB via Apify; weekly CI)
 ```
 
 ### Verification
@@ -60,16 +59,7 @@ already running on localhost:4321-4326; otherwise it starts (and stops) its own.
    entries must cite a verifiable `officialUrl` and carry a real `lastVerifiedAt`
    date. Re-verify before editing; if a source doesn't confirm an event/pathway,
    it doesn't enter the seed. Events: presencial = Peru only; virtual = Peru or
-   the four power countries. **Automated scraped events live apart**
-   (`src/data/events-scraped.json`, written weekly by CI via
-   `scripts/ingest-events.mjs`): they always render the visible
-   "Agregado automáticamente" badge with a "verify with the organizer" CTA,
-   never enter the curated seed, and the curated seed always wins dedupe
-   (normalized title + date, or same official-site host). Facebook contributes
-   only **posts that announce a dated event** (`source: 'facebook-post'`,
-   page posts — FB Events channels and the keyword post-search channel were
-   removed 2026-09-11 / 2026-09-12); the post title is the verbatim first
-   line of the text and the date is regex-extracted (never LLM).
+   the four power countries. Update the events file by hand.
 5. **AI description views are view-layer only.** Job *titles* may be
    auto-translated to **`es` only** at ingest via the multi-provider LLM chain in
    `src/lib/llm.js` (Mistral → Workers AI → OpenCode Go, ordered by
@@ -102,17 +92,14 @@ already running on localhost:4321-4326; otherwise it starts (and stops) its own.
 ```
 scripts/ingest.mjs            job ingestion (write jobs.json; +title translations; --prune niche filter)
 scripts/ingest-stocks.mjs     stock quotes ingestion (write stocks.json; Yahoo Finance + FX → USD; monthly CI)
-scripts/ingest-events.mjs     scraped-event ingestion (write events-scraped.json; official sites + Facebook via Apify; weekly CI)
 src/data/companies.json       curated public boards (extend here to add companies — niche: PE/CL/CA/US/AU)
 src/data/pathways.json        curated visa pathways seed (Peru-eligible focus)
 src/data/events.json          hand-curated mining events seed (officialUrl + lastVerifiedAt required)
-src/data/events-scraped.json  auto-detected events (badge "Agregado automáticamente"; curated seed wins dedupe)
 src/data/jobs.json            generated feed (commit; refreshed daily by CI; niche-filtered)
 src/data/translation-cache.json  auto-translated titles cache (commit)
-src/schemas.ts                Zod schemas for Job / Pathway / Event / ScrapedEvent / feeds
+src/schemas.ts                Zod schemas for Job / Pathway / Event / feeds
 src/lib/jobs.ts               build-time data helpers (tierOf, tier ranking)
 src/lib/events.ts             build-time event helpers (upcoming)
-src/lib/events-scraped.ts     build-time scraped-event helpers (upcoming + dedupe vs curated seed)
 src/lib/llm.js               multi-provider LLM chain (titles + clear view)
 src/lib/i18n.ts               localePath, niche countries, DEFAULT_COUNTRY/DEFAULT_NATIONALITY
 src/i18n/ui.ts                UI dictionary (es active; en/pt dormant)
