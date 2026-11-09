@@ -38,5 +38,53 @@
       "salary-missing"
     ],
     "generatedAt": "2026-11-09T16:41:06.877Z"
+  },
+  "nv-BMPE-1118511634": {
+    "signature": "8ab7fd2d3c45a92f31e114b500575d1b6cffc2de7ff8e25c0e1db35d268b272f",
+    "questionIds": [
+      "technical-evidence",
+      "placement"
+    ],
+    "generatedAt": "2026-11-09T16:44:09.365Z"
+  },
+  "nv-BMPE-1118512916": {
+    "signature": "ced1d68af7847b00d0c590306ed34aad943d735e4cfc268924f6742732bfcf74",
+    "questionIds": [
+      "equipment",
+      "technical-evidence"
+    ],
+    "generatedAt": "2026-11-09T16:44:09.365Z"
+  },
+  "nv-BMPE-1118511845": {
+    "signature": "8ab7fd2d3c45a92f31e114b500575d1b6cffc2de7ff8e25c0e1db35d268b272f",
+    "questionIds": [
+      "technical-evidence",
+      "placement"
+    ],
+    "generatedAt": "2026-11-09T16:44:09.365Z"
+  },
+  "nv-BMPE-1118513139": {
+    "signature": "8ab7fd2d3c45a92f31e114b500575d1b6cffc2de7ff8e25c0e1db35d268b272f",
+    "questionIds": [
+      "equipment",
+      "technical-evidence"
+    ],
+    "generatedAt": "2026-11-09T16:44:09.365Z"
+  },
+  "nv-BMPE-1118512705": {
+    "signature": "b281a9356c5dcaa5810a6d3dd1811bf316ac3c29061c379ae329fce7e0995238",
+    "questionIds": [
+      "geology-tasks",
+      "salary-missing"
+    ],
+    "generatedAt": "2026-11-09T16:44:09.365Z"
+  },
+  "nv-BMPE-1118511779": {
+    "signature": "b281a9356c5dcaa5810a6d3dd1811bf316ac3c29061c379ae329fce7e0995238",
+    "questionIds": [
+      "geology-tasks",
+      "technical-evidence"
+    ],
+    "generatedAt": "2026-11-09T16:44:09.365Z"
   }
 }
