@@ -104,7 +104,6 @@ jobs:
           WORKERS_AI_MODEL: ${{ vars.WORKERS_AI_MODEL }}
           OPENCODE_GO_MODEL: ${{ vars.OPENCODE_GO_MODEL }}
           LLM_PROVIDER_ORDER: ${{ vars.LLM_PROVIDER_ORDER }}
-          JOB_PRESENTATION_OPENCODE_ALLOWED: ${{ vars.JOB_PRESENTATION_OPENCODE_ALLOWED }}
           JOB_PRESENTATION_MAX_CALLS: ${{ inputs.presentation_max_calls || vars.JOB_PRESENTATION_MAX_CALLS }}
         run: node scripts/prepare-job-presentation.mjs
 

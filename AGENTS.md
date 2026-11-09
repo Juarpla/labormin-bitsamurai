@@ -62,8 +62,7 @@ already running on localhost:4321-4326; otherwise it starts (and stops) its own.
    the four power countries. Update the events file by hand.
 5. **Vista clara is presentation data.** Show it by default with the original
    available. Preserve Spanish titles and source facts. Label AI-generated views
-   and show the original title with translated titles. Send description text to
-   providers only for documented approvals in `src/data/job-presentation-sources.json`.
+   and show the original title with translated titles.
    Keep AI results separate from `src/data/jobs.json` and from niche decisions.
    See [ARCHITECTURE.md](./ARCHITECTURE.md) for the pipeline and provider settings.
 6. **Niche hierarchy is enforced at ingest, not at display.** `inNiche()`

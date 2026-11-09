@@ -84,7 +84,7 @@ Schemas live in `src/schemas.ts` (Zod) and are enforced at build time by
 | `translations?` | `{es,en,pt}` legacy title translations found in older catalog snapshots |
 
 Dedupe key: `companySlug + normalized-title + country`. Stale cutoff: 30 days.
-Presentation cache: `src/data/job-presentation.json` (committed; keyed by source version and approval status).
+Presentation cache: `src/data/job-presentation.json` (committed; keyed by source version).
 
 ### Pathway (`src/data/pathways.json`, curated by hand)
 | Field | Notes |
@@ -215,18 +215,16 @@ upcoming entries at `/eventos/`.
   after the raw catalog is pushed. Clear view is built into the job detail page
   with an expandable original and an AI label when applicable. The English title
   translation is reused in listings, with its source title visible in the detail.
-- The build can format already-displayed text locally. AI receives description
-  blocks only when `src/data/job-presentation-sources.json` contains a matching
-  `{"source":"ingest-slug","host":"jobs.example.com","permission":"approval reference"}`
-  documenting permission for processing and displaying the result. Each block
-  must appear once and Spanish blocks are copied from the source. The classifier
-  only marks text with positive English signals for translation. Unknown text
-  keeps its original language. Source extracts remain labeled.
+- The batch uses imported descriptions from every source. Each block must
+  appear once and Spanish blocks are copied from the source. The classifier
+  marks text with positive English signals for translation. Other text keeps
+  its original language. Source extracts remain labeled. The build uses the
+  local view while a result is pending or when the description exceeds the
+  request limit.
 - The batch validates structure, numbers, shift patterns and detectable visa
   and other restrictions. It can request one correction per listing before
   using the next available provider. Failed results stay pending for a future
-  refresh. The cache keys off source data and authorization so changed listings
-  and revoked approvals stop using stale results.
+  refresh. The cache keys off source data so changed listings get fresh results.
 - Preference keys: none — the country context is fixed (Peru) at build time.
 
 ## 5. Tiered home
@@ -277,7 +275,6 @@ respect `prefers-reduced-motion`.
 | `APIFY_TOKEN` | no | enables the Apify sources (`apify-linkedin` / `apify-indeed` / `apify-seek`) via guest actors |
 | `LM_SOURCES` | no | CI-only: comma list of Apify platforms to run; derived from the weekday by `refresh-jobs.yml` (empty/unset = run all, e.g. local dev) |
 | LLM_PROVIDER_ORDER | no | Vista clara and English titles. Defaults to AGNES_MODEL,OPENCODE_GO_MODEL,WORKERS_AI_MODEL,MISTRAL_MODEL |
-| JOB_PRESENTATION_OPENCODE_ALLOWED | no | Set to true after confirming this use is covered by the OpenCode Go plan |
 | JOB_PRESENTATION_MAX_CALLS | no | Total calls per run, including failed calls and corrections. Defaults to 30. Use 0 to pause or up to 120 |
 | `JOB_GUIDANCE_PROVIDER_ORDER` | no | Background application guidance. Defaults to `AGNES_MODEL`. For Workers AI fallback use `AGNES_MODEL,WORKERS_AI_MODEL` |
 | `JOB_GUIDANCE_MAX_CALLS` | no | Provider calls per guidance run, including failures. Defaults to 30, with a maximum of 120. Set to 0 to pause |

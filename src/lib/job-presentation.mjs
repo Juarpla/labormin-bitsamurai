@@ -35,16 +35,10 @@ function titleParts(title) {
   return keepTail ? { title: candidate, titleSuffix: tail } : { title };
 }
 
-export function canProcessDescription(job, approvedSources) {
-  const host = new URL(job.url).hostname;
-  return job.descriptionStatus !== 'unknown' && approvedSources.some(
-    approval => approval.source === job.source && approval.host === host && approval.permission?.trim(),
-  );
-}
-
-export function presentationKey(job, descriptionAllowed) {
+export function presentationKey(job) {
+  // Keep existing title-only entries addressable while the batch adds descriptions.
   return createHash('sha256').update(JSON.stringify([
-    1, job.title, job.description, job.descriptionStatus, job.url, job.source, descriptionAllowed,
+    1, job.title, job.description, job.descriptionStatus, job.url, job.source, false,
   ])).digest('hex');
 }
 
@@ -150,21 +144,15 @@ const systemPrompt = [
 export function presentationChain(env, log) {
   const getEnv = key => key === 'LLM_PROVIDER_ORDER'
     ? env.LLM_PROVIDER_ORDER || PRESENTATION_ORDER : env[key];
-  const chain = resolveChain(getEnv, log);
-  if (env.JOB_PRESENTATION_OPENCODE_ALLOWED === 'true') return chain;
-  if (chain.some(provider => provider.id === 'OPENCODE_GO')) {
-    log?.('[presentation] OpenCode Go reservado hasta confirmar que el plan admite este uso');
-  }
-  return chain.filter(provider => provider.id !== 'OPENCODE_GO');
+  return resolveChain(getEnv, log);
 }
 
-export function presentationInput(job, descriptionAllowed) {
-  const blocks = descriptionAllowed ? blocksFrom(job.description) : [];
-  // If the model cannot see the whole description, keep the local view.
-  const canSendAll = job.description.length <= 14_000 && blocks.length <= 100;
+export function presentationInput(job) {
+  // Keep the local view if the full description does not fit in one request.
+  const blocks = job.description.length <= 14_000 ? blocksFrom(job.description) : [];
   return {
     ...titleParts(job.title),
-    blocks: canSendAll ? blocks.map((text, id) => ({ id, text, translate: englishIn(text) })) : [],
+    blocks: blocks.length <= 100 ? blocks.map((text, id) => ({ id, text, translate: englishIn(text) })) : [],
   };
 }
 

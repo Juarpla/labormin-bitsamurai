@@ -1,8 +1,7 @@
 import { formatSalaryValue } from './job-policy.mjs';
 import raw from '../data/jobs.json';
 import rawPresentation from '../data/job-presentation.json';
-import approvedSources from '../data/job-presentation-sources.json';
-import { canProcessDescription, localPresentation, presentationKey, sectionLabels } from './job-presentation.mjs';
+import { localPresentation, presentationKey, sectionLabels } from './job-presentation.mjs';
 import { JobFileSchema, type Job } from '../schemas';
 import { GLOBAL, countryName, useTranslations, type Locale } from './i18n';
 
@@ -36,7 +35,7 @@ type ClearSection = { heading: keyof typeof sectionLabels; blocks: string[] };
 const presentations = rawPresentation as Record<string, { titleEs: string | null; sections: ClearSection[] }>;
 
 function prepared(job: Job) {
-  return presentations[presentationKey(job, canProcessDescription(job, approvedSources))];
+  return presentations[presentationKey(job)];
 }
 
 export function clearViewFor(job: Job) {
