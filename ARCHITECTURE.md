@@ -293,7 +293,7 @@ respect `prefers-reduced-motion`.
 | OpenCode Go | `OPENCODE_GO_API_KEY` | `OPENCODE_GO_MODEL=mimo-v2.6-flash` |
 
 - **GitHub Actions.** In the repository, open **Settings → Secrets and variables → Actions**. Put the credentials in **Secrets** and the model, order and limit overrides in **Variables**. A missing model override uses the code default. To run guidance on demand, open **Actions → Generate job guidance → Run workflow** and optionally set `max_calls`. A successful feed refresh also triggers this workflow.
-- **Cloudflare Worker.** In **Workers & Pages → labormin-bitsamurai → Settings → Variables and Secrets**, set runtime credentials, model overrides and `LLM_PROVIDER_ORDER` for **Vista clara**. Guidance runs in GitHub Actions and reads its committed results at build time.
+- **Cloudflare Worker.** For **Vista clara**, put runtime credentials in **Workers & Pages → labormin-bitsamurai → Settings → Variables and Secrets**. Put persistent model and `LLM_PROVIDER_ORDER` overrides in `wrangler.jsonc` under `vars`. Guidance runs in GitHub Actions and the site reads its committed results at build time.
 - **Local.** Copy the names from `.env.example` to the ignored `.env` file. `JOB_GUIDANCE_MAX_CALLS=1 node scripts/generate-job-guidance.mjs` runs the batch locally and can update the guidance cache.
 
 ## 8. CI / deployment
