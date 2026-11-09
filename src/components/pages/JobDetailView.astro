@@ -5,6 +5,7 @@ import type { Job } from '../../schemas';
 import EmploymentApplyLink from '../EmploymentApplyLink.astro';
 import JobSectionHeading from '../JobSectionHeading.astro';
 import EmploymentApplicationGuide from '../EmploymentApplicationGuide.astro';
+import JobExperienceGuide from '../JobExperienceGuide.astro';
 import { careerGuidance, careerGuidanceContext, publishedExperience } from '../../lib/job-guidance.mjs';
 import { mentionedTools, requirementEmphasis, requirementItems } from '../../lib/job-description.mjs';
 import cachedGuidance from '../../data/job-guidance.json';
@@ -23,9 +24,7 @@ const related = relatedJobs(job, 3);
 const backHref = locale === 'es' ? '/jobs' : `/${locale}/jobs`;
 const clearView = clearViewFor(job);
 const employment = !job.internship;
-const guide = employment
-  ? careerGuidance(careerGuidanceContext(job, allJobs), cachedGuidance[job.id as keyof typeof cachedGuidance])
-  : null;
+const guide = careerGuidance(careerGuidanceContext(job, allJobs), cachedGuidance[job.id as keyof typeof cachedGuidance]);
 
 const descriptionText = sourceText(job.description);
 const experience = descriptionText.match(/\b(?:experiencia\s+(?:(?:m[ií]nima|deseable)\s+)?(?:de\s+)?\d+(?:\s*(?:a|–|-)\s*\d+)?\s+(?:años?|mes(?:es)?)|(?:m[ií]nimo\s+(?:de\s+)?|al menos\s+)?\d+(?:\s*(?:a|–|-)\s*\d+)?\s+(?:años?|mes(?:es)?)\s+de\s+experiencia)(?:\s+(?:m[ií]nima|deseable))?\b/iu)?.[0];
@@ -210,7 +209,12 @@ const sourceHost = new URL(job.url).hostname.replace(/^www\./, '');
     {employment && <div class="mt-4"><EmploymentApplyLink href={job.url} /></div>}
   </section>
 
-  {guide ? <EmploymentApplicationGuide guide={guide} /> : <JobApplicationGuide job={job} />}
+  {employment ? <EmploymentApplicationGuide guide={guide} /> : (
+    <>
+      <JobApplicationGuide job={job} />
+      <JobExperienceGuide guide={guide} />
+    </>
+  )}
 
   {!employment && <div class="mt-10">
     <a

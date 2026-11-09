@@ -60,7 +60,7 @@ test('career guidance ranks only catalog entries with published junior experienc
     { ...candidate, id: 'unknown', description: 'Convenio con la universidad.' },
     { ...candidate, id: 'mixed', description: '3 meses de prácticas preprofesionales. Experiencia mínima de 3 años.' },
     { ...candidate, id: 'zero', description: 'No se requiere experiencia previa.' },
-    { ...candidate, id: 'six', description: 'Experiencia mínima de 6 meses.' },
+    { ...candidate, id: 'six', company: 'Another mine', description: 'Experiencia mínima de 6 meses.' },
     { ...candidate, id: 'expired', validThrough: '2026-11-08', description: 'No se requiere experiencia.' },
   ];
   const context = careerGuidanceContext(role, options, now);
@@ -75,4 +75,29 @@ test('career guidance ranks only catalog entries with published junior experienc
   assert.equal(validCareerGuidance(entry, context), true);
   assert.equal(validCareerGuidance({ ...entry, opportunityIds: ['six', 'expired'] }, context), false);
   assert.deepEqual(careerGuidance(context, entry).opportunities.map(item => item.job.id), ['six', 'zero']);
+});
+
+test('an environmental permits internship recommends distinct current entry opportunities without changing training', () => {
+  const now = new Date('2026-11-09T12:00:00Z');
+  const permits = { ...job, title: 'Practicante de Licencias y Permisos', company: 'Minera Chinalco', internship: true };
+  const practice = { ...job, id: 'environment', title: 'Practicante Profesional de Medio Ambiente', internship: true };
+  const junior = { ...job, id: 'closure', title: 'Environmental Mine Closure Engineer, Junior', description: 'A partir un año de experiencia en consultoría.' };
+  const context = careerGuidanceContext(permits, [
+    permits,
+    { ...permits, id: 'duplicate', company: 'Minera Chinalco Perú' },
+    { ...practice, id: 'expired', validThrough: '2026-11-08' },
+    { ...practice, id: 'unrelated', title: 'Practicante de Geología' },
+    { ...practice, id: 'senior', title: 'Supervisor de cierre de mina', description: '5 años de experiencia.' },
+    { ...practice, id: 'requires-two-years', title: 'Practicante de Gestión Ambiental', description: '2 años de experiencia.' },
+    junior,
+    practice,
+    { ...practice, id: 'environment-duplicate', postedAt: '2026-11-03' },
+  ], now);
+  const guide = careerGuidance(context);
+  assert.equal(guide.experienceSkill, 'gestión ambiental minera');
+  assert.deepEqual(guide.trainingIds, []);
+  assert.deepEqual(guide.opportunities.map(({ job, experience }) => [job.id, experience?.months ?? null]), [
+    ['closure', 12],
+    ['environment', null],
+  ]);
 });

@@ -1,5 +1,6 @@
 ---
 import JobSectionHeading from './JobSectionHeading.astro';
+import JobExperienceGuide from './JobExperienceGuide.astro';
 import GuideIcon from './guides/GuideIcon.astro';
 import { education, trainingGuidePath } from '../lib/education';
 import type { careerGuidance } from '../lib/job-guidance.mjs';
@@ -73,25 +74,4 @@ const training = guide.trainingIds.flatMap((id: string) => education.filter(opti
   }
 </style>
 
-<section class="mt-10 border-t border-graphite-700 pt-7" aria-labelledby="job-experience-title" data-guidance-experience>
-  <JobSectionHeading id="job-experience-title" step={4}>¿Te hace falta ganar más experiencia?</JobSectionHeading>
-  {guide.opportunities.length ? (
-    <>
-      <p class="mt-2 max-w-prose text-sm leading-relaxed text-graphite-300">Estas oportunidades comparten el área de {guide.skill} y publican un requisito inicial de experiencia.</p>
-      <ul class="mt-4 divide-y divide-graphite-700 border-y border-graphite-700">
-        {guide.opportunities.map(({ job, experience }) => (
-          <li class="grid grid-cols-[1.75rem_minmax(0,1fr)] gap-x-3 gap-y-1.5 py-3.5 sm:grid-cols-[1.75rem_minmax(0,1fr)_auto]">
-            <span class="mt-0.5 text-brand-400 [&_svg]:size-6"><GuideIcon kind="practice" /></span>
-            <div>
-              <a href={'/jobs/' + job.slug + '/'} class="font-semibold text-graphite-100 underline-offset-4 hover:text-brand-400 hover:underline">{job.title} <span class="text-brand-400" aria-hidden="true">↗</span></a>
-              <p class="mt-0.5 text-sm text-graphite-300">{job.company}{job.city && ' · ' + job.city}</p>
-            </div>
-            <p class="col-start-2 w-fit max-w-52 self-start rounded-lg border border-graphite-700 bg-graphite-850 px-2.5 py-1 text-xs font-medium text-graphite-200 sm:col-start-auto">{experience.text}</p>
-          </li>
-        ))}
-      </ul>
-    </>
-  ) : (
-    <p class="mt-2 max-w-prose text-sm leading-relaxed text-graphite-300">El catálogo aún no muestra una vacante inicial comparable con experiencia declarada. <a href="/practicas/" class="font-medium text-brand-400 underline underline-offset-4">Explora las prácticas vigentes</a>.</p>
-  )}
-</section>
+<JobExperienceGuide guide={guide} step={4} />

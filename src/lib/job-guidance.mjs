@@ -180,8 +180,24 @@ const tips = {
 };
 
 const entryRole = /\b(?:practicante|trainee|becari[oa]|auxiliar|ayudante|asistente|junior|jr)\b/;
+const practiceRole = /\b(?:practicantes?|practicas?|interns?|internship|becari[oa]s?)\b/;
 const seniorRole = /\b(?:jefe|gerente|senior|supervisor|coordinador|administrativ[oa])\b/;
 const numericExperience = /(?:\bexperiencia\s+(?:(?:m[ií]nima|previa|deseable)\s+)?(?:de\s+)?(?:(?:al menos|entre)\s+)?(\d+)(?:\s*(?:a|y|–|-)\s*(\d+))?\s+(años?|mes(?:es)?)|(\d+)(?:\s*(?:a|y|–|-)\s*(\d+))?\s+(años?|mes(?:es)?)\s+(?:de\s+)?(?:experiencia|pr[aá]cticas?\s+preprofesionales))/giu;
+const singleYearExperience = /\b(?:un año de experiencia|experiencia (?:m[ií]nima )?de un año)\b/giu;
+
+function experienceAreaFor(job) {
+  const title = titleOf(job);
+  if (/\b(?:licencias y permisos|permisos ambientales|gestion ambiental|medio ambiente|cierre de minas?|environmental mine closure)\b/.test(title)) {
+    return 'environmental-management';
+  }
+  return skillFor(job);
+}
+
+function opportunityKey(job) {
+  const company = (job.companySlug || job.company).toLowerCase().replace(/[- ]per[uú]$/, '');
+  const title = titleOf(job).replace(/[^a-z0-9]+/g, ' ').trim();
+  return `${company}:${title}:${job.city ?? ''}`;
+}
 
 export function publishedExperience(job) {
   const text = sourceText(job.description).replace(/\s+/g, ' ');
@@ -189,6 +205,7 @@ export function publishedExperience(job) {
     const upper = Number(match[2] ?? match[5] ?? match[1] ?? match[4]);
     return { text: match[0], months: upper * (/^año/i.test(match[3] ?? match[6]) ? 12 : 1) };
   });
+  for (const match of text.matchAll(singleYearExperience)) mentions.push({ text: match[0], months: 12 });
   if (mentions.length) return mentions.reduce((a, b) => a.months >= b.months ? a : b);
   const none = text.match(/\b(?:sin experiencia (?:previa|laboral)|no (?:se )?(?:requiere|exige) experiencia(?: previa| laboral)?|no es necesaria (?:la )?experiencia)\b/i);
   return none ? { text: none[0], months: 0 } : null;
@@ -207,25 +224,40 @@ export function careerGuidanceContext(job, jobs, now = new Date()) {
     'role',
   ];
   const trainingIds = skill?.training ?? trainingBySkill[base.skillId] ?? [];
+  const experienceArea = experienceAreaFor(job);
+  const experienceSkill = experienceArea === 'environmental-management' ? 'gestión ambiental minera' : base.skill;
+  const isPractice = practiceRole.test(titleOf(job));
+  const currentKey = opportunityKey(job);
   const opportunities = [];
-  if (base.skillId && !entryRole.test(titleOf(job))) {
+  if (experienceArea) {
     for (const candidate of jobs) {
       if (candidate.id === job.id || candidate.country !== job.country || candidate.remote !== job.remote ||
-          skillFor(candidate) !== base.skillId || !isCurrentGuidanceJob(candidate, now)) continue;
+          experienceAreaFor(candidate) !== experienceArea || !isCurrentGuidanceJob(candidate, now) ||
+          opportunityKey(candidate) === currentKey) continue;
       const title = titleOf(candidate);
-      if ((!candidate.internship && !entryRole.test(title)) || seniorRole.test(title)) continue;
+      const candidateIsPractice = practiceRole.test(title);
+      if ((!candidate.internship && !candidateIsPractice && !entryRole.test(title)) || seniorRole.test(title)) continue;
       const experience = publishedExperience(candidate);
       if (experience && experience.months <= 12) opportunities.push({ job: candidate, experience });
+      if (!experience && isPractice && candidateIsPractice) opportunities.push({ job: candidate, experience: null });
     }
   }
-  opportunities.sort((a, b) => a.experience.months - b.experience.months || b.job.postedAt.localeCompare(a.job.postedAt));
-  return { ...base, tipIds, trainingIds, opportunities: opportunities.slice(0, 8) };
+  opportunities.sort((a, b) => (a.experience?.months ?? 13) - (b.experience?.months ?? 13) ||
+    b.job.postedAt.localeCompare(a.job.postedAt));
+  const seen = new Set();
+  const uniqueOpportunities = opportunities.filter(({ job: candidate }) => {
+    const key = opportunityKey(candidate);
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+  return { ...base, tipIds, trainingIds, experienceSkill, opportunities: uniqueOpportunities.slice(0, 8) };
 }
 
 export function careerGuidanceSignature(context) {
   return createHash('sha256').update(JSON.stringify([
     2, guidanceSignature(context), context.tipIds, context.trainingIds,
-    context.opportunities.map(({ job, experience }) => [job.id, experience.months]),
+    context.opportunities.map(({ job, experience }) => [job.id, experience?.months ?? null]),
   ])).digest('hex');
 }
 
@@ -241,7 +273,7 @@ export function careerGuidanceMessages(context) {
       tips: context.tipIds.map(id => ({ id, texto: tips[id] })),
       preguntas: context.options.map(id => ({ id, texto: questions[id] })),
       formacion: catalog,
-      experiencia: context.opportunities.map(({ job, experience }) => ({ id: job.id, meses: experience.months, practica: Boolean(job.internship) })),
+      experiencia: context.opportunities.map(({ job, experience }) => ({ id: job.id, meses: experience?.months ?? null, practica: Boolean(job.internship) })),
     }) },
   ];
 }
@@ -266,6 +298,7 @@ export function careerGuidance(context, entry) {
     tip: tips[selected ? entry.tipId : context.tipIds[0]],
     questions: (selected ? entry.questionIds : context.fallback).map(id => questions[id]),
     trainingIds: selected ? entry.trainingIds : context.trainingIds,
+    experienceSkill: context.experienceSkill,
     opportunities,
   };
 }
