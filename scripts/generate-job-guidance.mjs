@@ -2,6 +2,7 @@ import { readFile, rename, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { callProvider, extractJson, resolveChain } from '../src/lib/llm.js';
 import {
+  careerGuidanceContext, careerGuidanceMessages, careerGuidanceSignature, validCareerGuidance,
   guidanceContext, guidanceMessages, guidanceSignature, isCurrentGuidanceJob, validGuidanceQuestions,
 } from '../src/lib/job-guidance.mjs';
 
@@ -34,21 +35,26 @@ const candidates = [];
 const contexts = new Map();
 for (const job of jobs) {
   if (!isCurrentGuidanceJob(job, now)) continue;
-  const context = guidanceContext(job);
-  if (!context.skillId) continue;
-  const signature = guidanceSignature(context);
-  candidates.push({ id: job.id, signature });
-  contexts.set(signature, context);
+  const context = job.internship ? guidanceContext(job) : careerGuidanceContext(job, jobs, now);
+  if (job.internship && !context.skillId) continue;
+  const signature = job.internship ? guidanceSignature(context) : careerGuidanceSignature(context);
+  const field = job.internship ? 'signature' : 'careerSignature';
+  const valid = job.internship
+    ? entry => entry?.signature === signature && validGuidanceQuestions(entry.questionIds, context)
+    : entry => entry?.careerSignature === signature && validCareerGuidance(entry, context);
+  const messages = job.internship ? guidanceMessages : careerGuidanceMessages;
+  candidates.push({ id: job.id, signature, field });
+  contexts.set(signature, { valid, messages: () => messages(context) });
 }
 
 // Identical prompts can share a selection, even when the original job expires.
 const bySignature = new Map();
 for (const entry of cache.values()) {
-  const context = contexts.get(entry.signature);
-  if (!context || !validGuidanceQuestions(entry.questionIds, context)) continue;
-  const previous = bySignature.get(entry.signature);
+  const signature = entry.careerSignature ?? entry.signature;
+  if (!contexts.get(signature)?.valid(entry)) continue;
+  const previous = bySignature.get(signature);
   if (!previous || Date.parse(previous.generatedAt) < Date.parse(entry.generatedAt)) {
-    bySignature.set(entry.signature, entry);
+    bySignature.set(signature, entry);
   }
 }
 
@@ -57,10 +63,10 @@ let calls = 0;
 let generated = 0;
 let reused = 0;
 
-for (const { id, signature } of candidates) {
+for (const { id, signature, field } of candidates) {
   const context = contexts.get(signature);
   const existing = cache.get(id);
-  if (existing?.signature === signature && validGuidanceQuestions(existing.questionIds, context)) continue;
+  if (context.valid(existing)) continue;
 
   const shared = bySignature.get(signature);
   if (shared) {
@@ -75,7 +81,7 @@ for (const { id, signature } of candidates) {
     let content;
     try {
       content = await callProvider(provider, {
-        messages: guidanceMessages(context),
+        messages: context.messages(),
         maxTokens: 1600,
         timeoutMs: 25000,
       });
@@ -92,9 +98,15 @@ for (const { id, signature } of candidates) {
     } catch {
       console.warn(`Invalid job guidance JSON from ${provider.name}.`);
     }
-    if (!validGuidanceQuestions(result?.questionIds, context)) continue;
-
-    const entry = { signature, questionIds: result.questionIds, generatedAt: now.toISOString() };
+    const entry = {
+      [field]: signature,
+      questionIds: result?.questionIds,
+      ...(field === 'careerSignature' && {
+        tipId: result?.tipId, trainingIds: result?.trainingIds, opportunityIds: result?.opportunityIds,
+      }),
+      generatedAt: now.toISOString(),
+    };
+    if (!context.valid(entry)) continue;
     cache.set(id, entry);
     bySignature.set(signature, entry);
     generated += 1;

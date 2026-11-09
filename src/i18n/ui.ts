@@ -248,9 +248,9 @@ const es: Dictionary = {
   'nav.contact': 'Contacto',
 
   'hero.kicker': 'Empleos mineros para peruanos',
-  'hero.title': 'Todas las ofertas mineras a las que puedes postular hoy.',
+  'hero.title': 'Tu próximo paso en la minería',
   'hero.subtitle':
-    'Vacantes reales en Perú y ofertas remotas compatibles con trabajar desde Perú. Postulas directamente en la fuente original.',
+    'Encuentra empleo en el sector minero, gana experiencia con una práctica o aprende una habilidad para el puesto que quieres.',
   'hero.cta': 'Ver empleos',
   'hero.secondary': 'Ver rutas de visa',
   'hero.tier.pe': 'Perú',
@@ -334,7 +334,7 @@ const es: Dictionary = {
   'chapter.inCountry.kicker': 'Capítulo 01',
   'chapter.inCountry.title': 'Minería en Perú',
   'chapter.inCountry.lead':
-    'Vacantes en operaciones peruanas: postula directo a la fuente original, sin visa de por medio.',
+    'Explora las vacantes más recientes en operaciones mineras del Perú.',
   'chapter.events.kicker': 'Capítulo 02',
   'chapter.events.title': 'Eventos mineros',
   'chapter.events.lead':

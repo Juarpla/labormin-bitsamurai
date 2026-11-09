@@ -662,5 +662,45 @@
       "technical-evidence"
     ],
     "generatedAt": "2026-11-09T18:59:59.457Z"
+  },
+  "scc-2930": {
+    "careerSignature": "a21d29e9fa0d71ea2560f52d6e0c0c65b5b0bdb04ed1cfb4a7147eca7c25da82",
+    "questionIds": [
+      "planning-evidence",
+      "salary-missing"
+    ],
+    "tipId": "planning",
+    "trainingIds": [
+      "narciso-villanueva",
+      "chalhuahuacho"
+    ],
+    "opportunityIds": [
+      "nv-BMPE-1118493385",
+      "nv-BMPE-1118488669",
+      "nv-BMPE-1118482258"
+    ],
+    "generatedAt": "2026-11-09T20:37:39.489Z"
+  },
+  "li-e-comercial-minera-at-scouter-recruitmen": {
+    "careerSignature": "025b37b1d71587f08ebc63f837756acf8fe621fb5f59ef0dc3b07e79dd35dfa9",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "role",
+    "trainingIds": [],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-09T20:37:39.489Z"
+  },
+  "li-or-de-comedor-14x7-para-campamento-miner": {
+    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-09T20:37:39.489Z"
   }
 }

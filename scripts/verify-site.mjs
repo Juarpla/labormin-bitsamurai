@@ -56,18 +56,20 @@ for (const [engine,type] of Object.entries({chromium,webkit})) {
     assert.equal(await page.locator('#lm-drawer').isVisible(),true);
     await page.locator('#lm-drawer-close').click();
     await page.goto(base+`/jobs/${jobs[0].slug}`,{waitUntil:'networkidle'});
-    assert.equal(await page.getByRole('heading', { name: 'Vista clara' }).isVisible(), true);
+    assert.equal(await page.getByRole('heading', { name: 'Descripción', exact: true }).isVisible(), true);
+    assert.equal(await page.getByText('Ver texto original', { exact: true }).count(), 1);
+    const generatedSummary = page.getByText('Ver vista generada con IA', { exact: true });
+    if (await generatedSummary.count()) {
+      assert.equal(await page.locator('[data-job-original]').isVisible(), true);
+      await generatedSummary.click();
+    }
     assert.equal(await page.locator('[data-job-clear-view]').isVisible(), true);
-    assert.equal(await page.locator('[data-job-original]').isVisible(), false);
-    const originalToggle = page.getByText('Ver texto original', { exact: true });
-    await originalToggle.focus();
-    await page.keyboard.press('Enter');
-    assert.equal(await page.locator('[data-job-original]').isVisible(), true);
-    await page.keyboard.press('Enter');
-    assert.equal(await page.locator('[data-job-original]').isVisible(), false);
+    assert.equal(await page.getByRole('link', { name: 'Postular', exact: true }).count(), 2);
+    assert.equal(await page.locator('[data-guidance-training]').isVisible(), true);
+    assert.equal(await page.locator('[data-guidance-experience]').isVisible(), true);
     assert.deepEqual(errors,[],`${engine}: browser errors`);
     assert.deepEqual(adRequests,[],`${engine}: advertising must remain paused until CMP verification`);
-    console.log(`✓ ${engine}: mobile/desktop, editorial pages, no overflow, archive, filters, quick view, Vista clara and original`);
+    console.log(`✓ ${engine}: mobile/desktop, editorial pages, no overflow, archive, filters, quick view, employment description and recommendations`);
   } finally {await browser.close();}
 }
 // Public internal links from the built static pages must resolve locally.

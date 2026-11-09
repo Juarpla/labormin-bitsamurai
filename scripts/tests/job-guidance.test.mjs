@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
   applicationGuidance, experienceOpportunity, guidanceContext, guidanceMessages,
+  careerGuidance, careerGuidanceContext, careerGuidanceMessages, careerGuidanceSignature, validCareerGuidance,
   guidanceSignature, validGuidanceQuestions,
 } from '../../src/lib/job-guidance.mjs';
 
@@ -48,4 +49,30 @@ test('bridge roles must be current, junior and in the same specialty and market'
   assert.equal(experienceOpportunity(job, [job, expired, stale, other, abroad, supervisor, bridge], now)?.id, 'bridge');
   assert.equal(experienceOpportunity(bridge, [job], now), null);
   assert.equal(experienceOpportunity(job, [job, expired, stale, other, abroad, supervisor], now), null);
+});
+
+
+test('career guidance ranks only catalog entries with published junior experience', () => {
+  const now = new Date('2026-11-09T12:00:00Z');
+  const role = { ...job, title: 'Ingeniero(a) Minas – Mediano Plazo', description: '5 años de experiencia en planes de minado.' };
+  const candidate = { ...job, title: 'Practicante Profesional de Planeamiento - Mina', internship: true };
+  const options = [
+    { ...candidate, id: 'unknown', description: 'Convenio con la universidad.' },
+    { ...candidate, id: 'mixed', description: '3 meses de prácticas preprofesionales. Experiencia mínima de 3 años.' },
+    { ...candidate, id: 'zero', description: 'No se requiere experiencia previa.' },
+    { ...candidate, id: 'six', description: 'Experiencia mínima de 6 meses.' },
+    { ...candidate, id: 'expired', validThrough: '2026-11-08', description: 'No se requiere experiencia.' },
+  ];
+  const context = careerGuidanceContext(role, options, now);
+  assert.deepEqual(context.opportunities.map(({ job, experience }) => [job.id, experience.months]), [['zero', 0], ['six', 6]]);
+  assert.equal(careerGuidance(context).trainingIds.length, 2);
+  assert.doesNotMatch(JSON.stringify(careerGuidanceMessages(context)), /Convenio con la universidad|Ingeniero\(a\)/);
+  const entry = {
+    careerSignature: careerGuidanceSignature(context),
+    tipId: 'planning', questionIds: ['planning-evidence', 'placement'],
+    trainingIds: [...context.trainingIds].reverse(), opportunityIds: ['six', 'zero'],
+  };
+  assert.equal(validCareerGuidance(entry, context), true);
+  assert.equal(validCareerGuidance({ ...entry, opportunityIds: ['six', 'expired'] }, context), false);
+  assert.deepEqual(careerGuidance(context, entry).opportunities.map(item => item.job.id), ['six', 'zero']);
 });

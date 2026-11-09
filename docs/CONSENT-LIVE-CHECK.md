@@ -59,3 +59,35 @@ Fuentes:
 Validación del código: build y pruebas existentes correctos; comprobación de
 enlaces y sitemap correcta; `pnpm visual` e inspección de capturas en Chromium
 y WebKit a 375, 768 y 1280 px; carga explícita y error de red comprobados.
+
+## Segunda comprobación — 26 de octubre, 19:20–19:22 (Lima)
+
+**El aviso sigue sin aparecer; no activar publicidad.** Se repitió la prueba
+contra el dominio publicado con sesiones nuevas, sin cookies ni extensiones:
+
+| Sesión | Resultado |
+| --- | --- |
+| Chromium, escritorio 1280 px, `fc=alwaysshow&fctype=gdpr` | Sin aviso ni API de consentimiento |
+| WebKit, móvil 375 px, mismos parámetros | Sin aviso ni API de consentimiento |
+| Chromium, escritorio, sin parámetros | Sin aviso ni API de consentimiento |
+| Brave del propietario, recargando la prueba | Mismo mensaje de carga no confirmada |
+
+En las tres sesiones limpias, la portada y la página de prueba antes de pulsar
+no enviaron solicitudes a servicios publicitarios de Google. Después de pulsar
+se cargaron únicamente `adsbygoogle.js` y `show_ads_impl*.js`, sin solicitudes a
+`/pagead/ads`, `/pagead/adview` o `/gampad/ads`, sin peticiones a Funding Choices,
+sin errores de carga y sin cookies creadas en esas sesiones. Tras el plazo de
+20 segundos, `__tcfapi` y `googlefc.showRevocationMessage` seguían ausentes.
+
+Aceptar, rechazar, recordar la decisión y cambiarla **siguen sin poder
+comprobarse** porque no se mostró la interfaz real. No se sustituyó por un aviso
+simulado ni se reanudaron solicitudes. `PUBLIC_ADSENSE_ENABLED` continúa en
+`false`; no se cambió la configuración del sitio ni de la cuenta.
+
+El panel confirma el mensaje de Labormin publicado, en español. En Sitios,
+Labormin figura como **Getting ready**, con **Review requested** el 26 de
+octubre a las 18:21. También muestra ads.txt como **Not found**; la comprobación
+HTTP directa devuelve 200, texto plano y el editor correcto
+`pub-1972487168739114`. Es una discrepancia con el panel, no un archivo ausente
+en la web en esta prueba. No se atribuye a estos estados la causa del fallo de
+la CMP sin evidencia adicional. No se solicitó otra revisión.

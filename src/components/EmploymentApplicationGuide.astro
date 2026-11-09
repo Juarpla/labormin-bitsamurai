@@ -1,0 +1,97 @@
+---
+import JobSectionHeading from './JobSectionHeading.astro';
+import GuideIcon from './guides/GuideIcon.astro';
+import { education, trainingGuidePath } from '../lib/education';
+import type { careerGuidance } from '../lib/job-guidance.mjs';
+
+interface Props { guide: ReturnType<typeof careerGuidance> }
+const { guide } = Astro.props;
+const training = guide.trainingIds.flatMap((id: string) => education.filter(option => option.id === id));
+---
+<section class="mt-12 border-t border-graphite-700 pt-8" aria-labelledby="application-guide-title" data-application-guide>
+  <JobSectionHeading id="application-guide-title" step={2}>Prepara tu postulación</JobSectionHeading>
+  <ol class="mt-5 max-w-prose space-y-4">
+    {[
+      { icon: 'credential', title: 'Prepara una evidencia', text: guide.skill ? 'Destaca en tu CV un proyecto de ' + guide.skill + ' y describe cuál fue tu aporte.' : 'Identifica el requisito principal y anota en tu CV cómo puedes acreditarlo.' },
+      { icon: 'practice', title: 'Aclara lo esencial', text: guide.questions[0] },
+      { icon: 'time', title: 'Confirma las condiciones', text: guide.questions[1] },
+    ].map((step, index) => (
+      <li class="relative grid grid-cols-[2.75rem_1fr] gap-3.5">
+        {index < 2 && <span class="absolute -bottom-4 left-[1.35rem] top-11 border-l border-dashed border-graphite-600" aria-hidden="true"></span>}
+        <div class="flex size-11 items-center justify-center rounded-xl border border-graphite-700 bg-graphite-850 text-brand-400 [&_svg]:size-6">
+          <GuideIcon kind={step.icon as 'credential' | 'practice' | 'time'} />
+        </div>
+        <div class="pb-1">
+          <h3 class="font-semibold text-graphite-100">{step.title}</h3>
+          <p class="mt-1 text-sm leading-relaxed text-graphite-200">{step.text}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+</section>
+
+<section class="mt-10 border-t border-graphite-700 pt-7" aria-labelledby="job-training-title" data-guidance-training>
+  <JobSectionHeading id="job-training-title" step={3}>¿No tienes las habilidades que te piden?</JobSectionHeading>
+  {training.length ? (
+    <>
+      <p class="mt-2 max-w-prose text-sm leading-relaxed text-graphite-300">Compara opciones relacionadas con {guide.skill}. Revisa el temario y la credencial frente a lo que pide el puesto.</p>
+      <ul class="mt-4 grid gap-3 sm:grid-cols-2">
+        {training.map(option => (
+          <li class="min-w-0 rounded-xl border border-graphite-700 bg-graphite-850 p-4">
+            <div class="flex items-start gap-2.5">
+              <span class="text-brand-400 [&_svg]:size-6"><GuideIcon kind="credential" /></span>
+              <div>
+                <h3 class="font-semibold leading-snug text-graphite-100">{option.title}</h3>
+                <p class="mt-0.5 text-sm text-graphite-300">{option.name} · {option.location}</p>
+              </div>
+            </div>
+            <dl class="mt-3 space-y-2 text-sm leading-relaxed text-graphite-200">
+              <div class="relative pl-6">
+                <dt class="inline font-medium text-graphite-100"><span class="training-meta-icon absolute top-1 left-0 text-brand-400"><GuideIcon kind="cost" /></span>Costo</dt>
+                <dd class="ml-1.5 inline">{option.costLabel}. {option.costNote}.</dd>
+              </div>
+              <div class="relative pl-6">
+                <dt class="inline font-medium text-graphite-100"><span class="training-meta-icon absolute top-1 left-0 text-brand-400"><GuideIcon kind="time" /></span>Duración</dt>
+                <dd class="ml-1.5 inline">{option.duration}</dd>
+              </div>
+            </dl>
+            <a class="mt-3 inline-block text-sm font-semibold text-brand-400 underline-offset-4 hover:underline" href={trainingGuidePath + '#' + option.id}>Ver programa y condiciones <span aria-hidden="true">→</span></a>
+          </li>
+        ))}
+      </ul>
+    </>
+  ) : (
+    <p class="mt-2 max-w-prose text-sm leading-relaxed text-graphite-300">El directorio aún no tiene una opción específica para esta vacante. <a href="/formacion/" class="font-medium text-brand-400 underline underline-offset-4">Explora el directorio de formación</a>.</p>
+  )}
+</section>
+
+<style>
+  .training-meta-icon :global(svg) {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+  }
+</style>
+
+<section class="mt-10 border-t border-graphite-700 pt-7" aria-labelledby="job-experience-title" data-guidance-experience>
+  <JobSectionHeading id="job-experience-title" step={4}>¿Te hace falta ganar más experiencia?</JobSectionHeading>
+  {guide.opportunities.length ? (
+    <>
+      <p class="mt-2 max-w-prose text-sm leading-relaxed text-graphite-300">Estas oportunidades comparten el área de {guide.skill} y publican un requisito inicial de experiencia.</p>
+      <ul class="mt-4 divide-y divide-graphite-700 border-y border-graphite-700">
+        {guide.opportunities.map(({ job, experience }) => (
+          <li class="grid grid-cols-[1.75rem_minmax(0,1fr)] gap-x-3 gap-y-1.5 py-3.5 sm:grid-cols-[1.75rem_minmax(0,1fr)_auto]">
+            <span class="mt-0.5 text-brand-400 [&_svg]:size-6"><GuideIcon kind="practice" /></span>
+            <div>
+              <a href={'/jobs/' + job.slug + '/'} class="font-semibold text-graphite-100 underline-offset-4 hover:text-brand-400 hover:underline">{job.title} <span class="text-brand-400" aria-hidden="true">↗</span></a>
+              <p class="mt-0.5 text-sm text-graphite-300">{job.company}{job.city && ' · ' + job.city}</p>
+            </div>
+            <p class="col-start-2 w-fit max-w-52 self-start rounded-lg border border-graphite-700 bg-graphite-850 px-2.5 py-1 text-xs font-medium text-graphite-200 sm:col-start-auto">{experience.text}</p>
+          </li>
+        ))}
+      </ul>
+    </>
+  ) : (
+    <p class="mt-2 max-w-prose text-sm leading-relaxed text-graphite-300">El catálogo aún no muestra una vacante inicial comparable con experiencia declarada. <a href="/practicas/" class="font-medium text-brand-400 underline underline-offset-4">Explora las prácticas vigentes</a>.</p>
+  )}
+</section>
