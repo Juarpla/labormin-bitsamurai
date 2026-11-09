@@ -13,7 +13,7 @@
  *   CLOUDFLARE_ACCOUNT_ID   dashboard account id (builds the REST base URL)
  *   WORKERS_AI_MODEL        default @cf/qwen/qwen3-30b-a3b-fp8
  *   OPENCODE_GO_API_KEY     https://opencode.ai/auth (OpenCode Go plan)
- *   OPENCODE_GO_MODEL       default mimo-v2.5
+ *   OPENCODE_GO_MODEL       default mimo-v2.6-flash
  *
  * Failover: providers without credentials are skipped (logged); on any error
  * (429, 5xx, timeout, empty content, caller validation) the next provider is
@@ -44,8 +44,8 @@ const PROVIDERS = {
   OPENCODE_GO: {
     name: 'opencode-go',
     keyVar: 'OPENCODE_GO_API_KEY',
-    defaultModel: 'mimo-v2.5',
-    baseUrl: () => 'https://opencode.ai/zen/go/v1',
+    defaultModel: 'mimo-v2.6-flash',
+    baseUrl: () => 'https://opencode.ai/inference/go/openai/v1',
     extraHeaders: () => ({
       'user-agent': 'labormin/1.0',
       'x-opencode-session': crypto.randomUUID(),
