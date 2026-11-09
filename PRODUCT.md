@@ -23,34 +23,21 @@ web
 
 ## Product Purpose
 
-Labormin (Bit SamurAI) es el hub de empleos mineros **para peruanos**: un sitio
-estático, gratuito y de nicho que encuentra y ordena ofertas reales de minería
-por lo que el postulante peruano puede conseguir, con rutas de visa oficiales,
-eventos del sector y contenido propio. Éxito: que el postulante encuentre una
-oportunidad real y alcanzable, y sepa cuál es su siguiente paso (postular en la
-fuente original, seguir una ruta de visa, asistir a un evento, leer una guía).
+Labormin (Bit SamurAI) es el hub gratuito de empleos mineros para peruanos.
+Reúne ofertas reales en Perú y empleos remotos que se pueden realizar desde
+Perú, junto con eventos y guías. Cada oferta enlaza a su fuente original.
 
 ## Positioning
 
-La **jerarquía honesta por tiers** es el mecanismo que un agregador vecino no
-puede copiar con verdad:
-
-1. Perú primero — sin visa; 2. remoto desde Perú (potencias o global); 3.
-extranjero (Chile/Canadá/EE. UU./Australia) solo si la oferta **reporta** apoyo
-de visa o el gobierno declara que acepta candidatos internacionales (Job Bank
-Canadá, filtro oficial `fglo=1`). Todo lo demás se oculta en ingest
-(hard-hide), no se degrada.
-
-Sobre eso: datos verbatim de fuentes públicas legales (nunca inventados ni
-editados), salarios solo si los declara la fuente, y rutas de visa con
-`officialUrl` de gobierno + `lastVerifiedAt`.
+Perú primero y después remoto desde Perú con evidencia de elegibilidad. Los
+puestos presenciales en el extranjero quedan fuera del catálogo.
 
 ## Operating Context
 
 - Feed refrescado por GitHub Actions cron (diario) que commitea
   `src/data/jobs.json`; re-poda offline con `node scripts/ingest.mjs --prune`.
 - Las reglas de nicho (`inNiche()`) se aplican en ingest, nunca en display.
-- Rutas de visa y el **seed curado de eventos** se re-verifican a mano contra la
+- El **seed curado de eventos** se re-verifican a mano contra la
   fuente oficial antes de editar (`officialUrl` + `lastVerifiedAt`
   obligatorios). /eventos se actualiza exclusivamente a mano.
 - Monetización: solo publicidad (AdSense); proceso de admisión en
@@ -83,7 +70,7 @@ Capacidades confirmadas:
   inversión"; Yahoo es agregador, no fuente primaria.
 - Páginas: `/` (capítulos por tier), `/jobs` (feed por tiers + filtros, con
   prefiltro `?q=` desde los enlaces de /bolsa), `/bolsa` (análisis de las
-  12 mineras), `/visa-pathways`, `/eventos`, `/guias` (4 guías), `/faq`,
+  12 mineras), `/eventos`, `/guias` (4 guías), `/faq`,
   `/about`, `/privacy`, `/terms`, `/contact`, y detalle de cada empleo con
   JobPosting JSON-LD.
 - Vista clara visible al abrir la ficha, con el texto original desplegable.
@@ -100,9 +87,6 @@ Restricciones duras:
   IA bajo demanda y badged.
 - Señales de visa siempre en framing "reported" / "verifica con el empleador".
 
-Decidido explícitamente: Chile puede quedar en 0 ofertas — el vacío es aceptado
-por decisión del owner; la ruta de visa de Chile queda como referencia.
-
 ## Brand Commitments
 
 - Nombre: **Labormin**; compañía: **Bit SamurAI** (footer: "Un producto de Bit
@@ -116,10 +100,6 @@ por decisión del owner; la ruta de visa de Chile queda como referencia.
 
 - Feed real: `src/data/jobs.json` — ~387 empleos al 2026-09-10 (PE 299, US 39,
   CA 13, GLOBAL remoto 33, AU 3; Chile 0).
-- Rutas de visa verificadas: `src/data/pathways.json` — AU 462/417/482/500, CA
-  IEC + Young Professionals + TFWP + study-permit work, US H-2B, y CL
-  "Vacaciones y Trabajo" Alianza del Pacífico (peruanos 18–30; verificados
-  2026-09-08/10).
 - Eventos curados a mano: `src/data/events.json` (fuente oficial obligatoria;
   nunca scraped).
 - Indicadores del sector: `src/data/indicators.json` (series cobre/oro +
@@ -144,7 +124,7 @@ chico del feed — reforzar fuentes remotas es mejora continua.
    "mejorar" contenido de terceros.
 2. **Jerarquía honesta** — Perú primero; lo que no entra en los tiers se
    oculta, no se degrada.
-3. **Fuente oficial o no entra** — pathways y eventos exigen `officialUrl` +
+3. **Fuente oficial o no entra** — eventos exigen `officialUrl` +
    `lastVerifiedAt` reales.
 4. **Un idioma, un usuario** — español único, visitante peruano fijo; sin
    detección ni selectores.

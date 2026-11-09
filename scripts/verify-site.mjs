@@ -71,7 +71,7 @@ for (const [engine,type] of Object.entries({chromium,webkit})) {
   } finally {await browser.close();}
 }
 // Public internal links from the built static pages must resolve locally.
-const paths = new Set(['/','/faq','/practicas','/visa-pathways','/eventos','/bolsa','/terms','/contact',...pages.map(([,p])=>p)]);
+const paths = new Set(['/','/faq','/practicas','/eventos','/bolsa','/terms','/contact',...pages.map(([,p])=>p)]);
 const broken=[];
 for(const path of paths) {
   const response=await fetch(base+path);

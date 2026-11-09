@@ -81,10 +81,9 @@ filled amber (primary) or graphite outline (secondary). Never tint text below
 | `pages/BolsaView` | `/bolsa` — full monthly market story for the 12 Peru-linked miners, same ad anatomy as /jobs. Chart language: gradient area shapes over flat hairlines — 52s "termómetro" rows each draw the miner's real 12-month area (domain = 52w range so mín/máx labels align; amber fill+dot only when near high), "caída desde la cima" gradient drawdown bars (amber when near high), best/worst month cards with a zero-baseline glyph (amber up-bar / cold down-bar, sign-honest), copper/gold 12-month area charts (dashed start-value baseline, halo end dot, month ticks, one authored draw-in moment `.lm-chart-*`), sortable table (vanilla `aria-sort`; amber range dot; every company name links `/jobs?q=`). Plegable "¿Qué significa esto?" glossary + ⓘ tooltips; "no es asesoría de inversión" always |
 | `AdSlot.astro` | labeled AdSense unit (responsive or fixed-size, breakpoint-gated; siempre "Anuncio") |
 | `JobDrawer.astro` | quick-view `<dialog>` with apply-at-source CTA |
-| `pages/HomeView` | 8-chapter tiered home (Perú → eventos → remoto → extranjero → pathways → guías) |
+| `pages/HomeView` | tiered home (Perú → eventos → remoto → guías) |
 | `pages/JobsView` | full list ordered by tiers + client filters (country/category/type/visa/search) |
 | `pages/JobDetailView` | detail + JSON-LD JobPosting + related + apply |
-| `pages/PathwaysView` | official visa pathways filtered to Peruvian eligibility (server-rendered) |
 | `pages/EventsView` | curated mining events (presencial PE / virtual potencias) |
 | `pages/PracticasView` | `/practicas` — internships/trainee/becarios PE-only, split out of the /jobs pool at build (`internship` flag from ingest); same ad anatomy as /jobs |
 

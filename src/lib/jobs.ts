@@ -5,23 +5,11 @@ import { localPresentation, organizeDescriptionBlocks, presentationKey, sectionL
 import { JobFileSchema, type Job } from '../schemas';
 import { GLOBAL, countryName, useTranslations, type Locale } from './i18n';
 
-/** Nicho de destinos extranjeros (después de Perú) */
-export const ABROAD_COUNTRIES = ['CL', 'CA', 'US', 'AU'] as const;
+export type Tier = 1 | 2;
 
-export type Tier = 1 | 2 | 3;
-
-/** Jerarquía de nicho: 1 = Perú, 2 = remoto desde Perú (potencias/global),
- *  3 = extranjero con visa reportada o abierto a internacionales. */
-export function tierOf(job: Pick<Job, 'country' | 'remote' | 'remoteEligibility' | 'visaReported' | 'openToInternational'>): Tier {
-  if (job.country === 'PE') return 1;
-  if (job.remote && job.remoteEligibility.status === 'peru-supported') return 2;
-  if (
-    (ABROAD_COUNTRIES as readonly string[]).includes(job.country) &&
-    (job.visaReported || job.openToInternational === true)
-  ) {
-    return 3;
-  }
-  return 3; // defensivo: el ingest ya descarta lo demás
+/** Perú primero, seguido por empleos remotos compatibles con Perú. */
+export function tierOf(job: Pick<Job, 'country' | 'remote' | 'remoteEligibility'>): Tier {
+  return job.country === 'PE' ? 1 : 2;
 }
 
 function tierSorted(list: Job[]): Job[] {

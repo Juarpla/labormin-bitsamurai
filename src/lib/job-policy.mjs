@@ -105,7 +105,7 @@ export function inNiche(job) {
   if (job.country === 'PE') return true;
   if (!ALLOWED_COUNTRIES.has(job.country) && job.country !== 'GLOBAL') return false;
   if (job.remote && job.descriptionStatus !== 'unknown' && remoteEligibility(job).status === 'peru-supported') return true;
-  return ALLOWED_COUNTRIES.has(job.country) && ((job.descriptionStatus !== 'unknown' && job.visaReported === true) || job.openToInternational === true);
+  return false;
 }
 
 /** All ingestion paths and offline repair go through this boundary. Stored

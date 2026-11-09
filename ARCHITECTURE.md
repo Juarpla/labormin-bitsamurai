@@ -1,12 +1,9 @@
 # Labormin — Architecture
 
-Labormin (a Bit SamurAI product) is the **Peru-first** mining-jobs hub: a
-Spanish-only, static site for an aspirational Peruvian audience. Real listings
-from public sources are filtered to a strict niche (PE → remote → abroad with
-reported visa support) at ingest, ordered by that tier hierarchy, and monetized
-with clearly-labeled native Google AdSense placements. The site also hosts
-official-source visa pathways for Peruvians, hand-curated mining events, and
-original guides/FAQ.
+Labormin (a Bit SamurAI product) is a Spanish-only mining jobs site for
+people in Peru. Ingest accepts jobs in Peru and foreign remote jobs with
+sufficient evidence that they can be performed from Peru. It also hosts
+hand-curated events and guides, with clearly labeled advertising.
 
 ## 1. System overview
 
@@ -73,7 +70,7 @@ Schemas live in `src/schemas.ts` (Zod) and are enforced at build time by
 | `visa` | estado offered/not-offered/authorization-required/relocation-only/unknown/conflicting + evidencia |
 | `policyVersion`, `fetchedAt` | versión de clasificación y consulta; detalle completo se reutiliza hasta 7 días |
 | `visaReported` | keyword heuristic — surfaced as "reported", never guaranteed |
-| `openToInternational?` | set for Job Bank `fglo=1` rows (government-declared international candidacy); surfaces as a badge and counts as tier 3 |
+| `openToInternational?` | set for Job Bank `fglo=1` rows (government-declared international candidacy); may surface as a source-derived badge |
 | `category` | `exploration · drill-blast · geology · hse · maintenance · processing · engineering · operations · other` |
 | `salary` | `{kind, min, max, currency, period, raw, country?}` o null; kind exact/range/minimum/maximum; moneda, periodo y contexto inequívocos |
 | `postedAt` | fecha de referencia para orden/TTL; puede ser observación o actualización; más de 30 días se retira |
@@ -85,22 +82,6 @@ Schemas live in `src/schemas.ts` (Zod) and are enforced at build time by
 
 Dedupe key: `companySlug + normalized-title + country`. Stale cutoff: 30 days.
 Presentation cache: `src/data/job-presentation.json` (committed; keyed by source version).
-
-### Pathway (`src/data/pathways.json`, curated by hand)
-| Field | Notes |
-| --- | --- |
-| `country` | destination (ISO-2) |
-| `type` | `working-holiday · temporary · student · sponsorship · skilled` |
-| `eligibleNationalities` | ISO-2 list, or **null = open to all** (sponsorship/student) |
-| `ageRange`, `duration`, `workRights` | display-only in MVP (age *filtering* is phase 2) |
-| `officialUrl` | **government source** — required |
-| `lastVerifiedAt` | re-verify date — required, surfaced in UI |
-
-Current seed (verified 2026-09-08/10): AU 462 / 417 / 482 / 500, CA IEC Working
-Holiday + Young Professionals + TFWP + study-permit work, US H-2B, and **CL —
-Vacaciones y Trabajo Alianza del Pacífico** (peruanos 18–30, hasta 12 meses;
-verified 2026-09-10). `PathwaysView` filters to `eligibleNationalities ∋ PE` or
-null at build time.
 
 ### Event (`src/data/events.json`, hand-curated — never scraped)
 | Field | Notes |
@@ -232,14 +213,13 @@ upcoming entries at `/eventos/`.
 `HomeView.astro` renders server-rendered chapters with `Chapter.astro` (sticky
 narrative column + reveal content column) in the niche hierarchy:
 
-1. Hero — fixed Peru-first promise, CTAs to `/jobs` and `/visa-pathways`
-2. *Minería en Perú* — top PE jobs (tier 1)
-3. *Eventos mineros* — 3 next curated events → `/eventos`
-4. *Remoto desde Perú* — remote jobs (tier 2)
-5. *Minería en el extranjero* — tier-3 jobs (visa reported / international)
-6. *Rutas de visa para peruanos* — PE-eligible pathways → `/visa-pathways`
-7. *Kit del postulante* — guías + FAQ teaser → `/guias`, `/faq`
-8. CTA → `/jobs`
+1. Hero — Peru and remote counts, CTA to `/jobs`
+2. *Minería en Perú* — PE jobs
+3. Sector indicators and mining stocks
+4. *Eventos mineros* — curated events
+5. *Remoto desde Perú* — eligible remote jobs
+6. *Kit del postulante* — guides and FAQ
+7. CTA → `/jobs`
 
 Everything is static (SEO-safe); no client hydration beyond the JobDrawer index.
 Motion: `IntersectionObserver` reveals (`.reveal` → `.is-visible`) with CSS
@@ -258,7 +238,7 @@ respect `prefers-reduced-motion`.
   tablet: 320×50 above the filters + 320×100 after the list; desktop ≥lg: 970×90
   after the list; ≥1280px adds 160×600 side rails, sticky-bounded to the section so
   they release before the bottom ad and footer), `/jobs/[slug]`
-  in-content, `/visa-pathways` (1), `/eventos` (1).
+  in-content and `/eventos`.
 - **Policy constraints (non-negotiable):** every unit is labeled ("Ad" /
   "Anuncio" / "Anúncio"); units must not be designed to induce accidental clicks;
   ad density stays low. See DESIGN.md §6.
@@ -322,7 +302,6 @@ respect `prefers-reduced-motion`.
    and (until 2026-09-11) Glassdoor ship as **full-feed** marketplace sources via Apify pay-per-result
    actors (see §3); the deliberate ToS decision is documented there
 3. ~~On-demand AI clear view~~ — replaced by the Vista clara batch and static view.
-4. Salary slider + active age filter in the pathways matrix
 5. `/api/jobs` search endpoint (edge cache) if the client-side index outgrows memory
 6. Email alerts by nationality/country
 

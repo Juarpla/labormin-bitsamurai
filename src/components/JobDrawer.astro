@@ -43,7 +43,6 @@ const t = useTranslations(locale);
       <p class="mt-2 text-sm text-graphite-200">${job.company}${job.location ? ' · ' + job.location : ''} ${job.salaryText ? ' · ' + job.salaryText : ''}</p>
       ${auto ? `<p class="mt-2 text-xs italic text-graphite-400">Original: ${job.title}</p>` : ''}
       ${job.excerpt ? `<p class="mt-4 text-sm leading-relaxed text-graphite-400">${job.excerpt}</p>` : ''}
-      <p class="mt-4 rounded-xl border border-graphite-700 bg-graphite-850 p-3 text-xs text-graphite-400">${drawerT.visaNote}</p>
       <div class="mt-5 flex flex-wrap gap-3">
         <a href="${prefix}/jobs/${job.slug}" class="rounded-full bg-brand-500 px-4 py-2 text-sm font-semibold text-graphite-950 hover:bg-brand-400">${drawerT.full}</a>
         <a href="${job.url}" target="_blank" rel="noopener nofollow" class="rounded-full border border-graphite-600 px-4 py-2 text-sm text-graphite-100 hover:border-brand-500">${drawerT.apply} ↗</a>

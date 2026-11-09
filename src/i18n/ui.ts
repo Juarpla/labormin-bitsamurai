@@ -250,7 +250,7 @@ const es: Dictionary = {
   'hero.kicker': 'Empleos mineros para peruanos',
   'hero.title': 'Todas las ofertas mineras a las que puedes postular hoy.',
   'hero.subtitle':
-    'Vacantes reales de fuentes públicas, ordenadas por lo que puedes conseguir: primero Perú, luego remoto desde casa y, al final, el extranjero con visa reportada. Postulas directo en la fuente original.',
+    'Vacantes reales en Perú y ofertas remotas compatibles con trabajar desde Perú. Postulas directamente en la fuente original.',
   'hero.cta': 'Ver empleos',
   'hero.secondary': 'Ver rutas de visa',
   'hero.tier.pe': 'Perú',
@@ -356,7 +356,7 @@ const es: Dictionary = {
   'chapter.guides.title': 'Guías y respuestas antes de postular',
   'chapter.guides.lead': 'Cómo entrar a mina sin experiencia, requisitos médicos y de seguridad, salarios — contenido propio y verificable.',
   'chapter.cta.title': '¿Listo para excavar?',
-  'chapter.cta.body': 'Filtra cada oferta por país, rol, apoyo de visa y modalidad.',
+  'chapter.cta.body': 'Filtra cada oferta por país, rol y modalidad.',
   'chapter.cta.button': 'Ver todos los empleos',
 
   'card.visa': 'Apoyo de visa reportado',
@@ -368,7 +368,7 @@ const es: Dictionary = {
   'card.global': 'Global',
 
   'jobs.title': 'Todos los empleos mineros',
-  'jobs.lead': 'Ofertas reales, ordenadas por prioridad: Perú primero, luego remoto y después el extranjero con visa reportada. Cada oferta enlaza a la fuente original.',
+  'jobs.lead': 'Ofertas reales en Perú y empleos remotos compatibles con trabajar desde Perú. Cada oferta enlaza a la fuente original.',
   'jobs.filter.country': 'País',
   'jobs.filter.category': 'Categoría',
   'jobs.filter.type': 'Modalidad',
@@ -439,7 +439,7 @@ const es: Dictionary = {
   'drawer.close': 'Cerrar',
   'drawer.visaNote': '“Apoyo de visa” es una señal heurística del texto de la oferta — verifica siempre con el empleador.',
 
-  'footer.tagline': 'Empleos mineros para peruanos: Perú primero, remoto y el extranjero.',
+  'footer.tagline': 'Empleos mineros en Perú y oportunidades remotas desde Perú.',
   'footer.privacy': 'Política de privacidad',
   'footer.terms': 'Términos y condiciones',
   'footer.about': 'Acerca de Labormin',

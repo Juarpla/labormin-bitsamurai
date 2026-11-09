@@ -1,13 +1,9 @@
 # Labormin — AGENTS.md
 
-Labormin is the **Peru-first** mining-jobs hub by **Bit SamurAI**: a Spanish-only,
-static, ad-funded site for an aspirational Peruvian audience. Real listings are
-ordered by a strict tier hierarchy — jobs in Peru first, then remote roles a
-Peruvian can do from home, then listings in Chile / Canada / USA / Australia that
-**report** visa support or are officially open to international candidates. The
-site also hosts official-source visa pathways (for Peruvians), hand-curated
-mining events, and original guides/FAQ. Ads (Google AdSense) are integrated
-natively but are **always labeled**.
+Labormin is the Peru-first mining-jobs hub by Bit SamurAI: a Spanish-only,
+static, ad-funded site. It lists jobs in Peru and remote jobs with evidence
+that they can be performed from Peru, alongside events and original guides.
+Ads (Google AdSense) are always labeled.
 
 ## Development
 
@@ -55,21 +51,18 @@ already running on localhost:4321-4326; otherwise it starts (and stops) its own.
    deceptive ad framing is an AdSense policy violation and risks an account ban.
 3. **Visa claims are heuristic.** Visa-sponsorship flags come from listing text
    keywords; UI copy must keep the "reported" framing ("Verify with the employer").
-4. **Official-source data.** `src/data/pathways.json` AND `src/data/events.json`
-   entries must cite a verifiable `officialUrl` and carry a real `lastVerifiedAt`
-   date. Re-verify before editing; if a source doesn't confirm an event/pathway,
-   it doesn't enter the seed. Events: presencial = Peru only; virtual = Peru or
-   the four power countries. Update the events file by hand.
+4. **Official-source data.** `src/data/events.json` entries must cite a verifiable
+   `officialUrl` and carry a real `lastVerifiedAt` date. Re-verify before editing;
+   unsupported events do not enter the seed. Presencial events are Peru only;
+   virtual events are Peru or the four power countries.
 5. **Vista clara is presentation data.** Show it by default with the original
    available. Preserve Spanish titles and source facts. Label AI-generated views
    and show the original title with translated titles.
    Keep AI results separate from `src/data/jobs.json` and from niche decisions.
    See [ARCHITECTURE.md](./ARCHITECTURE.md) for the pipeline and provider settings.
-6. **Niche hierarchy is enforced at ingest, not at display.** `inNiche()`
-   (`scripts/ingest.mjs`) hard-hides everything outside the tiers: PE → remote
-   (powers/GLOBAL) → abroad (CL/CA/US/AU) with `visaReported` or
-   `openToInternational` (Job Bank `fglo=1`). The UI sorts by tier
-   (`tierOf` in `src/lib/jobs.ts`) but never re-expands what ingest dropped.
+6. **Niche hierarchy is enforced at ingest, not display.** `inNiche()` in
+   `src/lib/job-policy.mjs` accepts jobs in Peru and foreign remote jobs only
+   with evidence that they can be done from Peru. The UI sorts by tier.
 7. **Spanish only, Peru fixed.** `es` lives at the root; there are no /en or /pt
    routes and no IP-based detection. The visitor is assumed Peruvian
    (`DEFAULT_COUNTRY`/`DEFAULT_NATIONALITY` in `src/lib/i18n.ts`).
@@ -87,18 +80,17 @@ already running on localhost:4321-4326; otherwise it starts (and stops) its own.
 scripts/ingest.mjs            job ingestion (write jobs.json; +title translations; --prune niche filter)
 scripts/ingest-stocks.mjs     stock quotes ingestion (write stocks.json; Yahoo Finance + FX → USD; monthly CI)
 src/data/companies.json       curated public boards (extend here to add companies — niche: PE/CL/CA/US/AU)
-src/data/pathways.json        curated visa pathways seed (Peru-eligible focus)
 src/data/events.json          hand-curated mining events seed (officialUrl + lastVerifiedAt required)
 src/data/jobs.json            generated feed (commit; refreshed daily by CI; niche-filtered)
 src/data/job-presentation.json  prepared titles and Vista clara cache (commit)
-src/schemas.ts                Zod schemas for Job / Pathway / Event / feeds
+src/schemas.ts                Zod schemas for Job / Event / feeds
 src/lib/jobs.ts               build-time data helpers (tierOf, tier ranking)
 src/lib/events.ts             build-time event helpers (upcoming)
 src/lib/llm.js               multi-provider LLM chain (titles + clear view)
 src/lib/i18n.ts               localePath, niche countries, DEFAULT_COUNTRY/DEFAULT_NATIONALITY
 src/i18n/ui.ts                UI dictionary (es active; en/pt dormant)
-src/components/pages/*.astro  page views (HomeView, JobsView, JobDetailView, PathwaysView, EventsView, BolsaView, PracticasView)
-src/pages/                    routes: /, /jobs, /bolsa, /practicas, /visa-pathways, /eventos, /guias(+2 guías), /faq,
+src/components/pages/*.astro  page views (HomeView, JobsView, JobDetailView, EventsView, BolsaView, PracticasView)
+src/pages/                    routes: /, /jobs, /bolsa, /practicas, /eventos, /guias(+2 guías), /faq,
                               /about, /contact, /privacy, /terms, /ops
 docs/ADSENSE-CHECKLIST.md     AdSense admission checklist (owner + code states)
 PRODUCT.md                    durable product truth (impeccable init)
@@ -115,12 +107,10 @@ PRODUCT.md                    durable product truth (impeccable init)
 - Country context is FIXED to Peru (`DEFAULT_COUNTRY = 'PE'`): no IP detection,
   no selectors, no `lm-country`/`lm-nationality`/`lm-locale` localStorage keys —
   stale values in old visitors' browsers are simply ignored.
-- Job feed order: tiers (`tierOf`) then `postedAt desc`. Tier 3 foreign listings
-  are shown only with a reported-visa or international-candidate signal.
+- Job feed order: tiers (`tierOf`) then `postedAt desc`. Foreign remote listings require evidence they can be performed from Peru.
 - Ads: `AdSlot` slot ids are per page/section (`home-*`; jobs: `jobs-top-1`,
   `jobs-side-1/2`, `jobs-bottom-desktop-1`, `jobs-bottom-mobile-1`;
-  `job-detail-1`, `job-detail-2` (before "Empleos similares"); pathways: `pathways-top-1`, `pathways-side-1/2`,
-  `pathways-bottom-desktop-1`, `pathways-bottom-mobile-1`; events: `events-top-1`,
+  `job-detail-1`, `job-detail-2` (before "Empleos similares"); events: `events-top-1`,
   `events-side-1/2`, `events-bottom-desktop-1`, `events-bottom-mobile-1`;
   guías (shared by index + detail pages): `guias-top-1`, `guias-side-1/2`,
   `guias-bottom-desktop-1`, `guias-bottom-mobile-1`; bolsa: `bolsa-top-1`,
@@ -128,7 +118,7 @@ PRODUCT.md                    durable product truth (impeccable init)
   practicas: `practicas-top-1`, `practicas-side-1/2`, `practicas-bottom-desktop-1`,
   `practicas-bottom-mobile-1`;
   faq: `faq-bottom-desktop-1`, `faq-bottom-mobile-1`; about: `about-bottom-desktop-1`,
-  `about-bottom-mobile-1`). /jobs, /bolsa, /visa-pathways, /eventos, /guias and /practicas share the
+  `about-bottom-mobile-1`). /jobs, /bolsa, /eventos, /guias and /practicas share the
   same always-on distribution: fixed 320×50 top (mobile/tablet), 970×90 bottom
   (desktop ≥lg) or 320×100 (mobile/tablet), sticky 160×600 side rails (desktop
   ≥1280px) around a centered content column; /faq and /about carry only the horizontal

@@ -153,3 +153,9 @@ test('excerpt truncation never splits an emoji at the UTF-16 boundary', async ()
   assert.equal(description.startsWith(job.excerpt),true);
   assert.equal(job.description,description);
 });
+
+test('foreign onsite jobs are excluded even when sponsorship or international applicants are mentioned', () => {
+  assert.equal(inNiche({country:'CA', remote:false, visaReported:true, openToInternational:true, descriptionStatus:'full'}), false);
+  assert.equal(inNiche({country:'PE', remote:false}), true);
+  assert.equal(inNiche({country:'GLOBAL', remote:true, descriptionStatus:'full', description:'Work remotely from anywhere in the world.'}), true);
+});

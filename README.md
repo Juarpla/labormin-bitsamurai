@@ -1,8 +1,7 @@
 # Labormin
 
-Global mining-jobs hub by Bit SamurAI. Real listings from public employer boards,
-matched to your nationality: your country first, then reported visa support,
-official visa pathways (working holiday / IEC / H-2B / sponsorship), and remote roles.
+Peru-first mining-jobs hub by Bit SamurAI. Real listings from public employer
+boards in Peru and remote roles that can be performed from Peru.
 
 - Docs: [ARCHITECTURE.md](./ARCHITECTURE.md) · [DESIGN.md](./DESIGN.md) · agent rules in [AGENTS.md](./AGENTS.md)
 

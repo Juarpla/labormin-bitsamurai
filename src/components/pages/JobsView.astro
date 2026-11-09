@@ -78,10 +78,6 @@ const payload = JSON.stringify({
       </div>
     </div>
     <div class="mt-3 flex flex-wrap items-center justify-between gap-x-2 gap-y-2">
-      <label class="flex cursor-pointer items-center gap-2 text-sm text-graphite-200">
-        <input id="f-visa" type="checkbox" class="h-4 w-4 accent-brand-500" />
-        <span class="whitespace-nowrap">{t('jobs.filter.visa')}</span>
-      </label>
       <button
         id="f-clear"
         type="button"
@@ -157,7 +153,6 @@ const payload = JSON.stringify({
   const countrySel = document.getElementById('f-country') as HTMLSelectElement;
   const categorySel = document.getElementById('f-category') as HTMLSelectElement;
   const typeSel = document.getElementById('f-type') as HTMLSelectElement;
-  const visaCb = document.getElementById('f-visa') as HTMLInputElement;
   const searchInput = document.getElementById('f-search') as HTMLInputElement;
   const clearBtn = document.getElementById('f-clear') as HTMLButtonElement;
   const countEl = document.getElementById('f-count')!;
@@ -168,14 +163,14 @@ const payload = JSON.stringify({
   (window as any).__lmIndex = data.index;
 
   // Prefiltro desde la URL (p. ej. /jobs?q=Buenaventura — enlaces desde /bolsa;
-  // /jobs?type=remote y /jobs?tier=abroad — "Ver todos" desde home).
+  // /jobs?type=remote — "Ver todos" desde home).
   const params = new URLSearchParams(location.search);
   const initialQ = params.get('q');
   if (initialQ) searchInput.value = initialQ;
   const initialType = params.get('type');
   if (initialType === 'onsite' || initialType === 'remote') typeSel.value = initialType;
   const tierParam = params.get('tier');
-  let tierFilter = tierParam === 'pe' ? '1' : tierParam === 'remote' ? '2' : tierParam === 'abroad' ? '3' : '';
+  let tierFilter = tierParam === 'pe' ? '1' : tierParam === 'remote' ? '2' : '';
 
   function applyFilters() {
     let visible = 0;
@@ -183,7 +178,6 @@ const payload = JSON.stringify({
     const country = countrySel.value;
     const category = categorySel.value;
     const type = typeSel.value;
-    const visa = visaCb.checked;
     const q = searchInput.value.trim().toLowerCase();
 
     cards.forEach((card) => {
@@ -191,7 +185,6 @@ const payload = JSON.stringify({
       if (country && card.dataset.country !== country) show = false;
       if (category && card.dataset.category !== category) show = false;
       if (type && card.dataset.type !== type) show = false;
-      if (visa && card.dataset.visa !== '1') show = false;
       if (tierFilter && card.dataset.tier !== tierFilter) show = false;
       if (q && !card.dataset.search.includes(q)) show = false;
       card.classList.toggle('hidden', !show);
@@ -203,13 +196,11 @@ const payload = JSON.stringify({
   }
 
   [countrySel, categorySel, typeSel].forEach((el) => el.addEventListener('change', applyFilters));
-  visaCb.addEventListener('change', applyFilters);
   searchInput.addEventListener('input', applyFilters);
   function clearFilters() {
     countrySel.value = '';
     categorySel.value = '';
     typeSel.value = '';
-    visaCb.checked = false;
     tierFilter = '';
     searchInput.value = '';
     applyFilters();
