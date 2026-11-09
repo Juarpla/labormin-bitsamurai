@@ -1,7 +1,7 @@
 import { formatSalaryValue } from './job-policy.mjs';
 import raw from '../data/jobs.json';
 import rawPresentation from '../data/job-presentation.json';
-import { localPresentation, presentationKey, sectionLabels } from './job-presentation.mjs';
+import { localPresentation, organizeDescriptionBlocks, presentationKey, sectionLabels } from './job-presentation.mjs';
 import { JobFileSchema, type Job } from '../schemas';
 import { GLOBAL, countryName, useTranslations, type Locale } from './i18n';
 
@@ -40,8 +40,9 @@ function prepared(job: Job) {
 
 export function clearViewFor(job: Job) {
   const sections = prepared(job)?.sections;
+  const onlyOverview = sections?.length === 1 && sections[0].heading === 'overview';
   return sections?.length
-    ? { sections, generated: true }
+    ? { sections: onlyOverview ? organizeDescriptionBlocks(sections[0].blocks) as ClearSection[] : sections, generated: true }
     : { sections: localPresentation(job.description) as ClearSection[], generated: false };
 }
 

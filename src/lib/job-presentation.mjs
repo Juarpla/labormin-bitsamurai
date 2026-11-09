@@ -51,8 +51,8 @@ function blocksFrom(html) {
     .map(block => block.trim()).filter(Boolean);
 }
 
-export function localPresentation(description) {
-  const blocks = blocksFrom(description)
+export function organizeDescriptionBlocks(sourceBlocks) {
+  const blocks = sourceBlocks
     .flatMap(block => block.replace(marker, '$1\n$2\n').split('\n'))
     .map(block => block.trim()).filter(Boolean);
   const groups = [];
@@ -63,11 +63,20 @@ export function localPresentation(description) {
       if (current.blocks.length) groups.push(current);
       current = { heading, blocks: [] };
     } else {
-      current.blocks.push(block);
+      // Some boards flatten lists into one paragraph. Separate sentences for reading
+      // while keeping every word and the order of the source.
+      const sentences = block.length > 400
+        ? [...segmenter.segment(block)].map(part => part.segment.trim()).filter(Boolean)
+        : [block];
+      current.blocks.push(...sentences);
     }
   }
   if (current.blocks.length) groups.push(current);
   return groups;
+}
+
+export function localPresentation(description) {
+  return organizeDescriptionBlocks(blocksFrom(description));
 }
 
 const segmenter = new Intl.Segmenter('en', { granularity: 'sentence' });

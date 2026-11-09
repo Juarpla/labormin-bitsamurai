@@ -1,6 +1,6 @@
 ---
 import { sectionLabels } from '../../lib/job-presentation.mjs';
-import { jobPosting } from '../../lib/job-policy.mjs';
+import { jobPosting, sourceText } from '../../lib/job-policy.mjs';
 import type { Job } from '../../schemas';
 import JobApplicationGuide from '../JobApplicationGuide.astro';
 import JobCard from '../JobCard.astro';
@@ -16,6 +16,18 @@ const t = useTranslations(locale);
 const related = relatedJobs(job, 3);
 const backHref = locale === 'es' ? '/jobs' : `/${locale}/jobs`;
 const clearView = clearViewFor(job);
+
+const descriptionText = sourceText(job.description);
+const experience = descriptionText.match(/\b(?:experiencia\s+(?:(?:m[ií]nima|deseable)\s+)?(?:de\s+)?\d+(?:\s*(?:a|–|-)\s*\d+)?\s+(?:años?|mes(?:es)?)|(?:m[ií]nimo\s+(?:de\s+)?|al menos\s+)?\d+(?:\s*(?:a|–|-)\s*\d+)?\s+(?:años?|mes(?:es)?)\s+de\s+experiencia)(?:\s+(?:m[ií]nima|deseable))?\b/iu)?.[0];
+const roster = descriptionText.match(/\b(?:r[eé]gimen|sistema)\s+(?:at[ií]pico\s+)?(?:de\s+)?\d+\s*[x×]\s*\d+\b/iu)?.[0];
+const salary = formatSalary(job);
+const facts = [
+  { label: 'Ubicación', value: locationLine(job, t), icon: '<path d="M12 21c-4-3.8-6-7-6-10a6 6 0 1 1 12 0c0 3-2 6.2-6 10z"/><circle cx="12" cy="11" r="2.2"/>' },
+  { label: 'Experiencia mencionada', value: experience, icon: '<rect x="3" y="7.5" width="18" height="12" rx="2"/><path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5M3 12.5h18"/>' },
+  { label: 'Régimen mencionado', value: roster, icon: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>' },
+  { label: 'Sueldo publicado', value: salary, icon: '<rect x="2.5" y="6.5" width="19" height="11" rx="2"/><circle cx="12" cy="12" r="2.5"/>' },
+  { label: 'Cierre anunciado', value: job.validThrough && formatDate(job.validThrough, locale), icon: '<rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 9.5h17M8 3v3M16 3v3"/>' },
+].filter(fact => fact.value);
 
 const jsonLd = jobPosting(job);
 const categoryLabels: Record<string, string> = { operations: 'Operaciones', maintenance: 'Mantenimiento', engineering: 'Ingeniería', geology: 'Geología', hse: 'Seguridad y ambiente', processing: 'Procesamiento', exploration: 'Exploración', other: 'Empleo minero' };
@@ -52,8 +64,8 @@ const sourceHost = new URL(job.url).hostname.replace(/^www\./, '');
       <span class="font-medium">{job.company}</span>
       <span class="text-graphite-400"> · {locationLine(job, t)}</span>
     </p>
-    {job.salary && (
-      <p class="mt-2 text-sm font-semibold text-brand-400">{formatSalary(job)}</p>
+    {salary && (
+      <p class="mt-2 text-sm font-semibold text-brand-400">{salary}</p>
     )}
 
     <div class="mt-6 flex flex-wrap gap-3">
@@ -104,29 +116,44 @@ const sourceHost = new URL(job.url).hostname.replace(/^www\./, '');
     </h2>
     {clearView.sections.length ? (
       <>
-        <p class="mt-2 text-sm leading-relaxed text-graphite-400">
-          {clearView.generated
-            ? 'Organizada con IA a partir del anuncio. Verifica las condiciones con el empleador.'
-            : 'Texto de la fuente, organizado para facilitar la lectura.'}
-          {job.descriptionStatus === 'source-extract' && ' Se muestra el extracto disponible.'}
-        </p>
-        <div data-job-clear-view class="mt-5 space-y-5 break-words">
-          {clearView.sections.map(({ heading, blocks }) => (
-            <div>
-              {(clearView.sections.length > 1 || heading !== 'overview') && (
-                <h3 class="mb-2 font-display text-lg font-semibold text-graphite-100">{sectionLabels[heading]}</h3>
-              )}
-              {blocks.length > 1 && (heading === 'duties' || heading === 'requirements') ? (
-                <ul class="list-disc space-y-2 pl-5 text-base leading-relaxed text-graphite-200 marker:text-graphite-500">
-                  {blocks.map(block => <li>{block}</li>)}
-                </ul>
-              ) : (
-                <div class="space-y-2 text-base leading-relaxed text-graphite-200">
-                  {blocks.map(block => <p>{block}</p>)}
+        <div data-job-clear-view class="mt-3 break-words">
+          <p class="flex max-w-prose items-start gap-2 text-sm leading-relaxed text-graphite-300">
+            {clearView.generated && (
+              <svg class="mt-0.5 size-4 shrink-0 text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                <path d="m12 3 2.3 6.7L21 12l-6.7 2.3L12 21l-2.3-6.7L3 12l6.7-2.3L12 3Z" />
+              </svg>
+            )}
+            <span>
+              {clearView.generated
+                ? 'Organizada con IA a partir del anuncio.'
+                : 'Organizada a partir del texto de la fuente.'}
+              {job.descriptionStatus === 'source-extract' && ' Se muestra el extracto disponible.'}
+            </span>
+          </p>
+          <dl class:list={['mt-5 grid gap-2.5', facts.length > 1 && 'sm:grid-cols-2']} aria-label="Datos de la vacante">
+            {facts.map(({ label, value, icon }) => (
+              <div class="flex min-w-0 items-start gap-3 rounded-xl border border-graphite-700 bg-graphite-850 p-3.5">
+                <svg class="mt-0.5 size-5 shrink-0 text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={icon} />
+                <div class="min-w-0">
+                  <dt class="text-[11px] font-medium uppercase tracking-wide text-graphite-400">{label}</dt>
+                  <dd class="mt-0.5 text-sm font-medium leading-snug text-graphite-100">{value}</dd>
                 </div>
-              )}
-            </div>
-          ))}
+              </div>
+            ))}
+          </dl>
+          <div class="mt-6 divide-y divide-graphite-800 border-y border-graphite-800">
+            {clearView.sections.map(({ heading, blocks }) => (
+              <div class="py-4">
+                <h3 class="mb-2.5 font-display text-lg font-semibold text-graphite-100">{sectionLabels[heading]}</h3>
+                {heading === 'overview' && <p class="max-w-prose leading-relaxed text-graphite-200">{blocks[0]}</p>}
+                {(heading !== 'overview' || blocks.length > 1) && (
+                  <ul class:list={['max-w-prose list-disc space-y-2.5 pl-5 leading-relaxed text-graphite-200 marker:text-brand-400', heading === 'overview' && 'mt-2.5']}>
+                    {(heading === 'overview' ? blocks.slice(1) : blocks).map(block => <li class="pl-0.5">{block}</li>)}
+                  </ul>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
         <details class="mt-5 rounded-xl border border-graphite-700 bg-graphite-900 p-4">
           <summary class="cursor-pointer text-sm font-medium text-brand-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-400">
