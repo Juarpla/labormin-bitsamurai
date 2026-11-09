@@ -6,11 +6,14 @@ import assert from 'node:assert/strict';
 const base = process.env.VERIFY_BASE || 'http://localhost:4321';
 const jobs = JSON.parse(fs.readFileSync('src/data/jobs.json','utf8')).jobs;
 const archive = JSON.parse(fs.readFileSync('src/data/jobs-archive.json','utf8'));
+const practice = jobs.find(job => job.slug.startsWith('ausenco-environmental-mine-closure-engineer-junior') && job.internship)
+  ?? jobs.find(job => job.internship && job.description);
 const pages = [
   ['education','/guias/formacion-minera-gratuita-economica-peru'],
   ['verification','/guias/verificar-oferta-remota-visa-salario'],
   ['about','/about'],['privacy','/privacy'],['guides','/guias'],['jobs','/jobs'],
   ['job',`/jobs/${jobs[0].slug}`],['archive',`/jobs/${archive[0].slug}`],
+  ...(practice ? [['practice',`/jobs/${practice.slug}`]] : []),
   ['full-job',`/jobs/${jobs.find(j=>j.descriptionStatus==='full' && j.publishedAt).slug}`],
 ];
 fs.mkdirSync('screenshots/reliability',{recursive:true});
@@ -44,6 +47,16 @@ for (const [engine,type] of Object.entries({chromium,webkit})) {
           assert.equal(await page.locator('script[src*="adsbygoogle"]').count(),0);
           if (name === 'full-job') assert.equal(await page.locator('script[type="application/ld+json"]').count(),1);
         }
+        if (name === 'job' || name === 'practice') {
+          const description = page.locator('section[aria-labelledby="job-description-title"]');
+          assert.equal(await description.getByRole('heading', { name: 'Descripción', exact: true }).isVisible(), true);
+          assert.equal(await description.locator('[data-job-clear-view]').isVisible(), true);
+          assert.equal(await description.locator('details').count(), 0);
+          assert.equal(await description.getByRole('link', { name: 'Postular', exact: true }).count(), 1);
+          assert.deepEqual(await page.locator('article > section > h2 > span[aria-hidden="true"]').allTextContents(), ['1', '2', '3', '4']);
+          assert.equal(await page.getByRole('link', { name: 'Postular', exact: true }).count(), 2);
+          if (name === 'practice') assert.equal(await page.getByRole('link', { name: /Volver a prácticas/ }).getAttribute('href'), '/practicas');
+        }
       }
     }
     await page.goto(base+'/jobs',{waitUntil:'networkidle'});
@@ -54,19 +67,10 @@ for (const [engine,type] of Object.entries({chromium,webkit})) {
     // Quick view receives the same safe index shown in the detail page.
     await page.locator('[data-drawer-job]').first().click();
     assert.equal(await page.locator('#lm-drawer').isVisible(),true);
+    const drawerApply = page.locator('#lm-drawer').getByRole('link', { name: 'Postular', exact: true });
+    assert.equal(await drawerApply.locator('svg').isVisible(), true);
+    assert.equal(await drawerApply.getAttribute('target'), '_blank');
     await page.locator('#lm-drawer-close').click();
-    await page.goto(base+`/jobs/${jobs[0].slug}`,{waitUntil:'networkidle'});
-    assert.equal(await page.getByRole('heading', { name: 'Descripción', exact: true }).isVisible(), true);
-    assert.equal(await page.getByText('Ver texto original', { exact: true }).count(), 1);
-    const generatedSummary = page.getByText('Ver vista generada con IA', { exact: true });
-    if (await generatedSummary.count()) {
-      assert.equal(await page.locator('[data-job-original]').isVisible(), true);
-      await generatedSummary.click();
-    }
-    assert.equal(await page.locator('[data-job-clear-view]').isVisible(), true);
-    assert.equal(await page.getByRole('link', { name: 'Postular', exact: true }).count(), 2);
-    assert.equal(await page.locator('[data-guidance-training]').isVisible(), true);
-    assert.equal(await page.locator('[data-guidance-experience]').isVisible(), true);
     assert.deepEqual(errors,[],`${engine}: browser errors`);
     assert.deepEqual(adRequests,[],`${engine}: advertising must remain paused until CMP verification`);
     console.log(`✓ ${engine}: mobile/desktop, editorial pages, no overflow, archive, filters, quick view, employment description and recommendations`);

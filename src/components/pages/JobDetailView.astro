@@ -5,11 +5,9 @@ import type { Job } from '../../schemas';
 import EmploymentApplyLink from '../EmploymentApplyLink.astro';
 import JobSectionHeading from '../JobSectionHeading.astro';
 import EmploymentApplicationGuide from '../EmploymentApplicationGuide.astro';
-import JobExperienceGuide from '../JobExperienceGuide.astro';
 import { careerGuidance, careerGuidanceContext, publishedExperience } from '../../lib/job-guidance.mjs';
 import { mentionedTools, requirementEmphasis, requirementItems } from '../../lib/job-description.mjs';
 import cachedGuidance from '../../data/job-guidance.json';
-import JobApplicationGuide from '../JobApplicationGuide.astro';
 import JobCard from '../JobCard.astro';
 import { useTranslations, type Locale } from '../../lib/i18n';
 import { formatSalary, formatDate, allJobs, relatedJobs, titleFor, isAutoTranslated, clearViewFor, locationLine } from '../../lib/jobs';
@@ -21,46 +19,42 @@ interface Props {
 const { job, locale = 'es' } = Astro.props;
 const t = useTranslations(locale);
 const related = relatedJobs(job, 3);
-const backHref = locale === 'es' ? '/jobs' : `/${locale}/jobs`;
-const clearView = clearViewFor(job);
-const employment = !job.internship;
+const backPath = job.internship ? '/practicas' : '/jobs';
+const backHref = locale === 'es' ? backPath : `/${locale}${backPath}`;
+const { sections } = clearViewFor(job);
 const guide = careerGuidance(careerGuidanceContext(job, allJobs), cachedGuidance[job.id as keyof typeof cachedGuidance]);
 
 const descriptionText = sourceText(job.description);
 const experience = descriptionText.match(/\b(?:experiencia\s+(?:(?:m[ií]nima|deseable)\s+)?(?:de\s+)?\d+(?:\s*(?:a|–|-)\s*\d+)?\s+(?:años?|mes(?:es)?)|(?:m[ií]nimo\s+(?:de\s+)?|al menos\s+)?\d+(?:\s*(?:a|–|-)\s*\d+)?\s+(?:años?|mes(?:es)?)\s+de\s+experiencia)(?:\s+(?:m[ií]nima|deseable))?\b/iu)?.[0];
 const roster = descriptionText.match(/\b(?:r[eé]gimen|sistema)\s+(?:at[ií]pico\s+)?(?:de\s+)?\d+\s*[x×]\s*\d+\b/iu)?.[0];
 const salary = formatSalary(job);
-const tools = employment ? mentionedTools(descriptionText).slice(0, 6) : [];
+const tools = mentionedTools(descriptionText).slice(0, 6);
 const language = descriptionText.match(/\bingl[eé]s\s+(?:a nivel\s+|nivel\s+)?(?:b[aá]sico|intermedio|avanzado)\b/i)?.[0];
 const driving = descriptionText.match(/\blicencia de conducir\s*(?::\s*)?(?:obligatoria|obligatorio|vigente|deseable|[Aa][ -]?(?:III|II|I)[a-z]?)\b/i)?.[0];
 const verifiedExperience = publishedExperience(job)?.text ?? experience;
 const facts = [
   { label: 'Ubicación', value: locationLine(job, t), icon: '<path d="M12 21c-4-3.8-6-7-6-10a6 6 0 1 1 12 0c0 3-2 6.2-6 10z"/><circle cx="12" cy="11" r="2.2"/>' },
-  { label: 'Experiencia mencionada', value: employment ? verifiedExperience : experience, icon: '<rect x="3" y="7.5" width="18" height="12" rx="2"/><path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5M3 12.5h18"/>' },
+  { label: 'Experiencia mencionada', value: verifiedExperience, icon: '<rect x="3" y="7.5" width="18" height="12" rx="2"/><path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5M3 12.5h18"/>' },
   { label: 'Régimen mencionado', value: roster, icon: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>' },
   { label: 'Sueldo publicado', value: salary, icon: '<rect x="2.5" y="6.5" width="19" height="11" rx="2"/><circle cx="12" cy="12" r="2.5"/>' },
   { label: 'Cierre anunciado', value: job.validThrough && formatDate(job.validThrough, locale), icon: '<rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 9.5h17M8 3v3M16 3v3"/>' },
-  ...(employment ? [
-    { label: 'Herramientas', value: tools.join(' · '), icon: '<rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/>' },
-    { label: 'Idioma', value: language, icon: '<path d="M4 5h11v10H8l-4 3V5Zm12 5h4v9l-3-2h-4"/>' },
-    { label: 'Licencia', value: driving, icon: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 10h4m-4 4h4m4-4h2m-2 4h2"/>' },
-  ] : []),
+  { label: 'Herramientas', value: tools.join(' · '), icon: '<rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/>' },
+  { label: 'Idioma', value: language, icon: '<path d="M4 5h11v10H8l-4 3V5Zm12 5h4v9l-3-2h-4"/>' },
+  { label: 'Licencia', value: driving, icon: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 10h4m-4 4h4m4-4h2m-2 4h2"/>' },
 ].filter(fact => fact.value);
 
 const jsonLd = jobPosting(job);
 const categoryLabels: Record<string, string> = { operations: 'Operaciones', maintenance: 'Mantenimiento', engineering: 'Ingeniería', geology: 'Geología', hse: 'Seguridad y ambiente', processing: 'Procesamiento', exploration: 'Exploración', other: 'Empleo minero' };
-const sourceHost = new URL(job.url).hostname.replace(/^www\./, '');
 ---
 
 <article class="mx-auto max-w-4xl px-4 py-12 sm:px-6">
   <nav class="text-sm text-graphite-400" aria-label="Breadcrumb">
-    <a href={backHref} class="hover:text-brand-400">← {t('common.back')}</a>
+    <a href={backHref} class="hover:text-brand-400">← {job.internship ? 'Volver a prácticas' : t('common.back')}</a>
   </nav>
 
   <header class="mt-6">
     <div class="flex flex-wrap items-center gap-2 text-xs text-graphite-400">
       <span class="rounded-full bg-graphite-800 px-2.5 py-1">{categoryLabels[job.category] || 'Empleo minero'}</span>
-      {!employment && <span class="break-all rounded-full bg-graphite-800 px-2.5 py-1">{sourceHost}</span>}
       {job.remote && <span class="rounded-full bg-graphite-800 px-2.5 py-1 text-brand-300">↗ {t('card.remote')}</span>}
       {job.openToInternational && (
         <span class="rounded-full border border-brand-600/60 bg-brand-500/10 px-2.5 py-1 text-brand-400">✦ {t('card.international')}</span>
@@ -87,14 +81,7 @@ const sourceHost = new URL(job.url).hostname.replace(/^www\./, '');
     )}
 
     <div class="mt-6 flex flex-wrap gap-3">
-      {employment ? <EmploymentApplyLink href={job.url} primary /> : <a
-        href={job.url}
-        target="_blank"
-        rel="noopener nofollow"
-        class="rounded-full bg-brand-500 px-6 py-3 text-sm font-semibold text-graphite-950 transition-colors hover:bg-brand-400"
-      >
-        {t('drawer.apply')} ↗
-      </a>}
+      <EmploymentApplyLink href={job.url} primary />
       {job.visaReported && (
         <span class="inline-flex items-center gap-1.5 rounded-full border border-brand-600/60 bg-brand-500/10 px-4 py-3 text-xs font-medium text-brand-400">
           ✦ {t('card.visa')}
@@ -114,119 +101,55 @@ const sourceHost = new URL(job.url).hostname.replace(/^www\./, '');
     </p>
   )}
 
-  {!employment && <aside class="mt-6 space-y-3 rounded-xl border border-graphite-700 bg-graphite-900 p-4 text-sm leading-relaxed text-graphite-200" aria-label="Alcance de la información">
-    <p>{job.descriptionStatus === 'full' ? 'Texto completo obtenido del anuncio original.' : job.descriptionStatus === 'unknown' ? 'No hemos verificado si el texto obtenido está completo. Consulta el anuncio original antes de postular.' : 'Extracto obtenido de la fuente. Puede omitir condiciones; consulta el anuncio original antes de postular.'} Labormin automatiza la importación; la vigencia y los requisitos se confirman con el empleador.</p>
-    {job.fetchedAt && <p class="text-xs text-graphite-400">Texto consultado el {formatDate(job.fetchedAt, locale)}. Esta fecha no garantiza que la convocatoria siga abierta.</p>}
-    {job.validThrough && <p class="text-xs text-graphite-400">Cierre indicado por la fuente: {formatDate(job.validThrough, locale)}. Verifica posibles cambios en el anuncio.</p>}
-    {job.remote && <p>{job.remoteEligibility.status === 'peru-supported' ? 'La fuente contiene una señal compatible con trabajar desde Perú. Confirma la contratación y tus condiciones con el empleador.' : 'La modalidad remota no confirma que se pueda trabajar desde Perú.'}</p>}
-    {job.remoteEligibility.evidence.map(e => <blockquote class="break-words border-l-2 border-graphite-600 pl-3 text-xs text-graphite-400">{e}</blockquote>)}
-    {job.visa.status === 'authorization-required' && <p>La fuente exige autorización laboral; esa condición no demuestra patrocinio de visa.</p>}
-    {job.visa.status === 'not-offered' && <p>El texto indica que no se ofrece patrocinio para esta vacante.</p>}
-    {job.visa.evidence.map(e => <blockquote class="break-words border-l-2 border-graphite-600 pl-3 text-xs text-graphite-400">{e}</blockquote>)}
-    {job.salary && <details><summary class="cursor-pointer">Redacción salarial de la fuente</summary><p class="mt-2 break-words text-xs text-graphite-400">{job.salary.raw}</p></details>}
-    <a href={job.url} target="_blank" rel="noopener nofollow" class="inline-block text-brand-400 hover:underline">Consultar el anuncio original ↗</a>
-    <a href="/about#metodologia" class="ml-4 inline-block text-brand-400 hover:underline">Cómo seleccionamos las ofertas</a>
-  </aside>}
-
   <section class="mt-10" aria-labelledby="job-description-title">
-    <JobSectionHeading id="job-description-title" step={employment ? 1 : undefined}>
-      {employment ? 'Descripción' : clearView.sections.length ? 'Vista clara' : 'Texto disponible de la fuente'}
-    </JobSectionHeading>
-    {clearView.sections.length ? (
-      <>
-        <details class="mt-3" open={!clearView.generated}>
-          <summary class="cursor-pointer text-sm font-medium text-brand-400">{clearView.generated ? 'Ver vista generada con IA' : 'Ver descripción organizada'}</summary>
-        <div data-job-clear-view class="mt-3 break-words">
-          {clearView.generated && <p class="mb-3 text-sm text-graphite-300">Vista generada con IA. Puede contener errores; consulta el texto original.</p>}
-          {guide ? (
-            <p class="flex max-w-prose items-start gap-2.5 text-sm leading-relaxed text-graphite-200">
-              <svg class="mt-0.5 size-4 shrink-0 text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
-                <path d="m12 3 2.3 6.7L21 12l-6.7 2.3L12 21l-2.3-6.7L3 12l6.7-2.3L12 3Z" />
-              </svg>
-              <span><strong class="font-semibold text-brand-400">Tip:</strong> {guide.tip}</span>
-            </p>
-          ) : (
-          <p class="flex max-w-prose items-start gap-2 text-sm leading-relaxed text-graphite-300">
-            {clearView.generated && (
-              <svg class="mt-0.5 size-4 shrink-0 text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
-                <path d="m12 3 2.3 6.7L21 12l-6.7 2.3L12 21l-2.3-6.7L3 12l6.7-2.3L12 3Z" />
-              </svg>
-            )}
-            <span>
-              {clearView.generated
-                ? 'Organizada con IA a partir del anuncio.'
-                : 'Organizada a partir del texto de la fuente.'}
-              {job.descriptionStatus === 'source-extract' && ' Se muestra el extracto disponible.'}
-            </span>
-          </p>
-          )}
-          <dl class:list={['mt-5 grid gap-2.5', facts.length > 1 && 'sm:grid-cols-2']} aria-label="Datos de la vacante">
-            {facts.map(({ label, value, icon }) => (
-              <div class="flex min-w-0 items-start gap-3 rounded-xl border border-graphite-700 bg-graphite-850 p-3.5">
-                <svg class="mt-0.5 size-5 shrink-0 text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={icon} />
-                <div class="min-w-0">
-                  <dt class="text-[11px] font-medium uppercase tracking-wide text-graphite-400">{label}</dt>
-                  <dd class="mt-0.5 text-sm font-medium leading-snug text-graphite-100">{value}</dd>
-                </div>
-              </div>
-            ))}
-          </dl>
-          <div class:list={['mt-6 divide-y divide-graphite-800 border-graphite-800', employment ? 'border-t' : 'border-y']}>
-            {clearView.sections.map(({ heading, blocks: sourceBlocks }) => {
-              const blocks = employment && heading === 'requirements' ? requirementItems(sourceBlocks) : sourceBlocks;
-              return blocks.length > 0 && (
+    <JobSectionHeading id="job-description-title" step={1}>Descripción</JobSectionHeading>
+    <div data-job-clear-view class="mt-3 break-words">
+      <p class="flex max-w-prose items-start gap-2.5 text-sm leading-relaxed text-graphite-200">
+        <svg class="mt-0.5 size-4 shrink-0 text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+          <path d="m12 3 2.3 6.7L21 12l-6.7 2.3L12 21l-2.3-6.7L3 12l6.7-2.3L12 3Z" />
+        </svg>
+        <span><strong class="font-semibold text-brand-400">Tip:</strong> {guide.tip}</span>
+      </p>
+      <dl class:list={['mt-5 grid gap-2.5', facts.length > 1 && 'sm:grid-cols-2']} aria-label="Datos de la vacante">
+        {facts.map(({ label, value, icon }) => (
+          <div class="flex min-w-0 items-start gap-3 rounded-xl border border-graphite-700 bg-graphite-850 p-3.5">
+            <svg class="mt-0.5 size-5 shrink-0 text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={icon} />
+            <div class="min-w-0">
+              <dt class="text-[11px] font-medium uppercase tracking-wide text-graphite-400">{label}</dt>
+              <dd class="mt-0.5 text-sm font-medium leading-snug text-graphite-100">{value}</dd>
+            </div>
+          </div>
+        ))}
+      </dl>
+      {sections.length ? (
+        <div class="mt-6 divide-y divide-graphite-800 border-t border-graphite-800">
+          {sections.map(({ heading, blocks: sourceBlocks }) => {
+            const blocks = heading === 'requirements' ? requirementItems(sourceBlocks) : sourceBlocks;
+            return blocks.length > 0 && (
               <div class="py-4">
                 <h3 class="mb-2.5 font-display text-lg font-semibold text-graphite-100">{sectionLabels[heading]}</h3>
                 {heading === 'overview' && <p class="max-w-prose leading-relaxed text-graphite-200">{blocks[0]}</p>}
                 {(heading !== 'overview' || blocks.length > 1) && (
                   <ul class:list={['max-w-prose list-disc space-y-2.5 pl-5 leading-relaxed text-graphite-200 marker:text-brand-400', heading === 'overview' && 'mt-2.5']}>
                     {(heading === 'overview' ? blocks.slice(1) : blocks).map(block => (
-                      <li class="pl-0.5">{employment && heading === 'requirements'
+                      <li class="pl-0.5">{heading === 'requirements'
                         ? requirementEmphasis(block).map(part => part.strong ? <strong class="font-semibold text-graphite-100">{part.text}</strong> : part.text)
                         : block}</li>
                     ))}
                   </ul>
                 )}
               </div>
-            ); })}
-          </div>
+            );
+          })}
         </div>
-        </details>
-        <details class="mt-5 rounded-xl border border-graphite-700 bg-graphite-900 p-4" open={clearView.generated}>
-          <summary class="cursor-pointer text-sm font-medium text-brand-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-400">
-            Ver texto original
-          </summary>
-          <div data-job-original class="mt-4 max-w-none space-y-4 break-words text-base leading-relaxed text-graphite-200 [&_a]:text-brand-400">
-            <Fragment set:html={job.description} />
-          </div>
-        </details>
-      </>
-    ) : (
-      <div data-job-original class="mt-4 space-y-4 break-words text-base leading-relaxed text-graphite-200 [&_a]:text-brand-400">
-        <Fragment set:html={job.description} />
-      </div>
-    )}
-    {employment && <div class="mt-4"><EmploymentApplyLink href={job.url} /></div>}
+      ) : (
+        <p class="mt-5 text-sm text-graphite-300">Consulta el anuncio para conocer los requisitos y las funciones.</p>
+      )}
+    </div>
+    <div class="mt-4"><EmploymentApplyLink href={job.url} /></div>
   </section>
 
-  {employment ? <EmploymentApplicationGuide guide={guide} /> : (
-    <>
-      <JobApplicationGuide job={job} />
-      <JobExperienceGuide guide={guide} />
-    </>
-  )}
-
-  {!employment && <div class="mt-10">
-    <a
-      href={job.url}
-      target="_blank"
-      rel="noopener nofollow"
-      class="inline-block rounded-full border border-graphite-600 px-6 py-3 text-sm font-semibold text-graphite-100 transition-colors hover:border-brand-500"
-    >
-      {t('drawer.apply')} ↗
-    </a>
-  </div>}
-
+  <EmploymentApplicationGuide guide={guide} />
 
   {related.length > 0 && (
     <section class="mt-16">

@@ -290,13 +290,15 @@ export function validCareerGuidance(entry, context) {
 
 export function careerGuidance(context, entry) {
   const selected = entry?.careerSignature === careerGuidanceSignature(context) && validCareerGuidance(entry, context);
+  const hasPracticeQuestions = context.options.includes('internship') &&
+    entry?.signature === guidanceSignature(context) && validGuidanceQuestions(entry.questionIds, context);
   const opportunities = selected
     ? entry.opportunityIds.map(id => context.opportunities.find(item => item.job.id === id))
     : context.opportunities.slice(0, 3);
   return {
     skill: context.skill,
     tip: tips[selected ? entry.tipId : context.tipIds[0]],
-    questions: (selected ? entry.questionIds : context.fallback).map(id => questions[id]),
+    questions: (selected || hasPracticeQuestions ? entry.questionIds : context.fallback).map(id => questions[id]),
     trainingIds: selected ? entry.trainingIds : context.trainingIds,
     experienceSkill: context.experienceSkill,
     opportunities,

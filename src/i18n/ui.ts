@@ -435,7 +435,7 @@ const es: Dictionary = {
 
   'drawer.quick': 'Vista rápida',
   'drawer.full': 'Detalles completos',
-  'drawer.apply': 'Postular en la fuente',
+  'drawer.apply': 'Postular',
   'drawer.close': 'Cerrar',
   'drawer.visaNote': '“Apoyo de visa” es una señal heurística del texto de la oferta — verifica siempre con el empleador.',
 
