@@ -60,17 +60,12 @@ already running on localhost:4321-4326; otherwise it starts (and stops) its own.
    date. Re-verify before editing; if a source doesn't confirm an event/pathway,
    it doesn't enter the seed. Events: presencial = Peru only; virtual = Peru or
    the four power countries. Update the events file by hand.
-5. **AI description views are view-layer only.** Job *titles* may be
-   auto-translated to **`es` only** at ingest via the multi-provider LLM chain in
-   `src/lib/llm.js` (Mistral → Workers AI → OpenCode Go, ordered by
-   `LLM_PROVIDER_ORDER`) — the UI must always show
-   the visible "auto-translated" badge alongside the original title. Descriptions
-   may be machine-translated and AI-reformatted **only** on demand via
-   `/api/translate-description`: the original is the default view, a visible
-   "generated with AI" badge and a toggle back to the original are mandatory,
-   facts must stay verbatim (never invent or omit requirements), and AI output is
-   never written into `src/data/jobs.json`. Source data is ingested verbatim;
-   never edit or "improve" it.
+5. **Vista clara is presentation data.** Show it by default with the original
+   available. Preserve Spanish titles and source facts. Label AI-generated views
+   and show the original title with translated titles. Send description text to
+   providers only for documented approvals in `src/data/job-presentation-sources.json`.
+   Keep AI results separate from `src/data/jobs.json` and from niche decisions.
+   See [ARCHITECTURE.md](./ARCHITECTURE.md) for the pipeline and provider settings.
 6. **Niche hierarchy is enforced at ingest, not at display.** `inNiche()`
    (`scripts/ingest.mjs`) hard-hides everything outside the tiers: PE → remote
    (powers/GLOBAL) → abroad (CL/CA/US/AU) with `visaReported` or
@@ -96,7 +91,7 @@ src/data/companies.json       curated public boards (extend here to add companie
 src/data/pathways.json        curated visa pathways seed (Peru-eligible focus)
 src/data/events.json          hand-curated mining events seed (officialUrl + lastVerifiedAt required)
 src/data/jobs.json            generated feed (commit; refreshed daily by CI; niche-filtered)
-src/data/translation-cache.json  auto-translated titles cache (commit)
+src/data/job-presentation.json  prepared titles and Vista clara cache (commit)
 src/schemas.ts                Zod schemas for Job / Pathway / Event / feeds
 src/lib/jobs.ts               build-time data helpers (tierOf, tier ranking)
 src/lib/events.ts             build-time event helpers (upcoming)
@@ -105,7 +100,7 @@ src/lib/i18n.ts               localePath, niche countries, DEFAULT_COUNTRY/DEFAU
 src/i18n/ui.ts                UI dictionary (es active; en/pt dormant)
 src/components/pages/*.astro  page views (HomeView, JobsView, JobDetailView, PathwaysView, EventsView, BolsaView, PracticasView)
 src/pages/                    routes: /, /jobs, /bolsa, /practicas, /visa-pathways, /eventos, /guias(+2 guías), /faq,
-                              /about, /contact, /privacy, /terms, /ops, /api/translate-description
+                              /about, /contact, /privacy, /terms, /ops
 docs/ADSENSE-CHECKLIST.md     AdSense admission checklist (owner + code states)
 PRODUCT.md                    durable product truth (impeccable init)
 ```
@@ -117,8 +112,7 @@ PRODUCT.md                    durable product truth (impeccable init)
 - i18n: **`es` is the ONLY language** (lives at the root, no URL prefix). The
   en/pt dictionaries in `src/i18n/ui.ts` are dormant (kept for a future LatAm
   expansion; `Locale` is currently typed to `es`). Job titles are auto-translated
-  to `es` at ingest (badged); **never machine-translate job descriptions or
-  content**.
+  to `es` during preparation (badged). Rule 5 applies to imported descriptions.
 - Country context is FIXED to Peru (`DEFAULT_COUNTRY = 'PE'`): no IP detection,
   no selectors, no `lm-country`/`lm-nationality`/`lm-locale` localStorage keys —
   stale values in old visitors' browsers are simply ignored.

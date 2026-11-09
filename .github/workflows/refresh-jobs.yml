@@ -9,6 +9,14 @@ on:
         description: 'Override LM_SOURCES (e.g. "indeed,seek"). Empty = weekday schedule.'
         required: false
         default: ''
+      presentation_only:
+        description: 'Prepare the current catalog without fetching sources'
+        type: boolean
+        default: false
+      presentation_max_calls:
+        description: 'Override the Vista clara call limit (0–120)'
+        type: string
+        required: false
 
 jobs:
   ingest:
@@ -22,6 +30,8 @@ jobs:
       cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
 
       - uses: pnpm/action-setup@v4
 
@@ -36,7 +46,10 @@ jobs:
       # LinkedIn Mon/Wed/Fri · Indeed Tue/Thu · Seek Sat+Tue. Sun = `none`
       # (sentinel: an EMPTY LM_SOURCES would mean "run ALL sources" in ingest).
       - name: Pick Apify sources for today
+        if: ${{ !inputs.presentation_only }}
         id: sources
+        env:
+          SOURCES_OVERRIDE: ${{ inputs.sources }}
         run: |
           case $(date +%u) in
             1) s=linkedin ;;      # Mon
@@ -47,34 +60,28 @@ jobs:
             6) s=seek ;;          # Sat
             7) s=none ;;          # Sun — keyless sources only
           esac
-          if [[ -n "${{ inputs.sources }}" ]]; then
-            s="${{ inputs.sources }}"
+          if [[ -n "$SOURCES_OVERRIDE" ]]; then
+            s="$SOURCES_OVERRIDE"
           fi
           echo "value=$s" >> "$GITHUB_OUTPUT"
           echo "LM_SOURCES=$s"
 
       - name: Ingest job boards
+        if: ${{ !inputs.presentation_only }}
         run: node scripts/ingest.mjs
         env:
           ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
           ADZUNA_APP_KEY: ${{ secrets.ADZUNA_APP_KEY }}
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
-          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          OPENCODE_GO_API_KEY: ${{ secrets.OPENCODE_GO_API_KEY }}
-          MISTRAL_MODEL: ${{ vars.MISTRAL_MODEL }}
-          WORKERS_AI_MODEL: ${{ vars.WORKERS_AI_MODEL }}
-          OPENCODE_GO_MODEL: ${{ vars.OPENCODE_GO_MODEL }}
-          LLM_PROVIDER_ORDER: ${{ vars.LLM_PROVIDER_ORDER }}
           LM_SOURCES: ${{ steps.sources.outputs.value }}
 
       - name: Commit refreshed feed (if changed)
+        if: ${{ !inputs.presentation_only }}
         run: |
           git config user.name "labormin-bot"
           git config user.email "bot@labormin.com"
-          if [[ -n "$(git status --porcelain src/data/jobs.json src/data/translation-cache.json src/data/ingest-flags.json)" ]]; then
-            git add src/data/jobs.json src/data/translation-cache.json src/data/ingest-flags.json
+          if [[ -n "$(git status --porcelain src/data/jobs.json src/data/ingest-flags.json)" ]]; then
+            git add src/data/jobs.json src/data/ingest-flags.json
             git commit -m "chore(data): refresh jobs feed"
             # Rebase over any feed commit that landed while we ingested (~50 min),
             # then push. Fails only on a real conflict; the feed file is
@@ -83,6 +90,33 @@ jobs:
             git push
           else
             echo "No changes in jobs feed"
+          fi
+
+      - name: Prepare Vista clara and English titles
+        env:
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+          AGNES_MODEL: ${{ vars.AGNES_MODEL }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          OPENCODE_GO_API_KEY: ${{ secrets.OPENCODE_GO_API_KEY }}
+          MISTRAL_MODEL: ${{ vars.MISTRAL_MODEL }}
+          WORKERS_AI_MODEL: ${{ vars.WORKERS_AI_MODEL }}
+          OPENCODE_GO_MODEL: ${{ vars.OPENCODE_GO_MODEL }}
+          LLM_PROVIDER_ORDER: ${{ vars.LLM_PROVIDER_ORDER }}
+          JOB_PRESENTATION_OPENCODE_ALLOWED: ${{ vars.JOB_PRESENTATION_OPENCODE_ALLOWED }}
+          JOB_PRESENTATION_MAX_CALLS: ${{ inputs.presentation_max_calls || vars.JOB_PRESENTATION_MAX_CALLS }}
+        run: node scripts/prepare-job-presentation.mjs
+
+      - name: Commit prepared presentation (if changed)
+        run: |
+          if [[ -n "$(git status --porcelain src/data/job-presentation.json)" ]]; then
+            git config user.name "labormin-bot"
+            git config user.email "bot@labormin.com"
+            git add src/data/job-presentation.json
+            git commit -m "chore(data): prepare job presentation"
+            git pull --rebase origin main || (git rebase --abort && exit 1)
+            git push
           fi
 
       # El deploy lo dispara Workers Builds (Git-connected) con cada push.

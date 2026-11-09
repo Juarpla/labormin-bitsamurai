@@ -1,10 +1,11 @@
 ---
+import { sectionLabels } from '../../lib/job-presentation.mjs';
 import { jobPosting } from '../../lib/job-policy.mjs';
 import type { Job } from '../../schemas';
 import JobApplicationGuide from '../JobApplicationGuide.astro';
 import JobCard from '../JobCard.astro';
 import { useTranslations, type Locale } from '../../lib/i18n';
-import { formatSalary, formatDate, relatedJobs, titleFor, isAutoTranslated, detectLang, locationLine } from '../../lib/jobs';
+import { formatSalary, formatDate, relatedJobs, titleFor, isAutoTranslated, clearViewFor, locationLine } from '../../lib/jobs';
 
 interface Props {
   job: Job;
@@ -14,13 +15,7 @@ const { job, locale = 'es' } = Astro.props;
 const t = useTranslations(locale);
 const related = relatedJobs(job, 3);
 const backHref = locale === 'es' ? '/jobs' : `/${locale}/jobs`;
-const needsTranslation = detectLang(job.description) !== locale;
-const descText = job.description.replace(/<[^>]*>/g, ' ').trim();
-const showClarity = descText.length >= 80;
-const CONTACT_EMAIL = 'labormin.com@gmail.com';
-/* Slot listo para el futuro: al definir el handle (ej. 'https://tiktok.com/@labormin'),
- * el CTA de TikTok del modal de límite aparece solo. */
-const TIKTOK_URL = '';
+const clearView = clearViewFor(job);
 
 const jsonLd = jobPosting(job);
 const categoryLabels: Record<string, string> = { operations: 'Operaciones', maintenance: 'Mantenimiento', engineering: 'Ingeniería', geology: 'Geología', hse: 'Seguridad y ambiente', processing: 'Procesamiento', exploration: 'Exploración', other: 'Empleo minero' };
@@ -103,120 +98,53 @@ const sourceHost = new URL(job.url).hostname.replace(/^www\./, '');
     <a href="/about#metodologia" class="ml-4 inline-block text-brand-400 hover:underline">Cómo seleccionamos las ofertas</a>
   </aside>
 
-  <h2 class="mt-10 font-display text-2xl font-semibold text-graphite-100">{job.descriptionStatus === 'full' ? 'Descripción de la fuente' : 'Texto disponible de la fuente'}</h2>
-
-  {showClarity && (
-    <div class="mt-6 flex flex-wrap items-center gap-3">
-      <button
-        id="lm-clarity-btn"
-        type="button"
-        class="rounded-full border border-brand-600/60 bg-brand-500/10 px-4 py-2 text-sm font-medium text-brand-400 transition-colors hover:border-brand-500 hover:bg-brand-500/20 disabled:cursor-not-allowed disabled:opacity-50"
-      >
-        ✦ {needsTranslation ? t('job.clarityCtaTranslate') : t('job.clarityCta')}
-      </button>
-    </div>
-  )}
-
-  <div id="lm-clarity-root" class="relative mt-4">
-    <div
-      id="lm-desc"
-      class="prose-invert max-w-none space-y-4 text-base leading-relaxed text-graphite-200 [&_a]:text-brand-400"
-    >
-      <Fragment set:html={job.description} />
-    </div>
-    <div
-      id="lm-clarity-overlay"
-      class="absolute inset-0 z-10 hidden rounded-2xl bg-graphite-900/70 backdrop-blur-[2px]"
-      role="status"
-      aria-live="polite"
-    >
-      <div class="sticky top-[30vh] flex justify-center pt-6">
-        <div class="flex flex-col items-center gap-2 rounded-2xl border border-graphite-700 bg-graphite-900/90 px-6 py-5 text-center shadow-lg">
-          <svg
-            class="bot-float h-12 w-12 text-brand-400"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            aria-hidden="true"
-          >
-            <rect x="5" y="8" width="14" height="10" rx="3"></rect>
-            <path d="M12 8V5.5"></path>
-            <circle cx="12" cy="4" r="1.2"></circle>
-            <circle cx="9.5" cy="12.5" r="1.1" fill="currentColor" stroke="none"></circle>
-            <circle cx="14.5" cy="12.5" r="1.1" fill="currentColor" stroke="none"></circle>
-            <path d="M9.5 15.5h5"></path>
-          </svg>
-          <p class="text-sm font-medium text-graphite-100">{t('job.aiWorking')}</p>
-          <p class="text-xs text-graphite-400">{t('job.aiWorkingHint')}</p>
-          <div class="mt-1 flex gap-1" aria-hidden="true">
-            <span class="lm-dot h-1.5 w-1.5 rounded-full bg-brand-500"></span>
-            <span class="lm-dot h-1.5 w-1.5 rounded-full bg-brand-500" style="animation-delay:0.15s"></span>
-            <span class="lm-dot h-1.5 w-1.5 rounded-full bg-brand-500" style="animation-delay:0.3s"></span>
-          </div>
+  <section class="mt-10" aria-labelledby="job-description-title">
+    <h2 id="job-description-title" class="font-display text-2xl font-semibold text-graphite-100">
+      {clearView.sections.length ? 'Vista clara' : 'Texto disponible de la fuente'}
+    </h2>
+    {clearView.sections.length ? (
+      <>
+        <p class="mt-2 text-sm leading-relaxed text-graphite-400">
+          {clearView.generated
+            ? 'Organizada con IA a partir del anuncio. Verifica las condiciones con el empleador.'
+            : 'Texto de la fuente, organizado para facilitar la lectura.'}
+          {job.descriptionStatus === 'source-extract' && ' Se muestra el extracto disponible.'}
+        </p>
+        <div data-job-clear-view class="mt-5 space-y-5 break-words">
+          {clearView.sections.map(({ heading, blocks }) => (
+            <div>
+              {(clearView.sections.length > 1 || heading !== 'overview') && (
+                <h3 class="mb-2 font-display text-lg font-semibold text-graphite-100">{sectionLabels[heading]}</h3>
+              )}
+              {blocks.length > 1 && (heading === 'duties' || heading === 'requirements') ? (
+                <ul class="list-disc space-y-2 pl-5 text-base leading-relaxed text-graphite-200 marker:text-graphite-500">
+                  {blocks.map(block => <li>{block}</li>)}
+                </ul>
+              ) : (
+                <div class="space-y-2 text-base leading-relaxed text-graphite-200">
+                  {blocks.map(block => <p>{block}</p>)}
+                </div>
+              )}
+            </div>
+          ))}
         </div>
+        <details class="mt-5 rounded-xl border border-graphite-700 bg-graphite-900 p-4">
+          <summary class="cursor-pointer text-sm font-medium text-brand-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-400">
+            Ver texto original
+          </summary>
+          <div data-job-original class="mt-4 max-w-none space-y-4 break-words text-base leading-relaxed text-graphite-200 [&_a]:text-brand-400">
+            <Fragment set:html={job.description} />
+          </div>
+        </details>
+      </>
+    ) : (
+      <div data-job-original class="mt-4 space-y-4 break-words text-base leading-relaxed text-graphite-200 [&_a]:text-brand-400">
+        <Fragment set:html={job.description} />
       </div>
-    </div>
-    <p id="lm-clarity-error" class="mt-3 hidden text-xs leading-relaxed text-graphite-400">
-      {t('job.aiError')}
-      <a href={`mailto:${CONTACT_EMAIL}`} class="text-brand-400 hover:underline">{CONTACT_EMAIL}</a>
-    </p>
-  </div>
+    )}
+  </section>
 
   <JobApplicationGuide job={job} />
-
-  {showClarity && (
-    <dialog
-      id="lm-clarity-limit"
-      class="m-auto w-[min(92vw,26rem)] rounded-2xl border border-graphite-700 bg-graphite-900 p-6 text-center text-graphite-100"
-    >
-      <svg class="mx-auto h-16 w-16" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-        <path
-          class="lm-spark-main text-brand-500"
-          fill="currentColor"
-          d="M24 14l2.4 7.6L34 24l-7.6 2.4L24 34l-2.4-7.6L14 24l7.6-2.4Z"
-        ></path>
-        <path
-          class="lm-spark text-brand-400"
-          style="animation-delay:0.3s"
-          fill="currentColor"
-          d="M36.5 6l1.1 2.9 2.9 1.1-2.9 1.1-1.1 2.9-1.1-2.9-2.9-1.1 2.9-1.1Z"
-        ></path>
-        <path
-          class="lm-spark text-brand-300"
-          style="animation-delay:0.9s"
-          fill="currentColor"
-          d="M11.5 33l.9 2.4 2.4.9-2.4.9-.9 2.4-.9-2.4-2.4-.9 2.4-.9Z"
-        ></path>
-      </svg>
-      <h3 class="mt-3 font-display text-lg font-semibold text-graphite-100">{t('job.clarityLimitTitle')}</h3>
-      <p class="mt-2 text-sm leading-relaxed text-graphite-300">{t('job.clarityLimitBody')}</p>
-      <a
-        href={`mailto:${CONTACT_EMAIL}`}
-        class="mt-4 inline-flex items-center gap-2 rounded-full bg-brand-500 px-5 py-2.5 text-sm font-semibold text-graphite-950 transition-colors hover:bg-brand-400"
-      >
-        {t('job.clarityLimitContact')}
-      </a>
-      {TIKTOK_URL && (
-        <a
-          href={TIKTOK_URL}
-          target="_blank"
-          rel="noopener"
-          class="mt-2 inline-flex items-center gap-2 rounded-full border border-graphite-600 px-5 py-2.5 text-sm font-semibold text-graphite-100 transition-colors hover:border-brand-500"
-        >
-          {t('job.clarityLimitTiktok')}
-        </a>
-      )}
-      <button
-        id="lm-clarity-limit-close"
-        type="button"
-        class="mt-3 block w-full rounded-full px-4 py-2 text-sm font-medium text-graphite-400 transition-colors hover:text-graphite-200 focus:border-brand-500 focus:outline-none"
-      >
-        {t('job.clarityLimitClose')}
-      </button>
-    </dialog>
-  )}
 
   <div class="mt-10">
     <a
@@ -241,93 +169,3 @@ const sourceHost = new URL(job.url).hostname.replace(/^www\./, '');
 </article>
 
 {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd).replace(/</g, '\\u003c')} />}
-
-<script define:vars={{ clarityT: { showOriginal: t('job.showOriginal'), disclaimer: t('job.aiDisclaimer') }, apiLang: locale }}>
-  (() => {
-    const btn = document.getElementById('lm-clarity-btn');
-    if (!btn) return;
-    const desc = document.getElementById('lm-desc');
-    const overlay = document.getElementById('lm-clarity-overlay');
-    const errorEl = document.getElementById('lm-clarity-error');
-    const limitModal = document.getElementById('lm-clarity-limit');
-    const limitClose = document.getElementById('lm-clarity-limit-close');
-    const originalHtml = desc.innerHTML;
-    const originalLabel = btn.textContent;
-    let clearHtml = null;
-    let state = 'original';
-    let busy = false;
-    let overlayTimer = null;
-
-    limitClose.addEventListener('click', () => limitModal.close());
-    limitModal.addEventListener('click', (e) => {
-      if (e.target === limitModal) limitModal.close();
-    });
-
-    function setLabel(text) {
-      btn.textContent = text;
-    }
-    function showOverlay() {
-      overlay.classList.remove('hidden');
-    }
-    function hideOverlay() {
-      clearTimeout(overlayTimer);
-      overlay.classList.add('hidden');
-    }
-    function showClear() {
-      desc.innerHTML =
-        '<p class="rounded-xl border border-brand-600/50 bg-brand-500/5 p-3 text-xs leading-relaxed text-graphite-300">✦ ' +
-        clarityT.disclaimer +
-        '</p>' +
-        clearHtml;
-      state = 'clear';
-      setLabel('↺ ' + clarityT.showOriginal);
-    }
-    function showOriginal() {
-      desc.innerHTML = originalHtml;
-      state = 'original';
-      errorEl.classList.add('hidden');
-      setLabel(originalLabel);
-    }
-
-    btn.addEventListener('click', async () => {
-      if (busy) return;
-      if (state === 'clear') {
-        showOriginal();
-        return;
-      }
-      if (clearHtml) {
-        showClear();
-        return;
-      }
-      busy = true;
-      btn.disabled = true;
-      // Show the AI overlay only if the request is still pending after 250ms —
-      // cache hits swap content instantly with no loader flash.
-      overlayTimer = setTimeout(showOverlay, 250);
-      try {
-        const res = await fetch('/api/translate-description', {
-          method: 'POST',
-          headers: { 'content-type': 'application/json' },
-          body: JSON.stringify({ html: originalHtml, lang: apiLang }),
-        });
-        if (res.ok) {
-          const data = await res.json();
-          if (!data || !data.html) throw new Error('no html');
-          clearHtml = data.html;
-          errorEl.classList.add('hidden');
-          showClear();
-        } else if (res.status === 429) {
-          limitModal.showModal();
-        } else {
-          errorEl.classList.remove('hidden');
-        }
-      } catch (err) {
-        errorEl.classList.remove('hidden');
-      } finally {
-        hideOverlay();
-        busy = false;
-        btn.disabled = false;
-      }
-    });
-  })();
-</script>

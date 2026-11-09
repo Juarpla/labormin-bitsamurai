@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/** Local UI checks; AI responses are intercepted, so this never calls a paid provider. */
+/** Local UI checks against the statically rendered site. */
 import { chromium, webkit } from 'playwright';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
@@ -56,21 +56,18 @@ for (const [engine,type] of Object.entries({chromium,webkit})) {
     assert.equal(await page.locator('#lm-drawer').isVisible(),true);
     await page.locator('#lm-drawer-close').click();
     await page.goto(base+`/jobs/${jobs[0].slug}`,{waitUntil:'networkidle'});
-    const original = await page.locator('#lm-desc').innerHTML();
-    for (const status of [500,429,200]) {
-      await page.route('**/api/translate-description',async route => {
-        await route.fulfill({status,contentType:'application/json',body:JSON.stringify(status===200?{html:original}:{error:'simulated UI check'})});
-      });
-      await page.locator('#lm-clarity-btn').click();
-      await page.waitForFunction(() => !document.querySelector('#lm-clarity-btn').disabled);
-      if(status===500) {assert.equal(await page.locator('#lm-clarity-error').isVisible(),true); assert.equal(await page.locator('#lm-desc').innerHTML(),original);}
-      if(status===429) {assert.equal(await page.locator('#lm-clarity-limit').isVisible(),true); await page.locator('#lm-clarity-limit-close').click();}
-      if(status===200) {assert.notEqual(await page.locator('#lm-desc').innerHTML(),original); await page.locator('#lm-clarity-btn').click(); assert.equal(await page.locator('#lm-desc').innerHTML(),original);}
-      await page.unroute('**/api/translate-description');
-    }
+    assert.equal(await page.getByRole('heading', { name: 'Vista clara' }).isVisible(), true);
+    assert.equal(await page.locator('[data-job-clear-view]').isVisible(), true);
+    assert.equal(await page.locator('[data-job-original]').isVisible(), false);
+    const originalToggle = page.getByText('Ver texto original', { exact: true });
+    await originalToggle.focus();
+    await page.keyboard.press('Enter');
+    assert.equal(await page.locator('[data-job-original]').isVisible(), true);
+    await page.keyboard.press('Enter');
+    assert.equal(await page.locator('[data-job-original]').isVisible(), false);
     assert.deepEqual(errors,[],`${engine}: browser errors`);
     assert.deepEqual(adRequests,[],`${engine}: advertising must remain paused until CMP verification`);
-    console.log(`✓ ${engine}: mobile/desktop, editorial pages, no overflow, archive, filters, quick view, AI success/error/limit/original`);
+    console.log(`✓ ${engine}: mobile/desktop, editorial pages, no overflow, archive, filters, quick view, Vista clara and original`);
   } finally {await browser.close();}
 }
 // Public internal links from the built static pages must resolve locally.

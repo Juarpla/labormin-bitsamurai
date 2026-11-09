@@ -54,7 +54,7 @@ export const JobSchema = z.object({
   description: z.string(),
   excerpt: z.string(),
   descriptionStatus: z.enum(['full', 'source-extract', 'unknown']),
-  /** Auto-translated job titles (descriptions are only AI-translated on demand, view-layer). */
+  /** Legacy title translations may still be present in older feeds. */
   translations: z
     .object({
       es: z.string().optional(),

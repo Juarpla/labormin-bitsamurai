@@ -1,5 +1,8 @@
 import { formatSalaryValue } from './job-policy.mjs';
 import raw from '../data/jobs.json';
+import rawPresentation from '../data/job-presentation.json';
+import approvedSources from '../data/job-presentation-sources.json';
+import { canProcessDescription, localPresentation, presentationKey, sectionLabels } from './job-presentation.mjs';
 import { JobFileSchema, type Job } from '../schemas';
 import { GLOBAL, countryName, useTranslations, type Locale } from './i18n';
 
@@ -29,7 +32,24 @@ function tierSorted(list: Job[]): Job[] {
 }
 
 const parsed = JobFileSchema.parse(raw);
-export const allJobs: Job[] = tierSorted(parsed.jobs);
+type ClearSection = { heading: keyof typeof sectionLabels; blocks: string[] };
+const presentations = rawPresentation as Record<string, { titleEs: string | null; sections: ClearSection[] }>;
+
+function prepared(job: Job) {
+  return presentations[presentationKey(job, canProcessDescription(job, approvedSources))];
+}
+
+export function clearViewFor(job: Job) {
+  const sections = prepared(job)?.sections;
+  return sections?.length
+    ? { sections, generated: true }
+    : { sections: localPresentation(job.description) as ClearSection[], generated: false };
+}
+
+export const allJobs: Job[] = tierSorted(parsed.jobs.map(job => {
+  const titleEs = prepared(job)?.titleEs;
+  return { ...job, translations: titleEs ? { es: titleEs } : undefined };
+}));
 /** Pool general (/, /jobs): sin prácticas — viven solo en /practicas (Perú). */
 export const jobs: Job[] = allJobs.filter((j) => !(j.internship && j.country === 'PE'));
 /** Prácticas/trainee/becarios activos en Perú, postedAt desc. */
@@ -81,7 +101,7 @@ export function locationLine(
   return named ? raw : `${raw} · ${countryName(job.country)}`;
 }
 
-/** Translated title for the UI locale (descriptions are AI-translated only on demand). */
+/** Translated title from the prepared presentation. */
 export function titleFor(job: Pick<Job, 'title' | 'translations'>, locale: Locale): string {
   return job.translations?.[locale as 'es' | 'en' | 'pt'] || job.title;
 }
@@ -90,14 +110,6 @@ export function titleFor(job: Pick<Job, 'title' | 'translations'>, locale: Local
 export function isAutoTranslated(job: Pick<Job, 'title' | 'translations'>, locale: Locale): boolean {
   const t = job.translations?.[locale as 'es' | 'en' | 'pt'];
   return Boolean(t && t !== job.title);
-}
-
-/** Heuristic source-language detection (same rules as scripts/ingest.mjs). */
-export function detectLang(s: string): 'es' | 'en' | 'pt' {
-  if (/[ãõç]|ção|não\b/i.test(s)) return 'pt';
-  if (/[ñ¿¡]/i.test(s)) return 'es';
-  if (/[áéíóúü]/i.test(s)) return 'es';
-  return 'en';
 }
 
 /** Lightweight index embedded into pages for client-side hydration.

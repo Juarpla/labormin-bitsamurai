@@ -32,7 +32,7 @@ original guides/FAQ.
                   ┌──────────────────────────────────────────────┐
                   │  src/data/jobs.json       normalized,        │
                   │  (committed to git)       deduped, 30-day TTL│
-                  │  src/data/translation-cache.json (titles es) │
+                  │  src/data/job-presentation.json (Vista clara) │
                   └────────────────────┬─────────────────────────┘
                                        │  GitHub Actions cron (daily 04:00 UTC)
                                        │  .github/workflows/refresh-jobs.yml
@@ -47,14 +47,12 @@ original guides/FAQ.
                   ┌──────────────────────────────────────────────┐
                   │  Cloudflare Pages        es en la raíz;      │
                   │                          usuario fijo Perú;  │
-                  │                          SSR: /api/translate- │
-                  │                          description          │
+                  │                          Vista clara estática │
                   └──────────────────────────────────────────────┘
 ```
 
-Design principle: the site is **static-first**. The only on-demand route is
-`/api/translate-description` (AI clear view). Freshness comes from rebuilding
-the feed and the site on a schedule, not from runtime API calls.
+Design principle: the site builds Vista clara into each active job page.
+The scheduled refresh updates the feed and triggers the static build.
 
 ## 2. Data model
 
@@ -83,10 +81,10 @@ Schemas live in `src/schemas.ts` (Zod) and are enforced at build time by
 | `descriptionStatus`, `excerpt` | full/source-extract/unknown; extracto de búsqueda declarado en Zod |
 | `url` | original posting — every UI path must link back here |
 | `description` | sanitized HTML (tags stripped → entities decoded → paragraphs). Never translated at ingest; the view layer can render an on-demand AI "clear version" (see §4) |
-| `translations?` | `{es,en,pt}` auto-translated **titles** with a visible "auto-translated" flag in the UI |
+| `translations?` | `{es,en,pt}` legacy title translations found in older catalog snapshots |
 
 Dedupe key: `companySlug + normalized-title + country`. Stale cutoff: 30 days.
-Titles cache: `src/data/translation-cache.json` (committed; keyed `"<lang>::<title>"`).
+Presentation cache: `src/data/job-presentation.json` (committed; keyed by source version and approval status).
 
 ### Pathway (`src/data/pathways.json`, curated by hand)
 | Field | Notes |
@@ -162,7 +160,7 @@ UAs), and respects `robots.txt` and per-site crawl-delays. Config lives in
 | Indeed | `apify-indeed` | `factden/indeed-jobs-scraper`, pay-per-result. Markets in priority order **PE → CL → CA → US** (keywords `minería`+`mining` in PE/CL); cap 100 is the **total per-run budget** and each query gets the remaining budget, so PE/CL fill first. Country = search scope. Runs Tue+Thu |
 | Seek (AU) | `apify-seek` | `epicscrapers/seek-job-scraper`, AU national keyword search. Search-result fields only (teaser + bullets, verbatim); URL built from the listing's own `roleId`/`id`. cap 50. Runs Sat+Tue |
 | Glassdoor | — | **removed 2026-09-11** (owner decision): markets overlapped Indeed/Seek and its CA/US/AU-only scope left the niche thin; budget reassigned to LinkedIn keyword markets |
-| LLM chain (titles) | translations | optional; see §7 |
+
 
 **Marketplace aggregation via Apify — deliberate ToS decision (2026-09-09).** Seek,
 Indeed and (until 2026-09-11) Glassdoor prohibit direct scraping and their public
@@ -213,24 +211,22 @@ upcoming entries at `/eventos/`.
   replace any runtime detection; stale keys in old visitors' browsers are ignored.
 - The en/pt dictionaries in `src/i18n/ui.ts` stay dormant (typed, unused) for a
   future LatAm (Spanish-speaking) expansion; `Locale` is currently `'es'`.
-- Job **titles** are auto-translated to **`es` only** at ingest via the
-  multi-provider LLM chain (`src/lib/llm.js`, §7) and shown
-  with a visible "auto-translated" badge + the original title. Job descriptions
-  are not translated at ingest.
-- **Description "clear view" (AI, on demand)** — `/api/translate-description`
-  (server, `prerender = false`). The client POSTs the description HTML already on
-  the page plus the target locale; one LLM call via the provider chain returns
-  structured JSON
-  (`summary`, `facts[{icon,label,value}]`, `sections[{heading,bullets}]`) which
-  the route renders to deterministic escaped HTML (key-facts grid + bullet
-  sections; icons from a fixed inline-SVG whitelist). It translates only when the
-  source language differs from the locale. Cache: Cloudflare Cache API keyed by
-  `lang + sha256(html)` + `Cache-Control: public, max-age=86400` in the browser;
-  per-IP rate limit (~20/h). Safeguards: original description is the default
-  view, a visible "generated with AI" badge + disclaimer are mandatory, a toggle
-  restores the original, facts stay verbatim, and output is never written to
-  `src/data/jobs.json` (view-layer only). Fail-open: any error → the UI keeps
-  the original and shows a notice.
+- **Vista clara** and Spanish titles use one preparation step in `refresh-jobs.yml`,
+  after the raw catalog is pushed. Clear view is built into the job detail page
+  with an expandable original and an AI label when applicable. The English title
+  translation is reused in listings, with its source title visible in the detail.
+- The build can format already-displayed text locally. AI receives description
+  blocks only when `src/data/job-presentation-sources.json` contains a matching
+  `{"source":"ingest-slug","host":"jobs.example.com","permission":"approval reference"}`
+  documenting permission for processing and displaying the result. Each block
+  must appear once and Spanish blocks are copied from the source. The classifier
+  only marks text with positive English signals for translation. Unknown text
+  keeps its original language. Source extracts remain labeled.
+- The batch validates structure, numbers, shift patterns and detectable visa
+  and other restrictions. It can request one correction per listing before
+  using the next available provider. Failed results stay pending for a future
+  refresh. The cache keys off source data and authorization so changed listings
+  and revoked approvals stop using stale results.
 - Preference keys: none — the country context is fixed (Peru) at build time.
 
 ## 5. Tiered home
@@ -280,7 +276,9 @@ respect `prefers-reduced-motion`.
 | `ADZUNA_APP_ID` / `ADZUNA_APP_KEY` | no | enables Adzuna country searches at ingest |
 | `APIFY_TOKEN` | no | enables the Apify sources (`apify-linkedin` / `apify-indeed` / `apify-seek`) via guest actors |
 | `LM_SOURCES` | no | CI-only: comma list of Apify platforms to run; derived from the weekday by `refresh-jobs.yml` (empty/unset = run all, e.g. local dev) |
-| `LLM_PROVIDER_ORDER` | no | Ingest title translation and the on-demand clear-view API. Defaults to `MISTRAL_MODEL,WORKERS_AI_MODEL,OPENCODE_GO_MODEL` |
+| LLM_PROVIDER_ORDER | no | Vista clara and English titles. Defaults to AGNES_MODEL,OPENCODE_GO_MODEL,WORKERS_AI_MODEL,MISTRAL_MODEL |
+| JOB_PRESENTATION_OPENCODE_ALLOWED | no | Set to true after confirming this use is covered by the OpenCode Go plan |
+| JOB_PRESENTATION_MAX_CALLS | no | Total calls per run, including failed calls and corrections. Defaults to 30. Use 0 to pause or up to 120 |
 | `JOB_GUIDANCE_PROVIDER_ORDER` | no | Background application guidance. Defaults to `AGNES_MODEL`. For Workers AI fallback use `AGNES_MODEL,WORKERS_AI_MODEL` |
 | `JOB_GUIDANCE_MAX_CALLS` | no | Provider calls per guidance run, including failures. Defaults to 30, with a maximum of 120. Set to 0 to pause |
 | `INGEST_FAST` | no | local only: caps every source at N items for fast smoke tests |
@@ -293,7 +291,10 @@ respect `prefers-reduced-motion`.
 | OpenCode Go | `OPENCODE_GO_API_KEY` | `OPENCODE_GO_MODEL=mimo-v2.6-flash` |
 
 - **GitHub Actions.** In the repository, open **Settings → Secrets and variables → Actions**. Put the credentials in **Secrets** and the model, order and limit overrides in **Variables**. A missing model override uses the code default. To run guidance on demand, open **Actions → Generate job guidance → Run workflow** and optionally set `max_calls`. A successful feed refresh also triggers this workflow.
-- **Cloudflare Worker.** For **Vista clara**, put runtime credentials in **Workers & Pages → labormin-bitsamurai → Settings → Variables and Secrets**. Put persistent model and `LLM_PROVIDER_ORDER` overrides in `wrangler.jsonc` under `vars`. Guidance runs in GitHub Actions and the site reads its committed results at build time.
+- **Vista clara rollout.** Open **Actions → Refresh job data → Run workflow**.
+  Check `presentation_only` to use the current catalog and set
+  `presentation_max_calls` to limit the run. The static build reads the resulting
+  cache. Workers AI credentials, if used, belong in GitHub Actions secrets.
 - **Local.** Copy the names from `.env.example` to the ignored `.env` file. `JOB_GUIDANCE_MAX_CALLS=1 node scripts/generate-job-guidance.mjs` runs the batch locally and can update the guidance cache.
 
 ## 8. CI / deployment
@@ -323,7 +324,7 @@ respect `prefers-reduced-motion`.
 2. ~~Indeed pilot in "enrichment" mode~~ — superseded 2026-09-09: Indeed, Seek (AU)
    and (until 2026-09-11) Glassdoor ship as **full-feed** marketplace sources via Apify pay-per-result
    actors (see §3); the deliberate ToS decision is documented there
-3. ~~Full job-description translation~~ — shipped as the on-demand AI clear view (`/api/translate-description`); possible follow-up: pre-warming popular descriptions in CI
+3. ~~On-demand AI clear view~~ — replaced by the Vista clara batch and static view.
 4. Salary slider + active age filter in the pathways matrix
 5. `/api/jobs` search endpoint (edge cache) if the client-side index outgrows memory
 6. Email alerts by nationality/country

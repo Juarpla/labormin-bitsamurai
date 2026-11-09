@@ -55,8 +55,7 @@ editados), salarios solo si los declara la fuente, y rutas de visa con
   obligatorios). /eventos se actualiza exclusivamente a mano.
 - Monetización: solo publicidad (AdSense); proceso de admisión en
   `docs/ADSENSE-CHECKLIST.md`.
-- Deploy: Cloudflare Pages (Astro 7 estático + adapter Cloudflare); único
-  endpoint SSR: `/api/translate-description`.
+- Deploy: Cloudflare con Astro 7 estático y el adaptador Cloudflare.
 
 ## Capabilities and Constraints
 
@@ -87,8 +86,8 @@ Capacidades confirmadas:
   12 mineras), `/visa-pathways`, `/eventos`, `/guias` (4 guías), `/faq`,
   `/about`, `/privacy`, `/terms`, `/contact`, y detalle de cada empleo con
   JobPosting JSON-LD.
-- Vista IA de descripciones bajo demanda (`/api/translate-description`) con
-  badge "generado con IA" y toggle de vuelta; la original es el default.
+- Vista clara visible al abrir la ficha, con el texto original desplegable.
+  Las fichas preparadas por un proveedor llevan una indicación de IA.
 
 Restricciones duras:
 

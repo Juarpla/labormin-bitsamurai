@@ -53,9 +53,9 @@ const PROVIDERS = {
     keyVar: 'OPENCODE_GO_API_KEY',
     defaultModel: 'mimo-v2.6-flash',
     baseUrl: () => 'https://opencode.ai/inference/go/openai/v1',
-    extraHeaders: () => ({
+    extraHeaders: (sessionId) => ({
       'user-agent': 'labormin/1.0',
-      'x-opencode-session': crypto.randomUUID(),
+      'x-opencode-session': sessionId || crypto.randomUUID(),
     }),
   },
 };
@@ -105,7 +105,7 @@ export function resolveChain(getEnv, log = () => {}) {
 /** One chat-completions call against one provider. Resolves to the assistant
  *  content string; throws on HTTP errors, timeouts or empty content so the
  *  caller can fall through to the next provider. */
-export async function callProvider(provider, { messages, maxTokens, timeoutMs = 60_000 }) {
+export async function callProvider(provider, { messages, maxTokens, timeoutMs = 60_000, sessionId }) {
   const body = { model: provider.model, temperature: 0, messages };
   if (maxTokens) body.max_tokens = maxTokens;
   const res = await fetch(`${provider.baseUrl}/chat/completions`, {
@@ -113,7 +113,7 @@ export async function callProvider(provider, { messages, maxTokens, timeoutMs = 
     headers: {
       'content-type': 'application/json',
       authorization: `Bearer ${provider.key}`,
-      ...(provider.extraHeaders ? provider.extraHeaders() : {}),
+      ...(provider.extraHeaders ? provider.extraHeaders(sessionId) : {}),
     },
     body: JSON.stringify(body),
     signal: AbortSignal.timeout(timeoutMs),

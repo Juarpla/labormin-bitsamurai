@@ -18,7 +18,6 @@ import { inNiche, parseSalary, visaHeuristic, certifyJob, POLICY_VERSION, isExpi
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-import { callProvider, extractJson, resolveChain, withFailover } from '../src/lib/llm.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = path.join(ROOT, 'src', 'data', 'jobs.json');
@@ -317,7 +316,6 @@ export function hydrateFromPrev(prevById, job) {
   job.publishedAt = p.publishedAt || null;
   job.excerpt = p.excerpt || excerpt(stripTags(p.description));
   if (p.postedAt) job.postedAt = p.postedAt; // keep stable "posted" age across runs
-  if (p.translations) job.translations = p.translations; // keep cached translations
   Object.assign(job, certifyJob(job));
   return true;
 }
@@ -2372,114 +2370,6 @@ async function fetchApifySeek(cfg) {
 /** Glassdoor: removed (owner decision 2026-09-11) — markets fuera del nicho útil
  *  y cobertura cubierta por Indeed/Seek/Job Bank. */
 
-/* ------------------------------ translations ------------------------------ */
-/* Titles are auto-translated (es/en/pt) via the multi-provider LLM chain in   */
-/* src/lib/llm.js. Descriptions are NEVER translated (repo rule). Fail-open:  */
-/* no credentials or API error → jobs keep their original title. Results are   */
-/* cached and committed.                                                       */
-
-const TRANSLATE_LANGS = ['es']; // solo español: el sitio es de nicho peruano
-const LANG_NAMES = { es: 'Spanish', en: 'English', pt: 'Portuguese' };
-const CACHE_FILE = path.join(ROOT, 'src', 'data', 'translation-cache.json');
-const llmLog = (m) => console.error(m);
-// Built once at startup (after .env loading); iteration order = LLM_PROVIDER_ORDER.
-const llmChain = resolveChain((k) => process.env[k], llmLog);
-
-function detectLang(s) {
-  if (/[ãõç]|ção|não\b/i.test(s)) return 'pt';
-  if (/[ñ¿¡]/i.test(s)) return 'es';
-  if (/[áéíóúü]/i.test(s)) return 'es';
-  return 'en';
-}
-
-async function translateBatch(titles, target) {
-  return withFailover(
-    llmChain,
-    async (provider) => {
-      const raw = await callProvider(provider, {
-        messages: [
-          {
-            role: 'system',
-            content: `You are a translator for mining job titles. Input: a JSON object {"titles":[...]}. Output: ONLY a JSON object {"translations":[...]} with one translation per input item, in the same order, written in ${LANG_NAMES[target]}. Preserve job-title style (no sentences, no explanations, no quotes around items). If an item is already in ${LANG_NAMES[target]}, return it unchanged.`,
-          },
-          { role: 'user', content: JSON.stringify({ titles }) },
-        ],
-        timeoutMs: 120000,
-      });
-      const parsed = JSON.parse(extractJson(raw));
-      const arr = Array.isArray(parsed) ? parsed : parsed.translations;
-      if (!Array.isArray(arr) || arr.length !== titles.length) throw new Error('translation shape mismatch');
-      return arr.map((s) => String(s || '').trim());
-    },
-    llmLog,
-  );
-}
-
-async function translateTitles(jobs) {
-  if (!llmChain.length) {
-    console.log(
-      'ℹ Translations skipped (set MISTRAL_API_KEY / CLOUDFLARE_API_TOKEN+CLOUDFLARE_ACCOUNT_ID / OPENCODE_GO_API_KEY to enable)'
-    );
-    return;
-  }
-  let cache = {};
-  try {
-    cache = JSON.parse(await readFile(CACHE_FILE, 'utf8'));
-  } catch {
-    /* fresh cache */
-  }
-  const apply = (job) => {
-    const src = detectLang(job.title);
-    const tr = {};
-    for (const lang of TRANSLATE_LANGS) {
-      if (lang === src) continue;
-      const hit = cache[`${lang}::${job.title}`];
-      if (hit) tr[lang] = hit;
-    }
-    if (Object.keys(tr).length) job.translations = tr;
-    else delete job.translations;
-  };
-  jobs.forEach(apply);
-
-  const wanted = new Map();
-  for (const job of jobs) {
-    const src = detectLang(job.title);
-    for (const lang of TRANSLATE_LANGS) {
-      if (lang === src) continue;
-      const key = `${lang}::${job.title}`;
-      if (!cache[key]) wanted.set(key, { title: job.title, lang });
-    }
-  }
-  console.log(`ℹ Translations: ${wanted.size} title/language pairs to translate`);
-  const byLang = {};
-  for (const [key, v] of wanted) (byLang[v.lang] ||= []).push({ key, title: v.title });
-  let dirty = false;
-  for (const lang of Object.keys(byLang)) {
-    const list = byLang[lang];
-    for (let i = 0; i < list.length; i += 20) {
-      const batch = list.slice(i, i + 20);
-      try {
-        const out = await translateBatch(
-          batch.map((b) => b.title),
-          lang
-        );
-        batch.forEach((b, k) => {
-          if (out[k]) {
-            cache[b.key] = out[k];
-            dirty = true;
-          }
-        });
-      } catch (err) {
-        console.error(`✗ translation batch (${lang}, items ${i}–${i + batch.length}) → ${err.message}`);
-      }
-      await sleep(300);
-    }
-  }
-  if (dirty) await writeFile(CACHE_FILE, JSON.stringify(cache, null, 2));
-  jobs.forEach(apply);
-  console.log(`✓ translations available for ${jobs.filter((j) => j.translations).length}/${jobs.length} jobs`);
-}
-
 /* ------------------------- one-time offline repair ------------------------ */
 
 /** Re-derives `country` from the structured location string only (no description
@@ -2705,9 +2595,6 @@ async function main() {
 
   // Marca de prácticas/trainee/becario → /practicas (display-only split).
   stampInternships(jobs);
-
-  // Auto-translated titles (es/en/pt) — descriptions are never translated.
-  if (!ONLY_SOURCE) await translateTitles(jobs);
 
   const byCountry = {};
   for (const j of jobs) byCountry[j.country] = (byCountry[j.country] || 0) + 1;
