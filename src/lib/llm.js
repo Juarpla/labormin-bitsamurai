@@ -7,6 +7,7 @@
  *                           "MISTRAL_MODEL,WORKERS_AI_MODEL,OPENCODE_GO_MODEL".
  *                           The prefix before "_MODEL" selects the provider.
  *                           Default: the three above, in that order.
+ *   AGNES_API_KEY           https://platform.agnes-ai.com (AGNES_MODEL, default agnes-3.0-flash)
  *   MISTRAL_API_KEY         https://console.mistral.ai
  *   MISTRAL_MODEL           default codestral-2508
  *   CLOUDFLARE_API_TOKEN    token with Workers AI Edit permission
@@ -20,13 +21,19 @@
  * tried — one attempt each, no intra-provider retries. When every provider
  * fails, withFailover() throws an aggregated error and callers fail open.
  *
- * All three providers speak the OpenAI chat-completions wire format. OpenCode
+ * Providers speak the OpenAI chat-completions wire format. OpenCode
  * Go additionally requires an app-identifying user agent and a stable
  * `x-opencode-session` id per request (their gateway rejects generic clients).
  * Runs in workerd (route) and plain Node (scripts/ingest.mjs) — no SDKs.
  */
 
 const PROVIDERS = {
+  AGNES: {
+    name: 'agnes',
+    keyVar: 'AGNES_API_KEY',
+    defaultModel: 'agnes-3.0-flash',
+    baseUrl: () => 'https://apihub.agnes-ai.com/v1',
+  },
   MISTRAL: {
     name: 'mistral',
     keyVar: 'MISTRAL_API_KEY',
