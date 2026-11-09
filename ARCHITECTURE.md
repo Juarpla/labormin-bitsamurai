@@ -280,8 +280,21 @@ respect `prefers-reduced-motion`.
 | `ADZUNA_APP_ID` / `ADZUNA_APP_KEY` | no | enables Adzuna country searches at ingest |
 | `APIFY_TOKEN` | no | enables the Apify sources (`apify-linkedin` / `apify-indeed` / `apify-seek`) via guest actors |
 | `LM_SOURCES` | no | CI-only: comma list of Apify platforms to run; derived from the weekday by `refresh-jobs.yml` (empty/unset = run all, e.g. local dev) |
-| `MISTRAL_API_KEY` / `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` / `OPENCODE_GO_API_KEY` | no | multi-provider LLM chain (`src/lib/llm.js`): auto-translates job titles at ingest and powers the on-demand description clear-view API. Failover order via `LLM_PROVIDER_ORDER` (default `MISTRAL_MODEL,WORKERS_AI_MODEL,OPENCODE_GO_MODEL`); models via `MISTRAL_MODEL` (`codestral-2508`) / `WORKERS_AI_MODEL` (`@cf/qwen/qwen3-30b-a3b-fp8`) / `OPENCODE_GO_MODEL` (`mimo-v2.5`); providers without credentials are skipped |
+| `LLM_PROVIDER_ORDER` | no | Ingest title translation and the on-demand clear-view API. Defaults to `MISTRAL_MODEL,WORKERS_AI_MODEL,OPENCODE_GO_MODEL` |
+| `JOB_GUIDANCE_PROVIDER_ORDER` | no | Background application guidance. Defaults to `AGNES_MODEL`. For Workers AI fallback use `AGNES_MODEL,WORKERS_AI_MODEL` |
+| `JOB_GUIDANCE_MAX_CALLS` | no | Provider calls per guidance run, including failures. Defaults to 30, with a maximum of 120. Set to 0 to pause |
 | `INGEST_FAST` | no | local only: caps every source at N items for fast smoke tests |
+
+| Provider | Secret or credential | Model variable and default |
+| --- | --- | --- |
+| Agnes | `AGNES_API_KEY` | `AGNES_MODEL=agnes-3.0-flash` |
+| Mistral | `MISTRAL_API_KEY` | `MISTRAL_MODEL=codestral-2508` |
+| Workers AI | `CLOUDFLARE_API_TOKEN` with Workers AI Edit and `CLOUDFLARE_ACCOUNT_ID` | `WORKERS_AI_MODEL=@cf/qwen/qwen3.8-27b` |
+| OpenCode Go | `OPENCODE_GO_API_KEY` | `OPENCODE_GO_MODEL=mimo-v2.6-flash` |
+
+- **GitHub Actions.** In the repository, open **Settings → Secrets and variables → Actions**. Put the credentials in **Secrets** and the model, order and limit overrides in **Variables**. A missing model override uses the code default. To run guidance on demand, open **Actions → Generate job guidance → Run workflow** and optionally set `max_calls`. A successful feed refresh also triggers this workflow.
+- **Cloudflare Worker.** In **Workers & Pages → labormin-bitsamurai → Settings → Variables and Secrets**, set runtime credentials, model overrides and `LLM_PROVIDER_ORDER` for **Vista clara**. Guidance runs in GitHub Actions and reads its committed results at build time.
+- **Local.** Copy the names from `.env.example` to the ignored `.env` file. `JOB_GUIDANCE_MAX_CALLS=1 node scripts/generate-job-guidance.mjs` runs the batch locally and can update the guidance cache.
 
 ## 8. CI / deployment
 
@@ -292,6 +305,11 @@ respect `prefers-reduced-motion`.
   sources and Adzuna run every day. `workflow_dispatch` accepts a `sources` input
   to override the weekday schedule for testing. Offline re-filter without
   re-fetching: `node scripts/ingest.mjs --prune` (nicho rules + TTL).
+- GitHub Actions (`generate-job-guidance.yml`) selects editorial questions after
+  the feed is published. It sends controlled specialty labels and question options,
+  reuses valid selections for identical prompts for up to 90 days, and commits
+  only `src/data/job-guidance.json`. The site falls back to editorial questions
+  when a current selection is unavailable.
 - Cloudflare Pages: framework preset Astro, Node 22. pnpm is pinned via
   `packageManager` in package.json (12.3.x); CI installs it automatically via
   `pnpm/action-setup`. On Cloudflare Pages set `PNPM_VERSION=12.3.4` in the

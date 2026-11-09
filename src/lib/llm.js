@@ -12,7 +12,7 @@
  *   MISTRAL_MODEL           default codestral-2508
  *   CLOUDFLARE_API_TOKEN    token with Workers AI Edit permission
  *   CLOUDFLARE_ACCOUNT_ID   dashboard account id (builds the REST base URL)
- *   WORKERS_AI_MODEL        default @cf/qwen/qwen3-30b-a3b-fp8
+ *   WORKERS_AI_MODEL        default @cf/qwen/qwen3.8-27b
  *   OPENCODE_GO_API_KEY     https://opencode.ai/auth (OpenCode Go plan)
  *   OPENCODE_GO_MODEL       default mimo-v2.6-flash
  *
@@ -44,7 +44,7 @@ const PROVIDERS = {
     name: 'workers-ai',
     keyVar: 'CLOUDFLARE_API_TOKEN',
     requires: ['CLOUDFLARE_ACCOUNT_ID'],
-    defaultModel: '@cf/qwen/qwen3-30b-a3b-fp8',
+    defaultModel: '@cf/qwen/qwen3.8-27b',
     baseUrl: (getEnv) =>
       `https://api.cloudflare.com/client/v4/accounts/${getEnv('CLOUDFLARE_ACCOUNT_ID')}/ai/v1`,
   },

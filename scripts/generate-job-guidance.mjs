@@ -30,18 +30,44 @@ const original = await readFile(cacheFile, 'utf8');
 const now = new Date();
 const cache = new Map(Object.entries(JSON.parse(original))
   .filter(([, entry]) => Date.parse(entry.generatedAt) >= now.getTime() - 90 * 86400000));
-const activeProviders = new Set(providers);
-let calls = 0;
-let generated = 0;
-
+const candidates = [];
+const contexts = new Map();
 for (const job of jobs) {
-  if (calls >= maxCalls || !activeProviders.size) break;
   if (!isCurrentGuidanceJob(job, now)) continue;
   const context = guidanceContext(job);
   if (!context.skillId) continue;
   const signature = guidanceSignature(context);
-  const existing = cache.get(job.id);
+  candidates.push({ id: job.id, signature });
+  contexts.set(signature, context);
+}
+
+// Identical prompts can share a selection, even when the original job expires.
+const bySignature = new Map();
+for (const entry of cache.values()) {
+  const context = contexts.get(entry.signature);
+  if (!context || !validGuidanceQuestions(entry.questionIds, context)) continue;
+  const previous = bySignature.get(entry.signature);
+  if (!previous || Date.parse(previous.generatedAt) < Date.parse(entry.generatedAt)) {
+    bySignature.set(entry.signature, entry);
+  }
+}
+
+const activeProviders = new Set(providers);
+let calls = 0;
+let generated = 0;
+let reused = 0;
+
+for (const { id, signature } of candidates) {
+  const context = contexts.get(signature);
+  const existing = cache.get(id);
   if (existing?.signature === signature && validGuidanceQuestions(existing.questionIds, context)) continue;
+
+  const shared = bySignature.get(signature);
+  if (shared) {
+    cache.set(id, shared);
+    reused += 1;
+    continue;
+  }
 
   for (const provider of activeProviders) {
     if (calls >= maxCalls) break;
@@ -68,7 +94,9 @@ for (const job of jobs) {
     }
     if (!validGuidanceQuestions(result?.questionIds, context)) continue;
 
-    cache.set(job.id, { signature, questionIds: result.questionIds, generatedAt: now.toISOString() });
+    const entry = { signature, questionIds: result.questionIds, generatedAt: now.toISOString() };
+    cache.set(id, entry);
+    bySignature.set(signature, entry);
     generated += 1;
     break;
   }
@@ -80,4 +108,4 @@ if (output !== original) {
   await writeFile(temp, output, { flag: 'wx' });
   await rename(temp, cacheFile);
 }
-console.log(`Job guidance: ${generated} saved, ${calls}/${maxCalls} provider calls.`);
+console.log(`Job guidance: ${generated} generated, ${reused} reused, ${calls}/${maxCalls} provider calls.`);
