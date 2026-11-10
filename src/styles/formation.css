@@ -105,3 +105,16 @@
  .formation-query{font-size:.75rem}.formation-clear{font-size:.75rem}
  .formation-filter-details>.formation-remote{position:absolute;left:250px;top:-55px;margin:0;max-width:270px;min-height:40px;font-size:.75rem}
 }
+
+/* Con rieles de anuncios (≥1280px) la columna central baja a 56rem (~896px):
+   los ajustes de escritorio amplio deben caber en ese ancho. La barra de
+   búsqueda fluye dentro de la tarjeta de filtros (como en tablet) en lugar de
+   posicionarse junto al enlace de "Ver toda la formación". */
+@media(min-width:1280px){
+ .formation-goal{gap:8px}
+ .formation-goal img{width:100px;height:76px}
+ .formation-goal strong{font-size:1.5rem;white-space:normal}
+ .formation-goal>span>span{font-size:.875rem}
+ .formation-search-tools{position:static;order:0;width:auto;gap:24px;margin-top:0;padding-top:0;border:0}
+ .formation-filter-details>.formation-remote{position:static;left:auto;top:auto;margin-top:12px;max-width:none;min-height:28px}
+}

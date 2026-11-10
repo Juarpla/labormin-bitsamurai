@@ -1,12 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { departments, education, guideOptionIds, trainingGroups, trainingGuidePath, verifiedDate } from '../lib/education';
+import AdSlot from '../components/AdSlot.astro';
+import { departments, education, trainingGroups, trainingGuidePath, verifiedDate } from '../lib/education';
 import '../styles/formation.css';
 const ordered = [...education].sort((a,b) => a.id === 'promae-comas' && b.id === 'cetpro-juliaca' ? -1 : a.id === 'cetpro-juliaca' && b.id === 'promae-comas' ? 1 : 0);
 const images = { habilidad: '/images/formacion/habilidad.png', certificado: '/images/formacion/certificado.png', carrera: '/images/formacion/carrera.png' };
 ---
 <Layout title="Formación para el sector minero en Perú | Labormin" description="Explora cursos, formación práctica y carreras técnicas. Filtra por departamento, modalidad y costo; compara fuentes oficiales y credenciales." path="/formacion">
-  <section class="formation" aria-labelledby="formation-title">
+  <div class="xl:grid xl:grid-cols-[160px_56rem_160px] xl:justify-center xl:gap-4">
+    <AdSlot slotId="formacion-side-1" size={{ w: 160, h: 600 }} media="(min-width: 1280px)" class="sticky top-24 hidden w-fit self-start xl:col-start-1 xl:row-start-1 xl:block" />
+    <section class="formation min-w-0 xl:col-start-2 xl:row-start-1" aria-labelledby="formation-title">
     <header class="formation-hero">
       <h1 id="formation-title">¿Qué quieres <em>aprender?</em></h1>
       <p>Empieza por el tipo de formación. Después, encuentra opciones cerca de ti.</p>
@@ -18,6 +21,7 @@ const images = { habilidad: '/images/formacion/habilidad.png', certificado: '/im
       </a>)}
     </nav>
     <a class="formation-all" href="/formacion#resultados" data-all>Ver toda la formación <span aria-hidden="true">→</span></a>
+    <AdSlot slotId="formacion-top-1" size={{ w: 320, h: 50 }} media="(max-width: 1023.98px)" class="mx-auto w-fit lg:hidden" />
     <form id="formation-filters" class="formation-filters" role="search" aria-label="Filtrar formación" hidden>
       <div class="formation-search-tools">
         <label class="formation-query" for="training-query">Buscar por programa o institución<input type="search" name="q" id="training-query" placeholder="Ej. electricidad, minería, CETPRO" autocomplete="off"/></label>
@@ -42,7 +46,6 @@ const images = { habilidad: '/images/formacion/habilidad.png', certificado: '/im
           <div class="formation-row-main">
             <header><h3>{option.title}</h3><p>{option.name}</p><p class="formation-location"><img src="/icons/geo-alt.svg" alt="" width="16" height="16"/>{option.location}</p></header>
             <div class="formation-cost"><strong>{option.costLabel}</strong><p>{option.costNote}</p>{option.id === 'cetpro-juliaca' && <p>Un año académico · confirma el programa</p>}</div>
-            <div class="formation-row-links"><a href={option.officialUrl} target="_blank" rel="noopener">Fuente oficial <span aria-hidden="true">↗</span><span class="sr-only"> de {option.name} (nueva pestaña)</span></a></div>
           </div>
           <details class="formation-details">
             <summary><span class="details-closed">Ver detalles</span><span class="details-open">Cerrar detalles</span><span aria-hidden="true"> →</span><span class="sr-only"> de {option.name}</span></summary>
@@ -51,7 +54,6 @@ const images = { habilidad: '/images/formacion/habilidad.png', certificado: '/im
               <div class="formation-detail-footer"><div class="formation-source-links">
                 {option.actionUrl !== option.officialUrl && <a href={option.actionUrl} target="_blank" rel="noopener">Oferta del centro ↗<span class="sr-only"> (nueva pestaña)</span></a>}
                 {option.additionalSources?.map(source => <a href={source.url} target="_blank" rel="noopener">{source.label} ↗<span class="sr-only"> (nueva pestaña)</span></a>)}
-                {guideOptionIds.includes(option.id) && <a href={`${trainingGuidePath}#${option.id}`}>Esta opción en la guía →</a>}
               </div><p>Fuente consultada: <time datetime={option.lastVerifiedAt}>{verifiedDate(option.lastVerifiedAt)}</time></p></div>
             </div>
           </details>
@@ -61,7 +63,11 @@ const images = { habilidad: '/images/formacion/habilidad.png', certificado: '/im
     </section>
     <p class="formation-context">Selección documentada de {education.length} opciones; aún no cubre todo el Perú. Incluye habilidades útiles para el sector y programas mineros. El objetivo “Un certificado” orienta la búsqueda: confirma la credencial, modalidad y cupos con cada centro. <a href={`${trainingGuidePath}#comparar`}>Cómo comparar costos y certificados →</a></p>
     <aside class="formation-guide" aria-labelledby="formation-guide-title"><h2 id="formation-guide-title">Antes de elegir, compara bien.</h2><div><p>Costo completo, práctica y credencial: qué preguntar al centro.</p><a href={trainingGuidePath}>Leer la guía <span aria-hidden="true">↗</span></a></div><p>Datos de la guía · <time datetime="2026-10-26">26 oct 2026</time></p></aside>
-  </section>
+    </section>
+    <AdSlot slotId="formacion-side-2" size={{ w: 160, h: 600 }} media="(min-width: 1280px)" class="sticky top-24 hidden w-fit self-start xl:col-start-3 xl:row-start-1 xl:block" />
+  </div>
+  <AdSlot slotId="formacion-bottom-desktop-1" size={{ w: 970, h: 90 }} media="(min-width: 1024px)" class="mx-auto w-fit hidden lg:block" />
+  <AdSlot slotId="formacion-bottom-mobile-1" size={{ w: 320, h: 100 }} media="(max-width: 1023.98px)" class="mx-auto w-fit lg:hidden" />
 </Layout>
 <script>
   import '../scripts/formation';

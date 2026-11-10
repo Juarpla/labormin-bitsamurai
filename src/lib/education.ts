@@ -38,7 +38,9 @@ function deriveDiscovery(record: { group: string; location: string; program: str
   return {
     title: oficios ? 'Formación técnica-productiva' : record.program.split(',')[0]!,
     department: record.location.split('·').pop()!.trim(),
-    mode: 'consultar',
+    // Sin indicio de virtualidad, la formación presencial es la norma en estas
+    // fuentes (centros físicos): se declara presencial confirmada.
+    mode: 'presencial',
     costKind: 'consultar',
     costLabel: 'Precio por consultar',
     costNote: oficios ? 'Costos: consultar con el centro' : 'Arancel: consultar con la institución',

@@ -101,3 +101,20 @@ test('an environmental permits internship recommends distinct current entry oppo
     ['environment', null],
   ]);
 });
+
+test('career guidance expands training with options near the vacancy', () => {
+  const now = new Date('2026-11-09T12:00:00Z');
+  const role = { ...job, locationRaw: 'Morococha, Junín, Peru', city: 'Morococha' };
+  const context = careerGuidanceContext(role, [], now);
+  // la afinidad de la especialidad sigue primero
+  assert.deepEqual(context.trainingIds.slice(0, 3), ['promae-comas', 'cetpro-juliaca', 'jose-carlos-mariategui']);
+  // y se amplía con opciones del departamento de la vacante (Junín)
+  assert.ok(context.trainingIds.includes('la-oroya'), 'instituto de Junín en la lista');
+  assert.ok(context.trainingIds.includes('cetpro-san-ramon-junin'), 'CETPRO de Junín en la lista');
+  assert.ok(context.trainingIds.length <= 8);
+  // fuera de Perú no se amplía por geografía
+  const foreign = careerGuidanceContext({ ...role, country: 'CL', locationRaw: 'Santiago, Chile' }, [], now);
+  assert.equal(foreign.trainingIds.includes('la-oroya'), false);
+  // sin ubicación no se amplía
+  assert.equal(careerGuidanceContext(job, [], now).trainingIds.length, 3);
+});

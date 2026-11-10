@@ -170,6 +170,23 @@ const trainingBySkill = {
   mining: ['narciso-villanueva', 'chalhuahuacho'],
 };
 
+// Cercanía geográfica: amplía la formación recomendada con opciones del mismo
+// departamento que la vacante (solo Perú; la fuente es education.json).
+const normalizeText = (value) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+function geoTrainingIds(job) {
+  if (job.country !== 'PE') return [];
+  const hay = normalizeText(`${job.locationRaw ?? ''} ${job.city ?? ''}`).trim();
+  if (!hay) return [];
+  const escape = (text) => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const matches = trainingRecords.filter((record) => {
+    const department = record.location.split('·').pop().trim();
+    return new RegExp(`\\b${escape(normalizeText(department))}\\b`).test(hay);
+  });
+  const carreras = matches.filter((record) => record.group === 'carreras').slice(0, 3);
+  const cetpros = matches.filter((record) => record.group === 'oficios').slice(0, 1);
+  return [...carreras, ...cetpros].map((record) => record.id);
+}
+
 const tips = {
   planning: 'Lleva un ejemplo de un plan de minado y explica qué decisiones tomaste con los datos disponibles.',
   software: 'Elige una herramienta mencionada en el anuncio y prepara un ejemplo concreto de cómo la usaste.',
@@ -223,7 +240,8 @@ export function careerGuidanceContext(job, jobs, now = new Date()) {
     ...(publishedExperience(job)?.months > 0 ? ['experience'] : []),
     'role',
   ];
-  const trainingIds = skill?.training ?? trainingBySkill[base.skillId] ?? [];
+  const baseTraining = skill?.training ?? trainingBySkill[base.skillId] ?? [];
+  const trainingIds = [...new Set([...baseTraining, ...geoTrainingIds(job)])].slice(0, 8);
   const experienceArea = experienceAreaFor(job);
   const experienceSkill = experienceArea === 'environmental-management' ? 'gestión ambiental minera' : base.skill;
   const isPractice = practiceRole.test(titleOf(job));
@@ -267,7 +285,7 @@ export function careerGuidanceMessages(context) {
     return { id, programa: item.program, duracion: item.duration };
   });
   return [
-    { role: 'system', content: 'Prioriza orientación para una vacante en Labormin. Devuelve solo JSON con tipId (uno disponible), questionIds (dos distintos, al menos uno técnico si está disponible), trainingIds (todos los disponibles ordenados), opportunityIds (hasta tres disponibles ordenados). Usa solo IDs proporcionados. Prioriza experiencia inicial y formación que cubra la especialidad. Usa arreglos vacíos si no hay candidatos.' },
+    { role: 'system', content: 'Prioriza orientación para una vacante en Labormin. Devuelve solo JSON con tipId (uno disponible), questionIds (dos distintos, al menos uno técnico si está disponible), trainingIds (todos los disponibles ordenados), opportunityIds (hasta tres disponibles ordenados). Usa solo IDs proporcionados. Prioriza experiencia inicial y formación que cubra la especialidad; considera también la cercanía geográfica de la formación a la ubicación de la vacante. Usa arreglos vacíos si no hay candidatos.' },
     { role: 'user', content: JSON.stringify({
       especialidad: context.skill,
       tips: context.tipIds.map(id => ({ id, texto: tips[id] })),

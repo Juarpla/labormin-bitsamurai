@@ -78,6 +78,7 @@ already running on localhost:4321-4326; otherwise it starts (and stops) its own.
 
 ```
 scripts/ingest.mjs            job ingestion (write jobs.json; +title translations; --prune niche filter)
+scripts/education/            formación: PDFs CETPRO del MINEDU + Diccionario MTPE → education.json (README interno)
 scripts/ingest-stocks.mjs     stock quotes ingestion (write stocks.json; Yahoo Finance + FX → USD; monthly CI)
 src/data/companies.json       curated public boards (extend here to add companies — niche: PE/CL/CA/US/AU)
 src/data/events.json          hand-curated mining events seed (officialUrl + lastVerifiedAt required)
@@ -112,13 +113,15 @@ PRODUCT.md                    durable product truth (impeccable init)
   `jobs-side-1/2`, `jobs-bottom-desktop-1`, `jobs-bottom-mobile-1`;
   `job-detail-1`, `job-detail-2` (before "Empleos similares"); events: `events-top-1`,
   `events-side-1/2`, `events-bottom-desktop-1`, `events-bottom-mobile-1`;
+  formación: `formacion-top-1`, `formacion-side-1/2`, `formacion-bottom-desktop-1`,
+  `formacion-bottom-mobile-1`;
   guías (shared by index + detail pages): `guias-top-1`, `guias-side-1/2`,
   `guias-bottom-desktop-1`, `guias-bottom-mobile-1`; bolsa: `bolsa-top-1`,
   `bolsa-side-1/2`, `bolsa-bottom-desktop-1`, `bolsa-bottom-mobile-1`;
   practicas: `practicas-top-1`, `practicas-side-1/2`, `practicas-bottom-desktop-1`,
   `practicas-bottom-mobile-1`;
   faq: `faq-bottom-desktop-1`, `faq-bottom-mobile-1`; about: `about-bottom-desktop-1`,
-  `about-bottom-mobile-1`). /jobs, /bolsa, /eventos, /guias and /practicas share the
+  `about-bottom-mobile-1`). /jobs, /bolsa, /eventos, /guias, /formacion and /practicas share the
   same always-on distribution: fixed 320×50 top (mobile/tablet), 970×90 bottom
   (desktop ≥lg) or 320×100 (mobile/tablet), sticky 160×600 side rails (desktop
   ≥1280px) around a centered content column; /faq and /about carry only the horizontal

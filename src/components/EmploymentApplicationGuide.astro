@@ -35,7 +35,7 @@ const training = guide.trainingIds.flatMap((id: string) => education.filter(opti
   <JobSectionHeading id="job-training-title" step={3}>¿No tienes las habilidades que te piden?</JobSectionHeading>
   {training.length ? (
     <>
-      <p class="mt-2 max-w-prose text-sm leading-relaxed text-graphite-300">Compara opciones relacionadas con {guide.skill}. Revisa el temario y la credencial frente a lo que pide el puesto.</p>
+      <p class="mt-2 max-w-prose text-sm leading-relaxed text-graphite-300">{guide.skill ? `Compara opciones relacionadas con ${guide.skill} o cerca de la vacante. Revisa el temario y la credencial frente a lo que pide el puesto.` : 'Compara opciones de formación cerca de la vacante. Revisa el temario y la credencial frente a lo que pide el puesto.'}</p>
       <ul class="mt-4 grid gap-3 sm:grid-cols-2">
         {training.map(option => (
           <li class="min-w-0 rounded-xl border border-graphite-700 bg-graphite-850 p-4">
