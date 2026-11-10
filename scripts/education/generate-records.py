@@ -105,17 +105,39 @@ for eid, v in entities.items():
         'lastVerifiedAt': TODAY,
     })
 
+# ---------- investigación de oferta (work/research/*.json) ----------
+def load_research():
+    merged = {}
+    rdir = WORK / 'research'
+    if rdir.exists():
+        for path in sorted(rdir.glob('*.json')):
+            data = json.loads(path.read_text(encoding='utf-8'))
+            if isinstance(data, dict) and isinstance(data.get('results'), list):
+                for item in data['results']:
+                    if item.get('found') and item.get('courses') and item.get('sourceUrl'):
+                        merged[item['id']] = item
+    return merged
+
+SOURCE_LABELS = {
+    'web': 'la web del centro', 'facebook': 'su página de Facebook',
+    'instagram': 'su página de Instagram', 'tiktok': 'su cuenta de TikTok',
+    'youtube': 'su canal de YouTube', 'directory': 'el buscador CETPRO del MTPE (captura archivada)',
+    'gobpe': 'gob.pe',
+}
+
 # ---------- 2) CETPROs (PDFs por región) ----------
 cetpros = json.loads((WORK / 'cetpros-parsed.json').read_text(encoding='utf-8'))
 pdf_urls = json.loads((WORK / 'pdf-urls.json').read_text(encoding='utf-8'))
 INDEX_URL = 'https://www.gob.pe/institucion/minedu/informes-publicaciones/6480539-cetpros-por-region'
 
+research_map = load_research()
+print(f'registros de investigación: {len(research_map)}')
 cetpro_records = []
 for dept, entries in cetpros.items():
     for e in entries:
         ugel = e['ugel']
         location = f"{ugel} · {dept}" if ugel and ugel.lower() != dept.lower() else dept
-        cetpro_records.append({
+        record = {
             'id': '',  # se resuelve tras tener todos
             'group': 'oficios',
             'name': e['name'],
@@ -130,7 +152,8 @@ for dept, entries in cetpros.items():
             'actionUrl': maps_url(e['name'], location),
             'additionalSources': [{'label': 'Índice de CETPROs por región (gob.pe)', 'url': INDEX_URL}],
             'lastVerifiedAt': TODAY,
-        })
+        }
+        cetpro_records.append(record)
 
 # ---------- ids únicos ----------
 repo = str(REPO)
@@ -152,6 +175,21 @@ for r in diccionario_records:
     r['id'] = unique_id(r['id'])
 for r in cetpro_records:
     r['id'] = unique_id(f"{slug(r['name'])}-{slug(r['location'].split('·')[-1].strip())}")
+
+# Investigación de oferta: se aplica tras asignar ids (título = cursos
+# publicados; «Oferta del centro» → web que detalla la oferta, si existe).
+for r in cetpro_records:
+    found = research_map.get(r['id'])
+    if not found:
+        continue
+    courses = found['courses']
+    r['title'] = ' · '.join(courses[:3]) + (' …' if len(courses) > 3 else '')
+    r['program'] = f"Cursos publicados: {', '.join(courses)}."
+    r['actionUrl'] = found['sourceUrl']
+    label = SOURCE_LABELS.get(found.get('sourceType', ''), 'una fuente pública')
+    r['status'] = (r['status'] +
+        f" Oferta documentada en {label} (verificada el 10 de noviembre de 2026).")
+    r['lastVerifiedAt'] = '2026-11-10'
 
 new_records = diccionario_records + cetpro_records
 print(f"diccionario: {len(diccionario_records)} | cetpros: {len(cetpro_records)} | total: {len(new_records)}")

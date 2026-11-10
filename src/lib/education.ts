@@ -33,10 +33,11 @@ const discovery: Record<string, Discovery> = {
 // facts: title from the program, department from the location tail, and the
 // honest "por consultar" labels. The guide-only labels stay exclusive to the
 // documented originals.
-function deriveDiscovery(record: { group: string; location: string; program: string }): Discovery {
+function deriveDiscovery(record: { group: string; location: string; program: string; title?: string }): Discovery {
   const oficios = record.group === 'oficios';
   return {
-    title: oficios ? 'Formación técnica-productiva' : record.program.split(',')[0]!,
+    // Con investigación de oferta, el título son los cursos publicados del centro.
+    title: record.title ?? (oficios ? 'Formación técnica-productiva' : record.program.split(',')[0]!),
     department: record.location.split('·').pop()!.trim(),
     // Sin indicio de virtualidad, la formación presencial es la norma en estas
     // fuentes (centros físicos): se declara presencial confirmada.

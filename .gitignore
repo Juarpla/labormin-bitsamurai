@@ -31,5 +31,8 @@ pnpm-debug.log*
 screenshots/
 
 # Pipeline de formación (trabajo intermedio y venv)
-scripts/education/work/
+# work/research/ sí se versiona: es la oferta verificada de cada CETPRO
+# (irrepetible) que generate-records.py fusiona en education.json.
+scripts/education/work/*
+!scripts/education/work/research/
 scripts/education/.venv/
