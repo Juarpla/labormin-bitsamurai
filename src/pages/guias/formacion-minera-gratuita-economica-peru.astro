@@ -5,6 +5,7 @@ import GuideIcon from '../../components/guides/GuideIcon.astro';
 import TrainingOption from '../../components/guides/TrainingOption.astro';
 import TrainingNotes from '../../components/guides/TrainingNotes.astro';
 import options from '../../data/education.json';
+import { guideOptionIds } from '../../lib/education';
 import '../../styles/training-guide.css';
 const groups = [
   {id:'cursos' as const, type:'habilidad', label:'Una habilidad', aim:'Aprende algo nuevo o mejora lo que sabes', title:'Cursos para sumar habilidades', intro:'Cursos gratuitos para sumar habilidades. Revisa cuáles necesita el puesto que buscas.', note:'Un curso no sustituye una carrera ni la inducción de una operación.'},
@@ -32,7 +33,7 @@ const groups = [
     <section id="opciones" class="documented-centers" aria-labelledby="centros-title"><h2 id="centros-title">Las opciones, con sus fuentes</h2><p>Revisa lo documentado de cada centro. Las fichas conservan los costos publicados y lo que falta confirmar; no implican una admisión abierta.</p><a href="/formacion">Filtrar esta selección en Formación →</a></section>
     {groups.map(group => <section class:list={['training-chapter',`chapter-${group.id}`]} aria-labelledby={group.id}>
       <header class="chapter-heading"><div><h2 id={group.id}>{group.title}</h2><p>{group.intro}</p></div><p class="chapter-note">{group.note}</p></header>
-      <a class="chapter-directory" href={`/formacion?tipo=${group.type}`}>Buscar por departamento y costo →</a><div class="training-options">{options.filter(option => option.group === group.id).map(option => <TrainingOption option={option}/>)}</div>
+      <a class="chapter-directory" href={`/formacion?tipo=${group.type}`}>Buscar por departamento y costo →</a><div class="training-options">{options.filter(option => guideOptionIds.includes(option.id) && option.group === group.id).map(option => <TrainingOption option={option}/>)}</div>
     </section>)}
 
   </div>

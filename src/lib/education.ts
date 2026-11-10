@@ -29,12 +29,32 @@ const discovery: Record<string, Discovery> = {
   'chalhuahuacho': { title: 'Explotación Minera y Mecánica de Producción Industrial', department: 'Apurímac', mode: 'consultar', costKind: 'parcial', costLabel: 'Costo total por consultar', costNote: 'Examen 2026-I: S/180 · importe histórico' },
 };
 
+// Records without an editorial entry above are derived from their own source
+// facts: title from the program, department from the location tail, and the
+// honest "por consultar" labels. The guide-only labels stay exclusive to the
+// documented originals.
+function deriveDiscovery(record: { group: string; location: string; program: string }): Discovery {
+  const oficios = record.group === 'oficios';
+  return {
+    title: oficios ? 'Formación técnica-productiva' : record.program.split(',')[0]!,
+    department: record.location.split('·').pop()!.trim(),
+    mode: 'consultar',
+    costKind: 'consultar',
+    costLabel: 'Precio por consultar',
+    costNote: oficios ? 'Costos: consultar con el centro' : 'Arancel: consultar con la institución',
+  };
+}
+
 export const education = records.map(record => {
-  const metadata = discovery[record.id];
   const group = trainingGroups.find(group => group.sourceGroup === record.group);
-  if (!metadata || !group) throw new Error(`Falta clasificar la opción de formación: ${record.id}`);
+  if (!group) throw new Error(`Falta clasificar la opción de formación: ${record.id}`);
+  const metadata = discovery[record.id] ?? deriveDiscovery(record);
   return { ...record, ...metadata, type: group.id };
 });
+
+// The guide documents these options in depth; every other record lives only in
+// the /formacion catalog (TrainingOption has editorial summaries for these ids).
+export const guideOptionIds: string[] = ['capacita-t', 'jovenes-productivos', 'cetpro-juliaca', 'promae-comas', 'jose-carlos-mariategui', 'narciso-villanueva', 'chalhuahuacho'];
 
 export const trainingGuidePath = '/guias/formacion-minera-gratuita-economica-peru';
 

@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { departments, education, trainingGroups, trainingGuidePath, verifiedDate } from '../lib/education';
+import { departments, education, guideOptionIds, trainingGroups, trainingGuidePath, verifiedDate } from '../lib/education';
 import '../styles/formation.css';
 const ordered = [...education].sort((a,b) => a.id === 'promae-comas' && b.id === 'cetpro-juliaca' ? -1 : a.id === 'cetpro-juliaca' && b.id === 'promae-comas' ? 1 : 0);
 const images = { habilidad: '/images/formacion/habilidad.png', certificado: '/images/formacion/certificado.png', carrera: '/images/formacion/carrera.png' };
@@ -51,7 +51,7 @@ const images = { habilidad: '/images/formacion/habilidad.png', certificado: '/im
               <div class="formation-detail-footer"><div class="formation-source-links">
                 {option.actionUrl !== option.officialUrl && <a href={option.actionUrl} target="_blank" rel="noopener">Oferta del centro ↗<span class="sr-only"> (nueva pestaña)</span></a>}
                 {option.additionalSources?.map(source => <a href={source.url} target="_blank" rel="noopener">{source.label} ↗<span class="sr-only"> (nueva pestaña)</span></a>)}
-                <a href={`${trainingGuidePath}#${option.id}`}>Esta opción en la guía →</a>
+                {guideOptionIds.includes(option.id) && <a href={`${trainingGuidePath}#${option.id}`}>Esta opción en la guía →</a>}
               </div><p>Fuente consultada: <time datetime={option.lastVerifiedAt}>{verifiedDate(option.lastVerifiedAt)}</time></p></div>
             </div>
           </details>
