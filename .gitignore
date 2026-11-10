@@ -29,3 +29,7 @@ pnpm-debug.log*
 
 # visual walkthrough captures
 screenshots/
+
+# Pipeline de formación (trabajo intermedio y venv)
+scripts/education/work/
+scripts/education/.venv/

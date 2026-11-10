@@ -327,7 +327,15 @@ certifican el resto del catálogo. Si fallan todas las fuentes se conserva el
 archivo anterior. El selector `--only` no se usa para fuentes pagadas.
 
 La guía de formación usa `src/data/education.json` con fuente y fecha por
-ficha. Investigación y límites en `docs/FORMACION-ACCESIBLE-PERU.md`. No se
+ficha. El directorio `/formacion` amplía ese JSON con dos fuentes públicas:
+los PDFs «CETPROS por región» del MINEDU (gob.pe, con archivo de origen por
+entrada) y el Diccionario de carreras del MTPE (API de
+micarrera.trabajo.gob.pe). El pipeline vive en `scripts/education/`:
+`parse-cetpros.py` descarga y parsea los PDFs, `generate-records.py` consulta
+la API y regenera el JSON conservando los siete registros originales; el
+metadata de descubrimiento sin entrada editorial se deriva en
+`src/lib/education.ts`. Investigación y límites en
+`docs/FORMACION-ACCESIBLE-PERU.md`. No se
 clasifica calidad ni se presume bachiller técnico por duración o gratuidad.
 Las nuevas guías comparten `GuideLayout.astro` y las colocaciones `guias-*`.
 Los IDs reales de unidades se resuelven desde `PUBLIC_ADSENSE_SLOTS`; nombres
