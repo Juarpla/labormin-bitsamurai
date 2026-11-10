@@ -11,7 +11,7 @@ Conserva los7 registros originales de la guía y reescribe el resto.
 Uso (desde la raíz del repo):
     python3 scripts/education/generate-records.py [--write]
 """
-import json, re, unicodedata, urllib.request, sys
+import json, re, unicodedata, urllib.request, urllib.parse, sys
 from pathlib import Path
 
 WORK = Path(__file__).resolve().parent / 'work'
@@ -48,6 +48,12 @@ def title_case(text):
         else:
             out.append(token)
     return ' '.join(out)
+
+def maps_url(name, location):
+    """Ubicación en Google Maps: se usa como «Oferta del centro» cuando la
+    fuente no publica una página web con la oferta formativa."""
+    query = urllib.parse.quote(f"{name}, {location.replace(' · ', ', ')}, Perú")
+    return f'https://www.google.com/maps/search/?api=1&query={query}'
 
 def slug(text):
     s = unicodedata.normalize('NFD', text)
@@ -95,7 +101,7 @@ for eid, v in entities.items():
         'admission': 'La fuente no publica requisitos de acceso: consulta el proceso de admisión con la institución.',
         'status': 'El Diccionario de carreras del MTPE no publica convocatoria ni aranceles: confirma admisión y costos con la institución.',
         'officialUrl': official,
-        'actionUrl': official if (not web or web == 'S/D') else web,
+        'actionUrl': web if (web and web != 'S/D') else maps_url(title_case(e['institucionNombre']), location),
         'lastVerifiedAt': TODAY,
     })
 
@@ -121,7 +127,7 @@ for dept, entries in cetpros.items():
             'admission': 'La fuente no publica requisitos ni calendario: consulta la admisión con el centro.',
             'status': 'En el listado oficial «CETPROS por región» del MINEDU (17 de febrero de 2025), V Convocatoria Mi Oportunidad Técnica. La fuente no informa de admisión abierta.',
             'officialUrl': pdf_urls[e['file']],
-            'actionUrl': pdf_urls[e['file']],
+            'actionUrl': maps_url(e['name'], location),
             'additionalSources': [{'label': 'Índice de CETPROs por región (gob.pe)', 'url': INDEX_URL}],
             'lastVerifiedAt': TODAY,
         })

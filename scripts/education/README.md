@@ -37,6 +37,10 @@ pnpm build && pnpm test
   (ocho carreras mineras; caché en `work/detalle-*.json`), construye los
   registros de institutos y universidades, añade los CETPROs y reescribe
   `src/data/education.json` conservando los siete ids originales de la guía.
+  Cuando la fuente no publica una página web con la oferta formativa,
+  `actionUrl` («Oferta del centro») apunta a la ubicación en Google Maps del
+  centro; si la investigación posterior encuentra una web con la oferta, esa
+  web reemplaza el enlace de Maps.
 
 ## Reglas
 
