@@ -73,8 +73,7 @@ Capacidades confirmadas:
   12 mineras), `/eventos`, `/guias` (4 guías), `/faq`,
   `/about`, `/privacy`, `/terms`, `/contact`, y detalle de cada empleo con
   JobPosting JSON-LD.
-- Vista clara visible al abrir la ficha, con el texto original desplegable.
-  Las fichas preparadas por un proveedor llevan una indicación de IA.
+- Vista clara visible al abrir la ficha, sin aviso de IA ni desplegable del texto original.
 
 Restricciones duras:
 

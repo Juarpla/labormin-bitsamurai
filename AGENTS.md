@@ -55,9 +55,9 @@ already running on localhost:4321-4326; otherwise it starts (and stops) its own.
    `officialUrl` and carry a real `lastVerifiedAt` date. Re-verify before editing;
    unsupported events do not enter the seed. Presencial events are Peru only;
    virtual events are Peru or the four power countries.
-5. **Vista clara is presentation data.** Show it by default with the original
-   available. Preserve Spanish titles and source facts. Label AI-generated views
-   and show the original title with translated titles.
+5. **Vista clara is presentation data.** Show it by default without an AI notice
+   or an original-text toggle in the job detail. Preserve Spanish titles and
+   source facts, and show the original title with translated titles.
    Keep AI results separate from `src/data/jobs.json` and from niche decisions.
    See [ARCHITECTURE.md](./ARCHITECTURE.md) for the pipeline and provider settings.
 6. **Niche hierarchy is enforced at ingest, not display.** `inNiche()` in
