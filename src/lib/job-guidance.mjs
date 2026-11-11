@@ -270,7 +270,7 @@ export function careerGuidanceContext(job, jobs, now = new Date()) {
     seen.add(key);
     return true;
   });
-  return { ...base, tipIds, trainingIds, experienceSkill, opportunities: uniqueOpportunities.slice(0, 8) };
+  return { ...base, tipIds, trainingIds, relatedTrainingIds: baseTraining, experienceSkill, opportunities: uniqueOpportunities.slice(0, 8) };
 }
 
 export function careerGuidanceSignature(context) {
@@ -319,7 +319,7 @@ export function careerGuidance(context, entry) {
     tip: tips[selected ? entry.tipId : context.tipIds[0]],
     tips: [...new Set([selected ? entry.tipId : context.tipIds[0], ...context.tipIds, 'verify'])].slice(0, 2).map(id => tips[id]),
     questions: (selected || hasPracticeQuestions ? entry.questionIds : context.fallback).map(id => questions[id]),
-    trainingIds: selected ? entry.trainingIds : context.trainingIds,
+    trainingIds: (selected ? entry.trainingIds : context.trainingIds).filter(id => context.relatedTrainingIds.includes(id)),
     experienceSkill: context.experienceSkill,
     opportunities,
   };

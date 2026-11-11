@@ -112,6 +112,7 @@ test('career guidance expands training with options near the vacancy', () => {
   assert.ok(context.trainingIds.includes('la-oroya'), 'instituto de Junín en la lista');
   assert.ok(context.trainingIds.includes('cetpro-san-ramon-junin'), 'CETPRO de Junín en la lista');
   assert.ok(context.trainingIds.length <= 8);
+  assert.deepEqual(careerGuidance(context).trainingIds, ['promae-comas', 'cetpro-juliaca', 'jose-carlos-mariategui']);
   // fuera de Perú no se amplía por geografía
   const foreign = careerGuidanceContext({ ...role, country: 'CL', locationRaw: 'Santiago, Chile' }, [], now);
   assert.equal(foreign.trainingIds.includes('la-oroya'), false);

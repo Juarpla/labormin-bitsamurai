@@ -1,5 +1,7 @@
 ---
 import JobSectionHeading from './JobSectionHeading.astro';
+import JobAnalysisAdvice from './JobAnalysisAdvice.astro';
+import type { jobAnalysis } from '../lib/job-analysis.mjs';
 import JobExperienceGuide from './JobExperienceGuide.astro';
 import GuideIcon from './guides/GuideIcon.astro';
 import { applicationPreparation } from '../lib/application-preparation';
@@ -7,8 +9,8 @@ import { education } from '../lib/education';
 import type { careerGuidance } from '../lib/job-guidance.mjs';
 import type { Job } from '../schemas';
 
-interface Props { guide: ReturnType<typeof careerGuidance>; job: Job; title: string; tools: string[]; experience?: string }
-const { guide, job, title, tools, experience } = Astro.props;
+interface Props { guide: ReturnType<typeof careerGuidance>; job: Job; title: string; tools: string[]; experience?: string; analysis: ReturnType<typeof jobAnalysis> }
+const { guide, job, title, tools, experience, analysis } = Astro.props;
 const training = guide.trainingIds.flatMap((id: string) => education.filter(option => option.id === id));
 const preparation = applicationPreparation(job, title, guide.skill ?? guide.experienceSkill, tools, experience, guide.questions[0]);
 
@@ -33,14 +35,14 @@ const preparation = applicationPreparation(job, title, guide.skill ?? guide.expe
 
 <section class="mt-10 border-t border-graphite-700 pt-7" aria-labelledby="job-training-title" data-guidance-training>
   <JobSectionHeading id="job-training-title" step={6}>¿No tienes las habilidades que te piden?</JobSectionHeading>
-  <p class="mt-3 flex max-w-prose items-start gap-2.5 text-sm leading-relaxed text-graphite-200">
+  {analysis?.skills.length ? <JobAnalysisAdvice items={analysis.skills} /> : <p class="mt-3 flex max-w-prose items-start gap-2.5 text-sm leading-relaxed text-graphite-200">
     <span class="mt-0.5 shrink-0 text-brand-400 [&_svg]:size-5"><GuideIcon kind="credential" /></span>
     <span>Empieza por la habilidad obligatoria que te falta. Antes de inscribirte, comprueba que el programa la enseñe y compara las horas de práctica, el costo total y la credencial.</span>
-  </p>
+  </p>}
   {training.length ? (
     <>
       <h3 class="mt-5 text-sm font-semibold text-graphite-100">Opciones de formación para explorar</h3>
-      {guide.skill && <p class="mt-1 text-sm text-graphite-300">Opciones por especialidad de {guide.skill} o por ubicación.</p>}
+      {guide.skill && <p class="mt-1 text-sm text-graphite-300">Opciones relacionadas con {guide.skill}.</p>}
       <ul class="mt-4 grid gap-3 sm:grid-cols-2">
         {training.map(option => (
           <li class="min-w-0 rounded-xl border border-graphite-700 bg-graphite-850 p-4">
@@ -79,4 +81,4 @@ const preparation = applicationPreparation(job, title, guide.skill ?? guide.expe
   }
 </style>
 
-<JobExperienceGuide guide={guide} step={7} experience={experience} internship={job.internship} />
+<JobExperienceGuide advice={analysis?.experience} guide={guide} step={7} experience={experience} internship={job.internship} />

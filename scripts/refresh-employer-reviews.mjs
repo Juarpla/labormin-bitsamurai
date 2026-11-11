@@ -51,6 +51,8 @@ async function checkOfficialSources() {
     ['https://southerncoppercorp.com/historia/', ['toquepala', 'cuajone', 'ilo']],
     ['https://www.chinalco.com.pe/contacto', ['san isidro', 'huancayo', 'nueva morococha']],
     ['https://www.chinalco.com.pe/operaciones/toromocho', ['toromocho', 'tajo abierto']],
+    ['https://buenaventura.com/contacto/', ['begonias', '419']],
+    ['https://buenaventura.com/operaciones-y-proyectos/', ['uchucchacua', 'yumpag', 'san gabriel']],
   ]);
   const rows = await runActor('apify~website-content-crawler', {
     startUrls: [...sources.keys()].map(url => ({ url })),
@@ -76,7 +78,7 @@ if (!token) {
   const [locations, reviewRun] = await Promise.allSettled([
     checkOfficialSources(),
     runActor('scrapifier~indeed-reviews-scraper', {
-      startUrls: Object.values(employers).map(employer => ({ url: employer.reviewsUrl })),
+      startUrls: Object.values(employers).filter(employer => reviewKey(employer.reviewsUrl)).map(employer => ({ url: employer.reviewsUrl })),
       reviewsFromCountry: 'PE',
       maxReviewsPerCompany: reviewLimit,
       maxChallengeRetries: 0,
@@ -89,6 +91,7 @@ if (!token) {
   let usable = 0;
   for (const [id, employer] of Object.entries(employers)) {
     const slug = reviewKey(employer.reviewsUrl);
+    if (!slug) continue;
     const matching = reviewRun.value.filter(row => row?.reviewId && normalize(row.country) === 'pe' &&
       reviewKey(row.url) === slug && typeof row.text === 'string' && row.text.trim());
     const distinct = [...new Map(matching.map(row => [row.reviewId, row])).values()].slice(0, reviewLimit);

@@ -11,6 +11,10 @@ on:
         description: 'Override the batch call limit (0–120)'
         required: false
         type: string
+      slugs:
+        description: 'Optional comma-separated vacancy slugs to backfill'
+        required: false
+        type: string
 
 permissions:
   contents: write
@@ -44,6 +48,7 @@ jobs:
           WORKERS_AI_MODEL: ${{ vars.WORKERS_AI_MODEL }}
           OPENCODE_GO_API_KEY: ${{ secrets.OPENCODE_GO_API_KEY }}
           OPENCODE_GO_MODEL: ${{ vars.OPENCODE_GO_MODEL }}
+          JOB_GUIDANCE_SLUGS: ${{ inputs.slugs }}
           JOB_GUIDANCE_PROVIDER_ORDER: ${{ vars.JOB_GUIDANCE_PROVIDER_ORDER }}
           JOB_GUIDANCE_MAX_CALLS: ${{ inputs.max_calls || vars.JOB_GUIDANCE_MAX_CALLS }}
 

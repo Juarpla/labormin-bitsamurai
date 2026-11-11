@@ -37,7 +37,10 @@
         "text": "Un testimonio del área de salud en Ilo valora el sueldo y las utilidades de su propio puesto."
       }
     ],
-    "travel": "Toquepala queda a unos 150 km por carretera desde la ciudad de Tacna. Cuajone está en Torata, en la región Moquegua. Si la entrevista es en Ilo, confirma si te citan en la fundición de Pacocha o en otra sede."
+    "travel": "Toquepala queda a unos 150 km por carretera desde la ciudad de Tacna. Cuajone está en Torata, en la región Moquegua. Si la entrevista es en Ilo, confirma si te citan en la fundición de Pacocha o en otra sede.",
+    "profile": {
+      "summary": "En Perú, Southern Copper opera las minas de cobre Toquepala y Cuajone y el complejo de fundición y refinería de Ilo."
+    }
   },
   "minera-chinalco": {
     "aliases": [
@@ -84,6 +87,73 @@
         "text": "Una persona valora el trato, las condiciones y la remuneración que recibió en su puesto."
       }
     ],
-    "travel": "La oficina de Lima está en San Isidro. Si te piden viajar a Toromocho, ten en cuenta que la unidad está en la zona altoandina de Yauli, Junín. Pide el punto de encuentro y las instrucciones de ingreso."
+    "travel": "La oficina de Lima está en San Isidro. Si te piden viajar a Toromocho, ten en cuenta que la unidad está en la zona altoandina de Yauli, Junín. Pide el punto de encuentro y las instrucciones de ingreso.",
+    "profile": {
+      "summary": "Minera Chinalco Perú opera Toromocho, una mina de cobre a tajo abierto en Morococha, Junín.",
+      "contactUrl": "https://www.chinalco.com.pe/contacto",
+      "contactTip": "Usa el canal de selección del anuncio para postular. Si te citan en Toromocho, pide el punto de ingreso y de recojo al equipo que te convocó."
+    }
+  },
+  "buenaventura": {
+    "aliases": [
+      "compania de minas buenaventura",
+      "compania de minas buenaventura s a a",
+      "buenaventura"
+    ],
+    "officialUrl": "https://buenaventura.com/operaciones-y-proyectos/",
+    "profile": {
+      "summary": "Buenaventura es una compañía peruana que explora, desarrolla y opera minas de metales preciosos. Su estructura de gobierno incluye un Comité de Auditoría que supervisa el trabajo de auditoría interna.",
+      "summaryUrl": "https://buenaventura.com/comites-2/",
+      "network": "El directorio corporativo identifica seis ubicaciones propias de oro y plata, además de la oficina principal en Lima. También lista proyectos y participaciones en otras operaciones.",
+      "contactUrl": "https://buenaventura.com/contacto/",
+      "phone": "+5114192500",
+      "phoneLabel": "+51 1 419 2500",
+      "contactTip": "Postula desde el anuncio. Si te citan en Lima, confirma la dirección, el piso y el acceso de visitas. Para una unidad minera, pide el punto de encuentro y consulta si hay traslado coordinado."
+    },
+    "locations": [
+      {
+        "name": "Oficina principal",
+        "address": "Calle Las Begonias 415, piso 19, San Isidro, Lima",
+        "description": "Oficina corporativa. Si te confirman una cita aquí, abre el mapa y calcula la ruta a Calle Las Begonias desde tu punto de partida.",
+        "sourceUrl": "https://buenaventura.com/contacto/",
+        "headquarters": true
+      },
+      {
+        "name": "Uchucchacua",
+        "address": "Oyón, Lima",
+        "description": "Mina subterránea de plata, plomo y zinc.",
+        "sourceUrl": "https://buenaventura.com/operacion/uchucchacua/"
+      },
+      {
+        "name": "Yumpag",
+        "address": "Yanahuanca, Pasco",
+        "description": "Ubicación de plata próxima a Uchucchacua.",
+        "sourceUrl": "https://buenaventura.com/operacion/proyecto-yumpag/"
+      },
+      {
+        "name": "Tambomayo",
+        "address": "Tapay, Caylloma, Arequipa",
+        "description": "Mina subterránea de oro y plata en el distrito de Tapay.",
+        "sourceUrl": "https://buenaventura.com/operacion/tambomayo/"
+      },
+      {
+        "name": "Orcopampa",
+        "address": "Orcopampa, Castilla, Arequipa",
+        "description": "Mina subterránea de oro y plata en la provincia de Castilla.",
+        "sourceUrl": "https://buenaventura.com/operacion/orcopampa/"
+      },
+      {
+        "name": "Julcani",
+        "address": "Huancavelica",
+        "description": "Unidad de plata que figura en el directorio corporativo.",
+        "sourceUrl": "https://buenaventura.com/operaciones-y-proyectos/"
+      },
+      {
+        "name": "San Gabriel",
+        "address": "Moquegua",
+        "description": "Ubicación de oro que figura en el directorio corporativo.",
+        "sourceUrl": "https://buenaventura.com/operaciones-y-proyectos/"
+      }
+    ]
   }
 }

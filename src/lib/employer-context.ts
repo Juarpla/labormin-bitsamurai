@@ -1,4 +1,4 @@
-import contexts from '../data/employer-context.json';
+import { verifiedEmployer } from './job-analysis.mjs';
 import reviews from '../data/employer-reviews.json';
 
 interface EmployerLocation {
@@ -6,6 +6,7 @@ interface EmployerLocation {
   address: string;
   description: string;
   sourceUrl?: string;
+  headquarters?: boolean;
 }
 
 interface ReviewSummary {
@@ -16,13 +17,15 @@ interface ReviewSummary {
 const reviewCache: Record<string, { all: ReviewSummary; internships?: ReviewSummary }> = reviews;
 
 export function employerContext(company: string, country: string, internship?: boolean) {
-  if (country !== 'PE') return null;
-  const name = company.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
-  const match = Object.entries(contexts).find(([, context]) => context.aliases.includes(name));
+  const match = verifiedEmployer(company, country);
   if (!match) return null;
   const [id, context] = match;
+  const profile: {
+    summary: string; summaryUrl?: string; network?: string; contactUrl?: string;
+    phone?: string; phoneLabel?: string; contactTip?: string;
+  } | undefined = context.profile;
   const collected = reviewCache[id];
   const practiceSample = internship ? collected?.internships : undefined;
   const locations: EmployerLocation[] = context.locations;
-  return { ...context, locations, reviewSummary: practiceSample ?? collected?.all, practiceSample: Boolean(practiceSample) };
+  return { ...context, profile, locations, reviewSummary: practiceSample ?? collected?.all, practiceSample: Boolean(practiceSample) };
 }

@@ -9428,7 +9428,32 @@
       "cetpro-naciones-unidas-lima"
     ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-11T12:27:30.724Z"
+    "generatedAt": "2026-11-11T23:25:05.701Z",
+    "analysisSignature": "1b15d76bc7cdf62fa32631914466ca33d8a377b8d5529877244e277fd562836f",
+    "analysis": {
+      "skills": [
+        {
+          "evidence": "NAGAS (Normas de Auditoría Generalmente Aceptadas), Marco COSO",
+          "advice": "Arma una matriz de riesgos y controles para un proceso de compras simulado. Usa COSO para justificar qué controles elegirías y redacta un papel de trabajo que documente cómo probarías uno de ellos."
+        },
+        {
+          "evidence": "Conocimiento de SAP y herramientas de análisis de datos (ACL y PowerBI)",
+          "advice": "Realiza una simulación en PowerBI donde conectes datos ficticios de SAP y extraigas indicadores de control, para dejar documentado el proceso y preparar un ejemplo de uso en la entrevista."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "Experiencia mínima de 3 años en auditoría de procesos",
+          "advice": "Busca responsabilidades de auditoría de procesos o control interno en equipos industriales. Registra fechas, procesos evaluados y hallazgos que puedas explicar sin revelar información confidencial."
+        },
+        {
+          "evidence": "Ejecutar pruebas de controles en los diferentes procesos",
+          "advice": "Prepara un ejercicio práctico simulando pruebas de control interno en un flujo de abastecimiento, documentando el hallazgo y la recomendación para evidenciar la capacidad técnica requerida."
+        }
+      ],
+      "company": "Revisa el rol del Comité de Auditoría y el directorio de operaciones. Lleva una pregunta sobre cómo el equipo corporativo prueba controles y hace seguimiento de hallazgos en las unidades mineras.",
+      "visit": "Confirma con selección si la entrevista se realiza en la oficina de San Isidro. Como el anuncio pide disponibilidad para viajar, pregunta qué unidades visitarías, con qué frecuencia y quién coordina los traslados."
+    }
   },
   "li-a-ambiental-at-geohydro-consultor-c3-ada": {
     "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
@@ -10278,5 +10303,48 @@
     ],
     "opportunityIds": [],
     "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "nv-BMPE-1118510590": {
+    "tipId": "role",
+    "questionIds": [
+      "internship",
+      "placement"
+    ],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [
+      "nv-BMPE-1118508783"
+    ],
+    "careerSignature": "49b8623d1a81b8871662f8fb65eb0b5539f12bc506ac9bc9e255c6d25d13061e",
+    "analysisSignature": "cc4d8eea67fd8fc95b4bcedb55993b7df1bea421396bc27d99db5f57c762d627",
+    "analysis": {
+      "skills": [
+        {
+          "evidence": "Manejo de Excel, Power Point y Word",
+          "advice": "Practica la organización de datos en Excel y la creación de informes en Word y PowerPoint, creando una presentación simulada de un trámite administrativo de ejemplo."
+        },
+        {
+          "evidence": "Digitalizar expedientes de permisos y licencias",
+          "advice": "Organiza una carpeta física o digital de documentos académicos o de voluntariado, siguiendo un índice cronológico, para simular la digitalización de expedientes administrativos."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "Dar soporte en la generación de expedientes",
+          "advice": "Busca apoyo supervisado en una oficina universitaria, municipalidad u ONG. Registra los trámites que ayudaste a documentar y solicita una constancia que describa tus tareas."
+        },
+        {
+          "evidence": "obtención de permisos y licencias",
+          "advice": "Elige un trámite real publicado en el TUPA de una entidad y arma un expediente simulado. Anota qué anexos exige, cómo los ordenarías y qué datos controlarías en la matriz de seguimiento."
+        }
+      ],
+      "company": "Investiga la ubicación de la Unidad Minera Toromocho en Morococha y su conexión con la Oficina de Lima para preparar una pregunta sobre el flujo de documentación entre la mina y las oficinas administrativas.",
+      "visit": "Pregunta a selección cuál es la sede específica de prácticas entre Lima y Morococha, el régimen de trabajo y quién cubre los costos de traslado si es presencial."
+    },
+    "generatedAt": "2026-11-11T23:25:05.701Z"
   }
 }

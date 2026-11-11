@@ -8,6 +8,7 @@ import EmploymentApplicationGuide from '../EmploymentApplicationGuide.astro';
 import JobContextGuide from '../JobContextGuide.astro';
 import { careerGuidance, careerGuidanceContext, publishedExperience } from '../../lib/job-guidance.mjs';
 import { mentionedTools, requirementEmphasis, requirementItems } from '../../lib/job-description.mjs';
+import { analysisContext, jobAnalysis } from '../../lib/job-analysis.mjs';
 import cachedGuidance from '../../data/job-guidance.json';
 import JobCard from '../JobCard.astro';
 import { useTranslations, type Locale } from '../../lib/i18n';
@@ -23,7 +24,9 @@ const related = relatedJobs(job, 3);
 const backPath = job.internship ? '/practicas' : '/jobs';
 const backHref = locale === 'es' ? backPath : `/${locale}${backPath}`;
 const { sections } = clearViewFor(job);
-const guide = careerGuidance(careerGuidanceContext(job, allJobs), cachedGuidance[job.id as keyof typeof cachedGuidance]);
+const cached = cachedGuidance[job.id as keyof typeof cachedGuidance];
+const guide = careerGuidance(careerGuidanceContext(job, allJobs), cached);
+const analysis = jobAnalysis(analysisContext(job), cached);
 
 const descriptionText = sourceText(job.description);
 const experience = descriptionText.match(/\b(?:experiencia\s+(?:(?:m[ií]nima|deseable)\s+)?(?:de\s+)?\d+(?:\s*(?:a|–|-)\s*\d+)?\s+(?:años?|mes(?:es)?)|(?:m[ií]nimo\s+(?:de\s+)?|al menos\s+)?\d+(?:\s*(?:a|–|-)\s*\d+)?\s+(?:años?|mes(?:es)?)\s+de\s+experiencia)(?:\s+(?:m[ií]nima|deseable))?\b/iu)?.[0];
@@ -150,8 +153,8 @@ const jsonLd = jobPosting(job);
     <div class="mt-4"><EmploymentApplyLink href={job.url} /></div>
   </section>
 
-  <JobContextGuide job={job} skill={guide.skill ?? (job.internship ? guide.experienceSkill : null)} title={titleFor(job, locale)} experience={verifiedExperience} />
-  <EmploymentApplicationGuide guide={guide} job={job} title={titleFor(job, locale)} tools={tools} experience={verifiedExperience} />
+  <JobContextGuide analysis={analysis} job={job} skill={guide.skill ?? (job.internship ? guide.experienceSkill : null)} title={titleFor(job, locale)} experience={verifiedExperience} />
+  <EmploymentApplicationGuide analysis={analysis} guide={guide} job={job} title={titleFor(job, locale)} tools={tools} experience={verifiedExperience} />
 
   {related.length > 0 && (
     <section class="mt-16">

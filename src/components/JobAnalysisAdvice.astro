@@ -1,0 +1,9 @@
+---
+interface Props { items: { evidence: string; advice: string }[] }
+const { items } = Astro.props;
+---
+<ul class="mt-3 max-w-prose space-y-2.5 pl-5 text-sm leading-relaxed text-graphite-200 list-disc marker:text-brand-400">
+  {items.map(({ evidence, advice }) => (
+    <li class="pl-1"><strong class="text-graphite-100">{evidence}</strong> · {advice}</li>
+  ))}
+</ul>
