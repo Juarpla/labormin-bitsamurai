@@ -1,7 +1,7 @@
 ---
 import type { Job } from '../schemas';
 import { useTranslations, type Locale } from '../lib/i18n';
-import { formatSalary, formatDate, titleFor, isAutoTranslated, locationLine, tierOf } from '../lib/jobs';
+import { formatSalary, formatDate, titleFor, isAutoTranslated, locationLine, tierOf, categoryLabel } from '../lib/jobs';
 
 interface Props {
   job: Job;
@@ -28,7 +28,7 @@ const autoTranslated = isAutoTranslated(job, locale);
   data-category={job.category}
   data-type={job.remote ? 'remote' : 'onsite'}
   data-visa={job.visaReported ? '1' : '0'}
-  data-search={`${job.title} ${job.company} ${job.city ?? ''} ${job.locationRaw}`.toLowerCase()}
+  data-search={`${shownTitle} ${job.title} ${job.company} ${job.city ?? ''} ${job.locationRaw}`.toLowerCase()}
 >
   <div class="flex items-start justify-between gap-3">
     <h3
@@ -70,7 +70,7 @@ const autoTranslated = isAutoTranslated(job, locale);
   </p>
 
   <div class:list={['mt-auto flex flex-wrap items-center gap-2 text-graphite-400', compact ? 'text-[11px]' : 'text-xs']}>
-    <span class="rounded-full bg-graphite-800 px-2.5 py-1">{job.category}</span>
+    <span class="rounded-full bg-graphite-800 px-2.5 py-1">{categoryLabel(job.category)}</span>
     {
       job.remote && (
         <span class="rounded-full bg-graphite-800 px-2.5 py-1 text-brand-300">↗ {t('card.remote')}</span>

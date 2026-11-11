@@ -1,0 +1,56 @@
+name: 06 · Actualizar contexto de empresas
+
+on:
+  workflow_run:
+    workflows: [01 · Actualizar vacantes]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: employer-context
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Comprobar frecuencia
+        id: frequency
+        env:
+          TRIGGER: ${{ github.event_name }}
+        run: |
+          if [[ "$TRIGGER" == "workflow_dispatch" || "$(TZ=America/Lima date +%u)" == "7" ]]; then
+            echo "refresh=true" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/setup-node@v4
+        if: steps.frequency.outputs.refresh == 'true'
+        with:
+          node-version: 22
+      - name: Actualizar resúmenes de opiniones con Apify
+        if: steps.frequency.outputs.refresh == 'true'
+        run: node scripts/refresh-employer-reviews.mjs
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+      - name: Publicar resúmenes actualizados
+        if: steps.frequency.outputs.refresh == 'true'
+        run: |
+          if git diff --quiet -- src/data/employer-reviews.json; then exit 0; fi
+          git config user.name "labormin-bot"
+          git config user.email "bot@labormin.com"
+          git add -- src/data/employer-reviews.json
+          git commit -m "chore(data): refresh employer review summaries"
+          for attempt in 1 2 3; do
+            git pull --rebase origin main || { git rebase --abort; exit 1; }
+            if git push origin HEAD:main; then exit 0; fi
+            sleep "$attempt"
+          done
+          exit 1

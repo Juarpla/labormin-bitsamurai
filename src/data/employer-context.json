@@ -1,0 +1,89 @@
+{
+  "southern-copper": {
+    "aliases": [
+      "southern copper",
+      "southern peru copper corporation"
+    ],
+    "officialUrl": "https://southerncoppercorp.com/wp-content/uploads/2026/02/10k2025.pdf",
+    "reviewsUrl": "https://pe.indeed.com/cmp/Southern-Peru-Copper-Corporation/reviews?fcountry=PE",
+    "locations": [
+      {
+        "name": "Mina Toquepala",
+        "address": "Ilabaya, Tacna",
+        "description": "Mina de cobre a tajo abierto con concentradora. Si esta es la unidad asignada, confirma si el transporte de personal sale desde Tacna y dónde se aborda."
+      },
+      {
+        "name": "Mina Cuajone",
+        "address": "Torata, Moquegua",
+        "description": "Mina de cobre a tajo abierto con concentradora, cerca de la ciudad de Moquegua. Pregunta por el punto de recojo y el acceso al área donde trabajarías."
+      },
+      {
+        "name": "Fundición y refinería de Ilo",
+        "address": "Pacocha, Ilo, Moquegua",
+        "description": "Complejo costero que procesa concentrados de cobre. Cumple una función distinta de las minas de Toquepala y Cuajone."
+      }
+    ],
+    "reviewHighlights": [
+      {
+        "topic": "Trabajo en equipo",
+        "text": "Un testimonio de conducción destaca la comunicación y el apoyo entre compañeros."
+      },
+      {
+        "topic": "Seguridad y capacitación",
+        "text": "Un operador en Ilo menciona controles de seguridad. Un testimonio de mantenimiento en Moquegua señala que recibió poca capacitación."
+      },
+      {
+        "topic": "Remuneración",
+        "text": "Un testimonio del área de salud en Ilo valora el sueldo y las utilidades de su propio puesto."
+      }
+    ],
+    "travel": "Toquepala queda a unos 150 km por carretera desde la ciudad de Tacna. Cuajone está en Torata, en la región Moquegua. Si la entrevista es en Ilo, confirma si te citan en la fundición de Pacocha o en otra sede."
+  },
+  "minera-chinalco": {
+    "aliases": [
+      "minera chinalco",
+      "minera chinalco peru",
+      "minera chinalco peru s a"
+    ],
+    "officialUrl": "https://www.chinalco.com.pe/contacto",
+    "reviewsUrl": "https://pe.indeed.com/cmp/Minera-Chinalco-Peru-1/reviews?fcountry=PE",
+    "locations": [
+      {
+        "name": "Oficina de Lima",
+        "address": "Av. Santa Cruz 180, Torre A, San Isidro, Lima",
+        "description": "Oficina publicada por Chinalco en San Isidro. Para una vacante en Lima, confirma con el equipo de selección si esta es la dirección de trabajo."
+      },
+      {
+        "name": "Sede de Huancayo",
+        "address": "Av. Uruguay 450, Urb. San Carlos, Huancayo, Junín",
+        "description": "Sede de contacto en Huancayo. Consulta si el equipo de la vacante trabaja en esta oficina o si solo es un punto de atención."
+      },
+      {
+        "name": "Sede de Nueva Morococha",
+        "address": "Carretera Central km 150.5, Nueva Morococha, Junín",
+        "description": "Sede de contacto próxima a la zona de la unidad Toromocho. Para una visita, pide el punto exacto de ingreso a la operación y las indicaciones de traslado."
+      },
+      {
+        "name": "Unidad minera Toromocho",
+        "address": "Morococha y Yauli, Junín",
+        "description": "Mina a tajo abierto con planta concentradora de cobre. Está en zona de altura y el acceso a la operación debe coordinarse con Chinalco.",
+        "sourceUrl": "https://www.chinalco.com.pe/operaciones/toromocho"
+      }
+    ],
+    "reviewHighlights": [
+      {
+        "topic": "Trabajo en equipo",
+        "text": "Un testimonio describe jornadas exigentes y destaca el apoyo entre compañeros para sacar adelante el trabajo del grupo."
+      },
+      {
+        "topic": "Turnos y familia",
+        "text": "Un testimonio del área eléctrica en Junín señala la dificultad de pasar dos semanas lejos de casa. Otra persona valora el descanso que le permite su propio régimen."
+      },
+      {
+        "topic": "Remuneración",
+        "text": "Una persona valora el trato, las condiciones y la remuneración que recibió en su puesto."
+      }
+    ],
+    "travel": "La oficina de Lima está en San Isidro. Si te piden viajar a Toromocho, ten en cuenta que la unidad está en la zona altoandina de Yauli, Junín. Pide el punto de encuentro y las instrucciones de ingreso."
+  }
+}

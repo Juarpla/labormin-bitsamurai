@@ -2,61 +2,16 @@
 import JobSectionHeading from './JobSectionHeading.astro';
 import JobExperienceGuide from './JobExperienceGuide.astro';
 import GuideIcon from './guides/GuideIcon.astro';
+import { applicationPreparation } from '../lib/application-preparation';
 import { education } from '../lib/education';
 import type { careerGuidance } from '../lib/job-guidance.mjs';
 import type { Job } from '../schemas';
 
-interface Props { guide: ReturnType<typeof careerGuidance>; job: Job; tools: string[]; experience?: string }
-const { guide, job, tools, experience } = Astro.props;
+interface Props { guide: ReturnType<typeof careerGuidance>; job: Job; title: string; tools: string[]; experience?: string }
+const { guide, job, title, tools, experience } = Astro.props;
 const training = guide.trainingIds.flatMap((id: string) => education.filter(option => option.id === id));
-const preparation = [
-  {
-    icon: 'credential', title: 'Ajusta tu CV',
-    text: job.internship
-      ? 'Indica tu carrera y tu ciclo o fecha de egreso. Destaca un proyecto académico o una práctica previa que responda a los requisitos del anuncio.'
-      : experience
-      ? `El anuncio menciona «${experience}». En tu CV, destaca los puestos o proyectos que respaldan ese requisito e indica sus fechas.`
-      : 'Da prioridad a los puestos, estudios o proyectos que coinciden con las funciones anunciadas.',
-  },
-  {
-    icon: 'practice', title: 'Muestra cómo trabajas',
-    text: tools.length
-      ? `Si has usado ${tools.slice(0, 3).join(', ')}, prepara un ejemplo. Explica qué entregaste y cómo comprobaste el resultado.`
-      : 'Prepara un ejemplo de una tarea afín. Explica qué entregaste y cómo comprobaste el resultado.',
-  },
-  {
-    icon: 'materials', title: 'Prepara la entrevista',
-    text: job.internship
-      ? 'Pregunta qué aprenderías durante el primer mes, quién revisaría tus tareas y cómo recibirías retroalimentación.'
-      : guide.questions[0] || 'Pregunta cómo se evalúa el trabajo y qué resultados esperan durante los primeros meses.',
-  },
-  {
-    icon: 'time', title: 'Verifica las condiciones',
-    text: job.remote
-      ? 'Confirma desde dónde puedes trabajar, qué horario se espera y si habrá reuniones o viajes presenciales.'
-      : job.internship
-        ? 'Confirma la duración, el horario y la sede. Si estudias, comprueba que el horario sea compatible con tus clases.'
-        : `Confirma ${job.city ? `la dirección de la sede en ${job.city}` : 'la sede y la operación'}, el régimen y quién cubre los traslados.`,
-  },
-  {
-    icon: 'cost', title: job.internship ? 'Consulta la subvención' : 'Aclara la remuneración',
-    text: job.internship
-      ? 'Pregunta por el monto, la fecha de pago y qué gastos de transporte o alimentación cubre la empresa.'
-      : job.salary
-      ? 'Confirma si el monto publicado es bruto o neto y qué conceptos se pagan por separado.'
-      : 'Consulta el monto, la frecuencia de pago y qué gastos cubre la empresa.',
-  },
-  {
-    icon: 'message', title: job.internship ? 'Revisa el convenio y los documentos' : 'Organiza tu postulación',
-    text: job.internship
-      ? 'Confirma si aceptan tu condición de estudiante o egresado y qué convenio o constancia debes presentar.'
-      : 'Revisa si hay un plazo de cierre y qué documentos pide el formulario. Guarda la confirmación de envío para hacer seguimiento.',
-  },
-] as const;
-const trainingChecks = [
-  { icon: 'credential', title: 'Prioriza el requisito', text: 'Identifica qué habilidad es obligatoria y si ya puedes acreditarla con un proyecto o con experiencia.' },
-  { icon: 'materials', title: 'Compara los programas', text: 'Revisa el temario, las horas de práctica, el costo total y la credencial que obtendrías.' },
-] as const;
+const preparation = applicationPreparation(job, title, guide.skill ?? guide.experienceSkill, tools, experience, guide.questions[0]);
+
 ---
 <section class="mt-10 border-t border-graphite-700 pt-7" aria-labelledby="application-guide-title" data-application-guide>
   <JobSectionHeading id="application-guide-title" step={5}>Prepara tu postulación</JobSectionHeading>
@@ -78,21 +33,14 @@ const trainingChecks = [
 
 <section class="mt-10 border-t border-graphite-700 pt-7" aria-labelledby="job-training-title" data-guidance-training>
   <JobSectionHeading id="job-training-title" step={6}>¿No tienes las habilidades que te piden?</JobSectionHeading>
-  <ul role="list" class="mt-4 grid gap-3 sm:grid-cols-2">
-    {trainingChecks.map(({ icon, title, text }) => (
-      <li class="flex items-start gap-3 rounded-xl border border-graphite-700 bg-graphite-900 p-4">
-        <span class="shrink-0 text-brand-400 [&_svg]:size-5"><GuideIcon kind={icon} /></span>
-        <div>
-          <h3 class="text-sm font-semibold text-graphite-100">{title}</h3>
-          <p class="mt-1 text-sm leading-relaxed text-graphite-200">{text}</p>
-        </div>
-      </li>
-    ))}
-  </ul>
+  <p class="mt-3 flex max-w-prose items-start gap-2.5 text-sm leading-relaxed text-graphite-200">
+    <span class="mt-0.5 shrink-0 text-brand-400 [&_svg]:size-5"><GuideIcon kind="credential" /></span>
+    <span>Empieza por la habilidad obligatoria que te falta. Antes de inscribirte, comprueba que el programa la enseñe y compara las horas de práctica, el costo total y la credencial.</span>
+  </p>
   {training.length ? (
     <>
       <h3 class="mt-5 text-sm font-semibold text-graphite-100">Opciones de formación para explorar</h3>
-      {guide.skill && <p class="mt-1 text-sm text-graphite-300">Compara programas relacionados con {guide.skill} y opciones cerca de la vacante.</p>}
+      {guide.skill && <p class="mt-1 text-sm text-graphite-300">Opciones por especialidad de {guide.skill} o por ubicación.</p>}
       <ul class="mt-4 grid gap-3 sm:grid-cols-2">
         {training.map(option => (
           <li class="min-w-0 rounded-xl border border-graphite-700 bg-graphite-850 p-4">

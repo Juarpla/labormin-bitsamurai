@@ -11,7 +11,7 @@ import { mentionedTools, requirementEmphasis, requirementItems } from '../../lib
 import cachedGuidance from '../../data/job-guidance.json';
 import JobCard from '../JobCard.astro';
 import { useTranslations, type Locale } from '../../lib/i18n';
-import { formatSalary, formatDate, allJobs, relatedJobs, titleFor, isAutoTranslated, clearViewFor, locationLine } from '../../lib/jobs';
+import { formatSalary, formatDate, allJobs, relatedJobs, titleFor, isAutoTranslated, clearViewFor, locationLine, categoryLabel } from '../../lib/jobs';
 
 interface Props {
   job: Job;
@@ -45,7 +45,6 @@ const facts = [
 ].filter(fact => fact.value);
 
 const jsonLd = jobPosting(job);
-const categoryLabels: Record<string, string> = { operations: 'Operaciones', maintenance: 'Mantenimiento', engineering: 'Ingeniería', geology: 'Geología', hse: 'Seguridad y ambiente', processing: 'Procesamiento', exploration: 'Exploración', other: 'Empleo minero' };
 ---
 
 <article class="mx-auto max-w-4xl px-4 py-12 sm:px-6">
@@ -55,7 +54,7 @@ const categoryLabels: Record<string, string> = { operations: 'Operaciones', main
 
   <header class="mt-6">
     <div class="flex flex-wrap items-center gap-2 text-xs text-graphite-400">
-      <span class="rounded-full bg-graphite-800 px-2.5 py-1">{job.internship ? 'Práctica minera' : categoryLabels[job.category] || 'Empleo minero'}</span>
+      <span class="rounded-full bg-graphite-800 px-2.5 py-1">{job.internship ? 'Práctica minera' : (job.category === 'other' ? 'Empleo minero' : categoryLabel(job.category))}</span>
       {job.remote && <span class="rounded-full bg-graphite-800 px-2.5 py-1 text-brand-300">↗ {t('card.remote')}</span>}
       {job.openToInternational && (
         <span class="rounded-full border border-brand-600/60 bg-brand-500/10 px-2.5 py-1 text-brand-400">✦ {t('card.international')}</span>
@@ -105,7 +104,7 @@ const categoryLabels: Record<string, string> = { operations: 'Operaciones', main
   <section class="mt-10" aria-labelledby="job-description-title">
     <JobSectionHeading id="job-description-title" step={1}>Descripción</JobSectionHeading>
     <div data-job-clear-view class="mt-3 break-words">
-      <h3 id="job-tips-title" class="font-semibold text-graphite-100">Tips para postular</h3>
+      <h3 id="job-tips-title" class="font-semibold text-brand-400">Tips</h3>
       <ul class="mt-2 grid gap-3 sm:grid-cols-2" aria-labelledby="job-tips-title">{guide.tips.map((tip) => <li class="flex items-start gap-2.5 text-sm leading-relaxed text-graphite-200">
         <svg class="mt-0.5 size-4 shrink-0 text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
           <path d="m12 3 2.3 6.7L21 12l-6.7 2.3L12 21l-2.3-6.7L3 12l6.7-2.3L12 3Z" />
@@ -152,7 +151,7 @@ const categoryLabels: Record<string, string> = { operations: 'Operaciones', main
   </section>
 
   <JobContextGuide job={job} skill={guide.skill ?? (job.internship ? guide.experienceSkill : null)} title={titleFor(job, locale)} experience={verifiedExperience} />
-  <EmploymentApplicationGuide guide={guide} job={job} tools={tools} experience={verifiedExperience} />
+  <EmploymentApplicationGuide guide={guide} job={job} title={titleFor(job, locale)} tools={tools} experience={verifiedExperience} />
 
   {related.length > 0 && (
     <section class="mt-16">

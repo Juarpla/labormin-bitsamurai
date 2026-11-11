@@ -13,18 +13,11 @@ const { guide, step, experience, internship } = Astro.props;
 ---
 <section class="mt-10 border-t border-graphite-700 pt-7" aria-labelledby="job-experience-title"  data-guidance-experience>
   <JobSectionHeading id="job-experience-title" step={step}>{internship ? '¿Cómo puedes ganar experiencia?' : '¿Te hace falta ganar más experiencia?'}</JobSectionHeading>
-  <div class="mt-4 rounded-xl border border-graphite-700 bg-graphite-900 p-4 sm:p-5">
-    <div class="flex items-start gap-3">
-      <span class="grid size-10 shrink-0 place-items-center rounded-lg border border-graphite-700 bg-graphite-850 text-brand-400 [&_svg]:size-6"><GuideIcon kind="practice" /></span>
-      <div>
-        <h3 class="font-semibold text-graphite-100">Identifica qué experiencia puedes acreditar</h3>
-        {experience && <p class="mt-1 text-sm leading-relaxed text-graphite-200">El anuncio menciona <strong class="text-graphite-100">{experience}</strong>.</p>}
-      </div>
-    </div>
-    <ul role="list" class="mt-3 grid gap-3 text-sm leading-relaxed text-graphite-200 sm:grid-cols-2 sm:gap-5">
-      <li class="flex items-start gap-2.5"><span class="mt-0.5 shrink-0 text-brand-400 [&_svg]:size-5"><GuideIcon kind="time" /></span><span>{internship ? 'Pregunta si puedes acreditar el requisito con prácticas previas, voluntariado o proyectos académicos.' : 'Confirma qué experiencia es obligatoria y en qué funciones debe haberse adquirido.'}</span></li>
-      <li class="flex items-start gap-2.5"><span class="mt-0.5 shrink-0 text-brand-400 [&_svg]:size-5"><GuideIcon kind="credential" /></span><span>{internship ? 'Prepara una muestra de tu trabajo, como un informe, un plano o un análisis. Explica qué parte hiciste y cómo verificaste el resultado.' : 'Identifica qué tareas ya has hecho en prácticas o proyectos y pregunta qué evidencia acepta el empleador.'}</span></li>
-    </ul>
+  <div class="mt-3 max-w-prose space-y-2 text-sm leading-relaxed text-graphite-200">
+    {experience && <p>El anuncio menciona <strong class="text-graphite-100">{experience}</strong>. Pregunta si el requisito es obligatorio y qué funciones cuentan.</p>}
+    <p>{internship
+      ? 'Si ya hiciste un informe, un plano o un análisis durante tus estudios, prepara una muestra y explica tu aporte. Pregunta si aceptan ese trabajo o el voluntariado como experiencia.'
+      : 'Haz una lista de las tareas del anuncio que ya realizaste en proyectos o prácticas. Pregunta qué documentos acepta el empleador para acreditarlas.'}</p>
   </div>
   {guide.opportunities.length ? (
     <>

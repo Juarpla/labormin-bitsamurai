@@ -171,3 +171,19 @@ export const categoryOrder = [
   'exploration', 'drill-blast', 'geology', 'hse', 'maintenance',
   'processing', 'engineering', 'operations', 'other',
 ];
+
+const categoryLabels = new Map([
+  ['exploration', 'Exploración'],
+  ['drill-blast', 'Perforación y voladura'],
+  ['geology', 'Geología'],
+  ['hse', 'Seguridad y ambiente'],
+  ['maintenance', 'Mantenimiento'],
+  ['processing', 'Procesamiento'],
+  ['engineering', 'Ingeniería'],
+  ['operations', 'Operaciones'],
+  ['other', 'Otras áreas'],
+]);
+
+export function categoryLabel(category: string): string {
+  return categoryLabels.get(category) ?? 'Otras áreas';
+}

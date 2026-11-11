@@ -1,26 +1,19 @@
 ---
 import AdSlot from '../AdSlot.astro';
 import JobCard from '../JobCard.astro';
+import JobFilters from '../JobFilters.astro';
 import JobDrawer from '../JobDrawer.astro';
-import { useTranslations, miningCountries, countryName, GLOBAL, type Locale } from '../../lib/i18n';
-import { jobs, jobIndex, categoryOrder } from '../../lib/jobs';
+import { useTranslations, type Locale } from '../../lib/i18n';
+import { jobs, jobIndex } from '../../lib/jobs';
 
 interface Props {
   locale?: Locale;
 }
-const { locale = 'en' } = Astro.props;
+const { locale = 'es' } = Astro.props;
 const t = useTranslations(locale);
 
 const index = jobIndex(locale);
-const presentCountries = [...new Set(jobs.map((j) => j.country))];
-const presentCategories = [...new Set(jobs.map((j) => j.category))].sort(
-  (a, b) => categoryOrder.indexOf(a) - categoryOrder.indexOf(b)
-);
-
-const payload = JSON.stringify({
-  index,
-  countMsg: t('jobs.count', { n: '{n}' }),
-});
+const payload = JSON.stringify({ index });
 ---
 
 <div class="xl:grid xl:grid-cols-[160px_56rem_160px] xl:justify-center xl:gap-4">
@@ -43,52 +36,9 @@ const payload = JSON.stringify({
     class="mx-auto w-fit lg:hidden"
   />
 
-  <div class="mt-10 rounded-2xl border border-graphite-800 bg-graphite-900/60 p-4">
-    <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-      <div class="flex min-w-0 flex-col gap-1">
-        <label for="f-country" class="text-xs font-semibold uppercase tracking-widest text-graphite-400">{t('jobs.filter.country')}</label>
-        <select id="f-country" class="w-full rounded-xl border border-graphite-700 bg-graphite-900 px-3 py-2 text-sm outline-none focus:border-brand-500">
-          <option value="">{t('jobs.filter.all')}</option>
-          {presentCountries.map((c) => <option value={c}>{c === GLOBAL ? t('card.global') : countryName(c)}</option>)}
-        </select>
-      </div>
-      <div class="flex min-w-0 flex-col gap-1">
-        <label for="f-category" class="text-xs font-semibold uppercase tracking-widest text-graphite-400">{t('jobs.filter.category')}</label>
-        <select id="f-category" class="w-full rounded-xl border border-graphite-700 bg-graphite-900 px-3 py-2 text-sm outline-none focus:border-brand-500">
-          <option value="">{t('jobs.filter.all')}</option>
-          {presentCategories.map((c) => <option value={c}>{c}</option>)}
-        </select>
-      </div>
-      <div class="flex min-w-0 flex-col gap-1">
-        <label for="f-type" class="text-xs font-semibold uppercase tracking-widest text-graphite-400">{t('jobs.filter.type')}</label>
-        <select id="f-type" class="w-full rounded-xl border border-graphite-700 bg-graphite-900 px-3 py-2 text-sm outline-none focus:border-brand-500">
-          <option value="">{t('jobs.filter.all')}</option>
-          <option value="onsite">{t('jobs.type.onsite')}</option>
-          <option value="remote">{t('jobs.type.remote')}</option>
-        </select>
-      </div>
-      <div class="flex min-w-0 flex-col gap-1">
-        <label for="f-search" class="text-xs font-semibold uppercase tracking-widest text-graphite-400">{t('jobs.filter.searchLabel')}</label>
-        <input
-          id="f-search"
-          type="search"
-          placeholder={t('jobs.filter.search')}
-          class="w-full rounded-xl border border-graphite-700 bg-graphite-900 px-3 py-2 text-sm outline-none focus:border-brand-500"
-        />
-      </div>
-    </div>
-    <div class="mt-3 flex flex-wrap items-center justify-between gap-x-2 gap-y-2">
-      <button
-        id="f-clear"
-        type="button"
-        class="rounded-full border border-graphite-700 px-3.5 py-1.5 text-sm text-graphite-200 outline-none transition-colors hover:border-brand-500 hover:text-brand-400 focus-visible:border-brand-500"
-      >
-        {t('jobs.clear')}
-      </button>
-    </div>
-  </div>
+  <JobFilters jobs={jobs} locale={locale} />
 
-  <p id="f-count" class="mt-6 text-sm text-graphite-400">{t('jobs.count', { n: jobs.length })}</p>
+  <p id="f-count" aria-live="polite" data-count-message={t('jobs.count', { n: '{n}' })} class="mt-6 text-sm text-graphite-400">{t('jobs.count', { n: jobs.length })}</p>
 
   <div id="jobs-grid" class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
     {jobs.map((job) => (
@@ -150,63 +100,6 @@ const payload = JSON.stringify({
 <script type="application/json" id="lm-jobs-data" set:html={payload.replace(/</g, '\\u003c')} />
 
 <script>
-  const countrySel = document.getElementById('f-country') as HTMLSelectElement;
-  const categorySel = document.getElementById('f-category') as HTMLSelectElement;
-  const typeSel = document.getElementById('f-type') as HTMLSelectElement;
-  const searchInput = document.getElementById('f-search') as HTMLInputElement;
-  const clearBtn = document.getElementById('f-clear') as HTMLButtonElement;
-  const countEl = document.getElementById('f-count')!;
-  const emptyEl = document.getElementById('jobs-empty')!;
-  const grid = document.getElementById('jobs-grid')!;
-
   const data = JSON.parse(document.getElementById('lm-jobs-data')!.textContent!);
   (window as any).__lmIndex = data.index;
-
-  // Prefiltro desde la URL (p. ej. /jobs?q=Buenaventura — enlaces desde /bolsa;
-  // /jobs?type=remote — "Ver todos" desde home).
-  const params = new URLSearchParams(location.search);
-  const initialQ = params.get('q');
-  if (initialQ) searchInput.value = initialQ;
-  const initialType = params.get('type');
-  if (initialType === 'onsite' || initialType === 'remote') typeSel.value = initialType;
-  const tierParam = params.get('tier');
-  let tierFilter = tierParam === 'pe' ? '1' : tierParam === 'remote' ? '2' : '';
-
-  function applyFilters() {
-    let visible = 0;
-    const cards = grid.querySelectorAll<HTMLElement>('article[data-country]');
-    const country = countrySel.value;
-    const category = categorySel.value;
-    const type = typeSel.value;
-    const q = searchInput.value.trim().toLowerCase();
-
-    cards.forEach((card) => {
-      let show = true;
-      if (country && card.dataset.country !== country) show = false;
-      if (category && card.dataset.category !== category) show = false;
-      if (type && card.dataset.type !== type) show = false;
-      if (tierFilter && card.dataset.tier !== tierFilter) show = false;
-      if (q && !card.dataset.search.includes(q)) show = false;
-      card.classList.toggle('hidden', !show);
-      if (show) visible++;
-    });
-
-    countEl.textContent = data.countMsg.replace('{n}', String(visible));
-    emptyEl.classList.toggle('hidden', visible !== 0);
-  }
-
-  [countrySel, categorySel, typeSel].forEach((el) => el.addEventListener('change', applyFilters));
-  searchInput.addEventListener('input', applyFilters);
-  function clearFilters() {
-    countrySel.value = '';
-    categorySel.value = '';
-    typeSel.value = '';
-    tierFilter = '';
-    searchInput.value = '';
-    applyFilters();
-  }
-  clearBtn.addEventListener('click', clearFilters);
-  document.getElementById('f-clear-empty')?.addEventListener('click', clearFilters);
-
-  if (initialQ || initialType || tierFilter) applyFilters();
 </script>
