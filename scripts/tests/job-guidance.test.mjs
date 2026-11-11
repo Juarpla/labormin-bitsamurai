@@ -118,3 +118,10 @@ test('career guidance expands training with options near the vacancy', () => {
   // sin ubicación no se amplía
   assert.equal(careerGuidanceContext(job, [], now).trainingIds.length, 3);
 });
+
+test('career guidance always offers two distinct tips without changing cached selections', () => {
+  const context = careerGuidanceContext({ ...job, title: 'Puesto general', description: 'Funciones generales' }, [], new Date('2026-11-09T12:00:00Z'));
+  const result = careerGuidance(context);
+  assert.equal(result.tips.length, 2);
+  assert.notEqual(result.tips[0], result.tips[1]);
+});

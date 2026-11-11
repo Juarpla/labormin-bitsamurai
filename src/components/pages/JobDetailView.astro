@@ -5,6 +5,7 @@ import type { Job } from '../../schemas';
 import EmploymentApplyLink from '../EmploymentApplyLink.astro';
 import JobSectionHeading from '../JobSectionHeading.astro';
 import EmploymentApplicationGuide from '../EmploymentApplicationGuide.astro';
+import JobContextGuide from '../JobContextGuide.astro';
 import { careerGuidance, careerGuidanceContext, publishedExperience } from '../../lib/job-guidance.mjs';
 import { mentionedTools, requirementEmphasis, requirementItems } from '../../lib/job-description.mjs';
 import cachedGuidance from '../../data/job-guidance.json';
@@ -21,7 +22,7 @@ const t = useTranslations(locale);
 const related = relatedJobs(job, 3);
 const backPath = job.internship ? '/practicas' : '/jobs';
 const backHref = locale === 'es' ? backPath : `/${locale}${backPath}`;
-const { sections } = clearViewFor(job);
+const { sections, generated } = clearViewFor(job);
 const guide = careerGuidance(careerGuidanceContext(job, allJobs), cachedGuidance[job.id as keyof typeof cachedGuidance]);
 
 const descriptionText = sourceText(job.description);
@@ -104,12 +105,13 @@ const categoryLabels: Record<string, string> = { operations: 'Operaciones', main
   <section class="mt-10" aria-labelledby="job-description-title">
     <JobSectionHeading id="job-description-title" step={1}>Descripción</JobSectionHeading>
     <div data-job-clear-view class="mt-3 break-words">
-      <p class="flex max-w-prose items-start gap-2.5 text-sm leading-relaxed text-graphite-200">
+      {generated && <p class="mb-3 text-xs text-graphite-300">Vista preparada con IA; comprueba los detalles en el texto original.</p>}
+      <ul class="grid gap-2 sm:grid-cols-2" aria-label="Consejos para postular">{guide.tips.map((tip) => <li class="flex items-start gap-2.5 text-sm leading-relaxed text-graphite-200">
         <svg class="mt-0.5 size-4 shrink-0 text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
           <path d="m12 3 2.3 6.7L21 12l-6.7 2.3L12 21l-2.3-6.7L3 12l6.7-2.3L12 3Z" />
         </svg>
-        <span><strong class="font-semibold text-brand-400">Tip:</strong> {guide.tip}</span>
-      </p>
+        <span>{tip}</span>
+      </li>)}</ul>
       <dl class:list={['mt-5 grid gap-2.5', facts.length > 1 && 'sm:grid-cols-2']} aria-label="Datos de la vacante">
         {facts.map(({ label, value, icon }) => (
           <div class="flex min-w-0 items-start gap-3 rounded-xl border border-graphite-700 bg-graphite-850 p-3.5">
@@ -146,10 +148,15 @@ const categoryLabels: Record<string, string> = { operations: 'Operaciones', main
         <p class="mt-5 text-sm text-graphite-300">Consulta el anuncio para conocer los requisitos y las funciones.</p>
       )}
     </div>
+    <details class="mt-5 rounded-xl border border-graphite-700 bg-graphite-900 p-4">
+      <summary class="cursor-pointer text-sm font-medium text-brand-400">Ver texto original</summary>
+      <div class="mt-4 space-y-4 break-words text-graphite-200" data-job-original><Fragment set:html={job.description} /></div>
+    </details>
     <div class="mt-4"><EmploymentApplyLink href={job.url} /></div>
   </section>
 
-  <EmploymentApplicationGuide guide={guide} />
+  <EmploymentApplicationGuide guide={guide} job={job} tools={tools} experience={verifiedExperience} />
+  <JobContextGuide job={job} skill={guide.skill} />
 
   {related.length > 0 && (
     <section class="mt-16">

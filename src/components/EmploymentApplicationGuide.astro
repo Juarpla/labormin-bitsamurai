@@ -2,27 +2,28 @@
 import JobSectionHeading from './JobSectionHeading.astro';
 import JobExperienceGuide from './JobExperienceGuide.astro';
 import GuideIcon from './guides/GuideIcon.astro';
-import { education, trainingGuidePath } from '../lib/education';
+import { education } from '../lib/education';
 import type { careerGuidance } from '../lib/job-guidance.mjs';
+import type { Job } from '../schemas';
 
-interface Props { guide: ReturnType<typeof careerGuidance> }
-const { guide } = Astro.props;
+interface Props { guide: ReturnType<typeof careerGuidance>; job: Job; tools: string[]; experience?: string }
+const { guide, job, tools, experience } = Astro.props;
 const training = guide.trainingIds.flatMap((id: string) => education.filter(option => option.id === id));
 ---
 <section class="mt-12 border-t border-graphite-700 pt-8" aria-labelledby="application-guide-title" data-application-guide>
   <JobSectionHeading id="application-guide-title" step={2}>Prepara tu postulación</JobSectionHeading>
-  <ol class="mt-5 max-w-prose space-y-4">
+  <p class="mt-2 text-sm text-graphite-300">Usa los datos publicados como punto de partida y confirma las condiciones con el empleador.</p>
+  <ol class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
     {[
-      { icon: 'credential', title: 'Prepara una evidencia', text: guide.skill ? 'Destaca en tu CV un proyecto de ' + guide.skill + ' y describe cuál fue tu aporte.' : 'Identifica el requisito principal y anota en tu CV cómo puedes acreditarlo.' },
-      { icon: 'practice', title: 'Aclara lo esencial', text: guide.questions[0] },
-      { icon: 'time', title: 'Confirma las condiciones', text: guide.questions[1] },
+      { icon: 'credential', title: 'Relaciona tu experiencia', text: experience ? `El anuncio menciona «${experience}». Prepara fechas, responsabilidades y un resultado verificable para explicar tu trayectoria.` : 'Identifica las tareas del anuncio y prepara un ejemplo concreto de tu aporte y sus resultados.' },
+      { icon: 'practice', title: 'Muestra cómo trabajas', text: tools.length ? `Si tienes experiencia con ${tools.slice(0, 3).join(', ')}, prepara un ejemplo de uso y explica tu aporte sin atribuirte experiencia que no tienes.` : guide.questions[0] },
+      { icon: 'time', title: 'Confirma antes de postular', text: job.city ? `Confirma el lugar exacto de trabajo en ${job.city}, el régimen y quién cubre los traslados. ${guide.questions[1]}` : `Pregunta por la sede, el régimen y quién cubre los traslados. ${guide.questions[1]}` },
     ].map((step, index) => (
-      <li class="relative grid grid-cols-[2.75rem_1fr] gap-3.5">
-        {index < 2 && <span class="absolute -bottom-4 left-[1.35rem] top-11 border-l border-dashed border-graphite-600" aria-hidden="true"></span>}
+      <li class="grid grid-cols-[2.75rem_1fr] gap-3.5 rounded-xl border border-graphite-700 bg-graphite-900 p-4 sm:block">
         <div class="flex size-11 items-center justify-center rounded-xl border border-graphite-700 bg-graphite-850 text-brand-400 [&_svg]:size-6">
           <GuideIcon kind={step.icon as 'credential' | 'practice' | 'time'} />
         </div>
-        <div class="pb-1">
+        <div class="pb-1 sm:mt-3">
           <h3 class="font-semibold text-graphite-100">{step.title}</h3>
           <p class="mt-1 text-sm leading-relaxed text-graphite-200">{step.text}</p>
         </div>
@@ -33,6 +34,8 @@ const training = guide.trainingIds.flatMap((id: string) => education.filter(opti
 
 <section class="mt-10 border-t border-graphite-700 pt-7" aria-labelledby="job-training-title" data-guidance-training>
   <JobSectionHeading id="job-training-title" step={3}>¿No tienes las habilidades que te piden?</JobSectionHeading>
+  <p class="mt-2 max-w-prose text-sm text-graphite-300">Es normal encontrar requisitos que aún no dominas: las herramientas cambian y la formación de cada persona sigue un recorrido distinto. Antes de inscribirte:</p>
+  <ul class="mt-2 max-w-prose list-disc space-y-1 pl-5 text-sm text-graphite-300 marker:text-brand-400"><li>Separa lo obligatorio de lo deseable en el anuncio.</li><li>Comprueba si ya puedes acreditar la habilidad con experiencia o proyectos; compara temario, costo total y credencial.</li></ul>
   {training.length ? (
     <>
       <p class="mt-2 max-w-prose text-sm leading-relaxed text-graphite-300">{guide.skill ? `Compara opciones relacionadas con ${guide.skill} o cerca de la vacante. Revisa el temario y la credencial frente a lo que pide el puesto.` : 'Compara opciones de formación cerca de la vacante. Revisa el temario y la credencial frente a lo que pide el puesto.'}</p>
@@ -56,7 +59,7 @@ const training = guide.trainingIds.flatMap((id: string) => education.filter(opti
                 <dd class="ml-1.5 inline">{option.duration}</dd>
               </div>
             </dl>
-            <a class="mt-3 inline-block text-sm font-semibold text-brand-400 underline-offset-4 hover:underline" href={trainingGuidePath + '#' + option.id}>Ver programa y condiciones <span aria-hidden="true">→</span></a>
+            <a class="mt-3 inline-block text-sm font-semibold text-brand-400 underline-offset-4 hover:underline" href={`/formacion/#${option.id}`}>Ver programa y condiciones <span aria-hidden="true">→</span></a>
           </li>
         ))}
       </ul>
@@ -74,4 +77,4 @@ const training = guide.trainingIds.flatMap((id: string) => education.filter(opti
   }
 </style>
 
-<JobExperienceGuide guide={guide} step={4} />
+<JobExperienceGuide guide={guide} step={4} experience={experience} />

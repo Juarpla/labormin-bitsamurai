@@ -1,0 +1,42 @@
+---
+import type { Job } from '../schemas';
+import GuideIcon from './guides/GuideIcon.astro';
+interface Props { job: Job; skill: string | null }
+const { job, skill } = Astro.props;
+const city = job.city?.trim();
+const place = city ? `${city}, Perú` : null;
+const maps = (query: string) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+const search = (query: string) => `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+const companySearch = search(`${job.company} opiniones empleados ${job.title}`);
+---
+<section class="mt-10 border-t border-graphite-700 pt-7" aria-labelledby="role-context-title">
+  <h2 id="role-context-title" class="font-display text-2xl font-semibold text-graphite-100">Conoce el puesto</h2>
+  <div class="mt-4 grid gap-4 sm:grid-cols-[3rem_1fr]">
+    <span class="text-brand-400"><GuideIcon kind="practice" /></span>
+    <div class="space-y-2 text-sm leading-relaxed text-graphite-200">
+      <p>El anuncio identifica este puesto como <strong>{job.title}</strong>{skill && <> y lo relaciona con {skill}</>}. Sus funciones y nivel de responsabilidad pueden cambiar entre empresas y operaciones.</p>
+      <p>Para comparar puestos similares, revisa las funciones, herramientas, experiencia y condiciones de cada convocatoria.</p>
+      <a href={search(`${job.title} funciones empleo minería Perú`)} target="_blank" rel="noopener noreferrer" class="inline-block font-semibold text-brand-400 hover:underline">Buscar puestos similares ↗</a>
+    </div>
+  </div>
+</section>
+<section class="mt-10 border-t border-graphite-700 pt-7" aria-labelledby="place-context-title">
+  <h2 id="place-context-title" class="font-display text-2xl font-semibold text-graphite-100">Antes de trasladarte</h2>
+  {job.remote ? <p class="mt-3 text-sm text-graphite-300">La vacante figura como remota. Confirma desde dónde puedes trabajar y si habrá visitas presenciales.</p> : place ? <>
+    <p class="mt-3 text-sm text-graphite-300">Ubicación indicada: <strong class="text-graphite-100">{city}</strong>. Confirma la sede y la distancia a la operación con el empleador.</p>
+    <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="rounded-xl border border-graphite-700 bg-graphite-900 p-4"><span class="text-brand-400"><GuideIcon kind="travel" /></span><h3 class="mt-2 font-semibold text-graphite-100">Ubícate</h3><p class="mt-1 text-sm text-graphite-300">Busca alojamiento temporal, rutas y lugares para comer cerca de la sede confirmada.</p><a class="mt-3 inline-block text-sm font-semibold text-brand-400 hover:underline" href={maps(place)} target="_blank" rel="noopener noreferrer">Abrir mapa de {city} ↗</a></div>
+      <div class="rounded-xl border border-graphite-700 bg-graphite-900 p-4"><span class="text-brand-400"><GuideIcon kind="time" /></span><h3 class="mt-2 font-semibold text-graphite-100">Clima y terreno</h3><p class="mt-1 text-sm text-graphite-300">Revisa pronóstico, altitud y rutas para la fecha de viaje y la ubicación exacta de la operación.</p><a class="mt-3 inline-block text-sm font-semibold text-brand-400 hover:underline" href={search(`clima altitud ${place}`)} target="_blank" rel="noopener noreferrer">Consultar clima y altitud ↗</a></div>
+      <div class="rounded-xl border border-graphite-700 bg-graphite-900 p-4"><span class="text-brand-400"><GuideIcon kind="cost" /></span><h3 class="mt-2 font-semibold text-graphite-100">Calcula tu día</h3><p class="mt-1 text-sm text-graphite-300">Suma alojamiento, desayuno, almuerzo, cena y transporte. Confirma si la empresa cubre alguno.</p><a class="mt-3 inline-block text-sm font-semibold text-brand-400 hover:underline" href={maps(`restaurantes y alojamiento en ${place}`)} target="_blank" rel="noopener noreferrer">Comparar opciones en el mapa ↗</a></div>
+    </div>
+    <p class="mt-3 text-xs text-graphite-400">No contamos con precios locales verificados; consulta tarifas actuales antes de calcular tu presupuesto.</p>
+  </> : <p class="mt-3 max-w-prose text-sm leading-relaxed text-graphite-300">El anuncio no identifica una ciudad. Pregunta por la sede y la operación antes de calcular alojamiento, comidas y transporte; consulta también el clima, la altitud y qué gastos cubre la empresa.</p>}
+</section>
+<section class="mt-10 border-t border-graphite-700 pt-7" aria-labelledby="company-context-title">
+  <h2 id="company-context-title" class="font-display text-2xl font-semibold text-graphite-100">Investiga a {job.company}</h2>
+  <div class="mt-4 grid gap-4 sm:grid-cols-[3rem_1fr]"><span class="text-brand-400"><GuideIcon kind="credential" /></span><div class="space-y-2 text-sm leading-relaxed text-graphite-200">
+    <p>No tenemos una calificación verificada para esta empresa y este puesto. Las opiniones pueden variar según la sede, el cargo y la fecha.</p>
+    <p>Al leer reseñas, compara el número de opiniones, su antigüedad y los comentarios sobre seguridad, turnos y condiciones. Confirma la identidad del reclutador en canales oficiales.</p>
+    <a href={companySearch} target="_blank" rel="noopener noreferrer" class="inline-block font-semibold text-brand-400 hover:underline">Buscar opiniones sobre la empresa y el puesto ↗</a>
+  </div></div>
+</section>

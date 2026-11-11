@@ -6,11 +6,13 @@ import type { careerGuidance } from '../lib/job-guidance.mjs';
 interface Props {
   guide: ReturnType<typeof careerGuidance>;
   step?: number;
+  experience?: string;
 }
-const { guide, step } = Astro.props;
+const { guide, step, experience } = Astro.props;
 ---
 <section class="mt-10 border-t border-graphite-700 pt-7" aria-labelledby="job-experience-title"  data-guidance-experience>
   <JobSectionHeading id="job-experience-title" step={step}>¿Te hace falta ganar más experiencia?</JobSectionHeading>
+  {experience && <div class="mt-3 max-w-prose text-sm leading-relaxed text-graphite-300"><p>El anuncio menciona <strong class="text-graphite-100">{experience}</strong>. Antes de descartarte:</p><ul class="mt-2 list-disc space-y-1 pl-5 marker:text-brand-400"><li>Revisa si ese tiempo es obligatorio o deseable y en qué funciones debe haberse adquirido.</li><li>Compara tus proyectos y prácticas con las tareas publicadas; consulta al empleador si los acepta.</li></ul></div>}
   {guide.opportunities.length ? (
     <>
       <p class="mt-2 max-w-prose text-sm leading-relaxed text-graphite-300">Explora oportunidades de nivel inicial relacionadas con {guide.experienceSkill}.</p>

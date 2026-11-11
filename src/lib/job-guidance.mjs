@@ -194,6 +194,7 @@ const tips = {
   safety: 'Prepara un ejemplo de cómo identificaste un riesgo y qué medidas tomaste antes de iniciar el trabajo.',
   experience: 'Relaciona la experiencia que pide el anuncio con un proyecto concreto y describe tu aporte.',
   role: 'Elige una tarea del anuncio y prepara un ejemplo que muestre cómo la abordarías.',
+  verify: 'Anota las dudas sobre el lugar, el horario y las condiciones para consultarlas con el empleador.',
 };
 
 const entryRole = /\b(?:practicante|trainee|becari[oa]|auxiliar|ayudante|asistente|junior|jr)\b/;
@@ -316,6 +317,7 @@ export function careerGuidance(context, entry) {
   return {
     skill: context.skill,
     tip: tips[selected ? entry.tipId : context.tipIds[0]],
+    tips: [...new Set([selected ? entry.tipId : context.tipIds[0], ...context.tipIds, 'verify'])].slice(0, 2).map(id => tips[id]),
     questions: (selected || hasPracticeQuestions ? entry.questionIds : context.fallback).map(id => questions[id]),
     trainingIds: selected ? entry.trainingIds : context.trainingIds,
     experienceSkill: context.experienceSkill,
