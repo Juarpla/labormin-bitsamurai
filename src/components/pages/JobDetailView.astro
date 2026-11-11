@@ -105,7 +105,8 @@ const categoryLabels: Record<string, string> = { operations: 'Operaciones', main
   <section class="mt-10" aria-labelledby="job-description-title">
     <JobSectionHeading id="job-description-title" step={1}>Descripción</JobSectionHeading>
     <div data-job-clear-view class="mt-3 break-words">
-      <ul class="grid gap-2 sm:grid-cols-2" aria-label="Consejos para postular">{guide.tips.map((tip) => <li class="flex items-start gap-2.5 text-sm leading-relaxed text-graphite-200">
+      <h3 id="job-tips-title" class="font-semibold text-graphite-100">Tips para postular</h3>
+      <ul class="mt-2 grid gap-3 sm:grid-cols-2" aria-labelledby="job-tips-title">{guide.tips.map((tip) => <li class="flex items-start gap-2.5 text-sm leading-relaxed text-graphite-200">
         <svg class="mt-0.5 size-4 shrink-0 text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
           <path d="m12 3 2.3 6.7L21 12l-6.7 2.3L12 21l-2.3-6.7L3 12l6.7-2.3L12 3Z" />
         </svg>
@@ -150,8 +151,8 @@ const categoryLabels: Record<string, string> = { operations: 'Operaciones', main
     <div class="mt-4"><EmploymentApplyLink href={job.url} /></div>
   </section>
 
+  <JobContextGuide job={job} skill={guide.skill} title={titleFor(job, locale)} experience={verifiedExperience} />
   <EmploymentApplicationGuide guide={guide} job={job} tools={tools} experience={verifiedExperience} />
-  <JobContextGuide job={job} skill={guide.skill} />
 
   {related.length > 0 && (
     <section class="mt-16">

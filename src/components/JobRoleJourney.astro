@@ -1,0 +1,107 @@
+---
+import GuideIcon from './guides/GuideIcon.astro';
+
+interface Props { skill: string | null }
+const { skill } = Astro.props;
+const paths: Record<string, string[]> = {
+  'planeamiento minero': [
+    'Lee planos, aprende a estimar volúmenes y entiende cómo se organiza la extracción en una mina superficial.',
+    'Apoya la actualización de planes, contrasta la producción real con lo previsto y documenta las causas de los desvíos.',
+    'Compara secuencias de minado, necesidades de equipos y presupuestos al preparar escenarios de mediano plazo.',
+  ],
+  'electrónica industrial': [
+    'Aprende a leer esquemas y a medir señales de sensores y circuitos de control.',
+    'Participa en pruebas de tableros y documenta fallas de instrumentación con supervisión.',
+    'Diagnostica fallas recurrentes y plantea mejoras de control o automatización.',
+  ],
+  electricidad: [
+    'Lee diagramas unifilares y estudia protecciones, medición y procedimientos de aislamiento.',
+    'Acompaña inspecciones y mantenimiento de motores, tableros y redes con supervisión.',
+    'Analiza fallas repetitivas y propone mejoras en protecciones y mantenimiento preventivo.',
+  ],
+  'mantenimiento mecánico': [
+    'Interpreta planos y manuales. Familiarízate con lubricación, tolerancias y desgaste.',
+    'Apoya inspecciones, cambios de componentes y registro de intervenciones en equipos.',
+    'Usa el historial de fallas para programar paradas y evaluar mejoras de disponibilidad.',
+  ],
+  hidráulica: [
+    'Estudia presión, caudal y lectura de esquemas hidráulicos.',
+    'Apoya inspecciones de mangueras, cilindros y bombas con el equipo responsable.',
+    'Relaciona síntomas con causas probables y documenta cómo comprobar cada diagnóstico.',
+  ],
+  'seguridad y salud en el trabajo': [
+    'Aprende a identificar peligros, evaluar riesgos y verificar controles.',
+    'Participa en inspecciones, inducciones y seguimiento de acciones correctivas.',
+    'Analiza incidentes y revisa con los equipos de operación si los controles funcionan en campo.',
+  ],
+  geología: [
+    'Practica descripción de rocas, lectura de mapas y registro de muestras.',
+    'Apoya el mapeo, el logueo o el muestreo y verifica la calidad de los registros.',
+    'Integra datos de campo y perforación para interpretar el yacimiento y comunicar incertidumbres.',
+  ],
+  voladura: [
+    'Estudia perforación, fragmentación y responsabilidades de seguridad en la operación.',
+    'Acompaña al personal autorizado y registra los resultados de perforación y fragmentación.',
+    'Evalúa los resultados con el equipo responsable y relaciona las desviaciones con la calidad de la perforación.',
+  ],
+  'explotación minera': [
+    'Estudia el ciclo de producción y la lectura de planos de operación.',
+    'Apoya el control de turnos y registra la producción, los tiempos y las incidencias.',
+    'Compara los resultados con el plan y explica los efectos de los cambios de secuencia, equipos o costos.',
+  ],
+};
+const steps = [
+  { title: 'Domina la base', icon: 'credential' },
+  { title: 'Gana práctica', icon: 'practice' },
+  { title: 'Asume más alcance', icon: 'materials' },
+] as const;
+const path = (skill && paths[skill]) || [
+  'Identifica las funciones centrales del anuncio y practica las herramientas que aparecen en los requisitos.',
+  'Busca una práctica, un puesto inicial o un proyecto que te permita demostrar una de esas funciones.',
+  'Reúne evidencia de tareas que hayas llevado con más autonomía y explica sus resultados.',
+];
+---
+<div class="mt-4 rounded-xl border border-graphite-700 bg-graphite-900 p-4 sm:p-5">
+  <h3 class="font-semibold text-graphite-100">Una trayectoria posible{skill && ` en ${skill}`}</h3>
+  <ol class="mt-4 grid gap-4 sm:grid-cols-3 sm:gap-5" role="list">
+    {steps.map(({ title, icon }, index) => (
+      <li class="relative grid grid-cols-[2.5rem_minmax(0,1fr)] items-start gap-3 sm:block">
+        {index < steps.length - 1 && (
+          <svg class="journey-line pointer-events-none absolute left-5 top-10 h-[calc(100%-1.5rem)] w-px sm:left-10 sm:top-5 sm:h-px sm:w-[calc(100%+1.25rem-2.5rem)]" aria-hidden="true">
+            <line class="stroke-graphite-600 sm:hidden" x1="0.5" y1="0" x2="0.5" y2="100%" stroke-dasharray="3 3" />
+            <line class="hidden stroke-graphite-600 sm:block" x1="0" y1="0.5" x2="100%" y2="0.5" stroke-dasharray="4 4" />
+          </svg>
+        )}
+        <span class="relative grid size-10 place-items-center rounded-lg border border-graphite-700 bg-graphite-850 text-brand-400 [&_svg]:size-6"><GuideIcon kind={icon} /></span>
+        <div class="sm:mt-2.5">
+          <h4 class="text-sm font-semibold text-graphite-100">{title}</h4>
+          <p class="mt-1 text-sm leading-relaxed text-graphite-200">{path[index]}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+</div>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .journey-line {
+        animation: reveal-route linear both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 25%;
+      }
+
+      @keyframes reveal-route {
+        from { opacity: 0.45; clip-path: inset(0 0 100% 0); }
+        to { opacity: 1; clip-path: inset(0); }
+      }
+
+      @media (min-width: 40rem) {
+        @keyframes reveal-route {
+          from { opacity: 0.45; clip-path: inset(0 100% 0 0); }
+          to { opacity: 1; clip-path: inset(0); }
+        }
+      }
+    }
+  }
+</style>

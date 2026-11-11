@@ -12,10 +12,22 @@ const { guide, step, experience } = Astro.props;
 ---
 <section class="mt-10 border-t border-graphite-700 pt-7" aria-labelledby="job-experience-title"  data-guidance-experience>
   <JobSectionHeading id="job-experience-title" step={step}>¿Te hace falta ganar más experiencia?</JobSectionHeading>
-  {experience && <div class="mt-3 max-w-prose text-sm leading-relaxed text-graphite-300"><p>El anuncio menciona <strong class="text-graphite-100">{experience}</strong>. Antes de descartarte:</p><ul class="mt-2 list-disc space-y-1 pl-5 marker:text-brand-400"><li>Revisa si ese tiempo es obligatorio o deseable y en qué funciones debe haberse adquirido.</li><li>Compara tus proyectos y prácticas con las tareas publicadas; consulta al empleador si los acepta.</li></ul></div>}
+  <div class="mt-4 rounded-xl border border-graphite-700 bg-graphite-900 p-4 sm:p-5">
+    <div class="flex items-start gap-3">
+      <span class="grid size-10 shrink-0 place-items-center rounded-lg border border-graphite-700 bg-graphite-850 text-brand-400 [&_svg]:size-6"><GuideIcon kind="practice" /></span>
+      <div>
+        <h3 class="font-semibold text-graphite-100">Identifica qué experiencia puedes acreditar</h3>
+        {experience && <p class="mt-1 text-sm leading-relaxed text-graphite-200">El anuncio menciona <strong class="text-graphite-100">{experience}</strong>.</p>}
+      </div>
+    </div>
+    <ul role="list" class="mt-3 grid gap-3 text-sm leading-relaxed text-graphite-200 sm:grid-cols-2 sm:gap-5">
+      <li class="flex items-start gap-2.5"><span class="mt-0.5 shrink-0 text-brand-400 [&_svg]:size-5"><GuideIcon kind="time" /></span><span>Confirma qué experiencia es obligatoria y en qué funciones debe haberse adquirido.</span></li>
+      <li class="flex items-start gap-2.5"><span class="mt-0.5 shrink-0 text-brand-400 [&_svg]:size-5"><GuideIcon kind="credential" /></span><span>Identifica qué tareas ya has hecho en prácticas o proyectos y pregunta qué evidencia acepta el empleador.</span></li>
+    </ul>
+  </div>
   {guide.opportunities.length ? (
     <>
-      <p class="mt-2 max-w-prose text-sm leading-relaxed text-graphite-300">Explora oportunidades de nivel inicial relacionadas con {guide.experienceSkill}.</p>
+      <h3 class="mt-5 text-sm font-semibold text-graphite-100">Oportunidades de nivel inicial{guide.experienceSkill && ` en ${guide.experienceSkill}`}</h3>
       <ul class="mt-4 divide-y divide-graphite-700 border-y border-graphite-700">
         {guide.opportunities.map(({ job, experience }) => (
           <li class="grid grid-cols-[1.75rem_minmax(0,1fr)] gap-x-3 gap-y-1.5 py-3.5 sm:grid-cols-[1.75rem_minmax(0,1fr)_auto]">
@@ -30,6 +42,6 @@ const { guide, step, experience } = Astro.props;
       </ul>
     </>
   ) : (
-    <p class="mt-2 max-w-prose text-sm leading-relaxed text-graphite-300">Por ahora no hay oportunidades afines de nivel inicial en el catálogo. <a href="/practicas/" class="font-medium text-brand-400 underline underline-offset-4">Explora las prácticas vigentes</a>.</p>
+    <p class="mt-4 max-w-prose text-sm leading-relaxed text-graphite-300">Por ahora no hay oportunidades afines de nivel inicial en el catálogo. <a href="/practicas/" class="font-medium text-brand-400 underline underline-offset-4">Explora las prácticas vigentes</a>.</p>
   )}
 </section>
