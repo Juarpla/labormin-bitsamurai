@@ -1134,37 +1134,51 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "csb-compania-de--1338127262": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "2e3bcc8d950fad88efb3f50edba14915ab3fceaccb133e392b05b579746f58c8",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
-    "tipId": "experience",
-    "trainingIds": [],
+    "tipId": "software",
+    "trainingIds": [
+      "cenfomin-centro-de-formacion-en-mineria",
+      "instituto-de-formacion-minera-del-peru",
+      "cetpro-cajabamba-cajamarca"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118512886": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118512891": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118513238": {
     "careerSignature": "3369428d2f493dcbd7b61caf0bca77a3ee993cd7f210f938c23d332f294504cc",
@@ -1252,37 +1266,52 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "ct-94B85B23BB21FEE361373E686DCF3405": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "ct-CB1E35ADCA2C827361373E686DCF3405": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "ct-1F6139FF16D786EB61373E686DCF3405": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "ct-A841D4D020997A4461373E686DCF3405": {
     "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
@@ -1326,15 +1355,20 @@
     "generatedAt": "2026-11-09T18:59:59.457Z"
   },
   "ct-F0605BE6B0F0F82161373E686DCF3405": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "99e13c9588ed2118fd67664d677fe9d49606788bce7a0e1862a3c3e55c5c187a",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118514990": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -1359,15 +1393,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118514435": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118514049": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -1392,37 +1431,52 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118514344": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118513895": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118514845": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118234584": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -1480,26 +1534,36 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118513928": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118154701": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118514216": {
     "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
@@ -1575,15 +1639,20 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118514759": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118515106": {
     "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
@@ -1608,26 +1677,36 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118513875": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118514885": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118514848": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -1641,15 +1720,20 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118514654": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "99e13c9588ed2118fd67664d677fe9d49606788bce7a0e1862a3c3e55c5c187a",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118515102": {
     "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
@@ -1772,26 +1856,36 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118513509": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118513507": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118513478": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -1805,15 +1899,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118513189": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "indeed-w-indeed-com-viewjob-jk-a5ad1864c654e6dc": {
     "careerSignature": "cd54c895c5de49e18db7a078251dc71946502df5ca99ae8f630b0bb0271e13e4",
@@ -1898,15 +1997,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "ct-150B99BE94694F8E61373E686DCF3405": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "ct-F79DB9E39875194761373E686DCF3405": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -1942,15 +2046,20 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "ct-2073B42CDB4D09CC61373E686DCF3405": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118512904": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -1964,15 +2073,20 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118512716": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "99e13c9588ed2118fd67664d677fe9d49606788bce7a0e1862a3c3e55c5c187a",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118512350": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -1986,15 +2100,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118473224": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118512923": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -2019,26 +2138,36 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118513097": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118513047": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118512700": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -2063,15 +2192,19 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118513049": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118512211": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -2085,26 +2218,35 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118512191": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118512195": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118511708": {
     "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
@@ -2129,48 +2271,65 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118510536": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "99e13c9588ed2118fd67664d677fe9d49606788bce7a0e1862a3c3e55c5c187a",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118513130": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118513136": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118513133": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118512111": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -2195,15 +2354,20 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118512690": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118512605": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -2370,48 +2534,67 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118510168": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118511431": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118509969": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118510299": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118511294": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -2436,15 +2619,20 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118510193": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118509932": {
     "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
@@ -2509,15 +2697,20 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118511199": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118511016": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -2542,26 +2735,36 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118510568": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118510156": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118510108": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -2608,15 +2811,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118510071": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "99e13c9588ed2118fd67664d677fe9d49606788bce7a0e1862a3c3e55c5c187a",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118510119": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -2700,15 +2908,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "ct-B641B4C5B59A1BB361373E686DCF3405": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "ct-FD615878B82C41C161373E686DCF3405": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -2755,26 +2968,36 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118509709": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118508581": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118508793": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -2788,26 +3011,36 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118509437": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118509435": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118508542": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -2821,15 +3054,19 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118508164": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118509698": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -2843,26 +3080,36 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118508666": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "99e13c9588ed2118fd67664d677fe9d49606788bce7a0e1862a3c3e55c5c187a",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118509296": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "99e13c9588ed2118fd67664d677fe9d49606788bce7a0e1862a3c3e55c5c187a",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118509117": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -3077,15 +3324,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "csb-compania-de--1337934762": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "csb-compania-de--1337939862": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -3110,15 +3362,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "ct-64FF3EBD338CD31E61373E686DCF3405": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118507984": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -3132,15 +3389,20 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118508010": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118507939": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -3176,26 +3438,36 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118507760": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118506492": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118507875": {
     "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
@@ -3209,15 +3481,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118506961": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118506379": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -3286,15 +3563,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118506384": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118506462": {
     "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
@@ -3319,15 +3601,19 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118507031": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118506780": {
     "careerSignature": "025b37b1d71587f08ebc63f837756acf8fe621fb5f59ef0dc3b07e79dd35dfa9",
@@ -3341,15 +3627,20 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118506253": {
-    "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
+    "careerSignature": "9596647c9b7b2f9dad22d7d3ad18fae4188413d42d21b5c4fb624417ce657250",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "role",
-    "trainingIds": [],
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118507279": {
     "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
@@ -3418,15 +3709,20 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118507322": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "indeed-w-indeed-com-viewjob-jk-768f2290a92a4e75": {
     "careerSignature": "d66504f04b0d8ed5cb1555a29a1d956d7ddca8f9a2fa6df5b67e04d1b2454738",
@@ -3570,15 +3866,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "ct-95333A8EA16482BB61373E686DCF3405": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "ct-4B3C4FDF85F9BDDD61373E686DCF3405": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -3622,15 +3923,19 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "ct-7E50E79A0738C66F61373E686DCF3405": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "ct-32C9F58DF7EAB58361373E686DCF3405": {
     "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
@@ -3666,15 +3971,20 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118506102": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118505143": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -3688,59 +3998,82 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118506227": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118506025": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118506016": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118505448": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118504814": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118504595": {
     "careerSignature": "025b37b1d71587f08ebc63f837756acf8fe621fb5f59ef0dc3b07e79dd35dfa9",
@@ -3765,15 +4098,20 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118506060": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118506054": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -3871,59 +4209,84 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118506209": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118506208": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118506207": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118504804": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118392287": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118506174": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -4022,37 +4385,52 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "ct-2EDC1160E6A19E5D61373E686DCF3405": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "ct-28FC6238B393E5F361373E686DCF3405": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "ct-8FA5079D0C0D2AA861373E686DCF3405": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "ct-0BD6391073EC074961373E686DCF3405": {
     "signature": "60a8fee411179644decb4101c405ae55eeceb339b80a6f0524882380cc3b91e3",
@@ -4063,15 +4441,19 @@
     "generatedAt": "2026-11-09T18:59:59.457Z"
   },
   "nv-BMPE-1118504306": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118504399": {
     "careerSignature": "025b37b1d71587f08ebc63f837756acf8fe621fb5f59ef0dc3b07e79dd35dfa9",
@@ -4138,15 +4520,20 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118504093": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118504245": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -4197,15 +4584,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "csb-compania-de--1337897462": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "ct-5D5F26475D820B4361373E686DCF3405": {
     "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
@@ -4219,26 +4611,36 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "ct-02DFA166C7A9208761373E686DCF3405": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118503868": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118503820": {
     "careerSignature": "025b37b1d71587f08ebc63f837756acf8fe621fb5f59ef0dc3b07e79dd35dfa9",
@@ -4296,26 +4698,35 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118502925": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118503827": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118503149": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -4358,26 +4769,36 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118503951": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118504054": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118435535": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -4391,15 +4812,19 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118503749": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118502786": {
     "careerSignature": "025b37b1d71587f08ebc63f837756acf8fe621fb5f59ef0dc3b07e79dd35dfa9",
@@ -4505,37 +4930,51 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "ct-0E63E307BDA04D9D61373E686DCF3405": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118501298": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118499911": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118502527": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -4582,26 +5021,35 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118501288": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118502338": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118502004": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -4644,15 +5092,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118499819": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118502175": {
     "careerSignature": "025b37b1d71587f08ebc63f837756acf8fe621fb5f59ef0dc3b07e79dd35dfa9",
@@ -4710,26 +5163,36 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118501232": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118501176": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118501418": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -4935,15 +5398,20 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118500315": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118500345": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -4968,15 +5436,19 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118500808": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118499889": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -4990,15 +5462,20 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118499433": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118500014": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -5023,37 +5500,52 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118500922": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118500627": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118500600": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118500571": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -5111,15 +5603,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118500940": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "99e13c9588ed2118fd67664d677fe9d49606788bce7a0e1862a3c3e55c5c187a",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118500829": {
     "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
@@ -5327,26 +5824,35 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118499101": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118499070": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "99e13c9588ed2118fd67664d677fe9d49606788bce7a0e1862a3c3e55c5c187a",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118498961": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -5404,15 +5910,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118498494": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "99e13c9588ed2118fd67664d677fe9d49606788bce7a0e1862a3c3e55c5c187a",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118498196": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -5426,15 +5937,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118498700": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "99e13c9588ed2118fd67664d677fe9d49606788bce7a0e1862a3c3e55c5c187a",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118498483": {
     "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
@@ -5745,15 +6261,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118496949": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118497140": {
     "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
@@ -5767,37 +6288,52 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118496946": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118497360": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118497349": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118496743": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -5811,15 +6347,19 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118496808": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118496535": {
     "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
@@ -5855,15 +6395,20 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118497331": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118495295": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -5877,59 +6422,84 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118497337": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118496281": {
-    "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
+    "careerSignature": "9596647c9b7b2f9dad22d7d3ad18fae4188413d42d21b5c4fb624417ce657250",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "role",
-    "trainingIds": [],
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118496035": {
-    "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
+    "careerSignature": "9596647c9b7b2f9dad22d7d3ad18fae4188413d42d21b5c4fb624417ce657250",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "role",
-    "trainingIds": [],
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118497493": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "99e13c9588ed2118fd67664d677fe9d49606788bce7a0e1862a3c3e55c5c187a",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118495736": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "ct-803EBF7D3745F92C61373E686DCF3405": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -5954,15 +6524,20 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118495584": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118495495": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -6005,70 +6580,98 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118495335": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118495337": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "ct-BC30E13B7ABC126261373E686DCF3405": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "ct-6AFA5C3697B0990261373E686DCF3405": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "ct-5A8ADB9A4957ABAC61373E686DCF3405": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118493993": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "99e13c9588ed2118fd67664d677fe9d49606788bce7a0e1862a3c3e55c5c187a",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118495237": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -6093,15 +6696,20 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118494414": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118078245": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -6115,37 +6723,52 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118494242": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118494238": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118494061": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118494031": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -6313,26 +6936,30 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "ct-81B0DBF8EB5B4E7E61373E686DCF3405": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "4adfc02bc5c4b439dd912a1c620e0a0ed835d7ce53dc7caf436bfc68d2e56481",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
-    "tipId": "experience",
-    "trainingIds": [],
+    "tipId": "role",
+    "trainingIds": [
+      "cetpro-naciones-unidas-callao"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "ct-6C7A4E8F1438248261373E686DCF3405": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "4adfc02bc5c4b439dd912a1c620e0a0ed835d7ce53dc7caf436bfc68d2e56481",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
-    "tipId": "experience",
-    "trainingIds": [],
+    "tipId": "role",
+    "trainingIds": [
+      "cetpro-naciones-unidas-callao"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "ct-05FEC951E04ED25161373E686DCF3405": {
     "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
@@ -6357,15 +6984,20 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118492806": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118493199": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -6445,15 +7077,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118493001": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118493341": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -6467,15 +7104,19 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118492397": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118493281": {
     "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
@@ -6533,15 +7174,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118493156": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "99e13c9588ed2118fd67664d677fe9d49606788bce7a0e1862a3c3e55c5c187a",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118491651": {
     "careerSignature": "33ff78de6e5b0edc00ab8ea088f67f6e8aedab72038a6f2c66ea293f969c681c",
@@ -6562,15 +7208,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118493326": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "99e13c9588ed2118fd67664d677fe9d49606788bce7a0e1862a3c3e55c5c187a",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118492045": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -6584,15 +7235,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "gupy-12757866": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "ct-1F03BB368AA0DE8E61373E686DCF3405": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -6628,15 +7284,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "ct-9DECBEDB85F6E7D361373E686DCF3405": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "ct-6DA5B42CFF1292DB61373E686DCF3405": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -6672,26 +7333,35 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118489874": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118491269": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118491437": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -6705,15 +7375,20 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118491288": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118491106": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -6815,15 +7490,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118491197": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118490356": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -6859,15 +7539,20 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118491002": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118491126": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -6903,59 +7588,81 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "csb-compania-de--1326905662": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "ct-508CCCD19BF2B07D61373E686DCF3405": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "4adfc02bc5c4b439dd912a1c620e0a0ed835d7ce53dc7caf436bfc68d2e56481",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
-    "tipId": "experience",
-    "trainingIds": [],
+    "tipId": "role",
+    "trainingIds": [
+      "cetpro-naciones-unidas-callao"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118489152": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118489223": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118488677": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118488665": {
     "careerSignature": "025b37b1d71587f08ebc63f837756acf8fe621fb5f59ef0dc3b07e79dd35dfa9",
@@ -6980,15 +7687,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118488988": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118487899": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -7013,15 +7725,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118487507": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118488626": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -7057,15 +7774,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118487979": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118487945": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -7123,15 +7845,20 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118487871": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118487974": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -7156,26 +7883,36 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "csb-compania-de--1337551462": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118487551": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118487224": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -7233,37 +7970,52 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118376520": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118486863": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118487119": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118485425": {
     "careerSignature": "025b37b1d71587f08ebc63f837756acf8fe621fb5f59ef0dc3b07e79dd35dfa9",
@@ -7277,26 +8029,36 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118487743": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118487742": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118485741": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -7354,37 +8116,50 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118487103": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118485894": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118487458": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118486847": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -7398,15 +8173,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118485760": {
-    "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
+    "careerSignature": "9596647c9b7b2f9dad22d7d3ad18fae4188413d42d21b5c4fb624417ce657250",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "role",
-    "trainingIds": [],
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "ct-00CA4F7321B52A5061373E686DCF3405": {
     "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
@@ -7431,37 +8211,52 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118485311": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118485439": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118485343": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118485276": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -7475,15 +8270,17 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "ct-01717080FB227A2361373E686DCF3405": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "4adfc02bc5c4b439dd912a1c620e0a0ed835d7ce53dc7caf436bfc68d2e56481",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
-    "tipId": "experience",
-    "trainingIds": [],
+    "tipId": "role",
+    "trainingIds": [
+      "cetpro-naciones-unidas-callao"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118483596": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -7519,15 +8316,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118484037": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118483880": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -7563,15 +8365,20 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118484332": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "99e13c9588ed2118fd67664d677fe9d49606788bce7a0e1862a3c3e55c5c187a",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118484087": {
     "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
@@ -7596,15 +8403,19 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118484937": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118484143": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -7629,15 +8440,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118483943": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "99e13c9588ed2118fd67664d677fe9d49606788bce7a0e1862a3c3e55c5c187a",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118484110": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -7662,26 +8478,36 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "ct-FA3D81AA3D75336161373E686DCF3405": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "ct-314996914F2BFB2461373E686DCF3405": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "ct-131E03DC97AB11AC61373E686DCF3405": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -7695,15 +8521,19 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "ct-531474B453CC1FF361373E686DCF3405": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118482344": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -7750,37 +8580,50 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118481886": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118481760": {
-    "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
+    "careerSignature": "8952500fd432b0be2f1b31188b4233d2651fd9ed360bf0bde485513ea8e58344",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "role",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-nacional-daniel-alcides-carrion",
+      "cetpro-ana-maria-mogas-fontcuberta-pasco"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118481847": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118481781": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -7816,26 +8659,36 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118482963": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "csb-compania-de--1333170662": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118479911": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -7849,15 +8702,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118478273": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "99e13c9588ed2118fd67664d677fe9d49606788bce7a0e1862a3c3e55c5c187a",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118480188": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -7893,15 +8751,19 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118480896": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118480675": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -7915,15 +8777,20 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118479889": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "99e13c9588ed2118fd67664d677fe9d49606788bce7a0e1862a3c3e55c5c187a",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118481259": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -7937,15 +8804,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118480796": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118479756": {
     "careerSignature": "025b37b1d71587f08ebc63f837756acf8fe621fb5f59ef0dc3b07e79dd35dfa9",
@@ -7970,26 +8842,34 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118480751": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118479992": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118481204": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -8003,26 +8883,36 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118480915": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118480276": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "ct-2E307731254CAFC061373E686DCF3405": {
     "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
@@ -8069,26 +8959,34 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118478346": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118478315": {
-    "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
+    "careerSignature": "8952500fd432b0be2f1b31188b4233d2651fd9ed360bf0bde485513ea8e58344",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "role",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-nacional-daniel-alcides-carrion",
+      "cetpro-ana-maria-mogas-fontcuberta-pasco"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118479521": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -8102,48 +9000,66 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118479421": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118479396": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118478560": {
-    "careerSignature": "025b37b1d71587f08ebc63f837756acf8fe621fb5f59ef0dc3b07e79dd35dfa9",
+    "careerSignature": "f7ffe2561d580cb23695e583b5bdfffbbf0958601d2f8815755a43a54a820c79",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "role",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-nacional-daniel-alcides-carrion",
+      "cetpro-ana-maria-mogas-fontcuberta-pasco"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118478369": {
-    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118478285": {
     "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
@@ -8157,26 +9073,36 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118478170": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118478139": {
-    "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
+    "careerSignature": "9596647c9b7b2f9dad22d7d3ad18fae4188413d42d21b5c4fb624417ce657250",
     "questionIds": [
-      "placement",
-      "salary-missing"
+      "salary-missing",
+      "placement"
     ],
     "tipId": "role",
-    "trainingIds": [],
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-10T12:53:09.196Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118479233": {
     "careerSignature": "025b37b1d71587f08ebc63f837756acf8fe621fb5f59ef0dc3b07e79dd35dfa9",
@@ -8190,15 +9116,20 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "nv-BMPE-1118478540": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118478281": {
     "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
@@ -8245,15 +9176,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118475053": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118478774": {
     "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
@@ -8267,15 +9203,20 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118479500": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118479066": {
     "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
@@ -8289,26 +9230,35 @@
     "generatedAt": "2026-11-10T12:53:09.196Z"
   },
   "nv-BMPE-1118478930": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118479505": {
-    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
     "questionIds": [
       "placement",
       "salary-missing"
     ],
     "tipId": "experience",
-    "trainingIds": [],
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
     "opportunityIds": [],
-    "generatedAt": "2026-11-09T20:37:39.489Z"
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   },
   "nv-BMPE-1118478916": {
     "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
@@ -8463,5 +9413,870 @@
     "trainingIds": [],
     "opportunityIds": [],
     "generatedAt": "2026-11-09T20:37:39.489Z"
+  },
+  "csb-compania-de--1336315062": {
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
+    "questionIds": [
+      "salary-missing",
+      "placement"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "li-a-ambiental-at-geohydro-consultor-c3-ada": {
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "li--de-cami-c3-b3n-cisterna-proyecto-minero": {
+    "careerSignature": "9596647c9b7b2f9dad22d7d3ad18fae4188413d42d21b5c4fb624417ce657250",
+    "questionIds": [
+      "salary-missing",
+      "placement"
+    ],
+    "tipId": "role",
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "li--de-cami-c3-b3n-gr-c3-baa-minera-marsa-a": {
+    "careerSignature": "99e13c9588ed2118fd67664d677fe9d49606788bce7a0e1862a3c3e55c5c187a",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "li--de-cami-c3-b3n-gr-c3-baa-rigger-at-imco": {
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "li-nico-mec-c3-a1nico-at-je-al-enterprises-": {
+    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-09T20:37:39.489Z"
+  },
+  "li-nico-electricista-para-interior-mina-at-": {
+    "careerSignature": "9dc4db351af04d57e4fa5d2fb73d49a7d2f1311bc2b518a7b6549cb5cef521a2",
+    "questionIds": [
+      "equipment",
+      "placement"
+    ],
+    "tipId": "equipment",
+    "trainingIds": [
+      "promae-comas",
+      "cetpro-juliaca",
+      "jose-carlos-mariategui",
+      "universidad-nacional-de-san-agustin",
+      "universidad-catolica-de-santa-maria",
+      "cetpro-dean-valdivia-arequipa"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "li-1nico-llantero-o-t-r-minera-antamina-at-": {
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "li-e-de-reclutamiento-y-selecci-c3-b3n-call": {
+    "careerSignature": "4adfc02bc5c4b439dd912a1c620e0a0ed835d7ce53dc7caf436bfc68d2e56481",
+    "questionIds": [
+      "salary-missing",
+      "placement"
+    ],
+    "tipId": "role",
+    "trainingIds": [
+      "cetpro-naciones-unidas-callao"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "csb-compania-de--1338163662": {
+    "careerSignature": "8952500fd432b0be2f1b31188b4233d2651fd9ed360bf0bde485513ea8e58344",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "role",
+    "trainingIds": [
+      "universidad-nacional-daniel-alcides-carrion",
+      "cetpro-ana-maria-mogas-fontcuberta-pasco"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "gupy-12863072": {
+    "careerSignature": "f7ffe2561d580cb23695e583b5bdfffbbf0958601d2f8815755a43a54a820c79",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "role",
+    "trainingIds": [
+      "universidad-nacional-daniel-alcides-carrion",
+      "cetpro-ana-maria-mogas-fontcuberta-pasco"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "ct-5CA9F26BBD80F84261373E686DCF3405": {
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "ct-D11A03499097577861373E686DCF3405": {
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "ct-F8BC45082805543C61373E686DCF3405": {
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "ct-B008FF197AC7AC4961373E686DCF3405": {
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "ct-13087670868C466761373E686DCF3405": {
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "ct-626F6C260E303E6561373E686DCF3405": {
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
+    "questionIds": [
+      "salary-missing",
+      "placement"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "ct-C3645D415026FD8A61373E686DCF3405": {
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
+    "questionIds": [
+      "salary-missing",
+      "placement"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "ct-DA11C1A6142C1B6C61373E686DCF3405": {
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "nv-BMPE-1118515815": {
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
+    "questionIds": [
+      "salary-missing",
+      "placement"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "nv-BMPE-1118515476": {
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
+    "questionIds": [
+      "salary-missing",
+      "placement"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "nv-BMPE-1118516478": {
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
+    "questionIds": [
+      "salary-missing",
+      "placement"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "nv-BMPE-1118464413": {
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "nv-BMPE-1118516951": {
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
+    "questionIds": [
+      "salary-missing",
+      "placement"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "nv-BMPE-1118516836": {
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "nv-BMPE-1118516590": {
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "nv-BMPE-1118515495": {
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "nv-BMPE-1118399262": {
+    "careerSignature": "9596647c9b7b2f9dad22d7d3ad18fae4188413d42d21b5c4fb624417ce657250",
+    "questionIds": [
+      "salary-missing",
+      "placement"
+    ],
+    "tipId": "role",
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "li--de-planeamiento-de-repuestos-equipos-de": {
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
+    "questionIds": [
+      "salary-missing",
+      "placement"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "li-o-comercial-miner-c3-ada-at-fluid-engine": {
+    "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "role",
+    "trainingIds": [],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-10T12:53:09.196Z"
+  },
+  "li--sr-de-talento-at-manpowergroup-44878063": {
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
+    "questionIds": [
+      "salary-missing",
+      "placement"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "li-e-de-mantenimiento-de-proyecto-at-incimm": {
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "li--view-analista-at-ram-equipos-4487804420": {
+    "careerSignature": "6cd088646035da3a3329050a96a682ffe547febe61ff3a5af653c10ad6e51f17",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-10T12:53:09.196Z"
+  },
+  "li-o-de-electricidad-senior-at-wood-4262018": {
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "li-camos-docentes-expertos-en-geometalurgia": {
+    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-09T20:37:39.489Z"
+  },
+  "li-ista-y-instrumentista-parada-de-planta-m": {
+    "careerSignature": "ac99cbfb63e336e57b86e79b4d8ed598065d7350fd7230c5d6e5c181d356940d",
+    "questionIds": [
+      "technical-evidence",
+      "placement"
+    ],
+    "tipId": "equipment",
+    "trainingIds": [
+      "jose-carlos-mariategui",
+      "cetpro-juliaca",
+      "promae-comas"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-10T12:53:09.196Z"
+  },
+  "li-r-de-semitrailer-operaci-c3-b3n-minera-l": {
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "li--trujillo-regimen-20x10-mina-pataz-retam": {
+    "careerSignature": "9596647c9b7b2f9dad22d7d3ad18fae4188413d42d21b5c4fb624417ce657250",
+    "questionIds": [
+      "salary-missing",
+      "placement"
+    ],
+    "tipId": "role",
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "li--y-programador-de-centro-mecanizado-at-t": {
+    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-09T20:37:39.489Z"
+  },
+  "li-o-civil-ingeniero-mecanico-ingeniero-ele": {
+    "careerSignature": "d66504f04b0d8ed5cb1555a29a1d956d7ddca8f9a2fa6df5b67e04d1b2454738",
+    "questionIds": [
+      "equipment",
+      "technical-evidence"
+    ],
+    "tipId": "equipment",
+    "trainingIds": [
+      "cetpro-juliaca",
+      "jose-carlos-mariategui",
+      "promae-comas"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-10T12:53:09.196Z"
+  },
+  "li-oria-docente-especialista-en-operaci-c3-": {
+    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-09T20:37:39.489Z"
+  },
+  "li--senior-de-laboratorio-at-sgs-4487804436": {
+    "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "role",
+    "trainingIds": [],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-10T12:53:09.196Z"
+  },
+  "li-sor-comercial-at-mentory-corp-4487822500": {
+    "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "role",
+    "trainingIds": [],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-10T12:53:09.196Z"
+  },
+  "li-or-de-mantenimiento-junin-14x7-at-sodexo": {
+    "careerSignature": "b4e77bcf13a38a7fae1a8807d5158160ff9f04dd700f06bd88ab53ee1a769f5f",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "role",
+    "trainingIds": [],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-10T12:53:09.196Z"
+  },
+  "li-nico-electromec-c3-a1nico-industrial-at-": {
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "li-o-comercial-at-smart-kontainer-448860880": {
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "li--analista-qu-c3-admico-at-sgs-4487810175": {
+    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-09T20:37:39.489Z"
+  },
+  "ct-B8F8573564048F9561373E686DCF3405": {
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "ct-568DD5A5A049AD0061373E686DCF3405": {
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "ct-40826C61E29148A661373E686DCF3405": {
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "ct-9CC94489F93EBA6161373E686DCF3405": {
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "ct-C9613E40E9519C7861373E686DCF3405": {
+    "careerSignature": "99e13c9588ed2118fd67664d677fe9d49606788bce7a0e1862a3c3e55c5c187a",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "erasmo-arellano-guillen",
+      "essumin",
+      "victor-raul-haya-de-la-torre-trujillo",
+      "cetpro-otuzco-la-libertad"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "ct-BD6CC8003A7A1E5061373E686DCF3405": {
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "ct-2DDEA7DE2867050061373E686DCF3405": {
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "ct-CB793610C7E8619C61373E686DCF3405": {
+    "careerSignature": "5525e30b6efe81664b06a833817222999dfe89fc902d6acb5baf95740e0cc86c",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "universidad-catolica-de-santa-maria",
+      "universidad-nacional-de-san-agustin",
+      "cetpro-dean-valdivia-arequipa"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "ct-944231753522778D61373E686DCF3405": {
+    "careerSignature": "f560843cd7d9422d751a8461521b14394813b9e6c24d5fc15c1b431873df2e58",
+    "questionIds": [
+      "salary-missing",
+      "placement"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "ct-AA8BAB5E4FAB61AC61373E686DCF3405": {
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
+  },
+  "ct-CAC467E7BAE2A22F61373E686DCF3405": {
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "tipId": "experience",
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "generatedAt": "2026-11-11T12:27:30.724Z"
   }
 }
