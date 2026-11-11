@@ -75,4 +75,9 @@ if (form) {
   query.addEventListener('input', () => filter());
   window.addEventListener('popstate', () => { readUrl(); filter(false); });
   readUrl(); filter(false); form.hidden = false;
+  const linkedRow = rows.find(row => location.hash === `#${row.id}`);
+  if (linkedRow && !linkedRow.hidden) {
+    linkedRow.querySelector('details')!.open = true;
+    linkedRow.scrollIntoView({ behavior: 'instant' });
+  }
 }

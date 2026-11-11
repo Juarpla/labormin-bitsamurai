@@ -1,8 +1,8 @@
-name: Generate job guidance
+name: 02 · Generar orientación para postular
 
 on:
   workflow_run:
-    workflows: [Refresh job data]
+    workflows: [01 · Actualizar vacantes]
     types: [completed]
     branches: [main]
   workflow_dispatch:

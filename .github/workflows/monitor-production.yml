@@ -1,0 +1,21 @@
+name: 05 · Producción · Verificar labormin.com
+
+on:
+  schedule:
+    - cron: '0 13 * * *' # 08:00 en Perú (UTC−5)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verificar rutas públicas de producción
+        run: node scripts/monitor-production.mjs

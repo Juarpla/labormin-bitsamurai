@@ -447,8 +447,8 @@ const es: Dictionary = {
   'footer.disclaimer':
     'Las ofertas se agregan de bolsas públicas de empleadores y APIs, y siempre enlazan a la fuente original.',
   'footer.adsDisclosure': 'Labormin se financia con publicidad. Los anuncios siempre están etiquetados.',
-  'footer.rights': '© {year} Bit SamurAI — Labormin. Todos los derechos reservados.',
-  'footer.ownership': 'Un producto de Bit SamurAI.',
+  'footer.rights': '© {year} Labormin. Todos los derechos reservados.',
+  'footer.ownership': 'Operado por Socialpai.',
 
   'about.title': 'Acerca de Labormin',
   'about.body':

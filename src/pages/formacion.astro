@@ -42,7 +42,7 @@ const images = { habilidad: '/images/formacion/habilidad.png', certificado: '/im
     <section class="formation-results" aria-labelledby="resultados">
       <div class="formation-result-heading"><h2 id="resultados" tabindex="-1">Explora opciones de formación</h2><p id="formation-count" role="status" aria-live="polite"></p></div>
       <div id="formation-list">
-        {ordered.map(option => <article class="formation-row" data-training-row data-id={option.id} data-type={option.type} data-department={option.department} data-mode={option.mode} data-cost={option.costKind} data-search={`${option.title} ${option.name} ${option.location} ${option.program}`}>
+        {ordered.map(option => <article id={option.id} class="formation-row scroll-mt-28" data-training-row data-id={option.id} data-type={option.type} data-department={option.department} data-mode={option.mode} data-cost={option.costKind} data-search={`${option.title} ${option.name} ${option.location} ${option.program}`}>
           <div class="formation-row-main">
             <header><h3>{option.title}</h3><p>{option.name}</p><p class="formation-location"><img src="/icons/geo-alt.svg" alt="" width="16" height="16"/>{option.location}</p></header>
             <div class="formation-cost"><strong>{option.costLabel}</strong><p>{option.costNote}</p>{option.id === 'cetpro-juliaca' && <p>Un año académico · confirma el programa</p>}</div>
@@ -52,6 +52,7 @@ const images = { habilidad: '/images/formacion/habilidad.png', certificado: '/im
             <div class="formation-details-body">
               <dl>{[['Programa',option.program],['Costo completo',option.cost],['Duración',option.duration],['Credencial',option.credential],['Requisitos de acceso',option.admission],['Disponibilidad',option.status]].map(([label,value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
               <div class="formation-detail-footer"><div class="formation-source-links">
+                <a href={option.officialUrl} target="_blank" rel="noopener">Fuente oficial <span aria-hidden="true">↗</span><span class="sr-only"> (nueva pestaña)</span></a>
                 {option.actionUrl !== option.officialUrl && <a href={option.actionUrl} target="_blank" rel="noopener">Oferta del centro ↗<span class="sr-only"> (nueva pestaña)</span></a>}
                 {option.additionalSources?.map(source => <a href={source.url} target="_blank" rel="noopener">{source.label} ↗<span class="sr-only"> (nueva pestaña)</span></a>)}
               </div><p>Fuente consultada: <time datetime={option.lastVerifiedAt}>{verifiedDate(option.lastVerifiedAt)}</time></p></div>

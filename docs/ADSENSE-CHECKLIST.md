@@ -1,12 +1,19 @@
 # Preparación de Labormin para AdSense
 
-Estado revisado el **26 de octubre de 2026**. No se ha reenviado la solicitud.
+Estado revisado el **11 de noviembre de 2026**. No se ha reenviado la solicitud.
 Estas comprobaciones no identifican por sí mismas la causa del rechazo ni
 aseguran la aprobación de Google.
 
 ## Estado vigente
 
+- [x] Nombre público **Labormin**, operador **Socialpai**, dominio **https://labormin.com**.
 - [x] Contacto público confirmado por el propietario: **labormin.com@gmail.com**.
+- [x] Los enlaces de formación de las fichas abren el programa en el directorio.
+- [x] Privacidad describe la preparación previa de las fichas y las cookies
+  publicitarias. El 404 queda fuera del sitemap y de la publicidad.
+
+## Catálogo revisado el 26 de octubre de 2026
+
 - [x] Cuatro guías propias, incluida formación gratuita/económica en Perú con
   fuentes oficiales y distinción entre curso, certificado, título y bachiller.
 - [x] Las 725 fichas incluyen orientación de Labormin separada del anuncio:
@@ -35,6 +42,21 @@ aseguran la aprobación de Google.
 - [x] Se retiran los espacios manuales de las fichas y su cargador global,
   también si en el futuro se habilita publicidad en otras secciones. Recuperar
   una descripción no equivale por sí solo a aportar contenido editorial propio.
+
+## Mantenimiento
+
+- `pnpm build` comprueba el HTML generado, incluidas rutas y anclas internas,
+  títulos y descripciones del sitemap, enlaces legales en el pie, el editor
+  en la etiqueta y en `ads.txt`, y la ausencia de publicidad en fichas y en el 404.
+  El workflow **04 · CI · Validar compilación** la ejecuta en PRs y cambios a `main`.
+- En Cloudflare Workers Builds, conservar `pnpm build` como comando de
+  compilación para que un fallo detenga el despliegue, incluidos los refrescos
+  del catálogo. Si el comando actual es `pnpm astro build`, cambiarlo a
+  `pnpm build`. [Configuración de Workers Builds](https://developers.cloudflare.com/workers/ci-cd/builds/configuration/).
+- El workflow **05 · Producción · Verificar labormin.com** comprueba la portada,
+  las páginas legales, `ads.txt`, `robots.txt` y el sitemap a las 08:00 de Perú
+  y bajo demanda. Si el fallo persiste tras los reintentos, la ejecución muestra
+  la URL y el motivo. Los enlaces externos se revisan manualmente.
 
 ## Consentimiento y publicidad
 
@@ -108,8 +130,7 @@ servir publicidad con una configuración de consentimiento no comprobada.
 - [ ] **Leer el motivo exacto del correo de rechazo.** El panel sigue mostrando
   una explicación genérica. No se atribuye automáticamente a contenido, CMP u
   otra causa no demostrada. No se accedió al correo del propietario.
-- [ ] Completar datos identificativos y conservación del operador con datos
-  reales cuando se definan; no inventar domicilio, razón social o plazos.
+- [x] Identificar al operador y el contacto público con los datos confirmados.
 - [ ] Solicitar revisión cuando el propietario decida hacerlo, atendiendo al
   motivo específico de Google. Ninguna cantidad de artículos u ofertas, ni una
   espera fija, garantiza admisión.

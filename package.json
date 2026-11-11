@@ -8,7 +8,7 @@
   "packageManager": "pnpm@12.3.4",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && pnpm check:built",
     "preview": "astro preview",
     "astro": "astro",
     "visual": "node scripts/visual-walkthrough.mjs",
