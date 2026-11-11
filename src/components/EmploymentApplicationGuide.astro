@@ -12,7 +12,9 @@ const training = guide.trainingIds.flatMap((id: string) => education.filter(opti
 const preparation = [
   {
     icon: 'credential', title: 'Ajusta tu CV',
-    text: experience
+    text: job.internship
+      ? 'Indica tu carrera y tu ciclo o fecha de egreso. Destaca un proyecto académico o una práctica previa que responda a los requisitos del anuncio.'
+      : experience
       ? `El anuncio menciona «${experience}». En tu CV, destaca los puestos o proyectos que respaldan ese requisito e indica sus fechas.`
       : 'Da prioridad a los puestos, estudios o proyectos que coinciden con las funciones anunciadas.',
   },
@@ -24,22 +26,28 @@ const preparation = [
   },
   {
     icon: 'materials', title: 'Prepara la entrevista',
-    text: guide.questions[0] || 'Pregunta cómo se evalúa el trabajo y qué resultados esperan durante los primeros meses.',
+    text: job.internship
+      ? 'Pregunta qué aprenderías durante el primer mes, quién revisaría tus tareas y cómo recibirías retroalimentación.'
+      : guide.questions[0] || 'Pregunta cómo se evalúa el trabajo y qué resultados esperan durante los primeros meses.',
   },
   {
     icon: 'time', title: 'Verifica las condiciones',
     text: job.remote
       ? 'Confirma desde dónde puedes trabajar, qué horario se espera y si habrá reuniones o viajes presenciales.'
-      : `Confirma ${job.city ? `la dirección de la sede en ${job.city}` : 'la sede y la operación'}, el régimen y quién cubre los traslados.`,
+      : job.internship
+        ? 'Confirma la duración, el horario y la sede. Si estudias, comprueba que el horario sea compatible con tus clases.'
+        : `Confirma ${job.city ? `la dirección de la sede en ${job.city}` : 'la sede y la operación'}, el régimen y quién cubre los traslados.`,
   },
   {
-    icon: 'cost', title: 'Aclara la remuneración',
-    text: job.salary
+    icon: 'cost', title: job.internship ? 'Consulta la subvención' : 'Aclara la remuneración',
+    text: job.internship
+      ? 'Pregunta por el monto, la fecha de pago y qué gastos de transporte o alimentación cubre la empresa.'
+      : job.salary
       ? 'Confirma si el monto publicado es bruto o neto y qué conceptos se pagan por separado.'
       : 'Consulta el monto, la frecuencia de pago y qué gastos cubre la empresa.',
   },
   {
-    icon: 'message', title: 'Organiza tu postulación',
+    icon: 'message', title: job.internship ? 'Revisa el convenio y los documentos' : 'Organiza tu postulación',
     text: job.internship
       ? 'Confirma si aceptan tu condición de estudiante o egresado y qué convenio o constancia debes presentar.'
       : 'Revisa si hay un plazo de cierre y qué documentos pide el formulario. Guarda la confirmación de envío para hacer seguimiento.',
@@ -123,4 +131,4 @@ const trainingChecks = [
   }
 </style>
 
-<JobExperienceGuide guide={guide} step={7} experience={experience} />
+<JobExperienceGuide guide={guide} step={7} experience={experience} internship={job.internship} />

@@ -14,14 +14,16 @@ const place = city ? `${city}, ${country}` : country;
 const maps = (query: string) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
 const search = (query: string) => `https://www.google.com/search?q=${encodeURIComponent(query)}`;
 const companyMaps = maps(`${job.company}, ${job.remote ? remoteBase : place}`);
-const companySearch = search(`${job.company} opiniones laborales ${title}`);
+const companySearch = search(job.internship ? `${job.company} experiencias de practicantes` : `${job.company} opiniones laborales ${title}`);
 const locationChecks: { icon: 'time' | 'credential' | 'travel' | 'cost'; title: string; text: string; link?: { href: string; label: string } }[] = job.remote ? [
   { icon: 'time', title: 'Horario y coordinación', text: 'Confirma cuántas horas debes coincidir con el equipo, por qué canales coordinan y si hay reuniones o viajes presenciales.' },
   { icon: 'credential', title: 'Contrato y equipo', text: 'Pregunta qué entidad te contrataría desde Perú y quién cubre el equipo, las licencias y la conexión.' },
 ] : [
   {
     icon: 'travel', title: 'Traslado y régimen',
-    text: 'Pregunta dónde empieza el traslado, cuánto toma y si los turnos implican quedarte en campamento. Revisa el clima y la altitud de la operación.',
+    text: job.internship
+      ? 'Confirma si la práctica es en oficina o en operación. Pregunta desde dónde sale el transporte si hay visitas a mina.'
+      : 'Pregunta dónde empieza el traslado, cuánto toma y si los turnos implican quedarte en campamento. Revisa el clima y la altitud de la operación.',
     link: city ? { href: search(`clima altitud ${place}`), label: 'Consultar clima y altitud' } : undefined,
   },
   {
@@ -32,15 +34,17 @@ const locationChecks: { icon: 'time' | 'credential' | 'travel' | 'cost'; title: 
 ];
 ---
 <section class="mt-10 border-t border-graphite-700 pt-7" aria-labelledby="role-context-title">
-  <JobSectionHeading id="role-context-title" step={2}>Conoce el puesto</JobSectionHeading>
+  <JobSectionHeading id="role-context-title" step={2}>{job.internship ? 'Conoce la práctica' : 'Conoce el puesto'}</JobSectionHeading>
   <p class="mt-3 max-w-prose text-sm leading-relaxed text-graphite-200">
-    Para <strong class="text-graphite-100">{title}</strong>, {skill
-      ? `toma ${skill} como punto de partida para comparar funciones y herramientas`
-      : 'compara el alcance de las tareas con otros anuncios de la misma especialidad'}.
+    Para <strong class="text-graphite-100">{title}</strong>, {job.internship
+      ? 'revisa qué tareas podrías aprender y pregunta quién supervisaría tu trabajo'
+      : skill
+        ? `toma ${skill} como punto de partida para comparar funciones y herramientas`
+        : 'compara el alcance de las tareas con otros anuncios de la misma especialidad'}.
     {experience && <> El anuncio menciona <strong class="text-graphite-100">{experience}</strong>.</>}
   </p>
-  <JobRoleJourney skill={skill} />
-  <a href={search(`${title} funciones empleo minería ${job.remote ? remoteBase : country}`)} target="_blank" rel="noopener noreferrer" class="mt-3 inline-block text-sm font-semibold text-brand-400 underline-offset-4 hover:underline">Buscar puestos similares <span aria-hidden="true">↗</span></a>
+  <JobRoleJourney skill={skill} internship={job.internship} />
+  <a href={job.internship ? '/practicas/' : search(`${title} funciones empleo minería ${job.remote ? remoteBase : country}`)} target={job.internship ? undefined : '_blank'} rel={job.internship ? undefined : 'noopener noreferrer'} class="mt-3 inline-block text-sm font-semibold text-brand-400 underline-offset-4 hover:underline">{job.internship ? 'Ver prácticas vigentes' : 'Buscar puestos similares'} <span aria-hidden="true">{job.internship ? '→' : '↗'}</span></a>
 </section>
 
 <section class="mt-10 border-t border-graphite-700 pt-7" aria-labelledby="place-context-title">
@@ -89,9 +93,11 @@ const locationChecks: { icon: 'time' | 'credential' | 'travel' | 'cost'; title: 
     <li class="flex items-start gap-3 rounded-xl border border-graphite-700 bg-graphite-900 p-4">
       <span class="shrink-0 text-brand-400 [&_svg]:size-6"><GuideIcon kind="message" /></span>
       <div>
-        <h3 class="font-semibold text-graphite-100">Experiencias de trabajadores</h3>
-        <p class="mt-1 text-sm leading-relaxed text-graphite-200">Busca testimonios recientes de personas con funciones similares. Fíjate en los turnos, la seguridad y la inducción que describen para su equipo.</p>
-        <a href={companySearch} target="_blank" rel="noopener noreferrer" class="mt-2 inline-block text-sm font-semibold text-brand-400 underline-offset-4 hover:underline">Buscar opiniones laborales <span aria-hidden="true">↗</span></a>
+        <h3 class="font-semibold text-graphite-100">{job.internship ? 'Experiencias de practicantes' : 'Experiencias de trabajadores'}</h3>
+        <p class="mt-1 text-sm leading-relaxed text-graphite-200">{job.internship
+          ? 'Busca testimonios recientes de practicantes. Fíjate en la inducción, el acompañamiento y el tipo de tareas que pudieron asumir.'
+          : 'Busca testimonios recientes de personas con funciones similares. Fíjate en los turnos, la seguridad y la inducción que describen para su equipo.'}</p>
+        <a href={companySearch} target="_blank" rel="noopener noreferrer" class="mt-2 inline-block text-sm font-semibold text-brand-400 underline-offset-4 hover:underline">{job.internship ? 'Buscar testimonios de practicantes' : 'Buscar opiniones laborales'} <span aria-hidden="true">↗</span></a>
       </div>
     </li>
   </ul>

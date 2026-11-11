@@ -55,7 +55,7 @@ const categoryLabels: Record<string, string> = { operations: 'Operaciones', main
 
   <header class="mt-6">
     <div class="flex flex-wrap items-center gap-2 text-xs text-graphite-400">
-      <span class="rounded-full bg-graphite-800 px-2.5 py-1">{categoryLabels[job.category] || 'Empleo minero'}</span>
+      <span class="rounded-full bg-graphite-800 px-2.5 py-1">{job.internship ? 'Práctica minera' : categoryLabels[job.category] || 'Empleo minero'}</span>
       {job.remote && <span class="rounded-full bg-graphite-800 px-2.5 py-1 text-brand-300">↗ {t('card.remote')}</span>}
       {job.openToInternational && (
         <span class="rounded-full border border-brand-600/60 bg-brand-500/10 px-2.5 py-1 text-brand-400">✦ {t('card.international')}</span>
@@ -151,12 +151,12 @@ const categoryLabels: Record<string, string> = { operations: 'Operaciones', main
     <div class="mt-4"><EmploymentApplyLink href={job.url} /></div>
   </section>
 
-  <JobContextGuide job={job} skill={guide.skill} title={titleFor(job, locale)} experience={verifiedExperience} />
+  <JobContextGuide job={job} skill={guide.skill ?? (job.internship ? guide.experienceSkill : null)} title={titleFor(job, locale)} experience={verifiedExperience} />
   <EmploymentApplicationGuide guide={guide} job={job} tools={tools} experience={verifiedExperience} />
 
   {related.length > 0 && (
     <section class="mt-16">
-      <JobSectionHeading>{t('common.related')}</JobSectionHeading>
+      <JobSectionHeading>{job.internship ? 'Otras prácticas' : t('common.related')}</JobSectionHeading>
       <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {related.map((r) => <JobCard job={r} locale={locale} />)}
       </div>

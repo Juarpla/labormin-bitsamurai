@@ -1,8 +1,8 @@
 ---
 import GuideIcon from './guides/GuideIcon.astro';
 
-interface Props { skill: string | null }
-const { skill } = Astro.props;
+interface Props { skill: string | null; internship?: boolean }
+const { skill, internship } = Astro.props;
 const paths: Record<string, string[]> = {
   'planeamiento minero': [
     'Lee planos, aprende a estimar volúmenes y entiende cómo se organiza la extracción en una mina superficial.',
@@ -49,20 +49,30 @@ const paths: Record<string, string[]> = {
     'Apoya el control de turnos y registra la producción, los tiempos y las incidencias.',
     'Compara los resultados con el plan y explica los efectos de los cambios de secuencia, equipos o costos.',
   ],
+  'gestión ambiental minera': [
+    'Familiarízate con los instrumentos ambientales y con los documentos que respaldan un permiso.',
+    'Apoya el seguimiento de expedientes y practica cómo registrar plazos, responsables y compromisos.',
+    'Revisa el estado de los compromisos y comunica al equipo qué evidencias quedan pendientes.',
+  ],
 };
 const steps = [
-  { title: 'Domina la base', icon: 'credential' },
-  { title: 'Gana práctica', icon: 'practice' },
-  { title: 'Asume más alcance', icon: 'materials' },
+  { title: internship ? 'Antes de empezar' : 'Domina la base', icon: 'credential' },
+  { title: internship ? 'Aprende con el equipo' : 'Gana práctica', icon: 'practice' },
+  { title: internship ? 'Documenta tu avance' : 'Asume más alcance', icon: 'materials' },
 ] as const;
-const path = (skill && paths[skill]) || [
+const specialty = skill ? paths[skill] : undefined;
+const path = internship ? [
+  specialty?.[0] ?? 'Elige una tarea del anuncio y busca un proyecto de estudios que te ayude a practicarla.',
+  specialty?.[1] ?? 'Acuerda con tu supervisor una primera tarea, los recursos que puedes usar y cuándo revisar el resultado.',
+  'Registra qué hiciste y qué aprendiste. Pide retroalimentación y prepara un ejemplo que puedas explicar en tu próxima entrevista.',
+] : specialty ?? [
   'Identifica las funciones centrales del anuncio y practica las herramientas que aparecen en los requisitos.',
   'Busca una práctica, un puesto inicial o un proyecto que te permita demostrar una de esas funciones.',
   'Reúne evidencia de tareas que hayas llevado con más autonomía y explica sus resultados.',
 ];
 ---
 <div class="mt-4 rounded-xl border border-graphite-700 bg-graphite-900 p-4 sm:p-5">
-  <h3 class="font-semibold text-graphite-100">Una trayectoria posible{skill && ` en ${skill}`}</h3>
+  <h3 class="font-semibold text-graphite-100">{internship ? 'Una ruta de aprendizaje' : 'Una trayectoria posible'}{skill && ` en ${skill}`}</h3>
   <ol class="mt-4 grid gap-4 sm:grid-cols-3 sm:gap-5" role="list">
     {steps.map(({ title, icon }, index) => (
       <li class="relative grid grid-cols-[2.5rem_minmax(0,1fr)] items-start gap-3 sm:block">

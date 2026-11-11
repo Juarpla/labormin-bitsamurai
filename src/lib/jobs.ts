@@ -139,6 +139,19 @@ export function remoteJobs(): Job[] {
 }
 
 export function relatedJobs(job: Job, n = 4): Job[] {
+  if (job.internship) {
+    const sameListing = (candidate: Job) =>
+      normalizeText(candidate.title).trim() === normalizeText(job.title).trim() &&
+      candidate.companySlug.replace(/-peru$/, '') === job.companySlug.replace(/-peru$/, '');
+    const relevance = (candidate: Job) =>
+      2 * Number(job.category !== 'other' && candidate.category === job.category) +
+      Number(Boolean(job.city) && candidate.city === job.city);
+
+    return internships
+      .filter(candidate => candidate.id !== job.id && !sameListing(candidate))
+      .sort((a, b) => relevance(b) - relevance(a))
+      .slice(0, n);
+  }
   return jobs
     .filter((j) => j.id !== job.id && (j.country === job.country || j.category === job.category))
     .slice(0, n);
