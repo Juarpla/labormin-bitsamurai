@@ -1347,12 +1347,48 @@
     "generatedAt": "2026-11-09T20:37:39.489Z"
   },
   "ct-4AF7C691058915C261373E686DCF3405": {
-    "signature": "60a8fee411179644decb4101c405ae55eeceb339b80a6f0524882380cc3b91e3",
     "questionIds": [
       "equipment",
-      "technical-evidence"
+      "internship"
     ],
-    "generatedAt": "2026-11-09T18:59:59.457Z"
+    "generatedAt": "2026-11-11T23:27:14.923Z",
+    "tipId": "role",
+    "trainingIds": [
+      "chalhuahuacho",
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [
+      "nv-BMPE-1118216278"
+    ],
+    "careerSignature": "380020707459ac493e88cf4f4b6615f758533f9eaacc2e2e3ad00a45f7944802",
+    "analysisSignature": "a4a1e515c617541185baf8ffc610e33c8c40ae33a548af3608b8ca1d8daba1b5",
+    "analysis": {
+      "skills": [
+        {
+          "evidence": "medición, preparación y empalme de fajas transportadoras",
+          "advice": "Practica en el taller de tu instituto el corte y empalme de una correa con herramienta manual, toma fotos del proceso y anota medidas y tiempos; presenta ese ejercicio como trabajo académico y aclara que no es experiencia profesional."
+        },
+        {
+          "evidence": "mantenimiento y acondicionamiento de equipos",
+          "advice": "En el laboratorio o como tarea de curso, revisa un equipo mecánico simple, registra el checklist de inspección y las piezas que ajustarías; lleva ese checklist y las fotos a tu postulación para mostrar cómo abordarías el mantenimiento."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "trabajos prácticos tanto en nuestra planta y taller",
+          "advice": "Suma horas en el taller o laboratorio de tu centro bajo supervisión y guarda constancias de las tareas que hiciste; preséntalo como experiencia inicial supervisada y distínguelo de un proyecto simulado."
+        },
+        {
+          "evidence": "conocer diferentes unidades mineras y sus operaciones",
+          "advice": "Participa en visitas técnicas, voluntariado o tareas iniciales de mantenimiento en una operación y pide una carta que detalle tus actividades; aclara que son prácticas y que no sustituyen los años que la vacante llegue a exigir."
+        }
+      ],
+      "company": "El anuncio menciona planta, taller y diferentes unidades mineras; averigua qué actividad principal realiza Movitecnica y cómo encaja ahí el mantenimiento de fajas, para preparar una pregunta concreta sobre el alcance diario del puesto.",
+      "visit": "Pregunta a selección si la sede de la práctica está confirmada y cómo se coordinan el traslado y el horario antes de trasladarte."
+    }
   },
   "ct-F0605BE6B0F0F82161373E686DCF3405": {
     "careerSignature": "99e13c9588ed2118fd67664d677fe9d49606788bce7a0e1862a3c3e55c5c187a",
