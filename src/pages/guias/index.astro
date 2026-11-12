@@ -30,14 +30,13 @@ const guides = [...visualGuides, ...editorialGuides];
           <span class="shrink-0 text-brand-400 [&_svg]:size-6"><GuideIcon kind={group.icon} /></span>
           {group.title}
         </h2>
-        <ul class="mt-4 grid divide-y divide-graphite-800 border-y border-graphite-800" role="list">
-          {guides.filter(guide => guide.group === group.id).map(guide => <li>
-            <a href={`/guias/${guide.slug}/`} class="group grid grid-cols-[1fr_auto] items-start gap-4 rounded px-1 py-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400">
-              <div>
-                <h3 class="font-semibold leading-snug text-graphite-100 transition-colors group-hover:text-brand-400">{guide.title}</h3>
-                <p class="mt-1 max-w-prose text-sm leading-relaxed text-graphite-300">{guide.description}</p>
-              </div>
-              <svg viewBox="0 0 24 24" class="mt-0.5 size-4 text-brand-400" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg>
+        <ul class="mt-5 grid gap-4 sm:grid-cols-2" role="list">
+          {guides.filter(guide => guide.group === group.id).map(guide => <li class="min-w-0">
+            <a href={`/guias/${guide.slug}/`} class="group grid h-full grid-cols-[auto_minmax(0,1fr)] content-start items-start gap-x-3 gap-y-2 rounded-2xl border border-graphite-800 bg-graphite-900 p-5 transition-colors hover:border-brand-500/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400">
+              <span class="grid size-9 place-items-center rounded-lg bg-brand-500/10 text-brand-400 [&_svg]:size-6"><GuideIcon kind={guide.icon} /></span>
+              <h3 class="self-center text-pretty font-display text-lg font-semibold leading-snug text-graphite-100 group-hover:text-brand-400 group-focus-visible:text-brand-400">{guide.title}</h3>
+              <p class="col-start-2 text-sm leading-relaxed text-graphite-200">{guide.description}</p>
+              <svg viewBox="0 0 24 24" class="col-start-2 mt-1 size-5 text-brand-400" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg>
             </a>
           </li>)}
         </ul>

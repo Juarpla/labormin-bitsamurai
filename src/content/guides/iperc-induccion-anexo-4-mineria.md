@@ -2,9 +2,12 @@
 title: IPERC e inducción del Anexo 4 en minería
 description: Entiende qué acredita una capacitación de seguridad, qué registra la inducción de una unidad y qué debes confirmar con la contratista.
 group: formacion
+icon: credential
 steps: [Distingue el requisito, Verifica la credencial, Confirma con la unidad]
 ---
 ## Lee el requisito como aparece en el aviso
+
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#checklist"></use></svg></figure>
 
 «IPERC», «inducción» y «certificado de trabajo en altura» pueden aparecer juntos en un anuncio. Copia la redacción exacta antes de buscar un curso. Pregunta si quieren una constancia como parte de la postulación, una capacitación que organiza la empresa después de seleccionar al personal o evidencia de una habilitación específica. La diferencia afecta cuánto tiempo necesitas y si corresponde pagar por una formación previa.
 
@@ -12,11 +15,15 @@ Si el aviso usa una abreviatura interna, pide el nombre completo y la referencia
 
 ## Qué hace un IPERC
 
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#shield"></use></svg></figure>
+
 En el reglamento minero peruano, **IPERC** corresponde a identificación de peligros, evaluación de riesgos y medidas de control. El IPERC de línea base considera actividades y puestos. El IPERC continuo permite identificar y evaluar peligros de la tarea y de sus condiciones concretas. En una entrevista, saber explicar la diferencia ayuda a entender por qué un ejemplo de aula tiene un alcance diferente de una evaluación aplicada en campo.
 
 Piensa en un ejercicio de práctica sobre una zona de tránsito. Puedes explicar cómo identificarías fuentes de peligro, quiénes podrían estar expuestos y por qué debe intervenir el personal responsable antes de seguir. Describe cómo se informa un cambio en las condiciones y dónde se registran las observaciones. Para una tarea real, sigue los procedimientos, autorizaciones y supervisión de la operación. La guía sirve para leer un anuncio y preparar preguntas de incorporación.
 
 ## Ubica el Anexo 4 en el proceso de ingreso
+
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#document"></use></svg></figure>
 
 El reglamento del MINEM distingue la **inducción y orientación básica** del **trabajo específico**. El Anexo 4 se refiere a la primera. El Anexo 5 corresponde a la capacitación vinculada al trabajo específico. Si una vacante menciona Anexo 4, confirma si se refiere al registro de inducción de esa unidad y quién programa y documenta la asistencia. Pregunta cuándo y dónde debes presentarte y cuáles son las condiciones para acceder.
 
@@ -30,6 +37,8 @@ El reglamento del MINEM distingue la **inducción y orientación básica** del *
 Antes de comprar un curso, solicita un temario, el nombre del emisor y un ejemplo de la constancia. Verifica si ofrece práctica supervisada, cómo se evalúa y cuánto cuesta el documento final. Confirma con selección si esa capacitación sirve para su proceso. Lee la respuesta completa y guárdala junto con la convocatoria.
 
 ## Caso ilustrativo de una contratista
+
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#hardhat"></use></svg></figure>
 
 Una persona que postula a un puesto auxiliar recibe un mensaje que dice «llevar Anexo 4 e IPERC». Puede responder que tiene una constancia de un curso de seguridad y pedir el programa de inducción de la unidad, indicando el cargo y la fecha del aviso. Si el reclutador confirma que el curso es deseable y que la inducción se programa tras la selección, ya sabe qué documento puede enviar y qué actividad queda para el ingreso.
 

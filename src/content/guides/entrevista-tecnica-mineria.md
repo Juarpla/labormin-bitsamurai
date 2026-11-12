@@ -2,9 +2,12 @@
 title: Cómo preparar una entrevista técnica para minería
 description: Ensaya respuestas con proyectos verificables y prepara preguntas sobre las tareas, la operación y la seguridad del puesto.
 group: primer-empleo
+icon: message
 steps: [Interpreta el puesto, Ensaya un caso, Aclara condiciones]
 ---
 ## Traduce el anuncio a situaciones de trabajo
+
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#checklist"></use></svg></figure>
 
 Elige tres verbos del aviso, como diagnosticar, conciliar o supervisar. A cada uno asígnale una situación que pueda aparecer en la entrevista. Para diagnóstico podrías explicar cómo separaste un error de lectura de una falla registrada. Para conciliación, cómo detectaste una diferencia entre un reporte y el inventario. Para supervisión, qué criterios usaste al revisar un entregable. Busca ejemplos donde puedas describir tus decisiones sin revelar información confidencial.
 
@@ -12,11 +15,15 @@ Prepara también una pregunta sobre el alcance real de la vacante. Una entrevist
 
 ## Responde con datos y decisiones
 
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#conversation"></use></svg></figure>
+
 Organiza cada caso en cuatro partes breves. Describe **qué pasó**, **qué tenías que lograr**, **qué hiciste tú** y **cómo verificaste el resultado**. Si el proyecto fue de clase, dilo al comienzo y explica qué parte reprodujo una situación de trabajo. Si lo hiciste con supervisión, identifica qué entregaste y quién tomó la decisión final. Haz una primera versión de un minuto y una segunda que incluya detalles si te preguntan.
 
 Ejemplo ilustrativo. Para una práctica de almacén podrías contar que recibiste dos registros del mismo repuesto, comparaste la descripción y el código, detectaste una diferencia de unidad y preparaste un listado para revisión. Tu resultado puede ser una base revisada o una observación aceptada por el responsable. Si el profesor o supervisor aprobó el cambio, ese es el punto verificable. No atribuyas al ejercicio una reducción real de pérdidas si nunca la mediste.
 
 ## Ensaya cuando falta información
+
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#tools"></use></svg></figure>
 
 En una pregunta sobre una falla, es razonable pedir los datos que necesitas. Empieza por el alcance y las condiciones seguras de la actividad. Luego aclara qué observaciones ya existen, a quién se comunica el problema y qué parte está bajo tu responsabilidad. Distingue lo que harías como practicante de lo que debe decidir personal autorizado. Un ejercicio de entrevista sirve para explicar tu criterio, jamás para dar una autorización de trabajo.
 
@@ -30,6 +37,8 @@ En una pregunta sobre una falla, es razonable pedir los datos que necesitas. Emp
 Si desconoces una herramienta, indica cuál usaste para resolver un problema parecido y qué harías para aprender el flujo nuevo. Evita memorizar una lista de nombres sin ejemplos. Lleva una nota corta con tus casos y úsala como apoyo, especialmente si te conectas desde un teléfono.
 
 ## Lleva preguntas para el equipo
+
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#evidence"></use></svg></figure>
 
 Pregunta qué esperan que puedas hacer en las primeras semanas, con quién revisarás tus entregables y qué parte del puesto se cumple en oficina, planta o mina. Si estás comparando condiciones, confirma **sede, régimen y traslado** antes de decidir. Si la entrevista es remota, acuerda la hora local, confirma quién enviará el enlace y guarda un contacto alternativo por si se corta la conexión.
 

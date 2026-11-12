@@ -2,9 +2,12 @@
 title: Cómo armar un CV minero sin experiencia
 description: Convierte proyectos, prácticas y otros trabajos en un CV que responda a los requisitos de una vacante minera en Perú.
 group: primer-empleo
+icon: credential
 steps: [Lee el aviso, Elige evidencias, Revisa el PDF]
 ---
 ## Empieza con un puesto y tres requisitos
+
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#checklist"></use></svg></figure>
 
 Abre una vacante que de verdad considerarías aceptar. Copia tres requisitos en una hoja y anota dónde los viste. Por ejemplo, un aviso de apoyo de mantenimiento puede mencionar lectura de planos, registro de órdenes de trabajo y disponibilidad para trasladarte. Trata cada punto como una pregunta que tu CV debe responder. Si el aviso exige una licencia o un título que aún no tienes, conserva el dato para buscar otra convocatoria o preguntar si admiten postulantes en formación.
 
@@ -12,11 +15,15 @@ Decide qué versión vas a preparar. Un **CV de mantenimiento** puede abrir con 
 
 ## Ordena el documento para una primera lectura
 
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#document"></use></svg></figure>
+
 En el encabezado pon nombre, ciudad, correo y teléfono que contestes. Escribe un perfil de dos o tres líneas que diga qué estudiaste, a qué puesto apuntas y qué puedes demostrar. Si tienes proyectos o prácticas relevantes, ubícalos antes de los cursos cortos. Identifica el instituto, universidad o empresa y aclara si fue un proyecto académico, una práctica o un trabajo. Coloca las fechas de inicio y término de manera consistente.
 
 En formación indica si estás estudiando, si egresaste o si ya obtuviste el título. En herramientas, explica para qué usaste cada una. «Excel para conciliar movimientos de un inventario de práctica» ayuda más que una lista de veinte programas. Reserva espacio para una licencia o acreditación vigente si el aviso la pide. Coloca un enlace a un portafolio solo si abre sin pedir acceso y el contenido se puede compartir.
 
 ## Convierte una tarea en evidencia
+
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#evidence"></use></svg></figure>
 
 Usa **acción, contexto y resultado**. El siguiente ejemplo es ilustrativo. Si hiciste un inventario como parte de un proyecto de taller, escribe qué registraste, cómo revisaste las diferencias y qué entregaste al docente. Si recuerdas la cantidad de registros y puedes verificarla, inclúyela. Si no tienes el dato, explica el alcance con precisión sin estimarlo. Para una tarea compartida, distingue lo que hizo el equipo y lo que hiciste tú.
 
@@ -29,6 +36,8 @@ Usa **acción, contexto y resultado**. El siguiente ejemplo es ilustrativo. Si h
 Prueba leer la frase en voz alta como si un reclutador te pidiera explicarla. Si debes inventar el contexto para que funcione, corrige la frase. Si puedes mostrar un informe o una foto autorizada, guarda la evidencia aparte y comparte solo lo pertinente.
 
 ## Revisa el archivo antes de adjuntarlo
+
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#phone"></use></svg></figure>
 
 Exporta un PDF con texto seleccionable y abre el archivo en tu teléfono. Mira si se leen las fechas, si los enlaces abren y si alguna línea quedó cortada. Usa un nombre reconocible como `Nombre-Apellido-CV-Mantenimiento.pdf`. Si el portal pide completar un formulario, traslada los mismos datos y revisa el significado de campos como situación académica o experiencia específica antes de seleccionar una opción.
 

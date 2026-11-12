@@ -2,15 +2,20 @@
 title: Prácticas mineras en Perú para estudiantes y egresados
 description: Distingue las prácticas preprofesionales y profesionales y revisa convenio, jornada y objetivos antes de aceptar.
 group: primer-empleo
+icon: time
 steps: [Confirma tu modalidad, Revisa el convenio, Guarda evidencias]
 ---
 ## Identifica qué modalidad admite el aviso
+
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#document"></use></svg></figure>
 
 Lee primero a quién va dirigida la convocatoria. La **práctica preprofesional** se dirige a estudiantes y vincula a la empresa con el centro de formación. La **práctica profesional** corresponde a quien ya egresó. Para elegir entre ellas, toma como referencia el estado que tu universidad o instituto puede acreditar a la fecha solicitada. Estar en el último ciclo y esperar la constancia de egreso son situaciones distintas para un proceso de selección.
 
 Cuando una vacante se anuncia como programa de jóvenes talentos, busca en las bases el tipo de vínculo, la fecha límite de egreso y la documentación aceptada. Un nombre comercial como «trainee» por sí solo no identifica el tipo de convenio. Si estás a punto de cambiar de condición académica, indica la fecha prevista y pregunta si debes acreditar tu situación al postular, al firmar o al iniciar.
 
 ## Lee el convenio antes de organizar tu horario
+
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#calendar"></use></svg></figure>
 
 Para el **sector privado peruano**, Sunafil señala jornadas máximas de seis horas al día o treinta a la semana en la modalidad preprofesional y ocho al día o cuarenta y ocho a la semana en la profesional. También indica que las personas en estas modalidades no deben realizar horas extraordinarias. Si una oferta propone rotación en operación o una combinación de oficina y visitas, pide el horario concreto, los días asignados y la sede en que se realiza cada parte.
 
@@ -25,11 +30,15 @@ Antes de aceptar, consulta también por inducción, traslados y condiciones para
 
 ## Elige por las tareas que puedes aprender
 
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#tools"></use></svg></figure>
+
 Compara dos programas pensando en tu siguiente empleo. Si te interesa planeamiento, pregunta si participarás en revisar datos, preparar planos o validar avances y con qué supervisión. Si tu ruta es mantenimiento, averigua si el equipo revisa órdenes de trabajo, indicadores o reportes. En ambiente o permisos, pide ejemplos de entregables, como una matriz de compromisos o un registro de inspecciones. Son ejemplos de aprendizaje, y cada operación organiza las tareas de manera distinta.
 
 Un puesto cercano a tu formación puede ser una buena elección aunque sea en una empresa poco conocida. Pregunta si tendrás una persona que pueda revisar tus entregables y con qué frecuencia te dará retroalimentación. Si la convocatoria enumera solo tareas administrativas, pide que describan una semana habitual y cómo esas actividades aportan al plan de formación.
 
 ## Organiza la postulación y el cierre de la práctica
+
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#checklist"></use></svg></figure>
 
 Ejemplo ilustrativo. Una estudiante de electricidad ve un aviso para apoyo de mantenimiento que acepta estudiantes de los últimos ciclos. Puede adjuntar su constancia, contar un proyecto de taller supervisado y preguntar si habrá turnos que se crucen con sus clases. Si la sede alterna entre dos lugares, le conviene calcular ambos trayectos y confirmar quién cubre el transporte. Una persona egresada con el mismo proyecto buscaría la modalidad profesional y confirmaría qué documento acredita su fecha de egreso.
 

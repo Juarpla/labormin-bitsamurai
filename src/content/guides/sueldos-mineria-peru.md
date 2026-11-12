@@ -2,9 +2,12 @@
 title: Sueldos en minería en Perú para operadores e ingenieros
 description: Lee cifras oficiales de operadores e ingeniería y compara el sueldo base, los bonos y los gastos de una oferta concreta.
 group: evaluar
+icon: cost
 steps: [Identifica la población, Compara conceptos, Pide el desglose]
 ---
 ## Dos referencias con alcances diferentes
+
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#evidence"></use></svg></figure>
 
 Antes de decidir si una propuesta paga bien, identifica el puesto exacto, el lugar y el tipo de contrato. «Operador» puede referirse a labores y equipos diferentes. «Ingeniero de minas» puede abarcar desde un rol de apoyo hasta una responsabilidad de supervisión. Incluso dos personas con la misma formación pueden trabajar en ocupaciones distintas. Por eso conviene empezar por **qué mide la fuente**, y solo después mirar el monto.
 
@@ -17,17 +20,23 @@ La primera cifra es una **proyección regional de contratación**, con las exclu
 
 ## Identifica qué se paga y con qué frecuencia
 
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#wallet"></use></svg></figure>
+
 Pide que te indiquen el **monto base bruto**, la moneda y el periodo de pago. Aclara qué parte es fija y qué parte depende de desempeño, asistencia, régimen o condiciones del proyecto. Si se mencionan viáticos, averigua si se entregan para cubrir gastos, si debes rendirlos y qué ocurre cuando no viajas. Para una cifra anual, confirma cuántos pagos incluye y qué conceptos están dentro del total.
 
 Si quieres comparar el monto que recibirías, pregunta qué retenciones o descuentos aplicarían a tu caso y con qué supuestos se calculó el neto. Pide la propuesta por escrito y conserva el mensaje. En Labormin los montos en fichas dependen de la información publicada en el aviso. Si falta una cifra o su alcance es ambiguo, consúltalo con el empleador.
 
 ## Incluye los gastos del régimen
 
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#route"></use></svg></figure>
+
 Para un puesto en operación, confirma si la empresa cubre el traslado desde tu ciudad o desde un punto de recojo. Averigua cómo funciona el alojamiento y en qué días están incluidas las comidas. En oficina o en trabajo remoto, identifica costos como transporte diario, conectividad o equipos. Anota los gastos que asumirías en un mes representativo y los que solo pagarías al comenzar.
 
 Ejemplo ilustrativo. Una persona recibe una propuesta con base fija y un bono por alcanzar una meta, y otra con una base distinta y transporte desde un punto que le queda lejos. Puede comparar primero los **montos fijos** con el mismo periodo y descontar sus gastos en cada caso. Después puede comparar los escenarios con y sin bono, preguntando cuándo se paga y cuáles son sus condiciones. Así evita tomar una decisión con un máximo que todavía no está garantizado.
 
 ## Aclara el crecimiento del puesto
+
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#checklist"></use></svg></figure>
 
 Si aspiras a pasar de operador en formación a un equipo específico, pregunta qué competencias se evalúan y cómo se formaliza el cambio. En ingeniería, identifica si el alcance incluye dirigir un equipo, responder por indicadores o cubrir rotaciones de otra área. Pide ejemplos de lo que se espera en el primer trimestre y cómo se evalúa. Las responsabilidades te dan un criterio adicional para decidir entre propuestas con montos similares.
 

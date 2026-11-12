@@ -2,15 +2,20 @@
 title: Cómo detectar ofertas falsas de empleo minero
 description: Verifica anuncios y reclutadores, reconoce cobros sospechosos y protege tus documentos al postular en Perú.
 group: evaluar
+icon: message
 steps: [Busca el aviso oficial, Verifica el contacto, Protege tus datos]
 ---
 ## Busca el proceso por un camino independiente
+
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#evidence"></use></svg></figure>
 
 Cuando recibas un mensaje de reclutamiento, copia el nombre de la empresa y el cargo. Abre su sitio oficial en una pestaña nueva y busca su sección de carreras. Si el aviso aparece, compara el **código de convocatoria**, la sede, las funciones y las fechas. Si la empresa usa una plataforma externa, entra desde el enlace publicado en su sitio. Un logotipo copiado o un remitente con nombre conocido no prueban que la cuenta pertenezca al empleador.
 
 Algunas empresas anuncian puestos a través de contratistas o bolsas autorizadas. Pide el nombre de la empresa que contrata y el canal donde podrás verificar el proceso. Si no encuentras el aviso en el portal, consulta con un contacto corporativo que hayas localizado por tu cuenta. Mantén en pausa cualquier transferencia de dinero o envío de documentos sensibles mientras confirmas.
 
 ## Observa qué te piden y con qué urgencia
+
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#conversation"></use></svg></figure>
 
 Sunafil alerta sobre ofertas engañosas y recomienda prestar atención al contenido y la fuente. Una solicitud de pago para **reservar un cupo**, recibir una supuesta carta de contratación o acceder a un grupo privado merece verificación antes de continuar. Desconfía si te presionan para responder de inmediato, rechazan indicar quién contrata o te piden una transferencia a una cuenta personal.
 
@@ -25,11 +30,15 @@ Si aparece un requisito de inducción o examen, confirma quién lo coordina, dó
 
 ## Envía solo lo que corresponda a la etapa
 
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#shield"></use></svg></figure>
+
 Un CV inicial puede identificar tu ciudad, experiencia y formas de contacto. Guarda por separado documentos como certificados y constancias. Antes de adjuntarlos, verifica el destinatario y pregunta para qué se utilizarán. No entregues claves, códigos de verificación, acceso a tu correo ni datos de banca por un supuesto proceso de selección. Si alguien te pide instalar una aplicación para continuar, confirma la instrucción por un canal independiente antes de abrir un archivo o enlace.
 
 Para un **Certificado Único Laboral**, consulta el servicio oficial del MTPE, que permite obtenerlo gratuitamente. Si vas a enviar un documento auténtico, comprueba la dirección completa y evita adjuntarlo a grupos públicos. Conserva la fecha, el destinatario y el nombre de la convocatoria para saber a qué proceso corresponde cada envío.
 
 ## Qué hacer si el contacto parece falso
+
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#phone"></use></svg></figure>
 
 Ejemplo ilustrativo. Una persona recibe por mensajería un aviso de una contratista y una solicitud de pago para apartar un examen. Busca la convocatoria en el portal oficial y pregunta por el código del puesto al equipo de selección. Si la empresa no reconoce el proceso, guarda capturas con la fecha, el enlace, el remitente y los datos del cobro. Evita reenviar documentos personales al denunciarlo en un canal público.
 

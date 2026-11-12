@@ -2,15 +2,20 @@
 title: Turnos, campamento y transporte en una oferta minera
 description: Interpreta el régimen de trabajo y confirma días de viaje, punto de recojo, alojamiento y gastos antes de aceptar.
 group: evaluar
+icon: travel
 steps: [Marca el calendario, Traza el traslado, Estima el costo]
 ---
 ## Lleva el régimen a un calendario
+
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#calendar"></use></svg></figure>
 
 Cuando una vacante dice «14 × 7», léelo como una referencia a un ciclo de catorce días de trabajo y siete de descanso. A continuación pregunta **qué fechas y horas corresponden a cada tramo**, cómo se cuentan los días de viaje y cuándo cambia el turno. La etiqueta sirve para comparar avisos, pero las condiciones concretas se conocen al ver el cronograma que propone la empresa. Pide un ejemplo de un ciclo completo antes de confirmar disponibilidad.
 
 Marca en un calendario cuándo saldrías de casa, cuándo llegarías al punto de recojo, cuándo iniciarías labores y cuándo regresarías. Incluye lo que sabes con certeza y separa lo que te falta confirmar. Si debes hacer una conexión en otra ciudad, comprueba cuánto tiempo tendrías para tomarla. Si vives con personas que dependen de ti, revisa qué compromisos debes reorganizar durante el ciclo.
 
 ## Dibuja el traslado por tramos
+
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#route"></use></svg></figure>
 
 Separa el viaje **de tu casa al punto de recojo** y **del punto de recojo a la operación**. Pregunta qué tramos cubre el empleador, cómo se reserva el asiento y qué ocurre si cambia la hora. En el regreso, averigua a qué hora llegas al punto final y si aún habrá transporte para volver a casa. Si el aviso indica solo el departamento o el país, solicita el nombre de la operación y la sede antes de calcular costos.
 
@@ -29,6 +34,8 @@ Un mapa sirve para ubicar una sede y comparar distancias. Para accesos a operaci
 Pregunta por servicios concretos del campamento, como conectividad, lavandería y atención para necesidades particulares. Si debes viajar un día antes, aclara quién cubre esa noche y si necesitas reservarla por tu cuenta. Si el empleador dice que reembolsa gastos, pide la lista de comprobantes y el plazo. Distingue el monto que pagarás de inmediato del gasto que te devolverán después.
 
 ## Compara dos ofertas con el mismo criterio
+
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#wallet"></use></svg></figure>
 
 Ejemplo ilustrativo. Dos ofertas anuncian el mismo régimen. Una recoge al personal cerca de donde vive la persona postulante. La otra inicia el viaje en otra región y requiere llegar la noche anterior. Para decidir, la persona calcula por separado el tiempo de traslado, el gasto que cubre y los días fuera de casa. También pregunta si las horas de viaje aparecen en el cronograma y quién coordina si hay un cambio de fecha.
 

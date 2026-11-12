@@ -2,9 +2,12 @@
 title: Cómo conseguir tu primer trabajo en mina sin experiencia
 description: Encuentra puestos de entrada en minería y prepara una postulación con evidencia de tus estudios, proyectos o trabajos previos.
 group: primer-empleo
+icon: practice
 steps: [Elige una función, Reúne evidencias, Postula y registra]
 ---
 ## Elige una función concreta para empezar
+
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#hardhat"></use></svg></figure>
 
 Lee vacantes de apoyo en planta, almacén, mantenimiento, logística o campamento y anota las tareas que te interesan. Explora tanto las empresas que operan la mina como las contratistas que prestan servicios. Una convocatoria de campamento y una de planta pueden compartir la ubicación, pero requieren habilidades y horarios diferentes. Si estudias una carrera técnica o universitaria, revisa también las [prácticas en Perú](/practicas/) y confirma qué estado académico admite cada programa.
 
@@ -12,11 +15,15 @@ Busca por **tarea y nivel**, además del nombre de la empresa. Si vienes de inve
 
 ## Usa experiencia que ya puedas demostrar
 
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#evidence"></use></svg></figure>
+
 Cuando el anuncio pida ordenar datos, atender pedidos o seguir un procedimiento, piensa en proyectos de clase, prácticas, voluntariado o trabajos en otros sectores. Escribe una línea por experiencia, con fecha, función y resultado comprobable. Si organizaste materiales en una tienda, puedes explicar cómo identificaste diferencias de inventario y a quién las comunicaste. Presenta ese ejemplo como lo que fue y vincúlalo a la tarea que pide la vacante.
 
 Ejemplo ilustrativo. Una persona egresada de un instituto quiere postular a apoyo de mantenimiento. Sus mejores pruebas son un proyecto de taller supervisado, un registro de materiales que preparó y una constancia de estudios. Puede enviar un CV que mencione las herramientas realmente utilizadas y, si la llaman, explicar un ejercicio y el resultado. Si el anuncio exige experiencia autónoma en una operación, puede buscar otra vacante de aprendizaje en paralelo.
 
 ## Invierte solo en brechas concretas
+
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#tools"></use></svg></figure>
 
 Separa los **requisitos de postulación** de los trámites que se organizan al ingresar. Si una empresa menciona inducción, examen o formación de seguridad, pregunta en qué etapa se solicita y quién lo coordina. Evita comprar un paquete de cursos antes de entender qué vacantes te interesan y qué evidencia aceptan. La [guía de formación con poco presupuesto](/guias/formacion-minera-gratuita-economica-peru/) explica cómo comparar costos y credenciales.
 
@@ -30,6 +37,8 @@ Separa los **requisitos de postulación** de los trámites que se organizan al i
 Para credenciales de seguridad, consulta la [guía sobre IPERC e inducción](/guias/iperc-induccion-anexo-4-mineria/) y confirma los requisitos con la operación. Para una evaluación ocupacional, revisa los [documentos de ingreso](/guias/requisitos-medicos-seguridad-ssoma/) y el canal indicado por el empleador.
 
 ## Busca en más de un canal y registra tus resultados
+
+<figure class="editorial-figure" aria-hidden="true"><svg viewBox="0 0 112 112" focusable="false"><use href="/icons/guide-illustrations.svg#route"></use></svg></figure>
 
 Empieza por los [empleos vigentes](/jobs/) y revisa el aviso original antes de enviar tu candidatura. Puedes complementar con la bolsa pública Empleos Perú y [eventos del sector](/eventos/). En una feria, prepara una frase breve que explique tu formación, qué puesto buscas y qué puedes demostrar. Pide el canal donde debes completar la postulación y registra la información mientras está fresca.
 
