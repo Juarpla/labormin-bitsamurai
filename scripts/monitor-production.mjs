@@ -60,6 +60,17 @@ async function checkSitemap() {
   assert.ok(!missing.length, `${site}${sitemapIndex} — faltan ${missing.map(path => new URL(path, site).href).join(', ')}`);
 }
 
+async function checkAboutRedirect(path) {
+  const url = new URL(path, site);
+  const response = await fetch(url, { redirect: 'manual', signal: AbortSignal.timeout(12_000) });
+  const location = response.headers.get('location');
+  await response.body?.cancel();
+  assert.equal(response.status, 301, `${url.href} — se esperaba una redirección 301`);
+  assert.ok(location, `${url.href} — falta el destino de la redirección`);
+  assert.equal(new URL(location, url).href, `${site}/about/`);
+  console.log(`OK ${url.href} → /about/`);
+}
+
 const results = await Promise.allSettled([
   ...publicPages.map(path => check(path, /^text\/html$/i, html => {
     assert.ok(/<title>\s*[^<\s][^<]*<\/title>/i.test(html), 'Falta el título de la página');
@@ -79,6 +90,7 @@ const results = await Promise.allSettled([
     assert.ok(!blocked, 'Un rastreador de Google está bloqueado en todo el sitio');
   }),
   checkSitemap(),
+  ...['/nosotros', '/nosotros/'].map(checkAboutRedirect),
 ]);
 
 for (const result of results) {
