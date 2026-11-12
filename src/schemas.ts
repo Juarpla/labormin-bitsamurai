@@ -46,6 +46,7 @@ export const JobSchema = z.object({
   salary: SalarySchema,
   /** Sorting/TTL reference; not necessarily the employer publication date. */
   postedAt: z.string(),
+  firstReferenceAt: z.string().optional(),
   publishedAt: z.string().nullable(),
   validThrough: z.string().nullable().optional(),
   fetchedAt: z.string().optional(),

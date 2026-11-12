@@ -80,8 +80,8 @@ jobs:
         run: |
           git config user.name "labormin-bot"
           git config user.email "bot@labormin.com"
-          if [[ -n "$(git status --porcelain src/data/jobs.json src/data/ingest-flags.json)" ]]; then
-            git add src/data/jobs.json src/data/ingest-flags.json
+          if [[ -n "$(git status --porcelain src/data/jobs.json src/data/jobs-archive.json src/data/ingest-flags.json)" ]]; then
+            git add src/data/jobs.json src/data/jobs-archive.json src/data/ingest-flags.json
             git commit -m "chore(data): refresh jobs feed"
             # Rebase over any feed commit that landed while we ingested (~50 min),
             # then push. Fails only on a real conflict; the feed file is

@@ -133,26 +133,45 @@ export function formatSalaryValue(salary) {
   return `${amount} ${salary.currency}/${suffix}${salary.country ? ` · solo ${salary.country}` : ''}`;
 }
 
-/** Only describe a current, sufficiently complete posting whose required
- * properties are backed by the source. Omit optional unconfirmed properties. */
-export function isExpired(job, now = new Date()) {
-  if (!job.validThrough) return false;
-  const value = job.validThrough.length === 10 ? job.validThrough + 'T23:59:59Z' : job.validThrough;
-  return Number.isFinite(Date.parse(value)) && Date.parse(value) < now.getTime();
+const DAY_MS = 86400000;
+
+/** A calendar date refers to Peru. Publisher deadlines with no time include that entire day. */
+export function jobDate(value, endOfDay = false) {
+  if (!value) return NaN;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    const time = Date.parse(value + 'T00:00:00-05:00');
+    return endOfDay ? time + DAY_MS : time;
+  }
+  return Date.parse(/^\d{4}-\d{2}-\d{2}T[\d:.]+$/.test(value) ? value + '-05:00' : value);
 }
 
-export function jobPosting(job) {
-  if (isExpired(job)) return null;
+export function jobExpiration(job) {
+  const published = jobDate(job.publishedAt);
+  const reference = Number.isFinite(published) ? published : jobDate(job.firstReferenceAt || job.postedAt);
+  const cutoff = Number.isFinite(reference) ? reference + 30 * DAY_MS : Infinity;
+  const deadline = jobDate(job.validThrough, true);
+  const fromEmployer = Number.isFinite(deadline) && deadline < cutoff;
+  const time = fromEmployer ? deadline : cutoff;
+  return Number.isFinite(time) ? { time, date: new Date(time).toISOString(), reason: fromEmployer ? 'expired' : 'stale' } : null;
+}
+
+export function isExpired(job, now = new Date()) {
+  return (jobExpiration(job)?.time ?? Infinity) <= now.getTime();
+}
+
+/** Describe current postings only when the source confirms the required properties. */
+export function jobPosting(job, now = new Date()) {
+  if (isExpired(job, now)) return null;
   if (!job.publishedAt || job.descriptionStatus !== 'full' || !job.description || !job.company) return null;
-  const date = Date.parse(job.publishedAt);
-  if (!Number.isFinite(date) || date < Date.now()-30*86400000 || date > Date.now()+86400000) return null;
+  const date = jobDate(job.publishedAt);
+  if (!Number.isFinite(date) || date > now.getTime()+DAY_MS) return null;
   if (job.remote && job.remoteEligibility?.status !== 'peru-supported') return null;
   if (!job.remote && job.country === 'GLOBAL') return null;
   const salary = job.salary;
   return {
     '@context':'https://schema.org', '@type':'JobPosting', title:job.title,
     description:job.description, datePosted:job.publishedAt,
-    ...(job.validThrough ? {validThrough:job.validThrough} : {}),
+    validThrough:jobExpiration(job).date,
     hiringOrganization:{'@type':'Organization',name:job.company},
     ...(job.employmentType ? {employmentType:job.employmentType} : {}),
     ...(job.remote ? {jobLocationType:'TELECOMMUTE',applicantLocationRequirements:{'@type':'Country',name:'PE'}} : {jobLocation:{'@type':'Place',address:{'@type':'PostalAddress',addressCountry:job.country,...(job.city ? {addressLocality:job.city} : {})}}}),

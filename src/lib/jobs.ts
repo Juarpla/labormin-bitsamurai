@@ -1,4 +1,7 @@
-import { formatSalaryValue } from './job-policy.mjs';
+import { formatSalaryValue, isExpired, jobExpiration } from './job-policy.mjs';
+import { archiveEntry, isPublicClosure } from './job-archive.mjs';
+import rawArchive from '../data/jobs-archive.json';
+import overrides from '../data/overrides.json';
 import raw from '../data/jobs.json';
 import rawPresentation from '../data/job-presentation.json';
 import { localPresentation, organizeDescriptionBlocks, presentationKey, sectionLabels } from './job-presentation.mjs';
@@ -26,18 +29,35 @@ function prepared(job: Job) {
   return presentations[presentationKey(job)];
 }
 
-export function clearViewFor(job: Job) {
-  const sections = prepared(job)?.sections;
+export function clearViewFor(job: Job, historical = false) {
+  const sections = historical ? undefined : prepared(job)?.sections;
   const onlyOverview = sections?.length === 1 && sections[0].heading === 'overview';
   return sections?.length
     ? { sections: onlyOverview ? organizeDescriptionBlocks(sections[0].blocks) as ClearSection[] : sections, generated: true }
     : { sections: localPresentation(job.description) as ClearSection[], generated: false };
 }
 
-export const allJobs: Job[] = tierSorted(parsed.jobs.map(job => {
+function withPresentation(job: Job): Job {
   const titleEs = prepared(job)?.titleEs;
-  return { ...job, translations: titleEs ? { es: titleEs } : undefined };
-}));
+  return titleEs ? { ...job, translations: { es: titleEs } } : job;
+}
+
+export type ArchivedJob = {
+  slug: string; title: string; company: string; referenceDate: string; removedAt: string;
+  reason: string; closedAt?: string; snapshot?: Job;
+};
+
+const excluded = new Set(Object.keys(overrides.exclude ?? {}));
+const now = new Date();
+const publicFeed = parsed.jobs.filter(job => !excluded.has(job.id));
+export const allJobs: Job[] = tierSorted(publicFeed.filter(job => !isExpired(job, now)).map(withPresentation));
+const feedSlugs = new Set(parsed.jobs.map(job => job.slug));
+export const archivedJobs: ArchivedJob[] = [
+  ...(rawArchive as ArchivedJob[]).filter(entry => !feedSlugs.has(entry.slug) && !excluded.has(entry.snapshot?.id ?? '')),
+  ...publicFeed.filter(job => isExpired(job, now)).map(job => archiveEntry(job, jobExpiration(job).reason, now)),
+].map(entry => entry.snapshot ? { ...entry, snapshot: withPresentation(entry.snapshot) } : entry);
+export const closedJobs = archivedJobs.filter(isPublicClosure)
+  .sort((a, b) => (b.closedAt ?? b.removedAt).localeCompare(a.closedAt ?? a.removedAt) || a.slug.localeCompare(b.slug));
 /** Pool general (/, /jobs): sin prácticas — viven solo en /practicas (Perú). */
 export const jobs: Job[] = allJobs.filter((j) => !(j.internship && j.country === 'PE'));
 /** Prácticas/trainee/becarios activos en Perú, postedAt desc. */
@@ -157,6 +177,15 @@ export function relatedJobs(job: Job, n = 4): Job[] {
     .slice(0, n);
 }
 
+export function currentAlternatives(job: Job, limit = 3): Job[] {
+  const pool = job.internship ? internships : jobs;
+  const relevance = (candidate: Job) => 2 * Number(candidate.category === job.category && job.category !== 'other')
+    + Number(candidate.country === job.country);
+  return pool.filter(candidate => candidate.id !== job.id && relevance(candidate) > 0)
+    .sort((a, b) => relevance(b) - relevance(a) || b.postedAt.localeCompare(a.postedAt))
+    .slice(0, limit);
+}
+
 export function formatSalary(job: Job): string | null {
   return formatSalaryValue(job.salary);
 }
@@ -164,6 +193,7 @@ export function formatSalary(job: Job): string | null {
 export function formatDate(iso: string, locale: Locale): string {
   return new Intl.DateTimeFormat(locale === 'en' ? 'en-US' : locale === 'es' ? 'es-ES' : 'pt-BR', {
     dateStyle: 'medium',
+    timeZone: iso.length === 10 ? 'UTC' : 'America/Lima',
   }).format(new Date(iso));
 }
 

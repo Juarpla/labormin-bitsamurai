@@ -1,0 +1,38 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Layout from '../../layouts/Layout.astro';
+import { closedJobs, formatDate, locationLine, titleFor } from '../../lib/jobs';
+import { useTranslations } from '../../lib/i18n';
+
+export const getStaticPaths = (({ paginate }) => closedJobs.length
+  ? paginate(closedJobs, { pageSize: 50 })
+  : [{ params: { page: undefined }, props: { page: null } }]) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+const t = useTranslations('es');
+const current = page?.currentPage ?? 1;
+const path = current === 1 ? '/archivo/' : `/archivo/${current}/`;
+const title = current === 1 ? 'Archivo de convocatorias' : `Archivo de convocatorias · Página ${current}`;
+---
+<Layout title={`${title} — Labormin`} path={path} description={`Consulta las fichas de empleos y prácticas mineras que ya cerraron en Labormin${current > 1 ? `, página ${current}` : ''}.`} ads={false}>
+  <section class="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16" aria-labelledby="archive-heading">
+    <header>
+      <h1 id="archive-heading" class="font-display text-4xl font-semibold text-graphite-100">{title}</h1>
+      <p class="mt-4 max-w-prose leading-relaxed text-graphite-200">Consulta descripciones y requisitos de convocatorias finalizadas. Para postular, revisa los <a href="/jobs/" class="text-brand-400 underline underline-offset-4">empleos</a> y las <a href="/practicas/" class="text-brand-400 underline underline-offset-4">prácticas vigentes</a>.</p>
+    </header>
+    {page ? <ul class="mt-8 divide-y divide-graphite-800 border-y border-graphite-800" role="list">
+      {page.data.map(entry => <li class="grid gap-2 py-4 sm:grid-cols-[1fr_auto] sm:items-start sm:gap-5">
+        <div class="min-w-0 break-words">
+          <a href={`/jobs/${entry.slug}/`} class="font-semibold text-graphite-100 hover:text-brand-400">{titleFor(entry.snapshot!, 'es')}</a>
+          <p class="mt-1 text-sm text-graphite-300">{entry.company} · {locationLine(entry.snapshot!, t)}</p>
+        </div>
+        {entry.closedAt && <time datetime={entry.closedAt} class="text-sm text-graphite-400">{formatDate(entry.closedAt, 'es')}</time>}
+      </li>)}
+    </ul> : <p class="mt-8 border-y border-graphite-800 py-5 text-graphite-300">Las próximas convocatorias que cierren aparecerán aquí.</p>}
+    {page && page.lastPage > 1 && <nav aria-label="Páginas del archivo" class="mt-7 flex flex-wrap items-center gap-4 text-sm">
+      {page.url.prev && <a href={page.url.prev} rel="prev" class="text-brand-400 hover:underline">← Anterior</a>}
+      <span class="text-graphite-300">Página {current} de {page.lastPage}</span>
+      {page.url.next && <a href={page.url.next} rel="next" class="text-brand-400 hover:underline">Siguiente →</a>}
+    </nav>}
+  </section>
+</Layout>

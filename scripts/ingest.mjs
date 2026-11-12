@@ -15,12 +15,14 @@
  */
 import { decodeHTML } from 'entities';
 import { inNiche, parseSalary, visaHeuristic, certifyJob, POLICY_VERSION, isExpired, truncateSourceText } from '../src/lib/job-policy.mjs';
+import { updateArchive, withStableDates } from '../src/lib/job-archive.mjs';
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = path.join(ROOT, 'src', 'data', 'jobs.json');
+const ARCHIVE = path.join(ROOT, 'src', 'data', 'jobs-archive.json');
 const CONFIG = path.join(ROOT, 'src', 'data', 'companies.json');
 
 // Optional local .env (same precedence as `node --env-file`: real env vars win).
@@ -31,7 +33,6 @@ try {
   /* no .env — skip */
 }
 
-const TTL_DAYS = 30;
 let MAX_PER_SOURCE = 1500; // overridden by companies.json `maxPerSource`
 const UA = { 'User-Agent': 'LaborminBot/1.0 (+https://labormin.com/about)' };
 // Keep all obtained source text: final paragraphs can contain eligibility restrictions.
@@ -131,6 +132,14 @@ function isoDate(v, fallback = todayISO()) {
     if (!Number.isNaN(t.getTime())) return t.toISOString().slice(0, 10);
   }
   return fallback;
+}
+
+function sourceDate(value) {
+  const day = isoDate(value, null);
+  if (!day) return null;
+  if (typeof value === 'number') return new Date(value).toISOString();
+  if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}T\d/.test(value) && Number.isFinite(Date.parse(value))) return value;
+  return day;
 }
 
 async function fetchText(url, { timeout = 25000, headers = {} } = {}) {
@@ -241,8 +250,8 @@ export function sourceJobDetail(html) {
   return {
     description: htmlify(text),
     descriptionStatus: 'full',
-    publishedAt: isoDate(jp?.datePosted || microdataProp(html, 'datePosted'), null),
-    validThrough: isoDate(jp?.validThrough || microdataProp(html, 'validThrough'), null),
+    publishedAt: sourceDate(jp?.datePosted || microdataProp(html, 'datePosted')),
+    validThrough: sourceDate(jp?.validThrough || microdataProp(html, 'validThrough')),
   };
 }
 
@@ -299,6 +308,8 @@ export function hydrateFromPrev(prevById, job) {
   if (p.policyVersion !== POLICY_VERSION || p.descriptionStatus !== 'full') return false;
   if (!p.fetchedAt || Date.parse(p.fetchedAt) < Date.now() - 7 * 86400000) return false;
   if (!p.country || p.country === 'GLOBAL') return false; // incomplete record — refetch to repair
+  if (job.publishedAt && withStableDates(job, p).firstReferenceAt === job.publishedAt
+    && job.publishedAt !== p.publishedAt) return false;
   job.title = p.title || job.title;
   job.company = p.company || job.company;
   job.companySlug = slugify(job.company);
@@ -313,7 +324,8 @@ export function hydrateFromPrev(prevById, job) {
   job.description = p.description;
   job.descriptionStatus = p.descriptionStatus;
   job.fetchedAt = p.fetchedAt;
-  job.publishedAt = p.publishedAt || null;
+  job.publishedAt = job.publishedAt || p.publishedAt || null;
+  job.validThrough = job.validThrough || job._validThrough || p.validThrough || null;
   job.excerpt = p.excerpt || excerpt(stripTags(p.description));
   if (p.postedAt) job.postedAt = p.postedAt; // keep stable "posted" age across runs
   Object.assign(job, certifyJob(job));
@@ -702,7 +714,7 @@ async function fetchGreenhouse({ name, slug }) {
       category: classifyCategory(j.title),
       salary: parseSalary(text, country),
       postedAt: (j.updated_at || new Date().toISOString()).slice(0, 10),
-      publishedAt: j.first_published ? isoDate(j.first_published, null) : null,
+      publishedAt: sourceDate(j.first_published),
       fetchedAt: new Date().toISOString(),
       descriptionStatus: 'full',
       url: j.absolute_url,
@@ -738,7 +750,7 @@ async function fetchLever({ name, slug }) {
       category: classifyCategory(j.text),
       salary: parseSalary(text, country),
       postedAt: new Date(j.createdAt || Date.now()).toISOString().slice(0, 10),
-      publishedAt: j.createdAt ? isoDate(j.createdAt, null) : null,
+      publishedAt: sourceDate(j.createdAt),
       fetchedAt: new Date().toISOString(),
       descriptionStatus: 'full',
       url: j.hostedUrl,
@@ -1091,9 +1103,9 @@ async function fetchSapsfCsb(src, prevById) {
         base.excerpt = excerpt(p.description);
       }
       base.postedAt = isoDate(p.datePosted || stub.lastmod);
-      base.publishedAt = isoDate(p.datePosted, null);
+      base.publishedAt = sourceDate(p.datePosted);
       if (p.description) base.descriptionStatus = 'full';
-      if (p.validThrough) base._validThrough = isoDate(p.validThrough, null); // internal hint; dropped by schema
+      if (p.validThrough) base._validThrough = sourceDate(p.validThrough); // internal hint; dropped by schema
       jobs.push(base);
     } catch (err) {
       jobs.push(base); // keep stub (empty description) — next run can retry
@@ -1218,7 +1230,7 @@ async function fetchPageup(src, prevById) {
       if (jp) {
         job.title = (jp.title || job.title).trim();
         job.postedAt = isoDate(jp.datePosted);
-        job.publishedAt = isoDate(jp.datePosted, null);
+        job.publishedAt = sourceDate(jp.datePosted);
         if (jp.description) job.descriptionStatus = 'full';
         job.salary = parseSalary(`${JSON.stringify(jp.jobLocation || '')} ${jp.description || ''}`.slice(0, 3000), job.country);
         const text = stripTags(decodeEntities(jp.description || ''));
@@ -1368,7 +1380,7 @@ async function fetchBrunel(src, prevById) {
         job.city = splitLocation(addr.addressLocality || '').city;
         job.country = COUNTRY_HINTS[cc] ? cc : detectCountry(`${raw} ${job.title}`);
         job.postedAt = isoDate(jp.datePosted);
-        job.publishedAt = isoDate(jp.datePosted, null);
+        job.publishedAt = sourceDate(jp.datePosted);
         if (jp.description) job.descriptionStatus = 'full';
         const sal = jp.baseSalary || jp.estimatedSalary;
         job.salary = parseSalary(JSON.stringify(sal || ''), job.country);
@@ -1421,7 +1433,7 @@ async function fetchGlobe247(src, prevById) {
         job.locationRaw = raw;
         job.country = src.country || detectCountry(`${raw} ${job.title} ${String(jp.description || '').slice(0, 800)}`);
         job.postedAt = isoDate(jp.datePosted);
-        job.publishedAt = isoDate(jp.datePosted, null);
+        job.publishedAt = sourceDate(jp.datePosted);
         if (jp.description) job.descriptionStatus = 'full';
         job.salary = parseSalary(String(jp.baseSalary ?? '') + ' ' + String(jp.description || '').slice(0, 1500), job.country);
         const text = stripTags(decodeEntities(jp.description || ''));
@@ -1662,7 +1674,7 @@ async function fetchPnet(src, prevById) {
         job.description = htmlify(text);
         job.excerpt = excerpt(text);
         if (jp.datePosted) job.postedAt = isoDate(jp.datePosted);
-        if (jp.validThrough) job._validThrough = isoDate(jp.validThrough, null);
+        if (jp.validThrough) job._validThrough = sourceDate(jp.validThrough);
       }
     } catch {
       /* keep snippet */
@@ -1728,8 +1740,8 @@ async function fetchComputrabajo(src, prevById) {
             url: detailUrl,
             description: String(jp.description || ''),
           });
-          job.publishedAt = isoDate(jp.datePosted, null);
-          job.validThrough = isoDate(jp.validThrough, null);
+          job.publishedAt = sourceDate(jp.datePosted);
+          job.validThrough = sourceDate(jp.validThrough);
           if (jp.description) job.descriptionStatus = 'full';
         } catch {
           continue;
@@ -1979,9 +1991,9 @@ async function fetchGupy(src, prevById) {
       job.locationRaw = [addr.addressLocality, addr.addressRegion].filter(Boolean).join(', ');
       job.salary = salary;
       job.postedAt = isoDate(jp.datePosted);
-      job.publishedAt = isoDate(jp.datePosted, null);
+      job.publishedAt = sourceDate(jp.datePosted);
       if (jp.description) job.descriptionStatus = 'full';
-      if (jp.validThrough) job._validThrough = isoDate(jp.validThrough, null); // internal hint; dropped by schema
+      if (jp.validThrough) job._validThrough = sourceDate(jp.validThrough); // internal hint; dropped by schema
       if (text) {
         job.description = htmlify(text);
         job.excerpt = excerpt(text);
@@ -2042,7 +2054,7 @@ async function fetchSmartrecruiters(src, prevById) {
         job.description = htmlify(text);
         job.excerpt = excerpt(text);
         job.descriptionStatus = 'full';
-        job.publishedAt = isoDate(d.releasedDate, null);
+        job.publishedAt = sourceDate(d.releasedDate);
       }
     } catch {
       /* keep stub */
@@ -2424,8 +2436,8 @@ async function main() {
   try {
     const prev = JSON.parse(await readFile(OUT, 'utf8'));
     for (const j of prev.jobs || []) prevById.set(j.id, j);
-  } catch {
-    /* first run */
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
   }
 
   for (const board of config.boards.filter(selectedSource)) {
@@ -2561,13 +2573,20 @@ async function main() {
   // applyLocationPolicy. Overrides from the ops panel win over everything.
   if (!all.length && errors.length) throw new Error('All selected sources failed; feed was preserved.');
   if (ONLY_SOURCE && !all.length) throw new Error('Selected source returned no records; feed was preserved.');
-  const located = (await applyLocationPolicy(all)).map(j => certifyJob({...j, fetchedAt: j.fetchedAt || new Date().toISOString()}));
+  const now = new Date();
+  const archive = JSON.parse(await readFile(ARCHIVE, 'utf8'));
+  const { exclude = {} } = await readJsonSafe(OVERRIDES_FILE, {});
+  const archivedById = new Map(archive.filter(entry => entry.snapshot).map(entry => [entry.snapshot.id, entry]));
+  const archivedBySlug = new Map(archive.map(entry => [entry.slug, entry]));
+  const located = (await applyLocationPolicy(all)).map(job => {
+    const previous = prevById.get(job.id) ?? archivedById.get(job.id) ?? archivedBySlug.get(job.slug);
+    return certifyJob({ ...withStableDates(job, previous), fetchedAt: job.fetchedAt || now.toISOString() });
+  });
 
-  // TTL: drop postings older than TTL_DAYS (and impossible future dates)
-  const cutoff = Date.now() - TTL_DAYS * 86400000;
-  const fresh = located.filter((j) => {
-    const t = Date.parse(j.postedAt);
-    return Number.isFinite(t) && t >= cutoff && t <= Date.now() + 86400000 && !isExpired(j);
+  // Reject future reference dates and use the same closing instant as the site.
+  const fresh = located.filter(job => {
+    const time = Date.parse(job.postedAt);
+    return Number.isFinite(time) && time <= now.getTime() + 86400000 && !isExpired(job, now);
   });
   let dropped = all.length - fresh.length;
 
@@ -2587,9 +2606,10 @@ async function main() {
 
   if (ONLY_SOURCE) {
     const currentIds = new Set(jobs.map(j => j.id));
+    const observedIds = new Set(all.map(j => j.id));
     for (const old of prevById.values()) {
       const candidate = certifyJob(old, {legacy: old.policyVersion !== POLICY_VERSION});
-      if (!currentIds.has(old.id) && Date.parse(old.postedAt) >= cutoff && !isExpired(candidate) && inNiche(candidate)) jobs.push(candidate);
+      if (!currentIds.has(old.id) && !observedIds.has(old.id) && !exclude[old.id] && !isExpired(candidate, now) && inNiche(candidate)) jobs.push(candidate);
     }
   }
 
@@ -2599,6 +2619,11 @@ async function main() {
   const byCountry = {};
   for (const j of jobs) byCountry[j.country] = (byCountry[j.country] || 0) + 1;
 
+  const observed = new Map(located.map(job => [job.id, job]));
+  const nextArchive = updateArchive(prevById.values(), jobs, archive, observed, exclude, now);
+  if (JSON.stringify(archive) !== JSON.stringify(nextArchive)) {
+    await writeFile(ARCHIVE, JSON.stringify(nextArchive, null, 2) + '\n');
+  }
   await writeFile(
     OUT,
     JSON.stringify({ generatedAt: new Date().toISOString(), jobs }, null, 2)

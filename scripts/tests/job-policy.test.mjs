@@ -159,3 +159,36 @@ test('foreign onsite jobs are excluded even when sponsorship or international ap
   assert.equal(inNiche({country:'PE', remote:false}), true);
   assert.equal(inNiche({country:'GLOBAL', remote:true, descriptionStatus:'full', description:'Work remotely from anywhere in the world.'}), true);
 });
+
+test('expiry respects the Lima day, the earlier employer deadline and the exact cutoff', async () => {
+  const { isExpired, jobExpiration } = await import('../../src/lib/job-policy.mjs');
+  const job = { postedAt: '2026-10-13', publishedAt: null };
+  const at = new Date('2026-11-12T05:00:00Z');
+  assert.equal(jobExpiration(job).date, at.toISOString());
+  assert.equal(isExpired(job, new Date(at.getTime() - 1)), false);
+  assert.equal(isExpired(job, at), true);
+  assert.equal(jobExpiration({ ...job, validThrough: '2026-10-22' }).date, '2026-10-23T05:00:00.000Z');
+  assert.equal(jobExpiration({ ...job, validThrough: '2026-10-22T18:24:00-05:00' }).date, '2026-10-22T23:24:00.000Z');
+  const full = { ...job, title: 'Operador', company: 'Empresa', publishedAt: '2026-10-13', descriptionStatus: 'full', description: 'Texto fuente.', country: 'PE' };
+  assert.equal(jobPosting(full, new Date(at.getTime() - 1)).validThrough, at.toISOString());
+  assert.equal(jobPosting(full, at), null);
+});
+
+test('an observed listing keeps its clock until verified republication', async () => {
+  const { withStableDates, updateArchive, isPublicClosure } = await import('../../src/lib/job-archive.mjs');
+  const old = { id: 'a', slug: 'a', country: 'PE', remote: false, postedAt: '2026-10-01', description: 'Descripción de fuente. '.repeat(8) };
+  const now = new Date('2026-11-12T05:00:00Z');
+  const observed = withStableDates({ ...old, postedAt: '2026-11-12' }, old);
+  assert.equal(observed.firstReferenceAt, old.postedAt);
+  const unavailable = updateArchive([old], [], [], new Map(), {}, new Date('2026-10-20T05:00:00Z'));
+  assert.equal(unavailable[0].reason, 'unavailable');
+  const archive = updateArchive([], [], unavailable, new Map(), {}, now);
+  assert.equal(archive[0].reason, 'stale');
+  assert.equal(archive[0].snapshot.description, old.description);
+  assert.equal(isPublicClosure(archive[0]), true);
+  assert.equal(withStableDates({ ...old, postedAt: '2026-11-12' }, archive[0]).firstReferenceAt, old.postedAt);
+  const republished = withStableDates({ ...old, postedAt: '2026-11-12', publishedAt: '2026-11-12' }, archive[0]);
+  assert.equal(republished.firstReferenceAt, '2026-11-12');
+  assert.deepEqual(updateArchive([], [republished], archive, new Map(), {}, now), []);
+  assert.deepEqual(updateArchive([], [], archive, new Map(), { a: true }, now), []);
+});

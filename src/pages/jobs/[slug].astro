@@ -1,12 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import JobDetailView from '../../components/pages/JobDetailView.astro';
-import { allJobs, locationLine, titleFor } from '../../lib/jobs';
+import { allJobs, archivedJobs, locationLine, titleFor } from '../../lib/jobs';
 import { useTranslations } from '../../lib/i18n';
-import archive from '../../data/jobs-archive.json';
+import { isPublicClosure } from '../../lib/job-archive.mjs';
 
 export function getStaticPaths() {
-  const current = new Set(allJobs.map(j => j.slug));
   const excerptKey = (excerpt: string) => excerpt.trim().replace(/\s+/g, ' ').toLowerCase();
   const excerptCounts = new Map<string, number>();
   for (const job of allJobs) {
@@ -21,30 +20,28 @@ export function getStaticPaths() {
       const description = key && excerptCounts.get(key) === 1
         ? job.excerpt
         : `${title} en ${job.company} · ${locationLine(job, t)}. Consulta los requisitos y cómo postular.`;
-      return { params: { slug: job.slug }, props: { job, archived: false, title, description } };
+      return { params: { slug: job.slug }, props: { job, archive: null, title, description, noindex: false } };
     }),
-    ...archive.filter(job => !current.has(job.slug)).map(job => ({
-      params: { slug: job.slug },
+    ...archivedJobs.map(archive => ({
+      params: { slug: archive.slug },
       props: {
-        job, archived: true, title: job.title,
-        description: 'Esta oferta fue retirada del catálogo activo de Labormin. Consulta oportunidades actuales y verifica cualquier condición en la fuente original.',
+        job: archive.snapshot, archive, title: archive.snapshot ? titleFor(archive.snapshot, 'es') : archive.title,
+        description: `${archive.title} en ${archive.company}. Consulta esta ficha histórica y encuentra convocatorias vigentes en Labormin.`,
+        noindex: !isPublicClosure(archive),
       },
     })),
   ];
 }
-const { job, archived, title, description } = Astro.props;
+const { job, archive, title, description, noindex } = Astro.props;
+const slug = job?.slug ?? archive?.slug;
 ---
-<Layout title={`${title} — ${job.company} | Labormin`} description={description} path={`/jobs/${job.slug}`} noindex={archived} ads={false}>
-  {archived ? <article class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-    <p class="text-sm text-graphite-400">Oferta fuera del catálogo activo</p>
-    <h1 class="mt-4 font-display text-3xl font-semibold leading-tight text-graphite-100">{job.title}</h1>
-    <p class="mt-4 text-lg text-graphite-200">{job.company}</p>
-    <p class="mt-6 leading-relaxed text-graphite-200">{job.reason === 'stale' ? 'La fecha de referencia de esta oferta superó los 30 días. No confirmamos que continúe abierta ni que el empleador la haya cerrado.' : 'Retiramos esta ficha porque no reúne las condiciones de publicación o de elegibilidad del catálogo. Esto no determina el estado de la contratación en la empresa.'}</p>
-    <p class="mt-4 text-sm text-graphite-400">Fecha de referencia: {job.referenceDate}. Retirada del catálogo: {job.removedAt}. No se conservan etiquetas salariales ni de elegibilidad como afirmaciones vigentes.</p>
-    <div class="mt-8 flex flex-wrap gap-4">
-      <a href="/jobs" class="rounded-full bg-brand-500 px-5 py-3 text-sm font-semibold text-graphite-950">Ver ofertas actuales</a>
-      <a href={job.url} target="_blank" rel="noopener nofollow" class="rounded-full border border-graphite-600 px-5 py-3 text-sm text-graphite-100">Consultar el enlace original</a>
-    </div>
-    <p class="mt-8 text-sm text-graphite-400">Prepárate con nuestra <a href="/guias/formacion-minera-gratuita-economica-peru" class="text-brand-400 underline">guía de formación accesible en Perú</a> o consulta <a href="/about#metodologia" class="text-brand-400 underline">cómo seleccionamos las ofertas</a>.</p>
-  </article> : <JobDetailView job={job} />}
+<Layout title={`${title} — ${job?.company ?? archive?.company} | Labormin`} description={description} path={`/jobs/${slug}`} noindex={noindex} ads={false}>
+  {job ? <JobDetailView job={job} archive={archive} /> : archive && <article data-archived-job class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+    <p class="text-sm font-semibold text-brand-400">{archive.reason === 'stale' || archive.reason === 'expired' ? 'Convocatoria finalizada' : 'Oferta fuera del catálogo activo'}</p>
+    <h1 class="mt-4 font-display text-3xl font-semibold leading-tight text-graphite-100">{archive.title}</h1>
+    <p class="mt-4 text-lg text-graphite-200">{archive.company}</p>
+    <p class="mt-6 max-w-prose leading-relaxed text-graphite-200">Esta ficha conserva la información disponible de la convocatoria anterior. Consulta el catálogo para encontrar vacantes vigentes.</p>
+    <p class="mt-4 text-sm text-graphite-400">Fecha de referencia: {archive.referenceDate}. Retirada del catálogo: {archive.removedAt}.</p>
+    <a href="/jobs/" class="mt-8 inline-block rounded-full bg-brand-500 px-5 py-3 text-sm font-semibold text-graphite-950">Ver ofertas vigentes</a>
+  </article>}
 </Layout>
