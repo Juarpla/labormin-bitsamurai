@@ -8,6 +8,8 @@ interface Props {
 
 const { locale = defaultLocale, path = '/' } = Astro.props;
 const t = useTranslations(locale);
+const currentPath = path.replace(/\/$/, '');
+const navCurrent = (href: string) => currentPath === href ? 'page' : currentPath.startsWith(href + '/') ? 'location' : undefined;
 
 const links = [
   { href: '/formacion', label: 'Formación' },
@@ -33,7 +35,7 @@ const links = [
         <a
           href={localePath(locale, l.href)}
           class="rounded-md px-2 py-1 transition-colors hover:text-brand-400"
-          aria-current={path.replace(/\/$/, '') === l.href ? 'page' : undefined}
+          aria-current={navCurrent(l.href)}
         >
           {l.label}
         </a>
@@ -52,7 +54,7 @@ const links = [
     <div class="flex gap-4 overflow-x-auto text-sm text-graphite-200">
       {
         links.map((l) => (
-          <a href={localePath(locale, l.href)} class="whitespace-nowrap py-1 hover:text-brand-400" aria-current={path.replace(/\/$/, '') === l.href ? 'page' : undefined}>
+          <a href={localePath(locale, l.href)} class="whitespace-nowrap py-1 hover:text-brand-400" aria-current={navCurrent(l.href)}>
             {l.label}
           </a>
         ))
@@ -61,7 +63,7 @@ const links = [
   </nav>
 </header>
 <style>
-  nav a[aria-current="page"]{color:var(--color-graphite-100);text-decoration:underline;text-decoration-color:var(--color-brand-500);text-decoration-thickness:2px;text-underline-offset:12px;font-weight:600}
+  nav a[aria-current]{color:var(--color-graphite-100);text-decoration:underline;text-decoration-color:var(--color-brand-500);text-decoration-thickness:2px;text-underline-offset:12px;font-weight:600}
   header a:focus-visible{outline:2px solid var(--color-brand-400);outline-offset:4px}
-  @media(max-width:767px){nav a[aria-current="page"]{text-underline-offset:7px}}
+  @media(max-width:767px){nav a[aria-current]{text-underline-offset:7px}}
 </style>

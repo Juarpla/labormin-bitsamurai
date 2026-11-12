@@ -142,6 +142,15 @@ body {
   border-radius: 0.75rem;
   overflow: hidden;
 }
+/* Preserve the fixed creative at 320px with an inset border. */
+@media (max-width: 359px) {
+  .ad-wrap.guide-mobile-ad {
+    margin-inline: calc((100% - 320px) / 2);
+    border: 0;
+    outline: 1px dashed var(--color-graphite-700);
+    outline-offset: -1px;
+  }
+}
 .ad-label {
   display: inline-block;
   font-size: 0.625rem;

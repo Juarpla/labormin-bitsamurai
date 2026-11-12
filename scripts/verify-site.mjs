@@ -104,6 +104,7 @@ const broken=[];
 for(const path of paths) {
   const response=await fetch(base+path);
   if(response.status!==200) broken.push({path,status:response.status});
+  await response.arrayBuffer();
 }
 assert.deepEqual(broken,[]);
 console.log(`✓ ${paths.size} primary public routes return 200`);

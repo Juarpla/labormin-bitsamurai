@@ -23,9 +23,7 @@ const guides = [...visualGuides, ...editorialGuides];
         {guideGroups.map(group => <a class="text-brand-400 underline underline-offset-4 hover:text-brand-300" href={`#${group.id}`}>{group.title}</a>)}
       </nav>
 
-      <div class="editorial-top-ad">
-        <AdSlot slotId="guias-top-1" size={{w:320,h:50}} media="(max-width: 1023.98px)" class="mx-auto w-fit lg:hidden" />
-      </div>
+      <AdSlot slotId="guias-top-1" size={{w:320,h:50}} media="(max-width: 1023.98px)" class="guide-mobile-ad mx-auto w-fit lg:hidden" />
 
       {guideGroups.map(group => <section class="mt-10 scroll-mt-32" id={group.id} aria-labelledby={`heading-${group.id}`}>
         <h2 id={`heading-${group.id}`} class="flex items-center gap-3 font-display text-2xl font-semibold text-graphite-100 sm:text-3xl">
@@ -49,11 +47,6 @@ const guides = [...visualGuides, ...editorialGuides];
   </div>
   <div class="pb-4">
     <AdSlot slotId="guias-bottom-desktop-1" size={{w:970,h:90}} media="(min-width: 1024px)" class="mx-auto w-fit hidden lg:block" />
-    <AdSlot slotId="guias-bottom-mobile-1" size={{w:320,h:100}} media="(max-width: 1023.98px)" class="mx-auto w-fit lg:hidden" />
+    <AdSlot slotId="guias-bottom-mobile-1" size={{w:320,h:100}} media="(max-width: 1023.98px)" class="guide-mobile-ad mx-auto w-fit lg:hidden" />
   </div>
 </Layout>
-<style>
-  @media (max-width: 359px) {
-    .editorial-top-ad :global(.ad-wrap) { margin-inline: calc((100% - 320px) / 2); }
-  }
-</style>
