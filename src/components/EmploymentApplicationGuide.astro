@@ -41,8 +41,7 @@ const preparation = applicationPreparation(job, title, guide.skill ?? guide.expe
   </p>}
   {training.length ? (
     <>
-      <h3 class="mt-5 text-sm font-semibold text-graphite-100">Opciones de formación para explorar</h3>
-      {guide.skill && <p class="mt-1 text-sm text-graphite-300">Opciones relacionadas con {guide.skill}.</p>}
+      {guide.skill && <p class="mt-5 text-sm text-graphite-300">Opciones relacionadas con {guide.skill}.</p>}
       <ul class="mt-4 grid gap-3 sm:grid-cols-2">
         {training.map(option => (
           <li class="min-w-0 rounded-xl border border-graphite-700 bg-graphite-850 p-4">

@@ -250,7 +250,7 @@ const es: Dictionary = {
   'hero.kicker': 'Empleos mineros para peruanos',
   'hero.title': 'Tu próximo paso en la minería',
   'hero.subtitle':
-    'Encuentra empleo en el sector minero, gana experiencia con una práctica o aprende una habilidad para el puesto que quieres.',
+    'Encuentra vacantes mineras en Perú y oportunidades remotas que puedes ejercer desde el país. Explora también prácticas y formación para postular.',
   'hero.cta': 'Ver empleos',
   'hero.secondary': 'Ver rutas de visa',
   'hero.tier.pe': 'Perú',
@@ -448,11 +448,11 @@ const es: Dictionary = {
     'Las ofertas se agregan de bolsas públicas de empleadores y APIs, y siempre enlazan a la fuente original.',
   'footer.adsDisclosure': 'Labormin se financia con publicidad. Los anuncios siempre están etiquetados.',
   'footer.rights': '© {year} Labormin. Todos los derechos reservados.',
-  'footer.ownership': 'Operado por Socialpai.',
+  'footer.ownership': 'Portal informativo independiente operado por Socialpai. Labormin no cobra por postular.',
 
   'about.title': 'Acerca de Labormin',
   'about.body':
-    'Labormin es el hub de empleo minero para peruanos. Agregamos ofertas reales de bolsas públicas — operaciones en Perú y en las potencias mineras (Chile, Canadá, EE. UU. y Australia) — y las ordenamos por lo que puedes conseguir: tu país primero, luego remoto desde casa y después el extranjero con visa reportada.',
+    'Labormin reúne empleos mineros en Perú, vacantes remotas que se pueden ejercer desde el país, prácticas y opciones de formación.',
   'about.realJobs': 'Cada oferta es real. Nunca generamos ni inventamos empleos; cada uno enlaza a la publicación original del empleador.',
   'privacy.title': 'Política de privacidad',
   'privacy.body':
