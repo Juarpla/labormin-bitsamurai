@@ -29,9 +29,9 @@ const payChecks = [
 <GuideLayout visual title="Cómo verificar una oferta: remoto, visa y salario" description="Comprueba si puedes trabajar desde Perú, qué apoyo migratorio declara una vacante y qué salario se aplica a tu ubicación." path="/guias/verificar-oferta-remota-visa-salario">
   <header slot="hero" class="offer-hero">
     <h1>¿Remoto desde Perú?<br/><em>Compruébalo.</em></h1>
-    <div><p class="offer-deck">Cómo leer una oferta: ubicación, visa y salario, antes de postular.</p><p class="offer-byline">Investigación de Labormin · Bit SamurAI<br/>Fuentes: 26 de octubre de 2026</p></div>
+    <div><p class="offer-deck">Cómo leer una oferta: ubicación, visa y salario, antes de postular.</p><p class="offer-byline">Investigación de Labormin<br/>Revisión editorial: 12 de noviembre de 2026</p></div>
   </header>
-  <div class="offer-guide" data-offer-guide>
+  <div class="offer-guide" data-offer-guide data-editorial-body>
     <section class="offer-map" aria-labelledby="tres-comprobaciones">
       <h2 id="tres-comprobaciones">Tres preguntas que el anuncio debe resolver</h2>
       <nav aria-label="Comprobaciones de una oferta">
@@ -55,6 +55,14 @@ const payChecks = [
       <header class="offer-heading"><h2 id="salario">Desarma la cifra antes de compararla</h2><p>El salario es una condición que debes confirmar, no una promesa.</p></header>
       <ol class="pay-checks">{payChecks.map(item => <li><h3>{item.title}</h3><p>{item.text}</p></li>)}</ol>
       <details><summary>Cómo presenta Labormin las cifras</summary><p>Labormin muestra una cifra normalizada únicamente cuando puede interpretarla con suficiente claridad y permite consultar su redacción. Si faltan moneda, periodicidad o un rango coherente, consulta el anuncio original. Una cifra de producción, presupuesto o inversión de la empresa no es un salario.</p></details>
+    </section>
+    <section class="offer-chapter" aria-labelledby="compara-propuestas">
+      <header class="offer-heading"><h2 id="compara-propuestas">Compara dos propuestas antes de decidir</h2><p>Usa las mismas preguntas para la ubicación, la contratación y el monto aplicable.</p></header>
+      <div class="official-note">
+        <p><strong>Ejemplo ilustrativo.</strong> Una vacante de análisis para un equipo minero indica «remoto para América Latina». Otra dice «remoto» y menciona un rango en dólares al final. En la primera, confirma si Perú figura entre los países que admite la empresa y si pide acudir ocasionalmente a una sede. En la segunda, pregunta para qué ubicación se calculó el monto y qué modalidad de contratación ofrecen a residentes en Perú.</p>
+        <p>Escribe las respuestas junto a cada enlace. Añade qué horario deberías cubrir, en qué moneda se pagaría y si tendrías que usar tu propio equipo. Si necesitas convertir una cifra para comparar, conserva también el monto original, la fecha de conversión y el periodo de pago. Separa el pago fijo de los reembolsos y de cualquier monto que dependa de resultados.</p>
+        <p>Si recibes un correo con condiciones distintas al aviso, pide una confirmación antes de enviar documentos adicionales. Puedes responder con los dos puntos que cambian tu decisión y adjuntar el enlace al anuncio. Si el proceso avanza, conserva la respuesta y revisa que la propuesta escrita indique la ubicación y las condiciones que te confirmaron. Para comparar pagos y gastos, consulta la <a href="/guias/sueldos-mineria-peru/">guía de sueldos en minería</a>.</p>
+      </div>
     </section>
     <section class="destination-check" aria-labelledby="documentos">
       <div><h2 id="documentos">Antes de enviar documentos</h2><p>Entra a empleo desde la web corporativa. Si usa una plataforma externa, comprueba que la empresa la enlace.</p></div>

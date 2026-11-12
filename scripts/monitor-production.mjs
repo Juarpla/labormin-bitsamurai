@@ -1,9 +1,12 @@
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 import { setTimeout as delay } from 'node:timers/promises';
 
 const site = 'https://labormin.com';
-const publicPages = ['/', '/about/', '/contact/', '/privacy/', '/terms/'];
+const editorialPages = (await readdir(new URL('../src/content/guides/', import.meta.url)))
+  .filter(file => file.endsWith('.md')).map(file => `/guias/${file.slice(0, -3)}/`);
+const publicPages = ['/', '/about/', '/contact/', '/privacy/', '/terms/', '/archivo/', '/guias/',
+  '/guias/formacion-minera-gratuita-economica-peru/', '/guias/verificar-oferta-remota-visa-salario/', ...editorialPages];
 const sitemapIndex = '/sitemap-index.xml';
 const normalizePath = pathname => pathname.replace(/\/$/, '') || '/';
 const normalizeAds = text => text.split(/\r?\n/).map(line =>

@@ -1,0 +1,36 @@
+---
+interface Props { steps: readonly [string, string, string] }
+const { steps } = Astro.props;
+---
+<figure class="editorial-route">
+  <svg viewBox="0 0 600 128" fill="none" class="block w-full text-brand-400" aria-hidden="true">
+    <g stroke="var(--color-graphite-700)" stroke-width="1">
+      <path d="M10 112h580M10 16h580M100 16v96m200-96v96m200-96v96" stroke-dasharray="3 6"/>
+    </g>
+    <path d="M100 86h73l53-42h145l56 26h73" stroke="var(--color-graphite-600)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path class="editorial-trace" pathLength="1" d="M100 86h73l53-42h145l56 26h73" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <g fill="var(--color-graphite-900)" stroke="currentColor" stroke-width="2">
+      <circle cx="100" cy="86" r="16"/><circle cx="300" cy="44" r="16"/><circle cx="500" cy="70" r="16"/>
+    </g>
+    <path d="M94 86h12m-6-6v12m194-48 4 4 8-8m188 30h12m-5-5 5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <ol class="grid grid-cols-3 gap-2 text-center text-xs leading-snug font-medium text-graphite-200 sm:text-sm" role="list" aria-label="Recorrido de la guía">
+    {steps.map(step => <li>{step}</li>)}
+  </ol>
+</figure>
+<style>
+  .editorial-route {
+    margin-top: 1.5rem;
+    padding: .75rem .75rem 1rem;
+    border: 1px solid var(--color-graphite-800);
+    border-radius: 1rem;
+    background: var(--color-graphite-900);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .editorial-trace { animation: trace 750ms cubic-bezier(.16,1,.3,1) both; }
+    @keyframes trace {
+      from { stroke-dasharray: .05 .95; opacity: .55; }
+      to { stroke-dasharray: 1 0; opacity: 1; }
+    }
+  }
+</style>

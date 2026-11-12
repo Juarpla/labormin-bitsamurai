@@ -12,6 +12,12 @@ aseguran la aprobación de Google.
 - [x] Privacidad describe la preparación previa de las fichas y las cookies
   publicitarias. El 404 queda fuera del sitemap y de la publicidad.
 
+## Guías y archivo de convocatorias
+
+- El índice editorial reúne 12 guías originales con fuentes. La compilación verifica el volumen de texto, los enlaces internos y su presencia en el sitemap.
+- El refresco conserva la ficha de una convocatoria cuando sale del catálogo. Las fichas con descripción y cierre por fecha aparecen en `/archivo/`, sin botones de postulación, anuncios ni marcado `JobPosting`.
+- El monitor de producción comprueba el índice editorial, las guías y el archivo. La publicidad sigue pausada durante el proceso de admisión.
+
 ## Catálogo revisado el 26 de octubre de 2026
 
 - [x] Cuatro guías propias, incluida formación gratuita/económica en Perú con

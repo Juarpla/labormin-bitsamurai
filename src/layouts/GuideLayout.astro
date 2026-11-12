@@ -12,7 +12,7 @@ const {title,description,path,updatedAt='26 de octubre de 2026',visual=false} = 
       <slot name="hero"><header class="max-w-[68ch]">
         <h1 class="text-balance font-display text-3xl font-semibold leading-tight text-graphite-100 sm:text-5xl">{title}</h1>
         <p class="mt-5 text-lg leading-relaxed text-graphite-200">{description}</p>
-        <p class="mt-5 text-sm leading-relaxed text-graphite-400">Investigación de Labormin · Bit SamurAI<br />Fuentes consultadas el {updatedAt}</p>
+        <p class="mt-5 text-sm leading-relaxed text-graphite-400">Investigación de Labormin<br />Fuentes consultadas el {updatedAt}</p>
       </header></slot>
       <AdSlot slotId="guias-top-1" size={{w:320,h:50}} media="(max-width: 1023.98px)" class="mx-auto w-fit lg:hidden" />
       <div class:list={[visual ? 'visual-guide mt-10' : 'guide-copy mt-10 max-w-[68ch] space-y-5 text-base leading-relaxed text-graphite-200']}>
@@ -31,8 +31,8 @@ const {title,description,path,updatedAt='26 de octubre de 2026',visual=false} = 
 <style>
   /* Keep the full 320px creative inside a 320px viewport, without scaling it. */
   @media(max-width:359px) {
-    .visual-guide-article :global(.ad-wrap) {margin-inline:calc((100% - 320px)/2);}
-    .visual-guide-article :global(.ad-wrap), :global(.visual-guide-mobile-ad) {border:0;outline:1px dashed var(--color-graphite-700);outline-offset:-1px;}
+    article :global(.ad-wrap) {margin-inline:calc((100% - 320px)/2);}
+    article :global(.ad-wrap), :global(.visual-guide-mobile-ad) {border:0;outline:1px dashed var(--color-graphite-700);outline-offset:-1px;}
   }
   .guide-copy :global(h2) {font-family:var(--font-display); font-size:1.65rem; font-weight:600; line-height:1.25; color:var(--color-graphite-100); margin-top:3.5rem; margin-bottom:1rem; text-wrap:balance; scroll-margin-top:6rem;}
   .guide-copy :global(h3) {font-family:var(--font-display); font-size:1.25rem; font-weight:600; line-height:1.35; color:var(--color-graphite-100); margin-top:2rem; margin-bottom:.75rem;}

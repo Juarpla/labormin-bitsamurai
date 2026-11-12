@@ -1,0 +1,48 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+import EditorialRoute from '../../components/guides/EditorialRoute.astro';
+import GuideIcon from '../../components/guides/GuideIcon.astro';
+import { editorialGuides } from '../../lib/editorial-guides';
+
+export function getStaticPaths() {
+  return editorialGuides.map(guide => ({ params: { slug: guide.slug }, props: { guide } }));
+}
+
+const { guide } = Astro.props;
+const { Content } = guide;
+const related = editorialGuides.filter(item => item.group === guide.group && item.slug !== guide.slug).slice(0, 2);
+---
+<GuideLayout title={guide.title} description={guide.description} path={`/guias/${guide.slug}/`} updatedAt="12 de noviembre de 2026">
+  <header slot="hero" class="max-w-[68ch]">
+    <h1 class="text-balance font-display text-3xl font-semibold leading-tight text-graphite-100 sm:text-5xl">{guide.title}</h1>
+    <p class="mt-4 max-w-prose text-lg leading-relaxed text-graphite-200">{guide.description}</p>
+    <p class="mt-4 text-sm text-graphite-400">Labormin · Fuentes consultadas el <time datetime="2026-11-12">12 de noviembre de 2026</time></p>
+    <EditorialRoute steps={guide.steps} />
+  </header>
+  <div class="editorial-copy" data-editorial-body><Content /></div>
+  <aside class="mt-10 border-t border-graphite-800 pt-5" aria-label="Guías relacionadas">
+    <h2 class="!mt-0">Sigue leyendo</h2>
+    <ul class="!list-none !pl-0">
+      {related.map(item => <li class="flex items-start gap-2.5">
+        <span class="mt-0.5 shrink-0 text-brand-400 [&_svg]:size-5"><GuideIcon kind="credential" /></span>
+        <a href={`/guias/${item.slug}/`}>{item.title}</a>
+      </li>)}
+    </ul>
+  </aside>
+</GuideLayout>
+<style>
+  .editorial-copy :global(h2:first-child) { margin-top: 0; }
+  .editorial-copy :global(p + p), .editorial-copy :global(p + ul) { margin-top: 1rem; }
+  .editorial-copy :global(ul + p), .editorial-copy :global(table + p) { margin-top: 1.25rem; }
+  .editorial-copy :global(ul) { list-style: square; }
+  .editorial-copy :global(li::marker) { color: var(--color-brand-400); }
+  .editorial-copy :global(table) { width: 100%; table-layout: fixed; margin: 1.5rem 0; border-collapse: collapse; font-size: .875rem; }
+  .editorial-copy :global(th), .editorial-copy :global(td) {
+    padding: .75rem .55rem;
+    border-bottom: 1px solid var(--color-graphite-700);
+    overflow-wrap: anywhere;
+    text-align: left;
+    vertical-align: top;
+  }
+  .editorial-copy :global(th) { background: var(--color-graphite-850); color: var(--color-graphite-100); }
+</style>

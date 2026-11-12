@@ -1,98 +1,59 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AdSlot from '../../components/AdSlot.astro';
-import { useTranslations } from '../../lib/i18n';
+import GuideIcon from '../../components/guides/GuideIcon.astro';
+import EditorialRoute from '../../components/guides/EditorialRoute.astro';
+import { editorialGuides, guideGroups, visualGuides } from '../../lib/editorial-guides';
 
-const locale = 'es' as const;
-const t = useTranslations(locale);
-
-const guias = [
-  {
-    href: '/guias/formacion-minera-gratuita-economica-peru',
-    title: 'Dónde estudiar para minería con poco presupuesto en Perú',
-    desc: 'Cursos gratuitos del Estado, CETPRO e institutos públicos. Costos comprobados, credenciales y condiciones que debes confirmar.',
-    kicker: 'Formación accesible',
-  },
-  {
-    href: '/guias/verificar-oferta-remota-visa-salario',
-    title: 'Cómo verificar una oferta: remoto, visa y salario',
-    desc: 'Comprueba desde dónde puedes trabajar, qué apoyo ofrece el empleador y a qué ubicación corresponde el salario.',
-    kicker: 'Antes de postular',
-  },
-  {
-    href: '/guias/trabajar-en-mina-sin-experiencia',
-    title: 'Cómo conseguir tu primer trabajo en mina sin experiencia',
-    desc: 'Qué puestos de entrada existen, dónde buscan gente nueva y cómo prepararte para postular de verdad.',
-    kicker: 'Primer empleo',
-  },
-  {
-    href: '/guias/requisitos-medicos-seguridad-ssoma',
-    title: 'Requisitos médicos y de seguridad (SSOMA) para trabajar en mina',
-    desc: 'Examen médico ocupacional, certificados de seguridad y documentos que piden las empresas antes de contratar.',
-    kicker: 'Requisitos',
-  },
-];
+const guides = [...visualGuides, ...editorialGuides];
 ---
+<Layout title="Guías para trabajar en minería — Labormin" description="Guías de Labormin para buscar tu primer empleo minero, elegir formación y evaluar las condiciones de una vacante en Perú." path="/guias/">
+  <div class="xl:grid xl:grid-cols-[160px_56rem_160px] xl:justify-center xl:gap-4">
+    <AdSlot slotId="guias-side-1" size={{w:160,h:600}} media="(min-width: 1280px)" class="sticky top-24 hidden w-fit self-start xl:col-start-1 xl:row-start-1 xl:block" />
+    <div class="mx-auto w-full max-w-4xl min-w-0 px-4 py-12 sm:px-8 sm:py-16 xl:col-start-2 xl:row-start-1">
+      <header class="grid items-center gap-5 sm:grid-cols-[1.25fr_1fr]">
+        <div>
+          <h1 class="text-balance font-display text-4xl font-semibold leading-tight text-graphite-100 sm:text-5xl">Guías para trabajar en minería</h1>
+          <p class="mt-4 max-w-prose leading-relaxed text-graphite-200">Prepara tu primera postulación, elige dónde estudiar y confirma las condiciones de una oferta antes de aceptarla.</p>
+        </div>
+        <EditorialRoute steps={['Busca tu puesto', 'Refuerza habilidades', 'Compara ofertas']} />
+      </header>
 
-<Layout title={`${t('nav.guias')} — Labormin`} description="Guías prácticas para postular a empleos mineros en Perú y desde casa." locale={locale} path="/guias">
-<div class="xl:grid xl:grid-cols-[160px_56rem_160px] xl:justify-center xl:gap-4">
-  <AdSlot
-    slotId="guias-side-1"
-    size={{ w: 160, h: 600 }}
-    media="(min-width: 1280px)"
-    locale={locale}
-    class="sticky top-24 hidden w-fit self-start xl:col-start-1 xl:row-start-1 xl:block"
-  />
-  <article class="mx-auto max-w-4xl px-4 py-16 sm:px-6 xl:col-start-2 xl:row-start-1">
-    <h1 class="font-display text-4xl font-semibold text-graphite-100 sm:text-5xl">{t('nav.guias')}</h1>
-    <p class="mt-4 max-w-2xl text-graphite-400">
-      {t('chapter.guides.lead')} Investigación de Labormin con fuentes visibles y pasos concretos para decidir. Revisa la fecha de consulta y las condiciones del proveedor.
-    </p>
+      <nav class="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm" aria-label="Temas de las guías">
+        {guideGroups.map(group => <a class="text-brand-400 underline underline-offset-4 hover:text-brand-300" href={`#${group.id}`}>{group.title}</a>)}
+      </nav>
 
-    <AdSlot
-      slotId="guias-top-1"
-      size={{ w: 320, h: 50 }}
-      media="(max-width: 1023.98px)"
-      locale={locale}
-      class="mx-auto w-fit lg:hidden"
-    />
+      <div class="editorial-top-ad">
+        <AdSlot slotId="guias-top-1" size={{w:320,h:50}} media="(max-width: 1023.98px)" class="mx-auto w-fit lg:hidden" />
+      </div>
 
-    <div class="mt-10 grid gap-4 sm:grid-cols-2">
-      {guias.map((g) => (
-        <a
-          href={g.href}
-          class="group flex flex-col gap-3 rounded-2xl border border-graphite-800 bg-graphite-900 p-6 transition-colors hover:border-brand-500"
-        >
-          <p class="text-xs font-semibold uppercase tracking-widest text-brand-500">{g.kicker}</p>
-          <h2 class="font-display text-xl font-semibold leading-snug text-graphite-100 group-hover:text-brand-400">{g.title}</h2>
-          <p class="text-sm leading-relaxed text-graphite-400">{g.desc}</p>
-        </a>
-      ))}
+      {guideGroups.map(group => <section class="mt-10 scroll-mt-32" id={group.id} aria-labelledby={`heading-${group.id}`}>
+        <h2 id={`heading-${group.id}`} class="flex items-center gap-3 font-display text-2xl font-semibold text-graphite-100 sm:text-3xl">
+          <span class="shrink-0 text-brand-400 [&_svg]:size-6"><GuideIcon kind={group.icon} /></span>
+          {group.title}
+        </h2>
+        <ul class="mt-4 grid divide-y divide-graphite-800 border-y border-graphite-800" role="list">
+          {guides.filter(guide => guide.group === group.id).map(guide => <li>
+            <a href={`/guias/${guide.slug}/`} class="group grid grid-cols-[1fr_auto] items-start gap-4 rounded px-1 py-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400">
+              <div>
+                <h3 class="font-semibold leading-snug text-graphite-100 transition-colors group-hover:text-brand-400">{guide.title}</h3>
+                <p class="mt-1 max-w-prose text-sm leading-relaxed text-graphite-300">{guide.description}</p>
+              </div>
+              <svg viewBox="0 0 24 24" class="mt-0.5 size-4 text-brand-400" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg>
+            </a>
+          </li>)}
+        </ul>
+      </section>)}
     </div>
-  </article>
-  <AdSlot
-    slotId="guias-side-2"
-    size={{ w: 160, h: 600 }}
-    media="(min-width: 1280px)"
-    locale={locale}
-    class="sticky top-24 hidden w-fit self-start xl:col-start-3 xl:row-start-1 xl:block"
-  />
-</div>
-
-<div class="pb-4">
-  <AdSlot
-    slotId="guias-bottom-desktop-1"
-    size={{ w: 970, h: 90 }}
-    media="(min-width: 1024px)"
-    locale={locale}
-    class="mx-auto w-fit hidden lg:block"
-  />
-  <AdSlot
-    slotId="guias-bottom-mobile-1"
-    size={{ w: 320, h: 100 }}
-    media="(max-width: 1023.98px)"
-    locale={locale}
-    class="mx-auto w-fit lg:hidden"
-  />
-</div>
+    <AdSlot slotId="guias-side-2" size={{w:160,h:600}} media="(min-width: 1280px)" class="sticky top-24 hidden w-fit self-start xl:col-start-3 xl:row-start-1 xl:block" />
+  </div>
+  <div class="pb-4">
+    <AdSlot slotId="guias-bottom-desktop-1" size={{w:970,h:90}} media="(min-width: 1024px)" class="mx-auto w-fit hidden lg:block" />
+    <AdSlot slotId="guias-bottom-mobile-1" size={{w:320,h:100}} media="(max-width: 1023.98px)" class="mx-auto w-fit lg:hidden" />
+  </div>
 </Layout>
+<style>
+  @media (max-width: 359px) {
+    .editorial-top-ad :global(.ad-wrap) { margin-inline: calc((100% - 320px) / 2); }
+  }
+</style>

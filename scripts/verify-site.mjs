@@ -3,18 +3,28 @@
 import { chromium, webkit } from 'playwright';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
+import { isExpired, jobPosting } from '../src/lib/job-policy.mjs';
+import { isPublicClosure } from '../src/lib/job-archive.mjs';
 const base = process.env.VERIFY_BASE || 'http://localhost:4321';
-const jobs = JSON.parse(fs.readFileSync('src/data/jobs.json','utf8')).jobs;
-const archive = JSON.parse(fs.readFileSync('src/data/jobs-archive.json','utf8'));
+const feed = JSON.parse(fs.readFileSync('src/data/jobs.json','utf8')).jobs;
+const excluded = JSON.parse(fs.readFileSync('src/data/overrides.json','utf8')).exclude ?? {};
+const jobs = feed.filter(job => !excluded[job.id] && !isExpired(job));
+const activeSlugs = new Set(jobs.map(job => job.slug));
+const archive = JSON.parse(fs.readFileSync('src/data/jobs-archive.json','utf8'))
+  .filter(entry => !activeSlugs.has(entry.slug) && !excluded[entry.snapshot?.id]);
+const richClosure = archive.find(isPublicClosure)
+  ?? feed.find(job => !excluded[job.id] && isExpired(job));
 const practice = jobs.find(job => job.slug.startsWith('ausenco-environmental-mine-closure-engineer-junior') && job.internship)
   ?? jobs.find(job => job.internship && job.description);
 const pages = [
   ['education','/guias/formacion-minera-gratuita-economica-peru'],
   ['verification','/guias/verificar-oferta-remota-visa-salario'],
+  ['editorial','/guias/cv-minero-sin-experiencia/'],['archive-index','/archivo/'],
+  ...(richClosure ? [['closed',`/jobs/${richClosure.slug}`]] : []),
   ['about','/about'],['privacy','/privacy'],['guides','/guias'],['jobs','/jobs'],
-  ['job',`/jobs/${jobs[0].slug}`],['archive',`/jobs/${archive[0].slug}`],
+  ['job',`/jobs/${jobs[0].slug}`],['archive',`/jobs/${archive.find(entry => !isPublicClosure(entry)).slug}`],
   ...(practice ? [['practice',`/jobs/${practice.slug}`]] : []),
-  ['full-job',`/jobs/${jobs.find(j=>j.descriptionStatus==='full' && j.publishedAt).slug}`],
+  ['full-job',`/jobs/${jobs.find(job => jobPosting(job)).slug}`],
 ];
 fs.mkdirSync('screenshots/reliability',{recursive:true});
 for (const [engine,type] of Object.entries({chromium,webkit})) {
@@ -28,7 +38,7 @@ for (const [engine,type] of Object.entries({chromium,webkit})) {
       await page.setViewportSize({width,height:900});
       for (const [name,path] of pages) {
         const response = await page.goto(base+path,{waitUntil:'networkidle'});
-        assert.equal(response.status(),200,`${engine} ${path}`);
+        assert.equal(response?.status() ?? (await page.request.get(base + path)).status(), 200, `${engine} ${path}`);
         assert.equal(await page.locator('main h1').count(),1,path);
         const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
         assert.equal(overflow,false,`${engine} ${width} overflow ${path}`);
@@ -36,6 +46,18 @@ for (const [engine,type] of Object.entries({chromium,webkit})) {
         if (name === 'education') {
           await page.locator('#carreras').scrollIntoViewIfNeeded();
           await page.screenshot({path:`screenshots/reliability/education-options-${engine}-${width}.png`,animations:'disabled'});
+        }
+        if (name === 'editorial') {
+          assert.equal(await page.locator('[data-editorial-body] strong').count() > 0, true);
+          await page.emulateMedia({ reducedMotion: 'reduce' });
+          assert.equal(await page.locator('.editorial-trace').evaluate(node => getComputedStyle(node).animationName), 'none');
+          await page.emulateMedia({ reducedMotion: 'no-preference' });
+        }
+        if (name === 'closed') {
+          assert.equal(await page.locator('[data-archived-job]').count(), 1);
+          assert.equal(await page.getByRole('link', { name: 'Postular', exact: true }).count(), 0);
+          assert.equal(await page.getByRole('heading', { name: 'Ofertas vigentes similares' }).count(), 1);
+          assert.equal(await page.locator('script[type="application/ld+json"]').count(), 0);
         }
         if (name === 'archive') {
           assert.equal(await page.locator('meta[name=robots]').getAttribute('content'),'noindex, follow');
@@ -53,7 +75,7 @@ for (const [engine,type] of Object.entries({chromium,webkit})) {
           assert.equal(await description.locator('[data-job-clear-view]').isVisible(), true);
           assert.equal(await description.locator('details').count(), 0);
           assert.equal(await description.getByRole('link', { name: 'Postular', exact: true }).count(), 1);
-          assert.deepEqual(await page.locator('article > section > h2 > span[aria-hidden="true"]').allTextContents(), ['1', '2', '3', '4']);
+          assert.deepEqual(await page.locator('article > section > h2 > span[aria-hidden="true"]').allTextContents(), ['1', '2', '3', '4', '5', '6', '7']);
           assert.equal(await page.getByRole('link', { name: 'Postular', exact: true }).count(), 2);
           if (name === 'practice') assert.equal(await page.getByRole('link', { name: /Volver a prácticas/ }).getAttribute('href'), '/practicas');
         }
