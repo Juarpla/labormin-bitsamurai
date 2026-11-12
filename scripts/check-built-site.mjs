@@ -4,7 +4,7 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 import { decodeHTML, decodeHTMLAttribute } from 'entities';
 import { isPublicClosure } from '../src/lib/job-archive.mjs';
-import { jobExpiration } from '../src/lib/job-policy.mjs';
+import { isExpired, jobExpiration } from '../src/lib/job-policy.mjs';
 
 const root = path.resolve('dist/client');
 const htmlFor = file => fs.readFileSync(path.join(root, file), 'utf8');
@@ -172,6 +172,8 @@ for (const job of current) {
   if (excluded[job.id]) continue;
   const file = pageFile('/jobs/' + job.slug);
   const html = htmlFor(file);
+  const safelyPastBuild = new Date(Date.now() - 60_000);
+  if (isExpired(job, safelyPastBuild)) assert.ok(archivePages.has(file), `Expired job still active: ${job.slug}`);
   if (archivePages.has(file)) continue;
   assert.ok(sitemapRoutes.has(file), job.slug);
   assert.ok(html.includes('data-application-guide'), 'Missing original application guidance: ' + job.slug);

@@ -48,13 +48,13 @@ export type ArchivedJob = {
 };
 
 const excluded = new Set(Object.keys(overrides.exclude ?? {}));
-const now = new Date();
+export const catalogTime = new Date(import.meta.env.LABORMIN_BUILD_TIME);
 const publicFeed = parsed.jobs.filter(job => !excluded.has(job.id));
-export const allJobs: Job[] = tierSorted(publicFeed.filter(job => !isExpired(job, now)).map(withPresentation));
+export const allJobs: Job[] = tierSorted(publicFeed.filter(job => !isExpired(job, catalogTime)).map(withPresentation));
 const feedSlugs = new Set(parsed.jobs.map(job => job.slug));
 export const archivedJobs: ArchivedJob[] = [
   ...(rawArchive as ArchivedJob[]).filter(entry => !feedSlugs.has(entry.slug) && !excluded.has(entry.snapshot?.id ?? '')),
-  ...publicFeed.filter(job => isExpired(job, now)).map(job => archiveEntry(job, jobExpiration(job).reason, now)),
+  ...publicFeed.filter(job => isExpired(job, catalogTime)).map(job => archiveEntry(job, jobExpiration(job).reason, catalogTime)),
 ].map(entry => entry.snapshot ? { ...entry, snapshot: withPresentation(entry.snapshot) } : entry);
 export const closedJobs = archivedJobs.filter(isPublicClosure)
   .sort((a, b) => (b.closedAt ?? b.removedAt).localeCompare(a.closedAt ?? a.removedAt) || a.slug.localeCompare(b.slug));
