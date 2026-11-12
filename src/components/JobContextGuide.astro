@@ -108,7 +108,6 @@ const locationChecks: { icon: 'time' | 'credential' | 'travel' | 'cost'; title: 
     <>
       <p class="mt-1 max-w-prose text-sm leading-relaxed text-graphite-300">
         {profile?.network ?? 'Ubicaciones publicadas por la empresa.'} Confirma con selección la dirección asignada a esta {job.internship ? 'práctica' : 'vacante'}.
-        <a href={employer?.officialUrl} target="_blank" rel="noopener noreferrer" class="ml-1 inline-block text-brand-400 underline-offset-4 hover:underline">Fuente oficial <span aria-hidden="true">↗</span></a>
       </p>
       <ul role="list" class="mt-3 grid gap-3 sm:grid-cols-2">
         {locations.map(location => (
@@ -119,7 +118,6 @@ const locationChecks: { icon: 'time' | 'credential' | 'travel' | 'cost'; title: 
             </h4>
             <p class="mt-1 text-sm font-medium text-graphite-300">{location.address}</p>
             <p class="mt-2 text-sm leading-relaxed text-graphite-200">{location.description}</p>
-            {location.sourceUrl && <a href={location.sourceUrl} target="_blank" rel="noopener noreferrer" class="mt-2 inline-block text-sm text-brand-400 underline-offset-4 hover:underline">Fuente de esta ubicación <span aria-hidden="true">↗</span></a>}
             <JobLocationMap query={location.headquarters ? `${location.address}, ${country}` : `${location.name}, ${job.company}, ${location.address}, ${country}`} label={location.name} />
           </li>
         ))}
@@ -145,7 +143,7 @@ const locationChecks: { icon: 'time' | 'credential' | 'travel' | 'cost'; title: 
   )}
 
   <h3 class="mt-6 font-semibold text-graphite-100">{employer?.practiceSample ? 'Experiencias de practicantes' : 'Opiniones sobre trabajar en la empresa'}</h3>
-  {reviews.length > 0 && (
+  {reviews.length > 0 ? (
     <>
       <p class="mt-1 text-sm text-graphite-300">{employer?.reviewSummary
         ? `Temas mencionados en una muestra de ${employer.reviewSummary.total} opiniones públicas en Indeed.`
@@ -159,8 +157,9 @@ const locationChecks: { icon: 'time' | 'credential' | 'travel' | 'cost'; title: 
         ))}
       </dl>
     </>
+  ) : (
+    <div class="mt-2 pl-4">
+      <a href={companySearch} target="_blank" rel="noopener noreferrer" class="inline-block text-sm font-semibold text-brand-400 underline-offset-4 hover:underline">{job.internship ? 'Buscar testimonios de practicantes' : 'Buscar opiniones laborales'} <span aria-hidden="true">↗</span></a>
+    </div>
   )}
-  <div class="mt-2 pl-4">
-    <a href={employer?.reviewsUrl ?? companySearch} target="_blank" rel="noopener noreferrer" class="inline-block text-sm font-semibold text-brand-400 underline-offset-4 hover:underline">{employer?.reviewsUrl ? 'Ver opiniones en Indeed' : job.internship ? 'Buscar testimonios de practicantes' : 'Buscar opiniones laborales'} <span aria-hidden="true">↗</span></a>
-  </div>
 </section>
