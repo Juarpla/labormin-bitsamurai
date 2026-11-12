@@ -2,34 +2,44 @@
 import GuideLayout from '../../layouts/GuideLayout.astro';
 import EditorialRoute from '../../components/guides/EditorialRoute.astro';
 import GuideIcon from '../../components/guides/GuideIcon.astro';
-import { editorialGuides } from '../../lib/editorial-guides';
+import TrainingGuide from '../../components/guides/TrainingGuide.astro';
+import RemoteOfferGuide from '../../components/guides/RemoteOfferGuide.astro';
+import NotFound from '../404.astro';
+import { openCatalog } from '../../lib/catalog';
+import { editorialHtml } from '../../lib/editorial-html';
 
-export function getStaticPaths() {
-  return editorialGuides.map(guide => ({ params: { slug: guide.slug }, props: { guide } }));
-}
+export const prerender = false;
 
-const { guide } = Astro.props;
-const { Content } = guide;
-const related = editorialGuides.filter(item => item.group === guide.group && item.slug !== guide.slug).slice(0, 2);
+const { slug = '' } = Astro.params;
+const catalog = await openCatalog('guides');
+const [guide] = await catalog.read([slug]);
+const related = guide ? catalog.entries.filter(item => item.metadata.group === guide.group && item.slug !== slug).slice(0, 2) : [];
+const training = guide?.visual && slug === 'formacion-minera-gratuita-economica-peru';
+const remote = guide?.visual && slug === 'verificar-oferta-remota-visa-salario';
+const article = guide && !guide.visual ? guide : null;
+const updated = article && new Intl.DateTimeFormat('es-PE', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(article.updatedAt));
+if (!training && !remote && !article) Astro.response.status = 404;
 ---
-<GuideLayout title={guide.title} description={guide.description} path={`/guias/${guide.slug}/`} updatedAt="12 de noviembre de 2026">
+{training ? <TrainingGuide /> : remote ? <RemoteOfferGuide /> : article ? (
+<GuideLayout title={article.title} description={article.description} path={`/guias/${slug}/`} updatedAt={updated || undefined}>
   <header slot="hero" class="max-w-[68ch]">
-    <h1 class="text-balance font-display text-3xl font-semibold leading-tight text-graphite-100 sm:text-5xl">{guide.title}</h1>
-    <p class="mt-4 max-w-prose text-lg leading-relaxed text-graphite-200">{guide.description}</p>
-    <p class="mt-4 text-sm text-graphite-400">Labormin · Fuentes consultadas el <time datetime="2026-11-12">12 de noviembre de 2026</time></p>
-    <EditorialRoute steps={guide.steps} />
+    <h1 class="text-balance font-display text-3xl font-semibold leading-tight text-graphite-100 sm:text-5xl">{article.title}</h1>
+    <p class="mt-4 max-w-prose text-lg leading-relaxed text-graphite-200">{article.description}</p>
+    <p class="mt-4 text-sm text-graphite-400">Labormin · Fuentes consultadas el <time datetime={article.updatedAt}>{updated}</time></p>
+    <EditorialRoute steps={article.steps} />
   </header>
-  <div class="editorial-copy" data-editorial-body><Content /></div>
+  <div class="editorial-copy" data-editorial-body set:html={editorialHtml(article.html)} />
   <aside class="mt-10 border-t border-graphite-800 pt-5" aria-label="Guías relacionadas">
     <h2 class="!mt-0">Sigue leyendo</h2>
     <ul class="!list-none !pl-0">
       {related.map(item => <li class="flex items-start gap-2.5">
         <span class="mt-0.5 shrink-0 text-brand-400 [&_svg]:size-5"><GuideIcon kind="credential" /></span>
-        <a href={`/guias/${item.slug}/`}>{item.title}</a>
+        <a href={`/guias/${item.slug}/`}>{item.metadata.title}</a>
       </li>)}
     </ul>
   </aside>
 </GuideLayout>
+) : <NotFound />}
 <style>
   .editorial-copy { counter-reset: guide-step; overflow-wrap: anywhere; }
   .editorial-copy > :global(h2) {

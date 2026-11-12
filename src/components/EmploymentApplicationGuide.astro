@@ -62,7 +62,7 @@ const preparation = applicationPreparation(job, title, guide.skill ?? guide.expe
                 <dd class="ml-1.5 inline">{option.duration}</dd>
               </div>
             </dl>
-            <a class="mt-3 inline-block text-sm font-semibold text-brand-400 underline-offset-4 hover:underline" href={`/formacion/#${option.id}`}>Ver programa y condiciones <span aria-hidden="true">→</span></a>
+            <a class="mt-3 inline-block text-sm font-semibold text-brand-400 underline-offset-4 hover:underline" href={`/formacion/?opcion=${encodeURIComponent(option.id)}#${option.id}`}>Ver programa y condiciones <span aria-hidden="true">→</span></a>
           </li>
         ))}
       </ul>

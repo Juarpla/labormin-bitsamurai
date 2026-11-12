@@ -37,3 +37,11 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 The builder records fifteen passing interaction checks, build/internal-anchor checks, and a visual inspection across Chromium/WebKit and mobile/tablet/desktop. A final matrix rerun follows a development-server interruption; the final handoff report owns that result. The independent review's mobile setup-height finding was addressed with compact goals and the filter disclosure; heading alignment and the filtered-list closing separator were also corrected.
 
 The automated numeric comparison to the image comp did **not** pass its gate. Do not infer a pixel-match certification from this brief. Search, honest cost/coverage context and the all-seven default are intentional functional adaptations; no deployment or renewed institution verification is claimed. The user requested closing the current improvements rather than further visual iteration.
+
+## Actualización — 12 de noviembre de 2026
+
+El catálogo usa una sola columna de tarjetas separadas: borde grafito,
+radio de 16 px e iconos SVG por objetivo. Programa, institución y costo se
+pueden escanear sin abrir las fichas. Cada página presenta hasta 12 opciones;
+los formularios y los enlaces de paginación mantienen la búsqueda en la URL.
+Los detalles siguen siendo desplegables nativos y conservan sus fuentes.

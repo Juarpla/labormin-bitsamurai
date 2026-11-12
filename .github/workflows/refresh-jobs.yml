@@ -119,3 +119,14 @@ jobs:
           fi
 
       # El deploy lo dispara Workers Builds (Git-connected) con cada push.
+
+      - name: Synchronize the approved feed to D1
+        env:
+          CATALOG_D1_API_TOKEN: ${{ secrets.CATALOG_D1_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [[ -n "$CATALOG_D1_API_TOKEN" ]]; then
+            node scripts/catalog/import.mjs --remote --jobs-only
+          else
+            echo "::notice::CATALOG_D1_API_TOKEN is missing. The Worker uses the current build snapshot when D1 is older."
+          fi

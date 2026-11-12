@@ -1,0 +1,24 @@
+---
+interface Props {
+  page: { page: number; pages: number };
+  anchor: string;
+  label: string;
+  key?: string;
+}
+const { page: { page, pages }, anchor, label, key = 'pagina' } = Astro.props;
+function href(number: number) {
+  const url = new URL(Astro.url);
+  url.searchParams.delete('opcion');
+  if (number === 1) url.searchParams.delete(key);
+  else url.searchParams.set(key, String(number));
+  return `${url.pathname}${url.search}#${anchor}`;
+}
+const button = 'inline-flex min-h-11 items-center gap-2 rounded-full border border-graphite-700 px-4 text-sm font-semibold text-brand-400 hover:border-brand-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400';
+---
+{pages > 1 && (
+  <nav aria-label={label} class="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2">
+    {page > 1 && <a class={button} href={href(page - 1)} rel="prev"><span aria-hidden="true">←</span> Anterior</a>}
+    <span class="px-1 text-sm tabular-nums text-graphite-300">Página {page} de {pages}</span>
+    {page < pages && <a class={button} href={href(page + 1)} rel="next">Siguiente <span aria-hidden="true">→</span></a>}
+  </nav>
+)}

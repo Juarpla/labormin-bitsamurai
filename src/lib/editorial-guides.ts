@@ -8,7 +8,7 @@ export const guideGroups = [
 ] as const;
 
 type Group = typeof guideGroups[number]['id'];
-type GuideMetadata = {
+export type GuideMetadata = {
   title: string;
   description: string;
   group: Group;
@@ -20,7 +20,7 @@ const articles = import.meta.glob<MarkdownInstance<GuideMetadata>>('../content/g
 export const editorialGuides = Object.entries(articles).map(([file, article]) => ({
   slug: file.slice(file.lastIndexOf('/') + 1, -3),
   ...article.frontmatter,
-  Content: article.Content,
+  compiledContent: article.compiledContent,
 }));
 
 export const visualGuides: Array<Omit<GuideMetadata, 'steps'> & { slug: string }> = [

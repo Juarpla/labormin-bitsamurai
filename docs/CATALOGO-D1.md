@@ -1,0 +1,52 @@
+# Catálogo de Labormin en Cloudflare D1
+
+Los cinco listados renderizan en Workers. Formación, Empleos, Prácticas y Eventos
+muestran hasta 12 registros por página; Guías, hasta cuatro por tema. Los filtros
+se aplican al catálogo completo antes de buscar los detalles de la página.
+La navegación y los formularios usan URL compartibles y funcionan sin JavaScript.
+
+- `catalog_jobs`: vacantes, prácticas y archivo. La URL de detalle sigue siendo
+  `/jobs/{slug}/` para todas. La ingestión sigue validando fuentes y elegibilidad.
+- `catalog_guides`: índice y contenido de las guías editoriales; todas comparten
+  `/guias/{slug}/`. Las dos guías visuales existentes conservan su componente
+  editorial especial, sus anclas y sus espacios para anuncios.
+- `catalog_training` y `catalog_events`: fichas y fuentes documentadas.
+- `catalog_ready`: habilita la lectura de cada catálogo cuando su carga termina.
+  Un entorno sin carga usa la instantánea validada del repositorio. Para empleos,
+  también usa esa instantánea si contiene un feed más nuevo que D1. Inicio y
+  Archivo todavía se generan desde la instantánea; el cron sigue respaldando
+  su ingestión en Git.
+
+Cada fila tiene un `slug` estable, una posición, metadatos ligeros para el
+listado y el contenido completo. Los metadatos y el contenido deben actualizarse
+juntos. El Worker lee D1 por el binding privado `CATALOG_DB`. El navegador no
+recibe credenciales ni conecta directamente a la base. Las fichas salen en
+`/sitemap-catalog.xml`, referenciado en `robots.txt`.
+
+## Operación
+
+- Inicializar D1 local: `node scripts/catalog/import.mjs`.
+- Cargar datos en D1 remoto: `node scripts/catalog/import.mjs --remote`.
+  Aplica migraciones, importa las guías, eventos y formación una sola vez, y
+  actualiza el feed de empleo. Usa la sesión de Wrangler o un token dedicado.
+- Para que el cron actualice D1 a diario, configura `CATALOG_D1_API_TOKEN` en
+  los secretos de GitHub Actions con permiso **Account → D1 → Edit** en la
+  cuenta de Labormin. La tarea actualiza solo empleo y prácticas; no sobreescribe
+  las guías, la formación ni los eventos que se gestionen en D1.
+- Para agregar o actualizar una guía editorial sin tocar Astro, prepara un
+  JSON con `slug`, `title`, `description`, `group` (`primer-empleo`,
+  `formacion` o `evaluar`), `icon` (`credential`, `materials`, `time`,
+  `map` o `remote`), `steps` (tres textos), `updatedAt` (AAAA-MM-DD) y
+  `html` (artículo con fuentes). Ejecuta
+  `node scripts/catalog/publish-guide.mjs /ruta/guia.json --remote`.
+  Sin `--remote` solo actualiza D1 local. El HTML se sanitiza al renderizar.
+- Para editar formación o eventos desde el panel de D1, consulta la fila
+  existente como modelo. Conserva la fecha de verificación real y las URL
+  oficiales. En eventos, sincroniza las fechas del contenido con los metadatos
+  `date` y `endsOn`; en formación, actualiza `search` (minúsculas y sin
+  tildes) si cambias el programa o la institución.
+
+Verifica un despliegue con `pnpm build`, `pnpm astro preview --background` y
+`node scripts/check-runtime-catalog.mjs`. Para verificar D1 en el entorno
+local, importa antes de arrancar la vista previa. D1 remoto no se usa en dev
+ni en la vista previa por defecto.

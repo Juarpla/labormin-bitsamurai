@@ -1,10 +1,14 @@
 ---
+import CatalogPagination from '../CatalogPagination.astro';
+import { paginate, resultRange, searchText } from '../../lib/pagination';
+import { openCatalog } from '../../lib/catalog';
+import { catalogNow } from '../../lib/catalog-data';
 import AdSlot from '../AdSlot.astro';
 import JobCard from '../JobCard.astro';
 import JobFilters from '../JobFilters.astro';
 import JobDrawer from '../JobDrawer.astro';
 import { localePath, useTranslations, type Locale } from '../../lib/i18n';
-import { internships, jobIndex } from '../../lib/jobs';
+import { jobIndex } from '../../lib/jobs';
 
 interface Props {
   locale?: Locale;
@@ -12,9 +16,26 @@ interface Props {
 const { locale = 'es' } = Astro.props;
 const t = useTranslations(locale);
 
-const index = jobIndex(locale, internships);
+const params = Astro.url.searchParams;
+const q = searchText((params.get('q') ?? '').slice(0, 120));
+const catalog = await openCatalog('jobs', 'internship');
+const now = catalogNow().toISOString();
+const available = catalog.entries.filter(({ metadata }) => metadata.type === 'internship' && (!metadata.closesAt || metadata.closesAt > now));
+const filtered = available.filter(({ metadata: job }) => {
+  const country = params.get('country');
+  const category = params.get('category');
+  const type = params.get('type');
+  const tier = params.get('tier');
+  return (!country || job.country === country) &&
+    (!category || job.category === category) &&
+    (type !== 'remote' && type !== 'onsite' || job.remote === (type === 'remote')) &&
+    (tier !== 'pe' && tier !== 'remote' || job.tier === (tier === 'pe' ? 1 : 2)) &&
+    (!q || job.search.includes(q));
+});
+const page = paginate(filtered, Astro.url);
+const jobs = (await catalog.read(page.items.map(item => item.slug))).flatMap(row => row.job ? [row.job] : []);
+const payload = JSON.stringify({ index: jobIndex(locale, jobs) });
 
-const payload = JSON.stringify({ index });
 ---
 
 <div class="xl:grid xl:grid-cols-[160px_56rem_160px] xl:justify-center xl:gap-4">
@@ -37,18 +58,20 @@ const payload = JSON.stringify({ index });
       class="mx-auto w-fit lg:hidden"
     />
 
-    <JobFilters jobs={internships} locale={locale} />
-    <p id="f-count" aria-live="polite" data-count-message={t('practicas.count', { n: '{n}' })} class="mt-6 text-sm text-graphite-400">{t('practicas.count', { n: internships.length })}</p>
+    <JobFilters jobs={available.map(item => item.metadata)} locale={locale} />
+    <p id="resultados" class="mt-6 scroll-mt-28 text-sm text-graphite-300">Prácticas: {resultRange(page)}</p>
 
     <div id="jobs-grid" class="mt-4 grid gap-4 sm:grid-cols-2">
-      {internships.map(job => <JobCard job={job} locale={locale} />)}
+      {jobs.map(job => <JobCard job={job} locale={locale} />)}
     </div>
 
-    <div id="jobs-empty" class:list={['mt-10', { hidden: internships.length > 0 }]}>
-      {internships.length ? (
+    <CatalogPagination page={page} anchor="resultados" label="Páginas de prácticas" />
+
+  <div id="jobs-empty" class:list={['mt-10', { hidden: page.total > 0 }]}>
+      {available.length ? (
         <div class="rounded-2xl border border-graphite-800 p-8 text-center">
           <h2 class="font-display text-2xl font-semibold text-graphite-100">No hay prácticas con estos filtros</h2>
-          <button id="f-clear-empty" type="button" class="mt-4 rounded-full border border-graphite-700 px-4 py-2 text-sm hover:text-brand-400">{t('jobs.clear')}</button>
+          <a id="f-clear-empty" href={`${Astro.url.pathname}#resultados`} class="mt-4 rounded-full border border-graphite-700 px-4 py-2 text-sm hover:text-brand-400">{t('jobs.clear')}</a>
         </div>
       ) : (
         <div class="rounded-2xl border border-graphite-800 p-8 text-center">

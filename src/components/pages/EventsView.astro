@@ -1,7 +1,10 @@
 ---
+import CatalogPagination from '../CatalogPagination.astro';
+import { paginate, resultRange } from '../../lib/pagination';
 import AdSlot from '../AdSlot.astro';
 import { useTranslations, countryName, defaultLocale, type Locale } from '../../lib/i18n';
-import { upcomingEvents, events } from '../../lib/events';
+import { openCatalog } from '../../lib/catalog';
+import { catalogNow } from '../../lib/catalog-data';
 
 interface Props {
   locale?: Locale;
@@ -9,7 +12,12 @@ interface Props {
 const { locale = defaultLocale } = Astro.props;
 const t = useTranslations(locale);
 
-const list = upcomingEvents();
+const catalog = await openCatalog('events');
+const today = new Intl.DateTimeFormat('sv-SE', { timeZone: 'America/Lima' }).format(catalogNow());
+const upcoming = catalog.entries.filter(({metadata}) => metadata.endsOn >= today)
+  .sort((a,b) => a.metadata.date.localeCompare(b.metadata.date));
+const page = paginate(upcoming, Astro.url);
+const list = await catalog.read(page.items.map(item => item.slug));
 const modeLabel: Record<string, string> = {
   presencial: t('events.mode.presencial'),
   virtual: t('events.mode.virtual'),
@@ -42,7 +50,8 @@ const typeLabel: Record<string, string> = {
     class="mx-auto w-fit lg:hidden"
   />
 
-  <h2 class="mt-12 font-display text-2xl font-semibold text-graphite-100">{t('events.upcoming')}</h2>
+  <h2 id="resultados" class="scroll-mt-28 mt-12 font-display text-2xl font-semibold text-graphite-100">{t('events.upcoming')}</h2>
+  {page.total > 0 && <p class="mt-2 text-sm text-graphite-300">Eventos: {resultRange(page)}</p>}
   <div class="mt-6 grid gap-4 sm:grid-cols-2">
     {
       list.length === 0 && (
@@ -85,12 +94,7 @@ const typeLabel: Record<string, string> = {
     }
   </div>
 
-  {
-    events.length === 0 && (
-      <p class="mt-10 text-center text-graphite-400">{t('events.empty')}</p>
-    )
-  }
-
+  <CatalogPagination page={page} anchor="resultados" label="Páginas de eventos" />
   <p class="mt-8 text-xs leading-relaxed text-graphite-500">
     ℹ {t('events.lead')}
   </p>

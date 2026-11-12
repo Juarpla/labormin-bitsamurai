@@ -22,3 +22,8 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
+      - name: Verify dynamic catalog routes
+        run: |
+          pnpm astro preview --port 4321 --background
+          trap 'pnpm astro preview stop' EXIT
+          node scripts/check-runtime-catalog.mjs

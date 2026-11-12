@@ -1,11 +1,17 @@
 ---
+export const prerender = false;
+import CatalogPagination from '../../components/CatalogPagination.astro';
+import { paginate, resultRange } from '../../lib/pagination';
 import Layout from '../../layouts/Layout.astro';
 import AdSlot from '../../components/AdSlot.astro';
 import GuideIcon from '../../components/guides/GuideIcon.astro';
 import EditorialRoute from '../../components/guides/EditorialRoute.astro';
-import { editorialGuides, guideGroups, visualGuides } from '../../lib/editorial-guides';
+import { openCatalog } from '../../lib/catalog';
+import { guideGroups } from '../../lib/editorial-guides';
 
-const guides = [...visualGuides, ...editorialGuides];
+const catalog = await openCatalog('guides');
+const guides = catalog.entries.map(({ slug, metadata }) => ({ slug, ...metadata }));
+const sections = guideGroups.map(group => ({ group, page: paginate(guides.filter(guide => guide.group === group.id), Astro.url, 4, group.id) }));
 ---
 <Layout title="Guías para trabajar en minería — Labormin" description="Guías de Labormin para buscar tu primer empleo minero, elegir formación y evaluar las condiciones de una vacante en Perú." path="/guias/">
   <div class="xl:grid xl:grid-cols-[160px_56rem_160px] xl:justify-center xl:gap-4">
@@ -25,13 +31,14 @@ const guides = [...visualGuides, ...editorialGuides];
 
       <AdSlot slotId="guias-top-1" size={{w:320,h:50}} media="(max-width: 1023.98px)" class="guide-mobile-ad mx-auto w-fit lg:hidden" />
 
-      {guideGroups.map(group => <section class="mt-10 scroll-mt-32" id={group.id} aria-labelledby={`heading-${group.id}`}>
+      {sections.map(({group, page}) => <section class="mt-10 scroll-mt-32" id={group.id} aria-labelledby={`heading-${group.id}`}>
         <h2 id={`heading-${group.id}`} class="flex items-center gap-3 font-display text-2xl font-semibold text-graphite-100 sm:text-3xl">
           <span class="shrink-0 text-brand-400 [&_svg]:size-6"><GuideIcon kind={group.icon} /></span>
           {group.title}
         </h2>
+        {page.pages > 1 && <p class="mt-2 text-sm text-graphite-300">Guías: {resultRange(page)}</p>}
         <ul class="mt-5 grid gap-4 sm:grid-cols-2" role="list">
-          {guides.filter(guide => guide.group === group.id).map(guide => <li class="min-w-0">
+          {page.items.map(guide => <li class="min-w-0">
             <a href={`/guias/${guide.slug}/`} class="group grid h-full grid-cols-[auto_minmax(0,1fr)] content-start items-start gap-x-3 gap-y-2 rounded-2xl border border-graphite-800 bg-graphite-900 p-5 transition-colors hover:border-brand-500/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400">
               <span class="grid size-9 place-items-center rounded-lg bg-brand-500/10 text-brand-400 [&_svg]:size-6"><GuideIcon kind={guide.icon} /></span>
               <h3 class="self-center text-pretty font-display text-lg font-semibold leading-snug text-graphite-100 group-hover:text-brand-400 group-focus-visible:text-brand-400">{guide.title}</h3>
@@ -40,6 +47,7 @@ const guides = [...visualGuides, ...editorialGuides];
             </a>
           </li>)}
         </ul>
+        <CatalogPagination page={page} anchor={group.id} key={group.id} label={`Páginas de ${group.title}`} />
       </section>)}
     </div>
     <AdSlot slotId="guias-side-2" size={{w:160,h:600}} media="(min-width: 1280px)" class="sticky top-24 hidden w-fit self-start xl:col-start-3 xl:row-start-1 xl:block" />

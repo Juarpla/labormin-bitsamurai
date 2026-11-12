@@ -1,42 +1,45 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import JobDetailView from '../../components/pages/JobDetailView.astro';
-import { allJobs, archivedJobs, locationLine, titleFor } from '../../lib/jobs';
+import NotFound from '../404.astro';
+import { locationLine, titleFor } from '../../lib/jobs';
 import { useTranslations } from '../../lib/i18n';
-import { isPublicClosure } from '../../lib/job-archive.mjs';
+import { archiveEntry, isPublicClosure } from '../../lib/job-archive.mjs';
+import { catalogRecord, openCatalog } from '../../lib/catalog';
+import { catalogNow } from '../../lib/catalog-data';
 
-export function getStaticPaths() {
-  const excerptKey = (excerpt: string) => excerpt.trim().replace(/\s+/g, ' ').toLowerCase();
-  const excerptCounts = new Map<string, number>();
-  for (const job of allJobs) {
-    const key = excerptKey(job.excerpt);
-    excerptCounts.set(key, (excerptCounts.get(key) ?? 0) + 1);
-  }
-  const t = useTranslations('es');
-  return [
-    ...allJobs.map(job => {
-      const title = titleFor(job, 'es');
-      const key = excerptKey(job.excerpt);
-      const description = key && excerptCounts.get(key) === 1
-        ? job.excerpt
-        : `${title} en ${job.company} · ${locationLine(job, t)}. Consulta los requisitos y cómo postular.`;
-      return { params: { slug: job.slug }, props: { job, archive: null, title, description, noindex: false } };
-    }),
-    ...archivedJobs.map(archive => ({
-      params: { slug: archive.slug },
-      props: {
-        job: archive.snapshot, archive, title: archive.snapshot ? titleFor(archive.snapshot, 'es') : archive.title,
-        description: `${archive.title} en ${archive.company}. Consulta esta ficha histórica y encuentra convocatorias vigentes en Labormin.`,
-        noindex: !isPublicClosure(archive),
-      },
-    })),
-  ];
-}
-const { job, archive, title, description, noindex } = Astro.props;
-const slug = job?.slug ?? archive?.slug;
+export const prerender = false;
+
+const slug = Astro.params.slug ?? '';
+const entry = await catalogRecord('jobs', slug);
+const record = entry?.payload;
+const job = record?.job;
+const candidateType = job?.internship && job.country === 'PE' ? 'internship' : 'job';
+const catalog = job ? await openCatalog('jobs', candidateType) : null;
+const now = catalogNow();
+const { closesAt, closesFor, excerptKey } = entry?.metadata ?? {};
+const archive = record?.archive ?? (job && closesAt && closesFor && closesAt <= now.toISOString()
+  ? archiveEntry(job, closesFor, now) : null);
+const title = job ? titleFor(job, 'es') : archive?.title;
+const description = archive
+  ? `${archive.title} en ${archive.company}. Consulta esta ficha histórica y encuentra convocatorias vigentes en Labormin.`
+  : job && excerptKey && catalog?.entries.filter(item => item.metadata.excerptKey === excerptKey).length === 1
+    ? job.excerpt
+    : job ? `${title} en ${job.company} · ${locationLine(job, useTranslations('es'))}. Consulta los requisitos y cómo postular.` : '';
+const noindex = archive ? !isPublicClosure(archive) : false;
+const candidates = job && catalog ? catalog.entries.filter(item => item.slug !== slug &&
+  item.metadata.type === candidateType && (!item.metadata.closesAt || item.metadata.closesAt > now.toISOString()) &&
+  (candidateType === 'internship' || item.metadata.country === job.country || item.metadata.category === job.category))
+  .sort((a,b) => {
+    const relevance = ({metadata}: typeof a) => 2 * Number(job.category !== 'other' && metadata.category === job.category) + Number(metadata.country === job.country);
+    return archive || candidateType === 'internship' ? relevance(b) - relevance(a) : 0;
+  }).slice(0, 10) : [];
+const alternatives = (catalog ? await catalog.read(candidates.map(item => item.slug)) : []).flatMap(row => row.job ? [row.job] : []);
+if (!record) Astro.response.status = 404;
 ---
+{!record ? <NotFound /> : (
 <Layout title={`${title} — ${job?.company ?? archive?.company} | Labormin`} description={description} path={`/jobs/${slug}`} noindex={noindex} ads={false}>
-  {job ? <JobDetailView job={job} archive={archive} /> : archive && <article data-archived-job class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+  {job ? <JobDetailView job={job} archive={archive} relatedPool={alternatives} clearView={record.clearView} now={now} /> : archive && <article data-archived-job class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
     <p class="text-sm font-semibold text-brand-400">{archive.reason === 'stale' || archive.reason === 'expired' ? 'Convocatoria finalizada' : 'Oferta fuera del catálogo activo'}</p>
     <h1 class="mt-4 font-display text-3xl font-semibold leading-tight text-graphite-100">{archive.title}</h1>
     <p class="mt-4 text-lg text-graphite-200">{archive.company}</p>
@@ -45,3 +48,4 @@ const slug = job?.slug ?? archive?.slug;
     <a href="/jobs/" class="mt-8 inline-block rounded-full bg-brand-500 px-5 py-3 text-sm font-semibold text-graphite-950">Ver ofertas vigentes</a>
   </article>}
 </Layout>
+)}

@@ -1,10 +1,43 @@
 ---
+export const prerender = false;
+import CatalogPagination from '../components/CatalogPagination.astro';
+import GuideIcon from '../components/guides/GuideIcon.astro';
+import { paginate, resultRange, searchText } from '../lib/pagination';
 import Layout from '../layouts/Layout.astro';
 import AdSlot from '../components/AdSlot.astro';
-import { departments, education, trainingGroups, trainingGuidePath, verifiedDate } from '../lib/education';
+import { departments, trainingGroups, trainingGuidePath, verifiedDate } from '../lib/education';
 import '../styles/formation.css';
-const ordered = [...education].sort((a,b) => a.id === 'promae-comas' && b.id === 'cetpro-juliaca' ? -1 : a.id === 'cetpro-juliaca' && b.id === 'promae-comas' ? 1 : 0);
+import { openCatalog } from '../lib/catalog';
+const catalog = await openCatalog('training');
 const images = { habilidad: '/images/formacion/habilidad.png', certificado: '/images/formacion/certificado.png', carrera: '/images/formacion/carrera.png' };
+const params = Astro.url.searchParams;
+const type = params.get('tipo') ?? '';
+const department = params.get('departamento') ?? '';
+const mode = params.get('modalidad') ?? '';
+const cost = params.get('costo') ?? '';
+const query = (params.get('q') ?? '').slice(0, 120);
+const includeVirtual = !params.getAll('virtual').includes('0') || params.getAll('virtual').includes('1');
+const optionId = params.get('opcion');
+const words = searchText(query).split(/\s+/).filter(Boolean);
+const filtered = catalog.entries.filter(({metadata: option}) =>
+  (!type || option.type === type) &&
+  (!department || option.department === department || (includeVirtual && option.mode === 'virtual')) &&
+  (!mode || option.mode === mode) && (!cost || option.costKind === cost) &&
+  words.every(word => option.search.includes(word))
+);
+const focusIndex = filtered.findIndex(option => option.slug === optionId);
+const page = paginate(filtered, Astro.url, undefined, 'pagina', focusIndex);
+const options = await catalog.read(page.items.map(item => item.slug));
+const icons = { habilidad: 'materials', certificado: 'credential', carrera: 'map' } as const;
+function typeLink(value: string) {
+  const next = new URLSearchParams(params);
+  next.delete('pagina');
+  next.delete('opcion');
+  if (value) next.set('tipo', value);
+  else next.delete('tipo');
+  return `/formacion/${next.size ? '?' + next : ''}#resultados`;
+}
+
 ---
 <Layout title="Formación para el sector minero en Perú | Labormin" description="Explora cursos, formación práctica y carreras técnicas. Filtra por departamento, modalidad y costo; compara fuentes oficiales y credenciales." path="/formacion">
   <div class="xl:grid xl:grid-cols-[160px_56rem_160px] xl:justify-center xl:gap-4">
@@ -15,39 +48,45 @@ const images = { habilidad: '/images/formacion/habilidad.png', certificado: '/im
       <p>Empieza por el tipo de formación. Después, encuentra opciones cerca de ti.</p>
     </header>
     <nav class="formation-goals" aria-label="Tipo de formación">
-      {trainingGroups.map(group => <a class="formation-goal" data-type={group.id} href={`/formacion?tipo=${group.id}#resultados`}>
+      {trainingGroups.map(group => <a class="formation-goal" aria-current={type === group.id ? "true" : undefined} href={typeLink(group.id)}>
         <img src={images[group.image]} alt="" width="180" height="104" fetchpriority="high"/>
         <span><strong>{group.label}</strong><span>{group.description}</span></span>
       </a>)}
     </nav>
-    <a class="formation-all" href="/formacion#resultados" data-all>Ver toda la formación <span aria-hidden="true">→</span></a>
+    <a class="formation-all" href={typeLink('')}>Ver toda la formación <span aria-hidden="true">→</span></a>
     <AdSlot slotId="formacion-top-1" size={{ w: 320, h: 50 }} media="(max-width: 1023.98px)" class="mx-auto w-fit lg:hidden" />
-    <form id="formation-filters" class="formation-filters" role="search" aria-label="Filtrar formación" hidden>
+    <form id="formation-filters" class="formation-filters" role="search" aria-label="Filtrar formación" method="get" action="/formacion/#resultados">
+      {type && <input type="hidden" name="tipo" value={type} />}
       <div class="formation-search-tools">
-        <label class="formation-query" for="training-query">Buscar por programa o institución<input type="search" name="q" id="training-query" placeholder="Ej. electricidad, minería, CETPRO" autocomplete="off"/></label>
-        <button type="button" class="formation-clear" data-reset>Limpiar filtros</button>
+        <label class="formation-query" for="training-query">Buscar por programa o institución<input type="search" name="q" id="training-query" placeholder="Ej. electricidad, minería, CETPRO" autocomplete="off" value={query} maxlength="120"/></label>
+
       </div>
       <details class="formation-filter-details" id="training-filter-details" open>
-        <summary>Departamento, modalidad y costo<span id="formation-filter-feedback"></span></summary>
+        <summary>Departamento, modalidad y costo</summary>
         <div class="formation-selects">
-          <label>Departamento<select name="departamento" id="training-department"><option value="">Todos</option>{departments.map(department => <option value={department}>{department}</option>)}</select></label>
-          <label>Modalidad<select name="modalidad" id="training-mode"><option value="">Todas</option><option value="virtual">Virtual</option><option value="presencial">Presencial confirmada</option><option value="consultar">Por confirmar</option></select></label>
-          <label>Costo<select name="costo" id="training-cost"><option value="">Todos</option><option value="gratuito">Gratuito · según condiciones</option><option value="parcial">Pagos parciales publicados</option><option value="consultar">Precio por consultar</option></select></label>
+          <label>Departamento<select name="departamento" id="training-department"><option value="">Todos</option>{departments.map(department => <option value={department} selected={params.get('departamento') === department}>{department}</option>)}</select></label>
+          <label>Modalidad<select name="modalidad" id="training-mode"><option value="">Todas</option><option value="virtual" selected={mode === "virtual"}>Virtual</option><option value="presencial" selected={mode === "presencial"}>Presencial confirmada</option><option value="consultar" selected={mode === "consultar"}>Por confirmar</option></select></label>
+          <label>Costo<select name="costo" id="training-cost"><option value="">Todos</option><option value="gratuito" selected={cost === "gratuito"}>Gratuito · según condiciones</option><option value="parcial" selected={cost === "parcial"}>Pagos parciales publicados</option><option value="consultar" selected={cost === "consultar"}>Precio por consultar</option></select></label>
         </div>
-        <label class="formation-remote"><input type="checkbox" name="virtual" id="training-remote" checked/> Incluir opciones virtuales desde Perú</label>
+        <input type="hidden" name="virtual" value="0" />
+        <label class="formation-remote"><input type="checkbox" name="virtual" id="training-remote" value="1" checked={includeVirtual}/> Incluir opciones virtuales desde Perú</label>
       </details>
+      <div class="formation-filter-actions">
+        <button type="submit" class="min-h-11 rounded-full bg-brand-500 px-4 text-sm font-semibold text-graphite-950 hover:bg-brand-400">Aplicar filtros</button>
+        <a class="formation-clear" href="/formacion/#resultados">Limpiar filtros</a>
+      </div>
     </form>
 
-    <noscript><p class="formation-context">Estás viendo la selección completa. Activa JavaScript para filtrar; puedes consultar todas las fichas y fuentes a continuación.</p></noscript>
     <section class="formation-results" aria-labelledby="resultados">
-      <div class="formation-result-heading"><h2 id="resultados" tabindex="-1">Explora opciones de formación</h2><p id="formation-count" role="status" aria-live="polite"></p></div>
+      <div class="formation-result-heading"><h2 id="resultados" tabindex="-1">Explora opciones de formación</h2><p id="formation-count" >Opciones: {resultRange(page)}</p></div>
       <div id="formation-list">
-        {ordered.map(option => <article id={option.id} class="formation-row scroll-mt-28" data-training-row data-id={option.id} data-type={option.type} data-department={option.department} data-mode={option.mode} data-cost={option.costKind} data-search={`${option.title} ${option.name} ${option.location} ${option.program}`}>
+        {options.map(option => <article id={option.id} class="formation-row scroll-mt-28" data-training-row>
           <div class="formation-row-main">
+            <span class="formation-card-icon"><GuideIcon kind={icons[option.type]} /></span>
             <header><h3>{option.title}</h3><p>{option.name}</p><p class="formation-location"><img src="/icons/geo-alt.svg" alt="" width="16" height="16"/>{option.location}</p></header>
             <div class="formation-cost"><strong>{option.costLabel}</strong><p>{option.costNote}</p>{option.id === 'cetpro-juliaca' && <p>Un año académico · confirma el programa</p>}</div>
           </div>
-          <details class="formation-details">
+          <details class="formation-details" open={optionId === option.id}>
             <summary><span class="details-closed">Ver detalles</span><span class="details-open">Cerrar detalles</span><span aria-hidden="true"> →</span><span class="sr-only"> de {option.name}</span></summary>
             <div class="formation-details-body">
               <dl>{[['Programa',option.program],['Costo completo',option.cost],['Duración',option.duration],['Credencial',option.credential],['Requisitos de acceso',option.admission],['Disponibilidad',option.status]].map(([label,value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
@@ -60,9 +99,10 @@ const images = { habilidad: '/images/formacion/habilidad.png', certificado: '/im
           </details>
         </article>)}
       </div>
-      <div class="formation-empty" id="formation-empty" hidden><h3>No encontramos opciones con estos filtros</h3><p>La selección aún no cubre todos los departamentos. Prueba otra modalidad o consulta los directorios oficiales de la guía.</p><button type="button" data-reset>Limpiar filtros</button><a href={`${trainingGuidePath}#directorios`}>Buscar en directorios oficiales →</a></div>
+      <CatalogPagination page={page} anchor="resultados" label="Páginas de formación" />
+      <div class="formation-empty" id="formation-empty" hidden={page.total > 0}><h3>No encontramos opciones con estos filtros</h3><p>La selección aún no cubre todos los departamentos. Prueba otra modalidad o consulta los directorios oficiales de la guía.</p><a href="/formacion/#resultados">Limpiar filtros</a><a href={`${trainingGuidePath}#directorios`}>Buscar en directorios oficiales →</a></div>
     </section>
-    <p class="formation-context">Selección documentada de {education.length} opciones; aún no cubre todo el Perú. Incluye habilidades útiles para el sector y programas mineros. El objetivo “Un certificado” orienta la búsqueda: confirma la credencial, modalidad y cupos con cada centro. <a href={`${trainingGuidePath}#comparar`}>Cómo comparar costos y certificados →</a> · <a href="/guias/#formacion">Guías de formación y seguridad →</a></p>
+    <p class="formation-context">Selección documentada de {catalog.entries.length} opciones; aún no cubre todo el Perú. Incluye habilidades útiles para el sector y programas mineros. El objetivo “Un certificado” orienta la búsqueda: confirma la credencial, modalidad y cupos con cada centro. <a href={`${trainingGuidePath}#comparar`}>Cómo comparar costos y certificados →</a> · <a href="/guias/#formacion">Guías de formación y seguridad →</a></p>
     <aside class="formation-guide" aria-labelledby="formation-guide-title"><h2 id="formation-guide-title">Antes de elegir, compara bien.</h2><div><p>Costo completo, práctica y credencial: qué preguntar al centro.</p><a href={trainingGuidePath}>Leer la guía <span aria-hidden="true">↗</span></a></div><p>Datos de la guía · <time datetime="2026-10-26">26 oct 2026</time></p></aside>
     </section>
     <AdSlot slotId="formacion-side-2" size={{ w: 160, h: 600 }} media="(min-width: 1280px)" class="sticky top-24 hidden w-fit self-start xl:col-start-3 xl:row-start-1 xl:block" />

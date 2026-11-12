@@ -23,10 +23,12 @@
     "astro": "^7.3.1",
     "entities": "^8.1.0",
     "gsap": "3.15.0",
+    "sanitize-html": "^2.18.2",
     "tailwindcss": "^4.3.3",
     "zod": "^4.5.4"
   },
   "devDependencies": {
+    "@types/sanitize-html": "^2.16.2",
     "playwright": "^1.63.0",
     "wrangler": "4.129.0",
     "xlsx": "^0.18.5"

@@ -18,13 +18,16 @@ interface Props {
   job: Job;
   archive?: ArchivedJob | null;
   locale?: Locale;
+  relatedPool?: Job[];
+  clearView?: ReturnType<typeof clearViewFor>;
+  now?: Date;
 }
-const { job, archive, locale = 'es' } = Astro.props;
+const { job, archive, relatedPool, clearView, now = catalogTime, locale = 'es' } = Astro.props;
 const t = useTranslations(locale);
-const related = archive ? currentAlternatives(job) : relatedJobs(job, 3);
+const related = archive ? currentAlternatives(job, 3, relatedPool) : relatedJobs(job, 3, relatedPool);
 const backPath = job.internship ? '/practicas' : '/jobs';
 const backHref = locale === 'es' ? backPath : `/${locale}${backPath}`;
-const { sections } = clearViewFor(job, Boolean(archive));
+const { sections } = !archive && clearView ? clearView : clearViewFor(job, Boolean(archive));
 const cached = cachedGuidance[job.id as keyof typeof cachedGuidance];
 const guide = archive ? null : careerGuidance(careerGuidanceContext(job, allJobs), cached);
 const analysis = archive ? null : jobAnalysis(analysisContext(job), cached);
@@ -48,7 +51,7 @@ const facts = [
   { label: 'Licencia', value: driving, icon: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 10h4m-4 4h4m4-4h2m-2 4h2"/>' },
 ].filter(fact => fact.value);
 
-const jsonLd = archive ? null : jobPosting(job, catalogTime);
+const jsonLd = archive ? null : jobPosting(job, now);
 const closureMessage = archive?.reason === 'stale'
   ? 'Convocatoria finalizada — Esta oferta tiene más de 30 días'
   : archive?.reason === 'expired'

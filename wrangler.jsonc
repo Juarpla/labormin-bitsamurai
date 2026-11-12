@@ -1,6 +1,9 @@
 {
   "name": "labormin-bitsamurai",
   "compatibility_date": "2026-09-08",
+  "d1_databases": [
+    { "binding": "CATALOG_DB", "database_name": "labormin", "database_id": "13f9b633-bc3f-47b4-bba3-5f311d6c4229" }
+  ],
   // Pública por diseño (termina en el HTML + ads.txt): acepta pub-... o ca-pub-...
   "vars": {
     "LLM_PROVIDER_ORDER": "AGNES_MODEL,OPENCODE_GO_MODEL,WORKERS_AI_MODEL,MISTRAL_MODEL",

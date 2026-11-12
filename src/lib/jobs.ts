@@ -158,7 +158,7 @@ export function remoteJobs(): Job[] {
   return jobs.filter((j) => j.remote && j.remoteEligibility.status === 'peru-supported');
 }
 
-export function relatedJobs(job: Job, n = 4): Job[] {
+export function relatedJobs(job: Job, n = 4, pool = job.internship ? internships : jobs): Job[] {
   if (job.internship) {
     const sameListing = (candidate: Job) =>
       normalizeText(candidate.title).trim() === normalizeText(job.title).trim() &&
@@ -167,18 +167,17 @@ export function relatedJobs(job: Job, n = 4): Job[] {
       2 * Number(job.category !== 'other' && candidate.category === job.category) +
       Number(Boolean(job.city) && candidate.city === job.city);
 
-    return internships
+    return pool
       .filter(candidate => candidate.id !== job.id && !sameListing(candidate))
       .sort((a, b) => relevance(b) - relevance(a))
       .slice(0, n);
   }
-  return jobs
+  return pool
     .filter((j) => j.id !== job.id && (j.country === job.country || j.category === job.category))
     .slice(0, n);
 }
 
-export function currentAlternatives(job: Job, limit = 3): Job[] {
-  const pool = job.internship ? internships : jobs;
+export function currentAlternatives(job: Job, limit = 3, pool = job.internship ? internships : jobs): Job[] {
   const relevance = (candidate: Job) => 2 * Number(candidate.category === job.category && job.category !== 'other')
     + Number(candidate.country === job.country);
   return pool.filter(candidate => candidate.id !== job.id && relevance(candidate) > 0)

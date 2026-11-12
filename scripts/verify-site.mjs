@@ -21,7 +21,7 @@ const pages = [
   ['verification','/guias/verificar-oferta-remota-visa-salario'],
   ['editorial','/guias/cv-minero-sin-experiencia/'],['archive-index','/archivo/'],
   ...(richClosure ? [['closed',`/jobs/${richClosure.slug}`]] : []),
-  ['about','/about'],['privacy','/privacy'],['guides','/guias'],['jobs','/jobs'],
+  ['training','/formacion'],['events','/eventos'],['practices','/practicas'],['about','/about'],['privacy','/privacy'],['guides','/guias'],['jobs','/jobs'],
   ['job',`/jobs/${jobs[0].slug}`],['archive',`/jobs/${archive.find(entry => !isPublicClosure(entry)).slug}`],
   ...(practice ? [['practice',`/jobs/${practice.slug}`]] : []),
   ['full-job',`/jobs/${jobs.find(job => jobPosting(job)).slug}`],
@@ -38,7 +38,8 @@ for (const [engine,type] of Object.entries({chromium,webkit})) {
       await page.setViewportSize({width,height:900});
       for (const [name,path] of pages) {
         const response = await page.goto(base+path,{waitUntil:'networkidle'});
-        assert.equal(response?.status() ?? (await page.request.get(base + path)).status(), 200, `${engine} ${path}`);
+        const status = response?.status() ?? (await page.request.get(base + path)).status();
+        assert.ok(status === 200 || status === 304, `${engine} ${path}: HTTP ${status}`);
         assert.equal(await page.locator('main h1').count(),1,path);
         const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
         assert.equal(overflow,false,`${engine} ${width} overflow ${path}`);
@@ -83,9 +84,17 @@ for (const [engine,type] of Object.entries({chromium,webkit})) {
     }
     await page.goto(base+'/jobs',{waitUntil:'networkidle'});
     await page.locator('#f-search').fill('zzzz-no-results');
+    await page.getByRole('button', { name: 'Aplicar filtros' }).click();
     assert.equal(await page.locator('#jobs-empty').isVisible(),true);
     await page.locator('#f-clear-empty').click();
-    assert.equal(await page.locator('#jobs-grid .job-card:visible').count(),jobs.filter(j=>!j.internship).length);
+    assert.equal(await page.locator('#jobs-grid .job-card:visible').count(),Math.min(12, jobs.filter(j=>!(j.internship && j.country === 'PE')).length));
+    const firstJobs = await page.locator('#jobs-grid .job-card a[data-drawer-job]').evaluateAll(links => links.map(link => link.getAttribute('href')));
+    if (await page.getByRole('link', { name: 'Siguiente' }).count()) {
+      await page.getByRole('link', { name: 'Siguiente' }).click();
+      assert.ok(new URL(page.url()).searchParams.get('pagina') === '2');
+      assert.ok((await page.locator('#jobs-grid .job-card a[data-drawer-job]').evaluateAll(links => links.map(link => link.getAttribute('href')))).every(link => !firstJobs.includes(link)));
+      await page.getByRole('link', { name: 'Anterior' }).click();
+    }
     // Quick view receives the same safe index shown in the detail page.
     await page.locator('[data-drawer-job]').first().click();
     assert.equal(await page.locator('#lm-drawer').isVisible(),true);
@@ -93,6 +102,18 @@ for (const [engine,type] of Object.entries({chromium,webkit})) {
     assert.equal(await drawerApply.locator('svg').isVisible(), true);
     assert.equal(await drawerApply.getAttribute('target'), '_blank');
     await page.locator('#lm-drawer-close').click();
+    await page.goto(base + '/formacion/');
+    assert.equal(await page.locator('[data-training-row]').count(), 12);
+    await page.getByRole('link', { name: 'Siguiente' }).click();
+    assert.match(await page.locator('#formation-count').textContent(), /^Opciones: 13–24 de \d+$/);
+    await page.locator('#training-query').fill('capacita');
+    await page.getByRole('button', { name: 'Aplicar filtros' }).click();
+    assert.equal(new URL(page.url()).searchParams.has('pagina'), false);
+    assert.equal(await page.locator('#capacita-t').count(), 1);
+    const lastOption = JSON.parse(fs.readFileSync('src/data/education.json')).at(-1).id;
+    await page.goto(base + '/formacion/#' + lastOption);
+    await page.waitForURL(url => url.searchParams.get('opcion') === lastOption);
+    assert.equal(await page.locator(`#${lastOption} details`).getAttribute('open'), '');
     assert.deepEqual(errors,[],`${engine}: browser errors`);
     assert.deepEqual(adRequests,[],`${engine}: advertising must remain paused until CMP verification`);
     console.log(`✓ ${engine}: mobile/desktop, editorial pages, no overflow, archive, filters, quick view, employment description and recommendations`);
