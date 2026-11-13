@@ -7,7 +7,7 @@ import TrainingVacancies from '../TrainingVacancies.astro';
 import { modeLabels, trainingPlace } from '../../lib/training';
 import { trainingPath } from '../../lib/training-program.mjs';
 import { trainingTopics } from '../../lib/training-topics.mjs';
-import { trainingGuidePath, verifiedDate } from '../../lib/education';
+import { openCatalog } from '../../lib/catalog';
 import type { CatalogEntry, Training, TrainingProgram } from '../../lib/catalog-data';
 import type { TrainingOpportunity } from '../../lib/training-opportunities';
 import '../../styles/training-detail.css';
@@ -43,13 +43,11 @@ const perspectives = groups.map(group => ({ ...group, notes: program?.notes?.fil
 const programTopics = program?.topics ?? [];
 const illustration = online ? 'virtual' : programTopics.some(topic => trainingTopics[topic].mining) ? 'mining'
   : programTopics.some(topic => ['electronics', 'instrumentation', 'homeElectrical'].includes(topic)) ? 'electronics' : 'workshop';
-const sources = [...new Map([
-  ...(!program || program.reviewed ? center.additionalSources ?? [] : []),
-  { label: program ? 'Fuente institucional o directorio del centro' : 'Fuente del centro', url: center.officialUrl },
-  ...(program ? [program.source] : []),
-  ...(program?.action ? [program.action] : []),
-].map(source => [source.url, source])).values()];
-const checkedAt = program?.source.verifiedAt ?? center.lastVerifiedAt;
+const guideSlugs = ['trabajar-en-mina-sin-experiencia', 'cv-minero-sin-experiencia'];
+const guideCatalog = await openCatalog('guides');
+const suggestedGuides = guideSlugs
+  .map(slug => guideCatalog.entries.find(entry => entry.slug === slug))
+  .filter(guide => guide !== undefined);
 ---
 <article class="training-detail" data-training-detail={program ? 'program' : 'center'}>
   <nav class="training-breadcrumb" aria-label="Ruta de navegación">
@@ -112,10 +110,12 @@ const checkedAt = program?.source.verifiedAt ?? center.lastVerifiedAt;
 
   {opportunities && <TrainingVacancies jobs={opportunities.job} internships={opportunities.internship} />}
 
-  <footer class="training-section training-sources" aria-labelledby="training-sources-title">
-    <h2 id="training-sources-title">Fuentes consultadas</h2>
-    <p>Fuente principal consultada el <time datetime={checkedAt}>{verifiedDate(checkedAt)}</time>.</p>
-    <ul>{sources.map(source => <li><a class="training-text-link" href={source.url}>{source.label} <span aria-hidden="true">↗</span></a></li>)}</ul>
-    <a class="training-text-link" href={`${trainingGuidePath}/#comparar`}>Qué comparar antes de inscribirte <span aria-hidden="true">→</span></a>
-  </footer>
+  {suggestedGuides.length > 0 && <section class="training-section training-guides" aria-labelledby="training-guides-title">
+    <h2 id="training-guides-title">Guías para conseguir trabajo</h2>
+    <ul role="list">
+      {suggestedGuides.map(({ slug, metadata }) => <li>
+        <a class="training-text-link" href={`/guias/${slug}/`}>{metadata.title}</a>
+      </li>)}
+    </ul>
+  </section>}
 </article>

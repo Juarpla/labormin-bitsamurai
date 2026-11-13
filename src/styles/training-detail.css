@@ -71,7 +71,7 @@
 .training-curriculum-graphic { float: right; width: min(36%, 18rem); margin: 0 0 .65rem 1.35rem; shape-outside: inset(0 round 16px); }
 .training-curriculum ul { list-style: disc; padding-left: 1.25rem; max-width: 76ch; }
 .training-curriculum li { padding-left: .2rem; margin-bottom: .48rem; }
-.training-curriculum li::marker, .training-sources li::marker { color: var(--detail-accent); }
+.training-curriculum li::marker { color: var(--detail-accent); }
 
 .training-location, .training-admission { padding: clamp(1rem, 3vw, 1.7rem); border: 1px solid var(--detail-line); border-radius: 16px; }
 .training-location { display: flow-root; background: var(--color-graphite-900); }
@@ -122,9 +122,8 @@
 .training-center-programs a:hover { background: var(--color-graphite-900); }
 .training-center-programs a > span + span { color: var(--detail-accent); }
 .training-center-programs small { display: block; margin-top: .2rem; font-weight: 400; color: var(--detail-copy); }
-.training-sources { border-top: 1px solid var(--detail-line); padding-top: 1.2rem; font-size: .9rem; }
-.training-sources ul { display: grid; gap: .4rem; list-style: disc; padding-left: 1.25rem; margin-block: .7rem 1.2rem; }
-.training-sources time { font-variant-numeric: tabular-nums; }
+.training-guides { border-top: 1px solid var(--detail-line); padding-top: 1.2rem; }
+.training-guides a { display: inline-block; min-height: 2.75rem; padding-block: .6rem; }
 
 @media (max-width: 860px) {
   .training-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
