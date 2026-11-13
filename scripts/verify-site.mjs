@@ -4,25 +4,23 @@ import { chromium, webkit } from 'playwright';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import { isExpired, jobPosting } from '../src/lib/job-policy.mjs';
-import { isPublicClosure } from '../src/lib/job-archive.mjs';
 const base = process.env.VERIFY_BASE || 'http://localhost:4321';
 const feed = JSON.parse(fs.readFileSync('src/data/jobs.json','utf8')).jobs;
 const excluded = JSON.parse(fs.readFileSync('src/data/overrides.json','utf8')).exclude ?? {};
 const jobs = feed.filter(job => !excluded[job.id] && !isExpired(job));
 const activeSlugs = new Set(jobs.map(job => job.slug));
 const archive = JSON.parse(fs.readFileSync('src/data/jobs-archive.json','utf8'))
-  .filter(entry => !activeSlugs.has(entry.slug) && !excluded[entry.snapshot?.id]);
-const richClosure = archive.find(isPublicClosure)
-  ?? feed.find(job => !excluded[job.id] && isExpired(job));
+  .filter(entry => !activeSlugs.has(entry.slug));
+const unavailable = archive.find(entry => entry.reason === 'stale');
 const practice = jobs.find(job => job.slug.startsWith('ausenco-environmental-mine-closure-engineer-junior') && job.internship)
   ?? jobs.find(job => job.internship && job.description);
 const pages = [
   ['education','/guias/formacion-minera-gratuita-economica-peru'],
   ['verification','/guias/verificar-oferta-remota-visa-salario'],
   ['editorial','/guias/cv-minero-sin-experiencia/'],['archive-index','/archivo/'],
-  ...(richClosure ? [['closed',`/jobs/${richClosure.slug}`]] : []),
+  ['unavailable',`/jobs/${unavailable?.slug ?? 'catalog-test-not-found'}/`,404],
   ['training','/formacion'],['events','/eventos'],['practices','/practicas'],['about','/about'],['privacy','/privacy'],['guides','/guias'],['jobs','/jobs'],
-  ['job',`/jobs/${jobs[0].slug}`],['archive',`/jobs/${archive.find(entry => !isPublicClosure(entry)).slug}`],
+  ['job',`/jobs/${jobs[0].slug}`],
   ...(practice ? [['practice',`/jobs/${practice.slug}`]] : []),
   ['full-job',`/jobs/${jobs.find(job => jobPosting(job)).slug}`],
 ];
@@ -36,10 +34,10 @@ for (const [engine,type] of Object.entries({chromium,webkit})) {
     const errors=[]; page.on('pageerror',err => errors.push(err.message));
     for (const width of [375,1280]) {
       await page.setViewportSize({width,height:900});
-      for (const [name,path] of pages) {
+      for (const [name,path,expected = 200] of pages) {
         const response = await page.goto(base+path,{waitUntil:'networkidle'});
         const status = response?.status() ?? (await page.request.get(base + path)).status();
-        assert.ok(status === 200 || status === 304, `${engine} ${path}: HTTP ${status}`);
+        assert.ok(status === expected || (expected === 200 && status === 304), `${engine} ${path}: HTTP ${status}`);
         assert.equal(await page.locator('main h1').count(),1,path);
         const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
         assert.equal(overflow,false,`${engine} ${width} overflow ${path}`);
@@ -54,15 +52,14 @@ for (const [engine,type] of Object.entries({chromium,webkit})) {
           assert.equal(await page.locator('.editorial-trace').evaluate(node => getComputedStyle(node).animationName), 'none');
           await page.emulateMedia({ reducedMotion: 'no-preference' });
         }
-        if (name === 'closed') {
-          assert.equal(await page.locator('[data-archived-job]').count(), 1);
+        if (name === 'unavailable' || name === 'archive-index') {
+          assert.equal(await page.locator('[data-job-unavailable]').count(), 1);
           assert.equal(await page.getByRole('link', { name: 'Postular', exact: true }).count(), 0);
-          assert.equal(await page.getByRole('heading', { name: 'Ofertas vigentes similares' }).count(), 1);
-          assert.equal(await page.locator('script[type="application/ld+json"]').count(), 0);
-        }
-        if (name === 'archive') {
+          assert.equal(await page.getByRole('link', { name: 'Ver empleos vigentes' }).getAttribute('href'), '/jobs/');
+          assert.equal(await page.getByRole('link', { name: 'Ver prácticas vigentes' }).getAttribute('href'), '/practicas/');
           assert.equal(await page.locator('meta[name=robots]').getAttribute('content'),'noindex, follow');
           assert.equal(await page.locator('script[type="application/ld+json"]').count(),0);
+          assert.equal(await page.locator('script[src*="adsbygoogle"], [data-ad-slot]').count(), 0);
         }
         if (name === 'job' || name === 'full-job') {
           assert.equal(await page.locator('[data-application-guide]').count(),1);
@@ -120,7 +117,7 @@ for (const [engine,type] of Object.entries({chromium,webkit})) {
   } finally {await browser.close();}
 }
 // Public internal links from the built static pages must resolve locally.
-const paths = new Set(['/','/faq','/practicas','/eventos','/bolsa','/terms','/contact',...pages.map(([,p])=>p)]);
+const paths = new Set(['/','/faq','/practicas','/eventos','/bolsa','/terms','/contact',...pages.filter(([, ,status])=>!status).map(([,p])=>p)]);
 const broken=[];
 for(const path of paths) {
   const response=await fetch(base+path);

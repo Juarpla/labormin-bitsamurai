@@ -169,13 +169,14 @@ test('expiry respects the Lima day, the earlier employer deadline and the exact 
   assert.equal(isExpired(job, at), true);
   assert.equal(jobExpiration({ ...job, validThrough: '2026-10-22' }).date, '2026-10-23T05:00:00.000Z');
   assert.equal(jobExpiration({ ...job, validThrough: '2026-10-22T18:24:00-05:00' }).date, '2026-10-22T23:24:00.000Z');
+  assert.equal(jobExpiration({ ...job, firstReferenceAt: '2026-10-13', publishedAt: '2026-10-18' }).date, at.toISOString());
   const full = { ...job, title: 'Operador', company: 'Empresa', publishedAt: '2026-10-13', descriptionStatus: 'full', description: 'Texto fuente.', country: 'PE' };
   assert.equal(jobPosting(full, new Date(at.getTime() - 1)).validThrough, at.toISOString());
   assert.equal(jobPosting(full, at), null);
 });
 
 test('an observed listing keeps its clock until verified republication', async () => {
-  const { withStableDates, updateArchive, isPublicClosure } = await import('../../src/lib/job-archive.mjs');
+  const { withStableDates, updateArchive, compactArchiveEntry } = await import('../../src/lib/job-archive.mjs');
   const old = { id: 'a', slug: 'a', country: 'PE', remote: false, postedAt: '2026-10-01', description: 'Descripción de fuente. '.repeat(8) };
   const now = new Date('2026-11-12T05:00:00Z');
   const observed = withStableDates({ ...old, postedAt: '2026-11-12' }, old);
@@ -184,11 +185,26 @@ test('an observed listing keeps its clock until verified republication', async (
   assert.equal(unavailable[0].reason, 'unavailable');
   const archive = updateArchive([], [], unavailable, new Map(), {}, now);
   assert.equal(archive[0].reason, 'stale');
-  assert.equal(archive[0].snapshot.description, old.description);
-  assert.equal(isPublicClosure(archive[0]), true);
+  assert.deepEqual(archive[0], { slug: 'a', id: 'a', firstReferenceAt: old.postedAt, reason: 'stale' });
+  const legacy = { slug: old.slug, reason: 'stale', referenceDate: old.postedAt, snapshot: old, title: 'Puesto', company: 'Empresa', url: 'https://example.com' };
+  assert.deepEqual(compactArchiveEntry(legacy), archive[0]);
+  assert.deepEqual(compactArchiveEntry(archive[0]), archive[0]);
   assert.equal(withStableDates({ ...old, postedAt: '2026-11-12' }, archive[0]).firstReferenceAt, old.postedAt);
   const republished = withStableDates({ ...old, postedAt: '2026-11-12', publishedAt: '2026-11-12' }, archive[0]);
   assert.equal(republished.firstReferenceAt, '2026-11-12');
   assert.deepEqual(updateArchive([], [republished], archive, new Map(), {}, now), []);
   assert.deepEqual(updateArchive([], [], archive, new Map(), { a: true }, now), []);
+});
+
+test('an existing source ID cannot extend an announced deadline without a new publication', async () => {
+  const { withStableDates, compactArchiveEntry } = await import('../../src/lib/job-archive.mjs');
+  const { isExpired } = await import('../../src/lib/job-policy.mjs');
+  const old = compactArchiveEntry({
+    id: 'a', slug: 'a', firstReferenceAt: '2026-10-25', publishedAt: '2026-10-25', validThrough: '2026-11-03', reason: 'expired',
+  });
+  const now = new Date('2026-11-13T05:00:00Z');
+  const unchanged = withStableDates({ id: 'a', postedAt: '2026-11-12', publishedAt: null, validThrough: '2026-11-24' }, old);
+  assert.equal(isExpired(unchanged, now), true);
+  const republished = withStableDates({ id: 'a', postedAt: '2026-11-12', publishedAt: '2026-11-12' }, old);
+  assert.equal(isExpired(republished, now), false);
 });

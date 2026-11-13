@@ -147,7 +147,11 @@ export function jobDate(value, endOfDay = false) {
 
 export function jobExpiration(job) {
   const published = jobDate(job.publishedAt);
-  const reference = Number.isFinite(published) ? published : jobDate(job.firstReferenceAt || job.postedAt);
+  const firstSeen = jobDate(job.firstReferenceAt);
+  const reference = Math.min(
+    Number.isFinite(published) ? published : Infinity,
+    Number.isFinite(firstSeen) ? firstSeen : (Number.isFinite(published) ? published : jobDate(job.postedAt)),
+  );
   const cutoff = Number.isFinite(reference) ? reference + 30 * DAY_MS : Infinity;
   const deadline = jobDate(job.validThrough, true);
   const fromEmployer = Number.isFinite(deadline) && deadline < cutoff;

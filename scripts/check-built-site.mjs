@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import { decodeHTML, decodeHTMLAttribute } from 'entities';
+import { isExpired } from '../src/lib/job-policy.mjs';
 
 const root = path.resolve('dist/client');
 const htmlFor = file => fs.readFileSync(path.join(root, file), 'utf8');
@@ -42,8 +43,10 @@ const sitemapIndex = fs.readFileSync(path.join(root, 'sitemap-index.xml'), 'utf8
 const locations = xml => [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => new URL(decodeHTML(match[1])));
 const sitemapFiles = locations(sitemapIndex);
 assert.ok(sitemapFiles.length, 'Empty sitemap index');
+assert.ok(sitemapFiles.some(url => url.href === `${site}/sitemap-catalog.xml`), 'Missing dynamic catalog sitemap in index');
 const sitemapRoutes = new Set(sitemapFiles.flatMap(url => {
   assert.equal(url.origin, site, 'Sitemap must use the production domain');
+  if (url.pathname === '/sitemap-catalog.xml') return [];
   return locations(fs.readFileSync(path.join(root, url.pathname), 'utf8')).map(location => {
     assert.equal(location.origin, site, 'Sitemap entry must use the production domain');
     return pageFile(location.pathname);
@@ -51,17 +54,15 @@ const sitemapRoutes = new Set(sitemapFiles.flatMap(url => {
 }));
 
 // Dynamic routes are verified over HTTP by check-runtime-catalog.mjs. Still
-// validate static links against known route IDs, including archived slugs.
-const listRoutes = new Set(['/formacion', '/jobs', '/practicas', '/eventos', '/guias']);
+// validate static links against known active route IDs.
+const listRoutes = new Set(['', '/formacion', '/jobs', '/practicas', '/eventos', '/guias']);
 const guideSlugs = new Set([
   'formacion-minera-gratuita-economica-peru', 'verificar-oferta-remota-visa-salario',
   ...fs.readdirSync('src/content/guides').filter(file => file.endsWith('.md')).map(file => file.slice(0, -3)),
 ]);
 const excluded = JSON.parse(fs.readFileSync('src/data/overrides.json')).exclude ?? {};
-const jobSlugs = new Set([
-  ...JSON.parse(fs.readFileSync('src/data/jobs.json')).jobs.filter(job => !excluded[job.id]),
-  ...JSON.parse(fs.readFileSync('src/data/jobs-archive.json')).filter(entry => !excluded[entry.snapshot?.id]),
-].map(item => item.slug));
+const jobSlugs = new Set(JSON.parse(fs.readFileSync('src/data/jobs.json')).jobs
+  .filter(job => !excluded[job.id] && !isExpired(job)).map(job => job.slug));
 function knownDynamic(pathname) {
   const route = pathname.replace(/\/$/, '');
   const [ , section, slug, ...rest] = route.split('/');
@@ -108,14 +109,14 @@ if (problems.length) {
   console.error(problems.slice(0, 20).join('\n'));
   assert.fail(`El sitio compilado contiene ${problems.length} problemas de navegación o SEO`);
 }
-const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
-const footer = home.match(/<footer\b[\s\S]*?<\/footer>/i)?.[0] ?? '';
+const about = fs.readFileSync(path.join(root, 'about/index.html'), 'utf8');
+const footer = about.match(/<footer\b[\s\S]*?<\/footer>/i)?.[0] ?? '';
 for (const route of ['/about', '/contact', '/privacy', '/terms']) {
   assert.ok(sitemapRoutes.has(pageFile(route)), `Missing legal or trust page: ${route}`);
   assert.match(footer, new RegExp(`href="${route}/?"`), `Missing footer link: ${route}`);
 }
-assert.ok(sitemapRoutes.has(pageFile('/archivo/')));
-assert.match(footer, /href="\/archivo\/"/);
+assert.equal(sitemapRoutes.has(pageFile('/archivo/')), false);
+assert.doesNotMatch(footer, /href="\/archivo\//);
 for (const route of ['/404.html', '/comprobar-consentimiento']) {
   const file = pageFile(route);
   assert.equal(sitemapRoutes.has(file), false, route);
@@ -123,9 +124,9 @@ for (const route of ['/404.html', '/comprobar-consentimiento']) {
 }
 console.log({internalLinksChecked:checked,fragmentsChecked,missing:0,indexablePages:sitemapRoutes.size,knownJobDetails:jobSlugs.size,knownGuideDetails:guideSlugs.size});
 
-const loaderTags = [...home.matchAll(/src="[^"]*adsbygoogle\.js[^\"]*"/g)];
+const loaderTags = [...about.matchAll(/src="[^"]*adsbygoogle\.js[^\"]*"/g)];
 assert.ok(loaderTags.length <= 1, 'Duplicate AdSense script');
-const publisher = pages.get('index.html').metadata.get('google-adsense-account');
+const publisher = pages.get('about/index.html').metadata.get('google-adsense-account');
 assert.match(publisher ?? '', /^ca-pub-\d{16}$/, 'Missing or invalid AdSense verification meta');
 const adsTxt = fs.readFileSync(path.join(root, 'ads.txt'), 'utf8');
 const sellers = adsTxt.split(/\r?\n/).map(line => line.split('#')[0].split(',').map(field => field.trim()).join(','));
@@ -140,7 +141,7 @@ const blockedGroups = robots.split(/\r?\n\s*\r?\n/).filter(group =>
 assert.equal(blockedGroups.length, 0, 'robots.txt blocks a Google crawler sitewide');
 const notFound = fs.readFileSync(path.join(root, '404.html'), 'utf8');
 assert.doesNotMatch(notFound, /adsbygoogle\.js|data-ad-slot=/, '404 must not serve ads');
-assert.equal([...home.matchAll(/data-ad-slot="(?![0-9]+")/g)].length,0,'Non-numeric ad unit');
+assert.equal([...about.matchAll(/data-ad-slot="(?![0-9]+")/g)].length,0,'Non-numeric ad unit');
 console.log({adsenseLoaders:loaderTags.length,invalidAdUnits:0});
 
 // When serving is paused, no other page may enqueue a manual request either.

@@ -2,7 +2,8 @@
 import CatalogPagination from '../CatalogPagination.astro';
 import { paginate, resultRange, searchText } from '../../lib/pagination';
 import { openCatalog } from '../../lib/catalog';
-import { catalogNow } from '../../lib/catalog-data';
+import { catalogNow, isActiveJobRow } from '../../lib/catalog-data';
+import { isExpired } from '../../lib/job-policy.mjs';
 import AdSlot from '../AdSlot.astro';
 import JobCard from '../JobCard.astro';
 import JobFilters from '../JobFilters.astro';
@@ -18,9 +19,10 @@ const t = useTranslations(locale);
 
 const params = Astro.url.searchParams;
 const q = searchText((params.get('q') ?? '').slice(0, 120));
-const catalog = await openCatalog('jobs', 'internship');
-const now = catalogNow().toISOString();
-const available = catalog.entries.filter(({ metadata }) => metadata.type === 'internship' && (!metadata.closesAt || metadata.closesAt > now));
+const now = catalogNow();
+const at = now.toISOString();
+const catalog = await openCatalog('jobs', 'internship', at);
+const available = catalog.entries.filter(({ metadata }) => isActiveJobRow(metadata, at));
 const filtered = available.filter(({ metadata: job }) => {
   const country = params.get('country');
   const category = params.get('category');
@@ -33,7 +35,7 @@ const filtered = available.filter(({ metadata: job }) => {
     (!q || job.search.includes(q));
 });
 const page = paginate(filtered, Astro.url);
-const jobs = (await catalog.read(page.items.map(item => item.slug))).flatMap(row => row.job ? [row.job] : []);
+const jobs = (await catalog.read(page.items.map(item => item.slug))).flatMap(row => row.job && !isExpired(row.job, now) ? [row.job] : []);
 const payload = JSON.stringify({ index: jobIndex(locale, jobs) });
 
 ---

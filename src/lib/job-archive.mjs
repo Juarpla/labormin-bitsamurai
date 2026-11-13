@@ -1,59 +1,61 @@
-import { inNiche, isExpired, jobDate, jobExpiration, sourceText } from './job-policy.mjs';
+import { inNiche, isExpired, jobDate, jobExpiration } from './job-policy.mjs';
 
-export function isPublicClosure(entry) {
-  return (entry.reason === 'stale' || entry.reason === 'expired') &&
-    Boolean(entry.snapshot && sourceText(entry.snapshot.description).length >= 80 && inNiche(entry.snapshot));
+export function needsArchiveEntry(reason) {
+  return reason === 'stale' || reason === 'expired' || reason === 'unavailable';
 }
 
-export function archiveEntry(job, reason, now) {
+// This history belongs to ingestion. It must not contain a public copy of a vacancy.
+export function compactArchiveEntry(entry) {
+  const job = entry.snapshot ?? entry;
+  const validThrough = job.validThrough || (entry.reason === 'expired' ? entry.closedAt : null);
   return {
-    slug: job.slug,
-    title: job.title,
-    company: job.company,
-    url: job.url,
-    referenceDate: job.postedAt,
-    removedAt: now.toISOString().slice(0, 10),
-    reason,
-    ...(['stale', 'expired', 'unavailable'].includes(reason) && {
-      snapshot: job,
-      ...(reason !== 'unavailable' && { closedAt: jobExpiration(job)?.date }),
-    }),
+    slug: entry.slug,
+    ...(job.id && { id: job.id }),
+    firstReferenceAt: job.firstReferenceAt || job.postedAt || entry.referenceDate,
+    ...(job.publishedAt && { publishedAt: job.publishedAt }),
+    ...(validThrough && { validThrough }),
+    reason: entry.reason,
   };
+}
+
+export function archiveEntry(job, reason) {
+  return compactArchiveEntry({ ...job, reason });
 }
 
 /** Keep a source listing's first reference stable across observations and disappearances. */
 export function withStableDates(job, previous) {
   const old = previous?.snapshot ?? previous;
-  const closingTime = old && (jobExpiration(old)?.time ?? jobExpiration({ postedAt: old.referenceDate })?.time);
+  const firstReferenceAt = old?.firstReferenceAt || old?.postedAt || previous?.referenceDate || job.firstReferenceAt || job.postedAt;
+  const closingTime = old && jobExpiration({ ...old, firstReferenceAt })?.time;
   const confirmed = jobDate(job.publishedAt);
-  if (old && Number.isFinite(confirmed) && confirmed >= closingTime) {
+  if (old && Number.isFinite(confirmed) && confirmed >= closingTime && confirmed !== jobDate(old.publishedAt)) {
     return { ...job, firstReferenceAt: job.publishedAt };
   }
   return {
     ...job,
-    firstReferenceAt: old?.firstReferenceAt || old?.postedAt || old?.referenceDate || job.postedAt,
+    firstReferenceAt,
     publishedAt: old?.publishedAt || job.publishedAt,
-    validThrough: job.validThrough || old?.validThrough || null,
+    validThrough: (previous?.reason === 'expired' && old?.validThrough) || job.validThrough || old?.validThrough || null,
   };
 }
 
 export function updateArchive(previous, active, archive, observed, excluded, now) {
-  const bySlug = new Map(archive.map(entry => [entry.slug, entry]));
+  const bySlug = new Map(archive.filter(entry => needsArchiveEntry(entry.reason)).map(compactArchiveEntry).map(entry => [entry.slug, entry]));
   const stillActive = new Set(active.map(job => job.slug));
+  const activeIds = new Set(active.map(job => job.id));
   for (const job of previous) {
-    if (excluded[job.id] || stillActive.has(job.slug)) continue;
+    if (excluded[job.id] || stillActive.has(job.slug) || activeIds.has(job.id)) continue;
     const latest = observed.get(job.id) ?? job;
     const expired = isExpired(latest, now);
     const reason = !inNiche(latest) ? 'eligibility-unverified' : expired ? jobExpiration(latest).reason : 'unavailable';
-    const snapshot = { ...job, publishedAt: latest.publishedAt, validThrough: latest.validThrough, firstReferenceAt: latest.firstReferenceAt || job.firstReferenceAt };
-    bySlug.set(job.slug, archiveEntry(snapshot, reason, now));
+    if (needsArchiveEntry(reason)) bySlug.set(job.slug, archiveEntry({ ...latest, slug: job.slug }, reason));
+    else bySlug.delete(job.slug);
   }
   for (const [slug, entry] of bySlug) {
-    if (stillActive.has(slug) || (entry.snapshot && excluded[entry.snapshot.id])) {
+    if (stillActive.has(slug) || activeIds.has(entry.id) || excluded[entry.id]) {
       bySlug.delete(slug);
-    } else if (entry.reason === 'unavailable' && entry.snapshot && isExpired(entry.snapshot, now)) {
-      const { reason, date } = jobExpiration(entry.snapshot);
-      bySlug.set(slug, { ...entry, reason, closedAt: date });
+    } else if (entry.reason === 'unavailable' && isExpired(entry, now)) {
+      bySlug.set(slug, { ...entry, reason: jobExpiration(entry).reason });
     }
   }
   return [...bySlug.values()];

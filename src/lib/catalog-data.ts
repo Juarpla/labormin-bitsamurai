@@ -1,6 +1,5 @@
-import { archivedJobs, allJobs, catalogTime, clearViewFor, tierOf, titleFor, type ArchivedJob } from './jobs';
+import { allJobs, catalogTime, clearViewFor, tierOf, titleFor } from './jobs';
 import { jobExpiration } from './job-policy.mjs';
-import { archiveEntry, isPublicClosure } from './job-archive.mjs';
 import { education } from './education';
 import { events } from './events';
 import { editorialGuides, visualGuides, type GuideMetadata } from './editorial-guides';
@@ -8,16 +7,15 @@ import { searchText } from './pagination';
 import type { Event, Job } from '../schemas';
 
 export type CatalogKind = keyof CatalogTypes;
-export type JobRecord = { job: Job | null; archive: ArchivedJob | null; clearView?: ReturnType<typeof clearViewFor> };
+export type JobRecord = { job: Job | null; clearView?: ReturnType<typeof clearViewFor> };
 export type JobMeta = {
+  // Older D1 imports may still contain archived rows during a deployment.
   type: 'job' | 'internship' | 'archived';
-  indexable: boolean;
-  indexableAfterClosing: boolean;
   closesAt: string | null;
-  closesFor: 'expired' | 'stale' | null;
   country: string;
   category: string;
   remote: boolean;
+  remoteFromPeru?: boolean;
   tier: number;
   search: string;
   excerptKey: string;
@@ -36,24 +34,27 @@ type CatalogTypes = {
 export type CatalogEntry<K extends CatalogKind> = { slug: string; metadata: CatalogTypes[K][0] };
 export type CatalogRow<K extends CatalogKind> = CatalogEntry<K> & { payload: CatalogTypes[K][1] };
 
-function jobRow(job: Job | null, archive: ArchivedJob | null): CatalogRow<'jobs'> {
-  const expiration = job && !archive ? jobExpiration(job) : null;
+export function isActiveJobRow(metadata: JobMeta, now: string) {
+  return (metadata.type === 'job' || metadata.type === 'internship') &&
+    (!metadata.closesAt || metadata.closesAt > now);
+}
+
+function jobRow(job: Job): CatalogRow<'jobs'> {
+  const expiration = jobExpiration(job);
   return {
-    slug: (job?.slug ?? archive?.slug)!,
+    slug: job.slug,
     metadata: {
-      type: archive ? 'archived' : job?.internship && job.country === 'PE' ? 'internship' : 'job',
-      indexable: archive ? isPublicClosure(archive) : true,
-      indexableAfterClosing: !!(job && expiration && isPublicClosure(archiveEntry(job, expiration.reason, catalogTime))),
+      type: job.internship && job.country === 'PE' ? 'internship' : 'job',
       closesAt: expiration?.date ?? null,
-      closesFor: expiration?.reason ?? null,
-      country: job?.country ?? '',
-      category: job?.category ?? '',
-      remote: job?.remote ?? false,
-      tier: job ? tierOf(job) : 0,
-      search: job ? searchText(`${titleFor(job, 'es')} ${job.title} ${job.company} ${job.city ?? ''} ${job.locationRaw ?? ''}`) : '',
-      excerptKey: !archive && job ? job.excerpt.trim().replace(/\s+/g, ' ').toLowerCase() : '',
+      country: job.country,
+      category: job.category,
+      remote: job.remote,
+      remoteFromPeru: job.remoteEligibility.status === 'peru-supported',
+      tier: tierOf(job),
+      search: searchText(`${titleFor(job, 'es')} ${job.title} ${job.company} ${job.city ?? ''} ${job.locationRaw ?? ''}`),
+      excerptKey: job.excerpt.trim().replace(/\s+/g, ' ').toLowerCase(),
     },
-    payload: { job, archive, ...(!archive && job ? { clearView: clearViewFor(job) } : {}) },
+    payload: { job, clearView: clearViewFor(job) },
   };
 }
 
@@ -69,12 +70,8 @@ function guideSummary(guide: GuideSummary): GuideSummary {
 
 export const guideDate = '2026-11-12';
 
-let jobsSnapshot: CatalogRow<'jobs'>[] | undefined;
 const snapshot = {
-  jobs: () => jobsSnapshot ??= [
-    ...allJobs.map(job => jobRow(job, null)),
-    ...archivedJobs.map(archive => jobRow(archive.snapshot ?? null, archive)),
-  ],
+  jobs: () => allJobs.map(jobRow),
   training: () => [...education].sort(compareTraining).map(option => ({
     slug: option.id,
     metadata: {

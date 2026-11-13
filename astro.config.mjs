@@ -20,10 +20,13 @@ export default defineConfig({
       name: 'labormin-catalog-export',
       hooks: { 'astro:config:setup': ({ injectRoute }) => injectRoute({ pattern: '/_catalog-export.json', entrypoint: './scripts/catalog/export.ts' }) },
     }] : []),
-    sitemap({ filter: (page) => {
-      const pathname = new URL(page).pathname.replace(/\/$/, '');
-      return !pathname.startsWith('/ops/') && !['/404', '/comprobar-consentimiento', '/_catalog-export.json'].includes(pathname);
-    } }),
+    sitemap({
+      customSitemaps: ['https://labormin.com/sitemap-catalog.xml'],
+      filter: (page) => {
+        const pathname = new URL(page).pathname.replace(/\/$/, '');
+        return !pathname.startsWith('/ops/') && !['/404', '/archivo', '/comprobar-consentimiento', '/_catalog-export.json'].includes(pathname);
+      },
+    }),
   ],
   i18n: {
     defaultLocale: 'es',

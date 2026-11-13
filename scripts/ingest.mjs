@@ -15,7 +15,7 @@
  */
 import { decodeHTML } from 'entities';
 import { inNiche, parseSalary, visaHeuristic, certifyJob, POLICY_VERSION, isExpired, truncateSourceText } from '../src/lib/job-policy.mjs';
-import { updateArchive, withStableDates } from '../src/lib/job-archive.mjs';
+import { compactArchiveEntry, needsArchiveEntry, updateArchive, withStableDates } from '../src/lib/job-archive.mjs';
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -2576,8 +2576,9 @@ async function main() {
   const now = new Date();
   const archive = JSON.parse(await readFile(ARCHIVE, 'utf8'));
   const { exclude = {} } = await readJsonSafe(OVERRIDES_FILE, {});
-  const archivedById = new Map(archive.filter(entry => entry.snapshot).map(entry => [entry.snapshot.id, entry]));
-  const archivedBySlug = new Map(archive.map(entry => [entry.slug, entry]));
+  const compactArchive = archive.filter(entry => needsArchiveEntry(entry.reason)).map(compactArchiveEntry);
+  const archivedById = new Map(compactArchive.filter(entry => entry.id).map(entry => [entry.id, entry]));
+  const archivedBySlug = new Map(compactArchive.map(entry => [entry.slug, entry]));
   const located = (await applyLocationPolicy(all)).map(job => {
     const previous = prevById.get(job.id) ?? archivedById.get(job.id) ?? archivedBySlug.get(job.slug);
     return certifyJob({ ...withStableDates(job, previous), fetchedAt: job.fetchedAt || now.toISOString() });

@@ -6,7 +6,10 @@ import JobDrawer from '../JobDrawer.astro';
 import SectorPulse from '../SectorPulse.astro';
 import StocksPulse from '../StocksPulse.astro';
 import { useTranslations, localePath, type Locale } from '../../lib/i18n';
-import { jobs, internships, jobIndex, byCountry, remoteJobs, generatedAt } from '../../lib/jobs';
+import { jobIndex } from '../../lib/jobs';
+import { openCatalog } from '../../lib/catalog';
+import { catalogNow, isActiveJobRow } from '../../lib/catalog-data';
+import { isExpired } from '../../lib/job-policy.mjs';
 import { upcomingEvents } from '../../lib/events';
 import { education, trainingGuidePath } from '../../lib/education';
 
@@ -17,21 +20,34 @@ interface Props {
 const { locale = 'es' } = Astro.props;
 const t = useTranslations(locale);
 
-const index = jobIndex(locale);
-
 // Nicho fijo: Perú (sin detección por IP ni selectores).
-const peJobs = byCountry('PE');
+const now = catalogNow();
+const at = now.toISOString();
+const catalog = await openCatalog('jobs', undefined, at);
+const active = catalog.entries.filter(({ metadata }) => isActiveJobRow(metadata, at));
+const employments = active.filter(({ metadata }) => metadata.type === 'job');
+const inPeru = employments.filter(({ metadata }) => metadata.country === 'PE').slice(0, 9);
+const remoteCandidates = employments.filter(({ metadata }) => metadata.remote && metadata.remoteFromPeru !== false);
+const remoteEntries = remoteCandidates.some(({ metadata }) => metadata.remoteFromPeru === undefined)
+  ? remoteCandidates
+  : remoteCandidates.slice(0, 6);
+const featuredSlugs = new Set([...inPeru, ...remoteEntries].map(({ slug }) => slug));
+const featured = (await catalog.read([...featuredSlugs])).flatMap(({ job }) => job && !isExpired(job, now) ? [job] : []);
+const featuredBySlug = new Map(featured.map(job => [job.slug, job]));
+const peJobs = inPeru.flatMap(({ slug }) => featuredBySlug.get(slug) ?? []);
 const heroJobs = peJobs.slice(0, 3); // el arranque muestra lo más fresco
 const peChapterJobs = peJobs.slice(3, 9); // el capítulo continúa donde el hero termina
-const remotes = remoteJobs().slice(0, 6);
+const remotes = remoteEntries.flatMap(({ slug }) => featuredBySlug.get(slug) ?? [])
+  .filter(job => job.remoteEligibility.status === 'peru-supported').slice(0, 6);
+const index = jobIndex(locale, featured);
 const catalogTotals = [
-  { label: 'Empleos', count: jobs.length, path: '/jobs' },
-  { label: 'Prácticas', count: internships.length, path: '/practicas' },
+  { label: 'Empleos', count: employments.length, path: '/jobs' },
+  { label: 'Prácticas', count: active.length - employments.length, path: '/practicas' },
   { label: 'Opciones de formación', count: education.length, path: '/formacion' },
 ];
 const fmtCount = (n: number) => new Intl.NumberFormat('es-PE').format(n);
 const feedUpdatedAt = new Intl.DateTimeFormat('es-PE', { dateStyle: 'long' }).format(
-  new Date(generatedAt)
+  new Date(catalog.revision ?? at)
 );
 
 // Eventos mineros próximos (curados a mano)
@@ -113,7 +129,7 @@ const payload = JSON.stringify({
 </Chapter>
 )}
 
-<SectorPulse locale={locale} />
+<SectorPulse locale={locale} active={employments.length} />
 
 <StocksPulse locale={locale} />
 

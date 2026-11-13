@@ -7,7 +7,6 @@ import {
   yoyPct,
   topDepartments,
   postingsTrend,
-  activePostings,
   formatN,
   fmtMonth,
   fmtDay,
@@ -17,14 +16,14 @@ import type { IndicatorPoint } from '../schemas';
 
 interface Props {
   locale?: Locale;
+  active: number;
 }
-const { locale = 'es' } = Astro.props;
+const { locale = 'es', active } = Astro.props;
 const t = useTranslations(locale);
 
 const copper = seriesById('copper-price');
 const gold = seriesById('gold-price');
 const posts = postingsTrend();
-const active = activePostings();
 const depts = topDepartments(5);
 const employment = indicators.sector.employment;
 

@@ -5,11 +5,12 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { certifyJob, inNiche, sourceText, POLICY_VERSION, isExpired, jobExpiration } from '../src/lib/job-policy.mjs';
 
-import { archiveEntry } from '../src/lib/job-archive.mjs';
+import { archiveEntry, compactArchiveEntry, needsArchiveEntry } from '../src/lib/job-archive.mjs';
 
 export function repairFeed(feed, { now = new Date(), previousArchive = [], exclude = {} } = {}) {
   const report = { reviewedAt:now.toISOString(), originalGeneratedAt:feed.generatedAt, input:feed.jobs.length, corrected:0, visaFlagsRemoved:0, salariesChanged:0, remoteUnconfirmed:0, incompleteDescriptions:0, excluded:0, active:0, reasons:{}, records:[] };
-  const jobs = [], archive = new Map(previousArchive.filter(entry => !exclude[entry.snapshot?.id]).map(j => [j.slug,j])), seen = new Set();
+  const jobs = [], archive = new Map(previousArchive.filter(entry => needsArchiveEntry(entry.reason))
+    .map(compactArchiveEntry).filter(entry => !exclude[entry.id]).map(j => [j.slug,j])), seen = new Set();
   for (const old of feed.jobs) {
     const job = certifyJob(old, {legacy:old.policyVersion !== POLICY_VERSION});
     if (JSON.stringify(job) !== JSON.stringify(old)) report.corrected++;
@@ -27,7 +28,7 @@ export function repairFeed(feed, { now = new Date(), previousArchive = [], exclu
     if (reason) {
       report.excluded++; report.reasons[reason] = (report.reasons[reason] || 0)+1;
       report.records.push({id:job.id,reason,visaStatus:job.visa.status,remoteStatus:job.remoteEligibility.status});
-      archive.set(job.slug, archiveEntry(job, reason, now));
+      if (needsArchiveEntry(reason)) archive.set(job.slug, archiveEntry(job, reason));
     } else { seen.add(key); archive.delete(job.slug); jobs.push(job); }
   }
   report.active = jobs.length;

@@ -147,10 +147,12 @@ jobs:
           D1_STATUS: ${{ steps.d1.outputs.status }}
           D1_REVISION: ${{ steps.d1.outputs.revision }}
           D1_JOBS: ${{ steps.d1.outputs.jobs }}
+          D1_INTERNSHIPS: ${{ steps.d1.outputs.internships }}
+          D1_ARCHIVED_REMOVED: ${{ steps.d1.outputs.archived_removed }}
         run: |
           case "$D1_STEP_OUTCOME:$D1_STATUS" in
             success:completed)
-              result="Completada. D1 confirmó $D1_JOBS registros del feed $D1_REVISION."
+              result="Completada. D1 confirmó $D1_JOBS empleos y $D1_INTERNSHIPS prácticas del feed $D1_REVISION. Filas históricas eliminadas de D1: $D1_ARCHIVED_REMOVED."
               ;;
             success:missing_token)
               result='Omitida. Falta el secreto `CATALOG_D1_API_TOKEN`.'

@@ -12,11 +12,12 @@ aseguran la aprobación de Google.
 - [x] Privacidad describe la preparación previa de las fichas y las cookies
   publicitarias. El 404 queda fuera del sitemap y de la publicidad.
 
-## Guías y archivo de convocatorias
+## Guías y retirada de convocatorias
 
 - El índice editorial reúne 12 guías originales con fuentes. La compilación verifica el volumen de texto, los enlaces internos y su presencia en el sitemap.
-- El refresco conserva la ficha de una convocatoria cuando sale del catálogo. Las fichas con descripción y cierre por fecha aparecen en `/archivo/`, sin botones de postulación, anuncios ni marcado `JobPosting`.
-- El monitor de producción comprueba el índice editorial, las guías y el archivo. La publicidad sigue pausada durante el proceso de admisión.
+- Al vencer una oferta sale de la portada, los listados y el sitemap. Un enlace guardado abre el aviso de Labormin con HTTP 404 y accesos a convocatorias vigentes. El aviso se sirve sin anuncios ni marcado `JobPosting`.
+- El workflow 01 sincroniza con D1 únicamente empleos y prácticas vigentes. `jobs-archive.json` conserva el slug, el identificador de origen cuando se conoce, las fechas de referencia y cierre disponibles y el motivo de retirada. El archivo se usa durante la ingestión para que una oferta que reaparece conserve su fecha de referencia.
+- El monitor 05 verifica el sitemap dinámico, los enlaces vigentes y el aviso de retirada en producción. La publicidad sigue pausada durante el proceso de admisión.
 
 ## Catálogo revisado el 26 de octubre de 2026
 

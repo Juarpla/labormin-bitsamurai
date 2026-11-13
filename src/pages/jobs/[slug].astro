@@ -1,51 +1,54 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import JobDetailView from '../../components/pages/JobDetailView.astro';
-import NotFound from '../404.astro';
-import { locationLine, titleFor } from '../../lib/jobs';
+import JobUnavailableView from '../../components/pages/JobUnavailableView.astro';
+import { allJobs, locationLine, titleFor } from '../../lib/jobs';
 import { useTranslations } from '../../lib/i18n';
-import { archiveEntry, isPublicClosure } from '../../lib/job-archive.mjs';
 import { catalogRecord, openCatalog } from '../../lib/catalog';
-import { catalogNow } from '../../lib/catalog-data';
+import { catalogNow, isActiveJobRow } from '../../lib/catalog-data';
+import { isExpired } from '../../lib/job-policy.mjs';
+import type { Job } from '../../schemas';
 
 export const prerender = false;
 
 const slug = Astro.params.slug ?? '';
-const entry = await catalogRecord('jobs', slug);
-const record = entry?.payload;
-const job = record?.job;
-const candidateType = job?.internship && job.country === 'PE' ? 'internship' : 'job';
-const catalog = job ? await openCatalog('jobs', candidateType) : null;
 const now = catalogNow();
-const { closesAt, closesFor, excerptKey } = entry?.metadata ?? {};
-const archive = record?.archive ?? (job && closesAt && closesFor && closesAt <= now.toISOString()
-  ? archiveEntry(job, closesFor, now) : null);
-const title = job ? titleFor(job, 'es') : archive?.title;
-const description = archive
-  ? `${archive.title} en ${archive.company}. Consulta esta ficha histórica y encuentra convocatorias vigentes en Labormin.`
-  : job && excerptKey && catalog?.entries.filter(item => item.metadata.excerptKey === excerptKey).length === 1
+const at = now.toISOString();
+const entry = await catalogRecord('jobs', slug);
+const candidate = entry?.payload.job;
+const job = entry && candidate && isActiveJobRow(entry.metadata, at) && !isExpired(candidate, now) ? candidate : null;
+const path = `/jobs/${encodeURIComponent(slug)}`;
+let title = 'Convocatoria no disponible | Labormin';
+let description = 'Consulta las ofertas de empleo y prácticas vigentes en Labormin.';
+let alternatives: Job[] = [];
+let guidancePool: Job[] = [];
+
+if (job && entry) {
+  const candidateType = job.internship && job.country === 'PE' ? 'internship' : 'job';
+  const catalog = await openCatalog('jobs', undefined, at);
+  const active = catalog.entries.filter(item => isActiveJobRow(item.metadata, at));
+  const activeSlugs = new Set(active.map(item => item.slug));
+  guidancePool = allJobs.filter(item => activeSlugs.has(item.slug));
+  const sameType = active.filter(item => item.metadata.type === candidateType);
+  const { excerptKey } = entry.metadata;
+  const name = titleFor(job, 'es');
+  title = `${name} — ${job.company} | Labormin`;
+  description = excerptKey && sameType.filter(item => item.metadata.excerptKey === excerptKey).length === 1
     ? job.excerpt
-    : job ? `${title} en ${job.company} · ${locationLine(job, useTranslations('es'))}. Consulta los requisitos y cómo postular.` : '';
-const noindex = archive ? !isPublicClosure(archive) : false;
-const candidates = job && catalog ? catalog.entries.filter(item => item.slug !== slug &&
-  item.metadata.type === candidateType && (!item.metadata.closesAt || item.metadata.closesAt > now.toISOString()) &&
-  (candidateType === 'internship' || item.metadata.country === job.country || item.metadata.category === job.category))
-  .sort((a,b) => {
-    const relevance = ({metadata}: typeof a) => 2 * Number(job.category !== 'other' && metadata.category === job.category) + Number(metadata.country === job.country);
-    return archive || candidateType === 'internship' ? relevance(b) - relevance(a) : 0;
-  }).slice(0, 10) : [];
-const alternatives = (catalog ? await catalog.read(candidates.map(item => item.slug)) : []).flatMap(row => row.job ? [row.job] : []);
-if (!record) Astro.response.status = 404;
+    : `${name} en ${job.company} · ${locationLine(job, useTranslations('es'))}. Consulta los requisitos y cómo postular.`;
+  const candidates = sameType.filter(item => item.slug !== slug &&
+    (candidateType === 'internship' || item.metadata.country === job.country || item.metadata.category === job.category));
+  if (candidateType === 'internship') {
+    const relevance = ({ metadata }: typeof candidates[number]) => 2 * Number(job.category !== 'other' && metadata.category === job.category) + Number(metadata.country === job.country);
+    candidates.sort((a, b) => relevance(b) - relevance(a));
+  }
+  alternatives = (await catalog.read(candidates.slice(0, 10).map(item => item.slug)))
+    .flatMap(row => row.job && !isExpired(row.job, now) ? [row.job] : []);
+} else {
+  Astro.response.status = 404;
+}
+Astro.response.headers.set('Cache-Control', 'no-store');
 ---
-{!record ? <NotFound /> : (
-<Layout title={`${title} — ${job?.company ?? archive?.company} | Labormin`} description={description} path={`/jobs/${slug}`} noindex={noindex} ads={false}>
-  {job ? <JobDetailView job={job} archive={archive} relatedPool={alternatives} clearView={record.clearView} now={now} /> : archive && <article data-archived-job class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-    <p class="text-sm font-semibold text-brand-400">{archive.reason === 'stale' || archive.reason === 'expired' ? 'Convocatoria finalizada' : 'Oferta fuera del catálogo activo'}</p>
-    <h1 class="mt-4 font-display text-3xl font-semibold leading-tight text-graphite-100">{archive.title}</h1>
-    <p class="mt-4 text-lg text-graphite-200">{archive.company}</p>
-    <p class="mt-6 max-w-prose leading-relaxed text-graphite-200">Esta ficha conserva la información disponible de la convocatoria anterior. Consulta el catálogo para encontrar vacantes vigentes.</p>
-    <p class="mt-4 text-sm text-graphite-400">Fecha de referencia: {archive.referenceDate}. Retirada del catálogo: {archive.removedAt}.</p>
-    <a href="/jobs/" class="mt-8 inline-block rounded-full bg-brand-500 px-5 py-3 text-sm font-semibold text-graphite-950">Ver ofertas vigentes</a>
-  </article>}
+<Layout title={title} description={description} path={path} noindex={!job} ads={false}>
+  {job ? <JobDetailView job={job} relatedPool={alternatives} guidancePool={guidancePool} clearView={entry?.payload.clearView} now={now} /> : <JobUnavailableView />}
 </Layout>
-)}

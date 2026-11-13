@@ -48,11 +48,6 @@ export function postingsTrend(): IndicatorPoint[] {
     .map(([date, value]) => ({ date, value }));
 }
 
-/** Total de ofertas activas del feed (los tres tiers del nicho). */
-export function activePostings(): number {
-  return jobs.length;
-}
-
 const nf = new Intl.NumberFormat('es-PE');
 export function formatN(n: number): string {
   return nf.format(Math.round(n));

@@ -3,8 +3,11 @@ import Layout from '../layouts/Layout.astro';
 import HomeView from '../components/pages/HomeView.astro';
 import { useTranslations } from '../lib/i18n';
 
+export const prerender = false;
+
 const locale = 'es' as const;
 const t = useTranslations(locale);
+Astro.response.headers.set('Cache-Control', 'no-store');
 ---
 
 <Layout title={`Labormin — ${t('hero.kicker')}`} description={t('hero.subtitle')} locale={locale} path="/">
