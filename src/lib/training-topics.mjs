@@ -78,12 +78,12 @@ export function matchTrainingJob(topics, evidence) {
 }
 
 const credentialPrefix = /^(?:grado de instrucci[oó]n|formaci[oó]n acad[eé]mica)\s*:\s*/i;
-const credentialStart = /^(?:ingenier(?:[íi]a|[oa])\b|(?:t[eé]cnic[oa]|profesional|bachiller|egresad[oa](?:\([oa]\))?|estudiantes?)\s+(?:en|de|egresad[oa]|titulad[oa]|o bachiller)\b)/i;
+const credentialStart = /^(?:ingenier(?:ia|[oa])\b|(?:tecnic[oa]|profesional|bachiller|egresad[oa]|titulad[oa]|estudiantes?)\s+(?:en|de|egresad[oa]|titulad[oa]|mecanic[oa]|electromecanic[oa]|electricista|(?:o|y) (?:bachiller|titulad[oa]))\b)/;
 const credentialEnd = /[.\s]+(?=(?:experiencia|estudios adicionales|conocimientos|otros)\b)/i;
 
 export function trainingQualifications(description) {
   const requirements = localPresentation(description).filter(section => section.heading === 'requirements').flatMap(section => section.blocks);
   const credentials = requirements.map(block => block.replace(credentialPrefix, '').trim().split(credentialEnd, 1)[0].replace(/[. ]+$/, ''));
-  const credential = credentials.find(text => text.length <= 180 && credentialStart.test(text));
+  const credential = credentials.find(text => text.length <= 180 && credentialStart.test(normalized(text)));
   return { credential, requirements: requirements.join('\n') };
 }

@@ -27,4 +27,7 @@ test('training displays employer qualifications and ignores years of company exp
   assert.equal(credential, 'Ingeniero Mecánico o Mecatrónico (titulado)');
   assert.match(requirements, /Experiencia mínima de 5 años/);
   assert.doesNotMatch(requirements, /35 años/);
+  for (const title of ['Titulado o Bachiller en Ingeniería Mecánica', 'Técnico Mecánico, electromecánico en áreas afines']) {
+    assert.equal(trainingQualifications(`<h3>Requisitos</h3><p>${title}.</p>`).credential, title);
+  }
 });
