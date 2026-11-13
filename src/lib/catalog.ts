@@ -1,6 +1,8 @@
 import { env } from 'cloudflare:workers';
 import { generatedAt } from './jobs';
-import { snapshotRows, type CatalogEntry, type CatalogKind, type CatalogRow, type JobMeta } from './catalog-data';
+import feed from '../data/jobs.json';
+import { jobExpiration } from './job-policy.mjs';
+import { isActiveJobRow, snapshotRows, type CatalogEntry, type CatalogKind, type CatalogRow, type JobMeta } from './catalog-data';
 
 // This server-side module owns all access to the Worker binding.
 type Statement = {
@@ -11,6 +13,19 @@ type Statement = {
 type Database = { prepare(sql: string): Statement };
 type StoredRow = { slug: string; metadata: string; payload: string };
 const db = (env as { CATALOG_DB?: Database }).CATALOG_DB;
+// The original center rows already store these fields in their payloads. Read
+// only the fields the directory needs, including for rows imported before 0002.
+const centerMetadata = `json_patch(metadata, json_object(
+  'name', json_extract(payload, '$.name'), 'location', json_extract(payload, '$.location'),
+  'costLabel', json_extract(payload, '$.costLabel')
+)) AS metadata`;
+let snapshotExpirations: Map<string, string | undefined> | undefined;
+
+function currentJobMetadata(slug: string, metadata: JobMeta): JobMeta {
+  snapshotExpirations ??= new Map(feed.jobs.map(job => [job.slug, jobExpiration(job)?.date]));
+  const closesAt = snapshotExpirations.get(slug);
+  return closesAt && (!metadata.closesAt || closesAt < metadata.closesAt) ? { ...metadata, closesAt } : metadata;
+}
 
 async function databaseFor(kind: CatalogKind) {
   if (!db) return;
@@ -39,7 +54,17 @@ export async function catalogRecord<K extends CatalogKind>(kind: K, slug: string
   return (await snapshotRows(kind)).find(row => row.slug === slug);
 }
 
-export async function openCatalog<K extends CatalogKind>(kind: K, jobType?: JobMeta['type'], activeAt?: string) {
+export function openCatalog<K extends CatalogKind>(kind: K, jobType?: JobMeta['type'], activeAt?: string) {
+  return readCatalog(kind, { jobType, activeAt });
+}
+
+export function openTrainingPrograms(options: { center?: string; indexable?: boolean } = {}) {
+  return readCatalog('programs', options);
+}
+
+async function readCatalog<K extends CatalogKind>(kind: K, { jobType, activeAt, center, indexable }: {
+  jobType?: JobMeta['type']; activeAt?: string; center?: string; indexable?: boolean;
+}) {
   const source = await databaseFor(kind);
   const scope = kind === 'jobs' && jobType;
   if (source) {
@@ -55,10 +80,19 @@ export async function openCatalog<K extends CatalogKind>(kind: K, jobType?: JobM
       clauses.push("(json_extract(metadata, '$.closesAt') IS NULL OR json_extract(metadata, '$.closesAt') > ?)");
       params.push(activeAt);
     }
+    if (center) {
+      clauses.push('center_slug = ?');
+      params.push(center);
+    }
+    if (indexable) clauses.push("json_extract(metadata, '$.indexable') = 1");
     const where = clauses.length ? ` WHERE ${clauses.join(' AND ')}` : '';
-    const selection = database.prepare(`SELECT slug, metadata FROM catalog_${kind}${where} ORDER BY position, slug`);
+    const fields = kind === 'training' ? centerMetadata : 'metadata';
+    const selection = database.prepare(`SELECT slug, ${fields} FROM catalog_${kind}${where} ORDER BY position, slug`);
     const { results } = await (params.length ? selection.bind(...params) : selection).all<Pick<StoredRow, 'slug' | 'metadata'>>();
-    const entries = results.map(row => ({ slug: row.slug, metadata: JSON.parse(row.metadata) })) as CatalogEntry<K>[];
+    const entries = results.map(row => ({
+      slug: row.slug,
+      metadata: kind === 'jobs' && revision === generatedAt ? currentJobMetadata(row.slug, JSON.parse(row.metadata)) : JSON.parse(row.metadata),
+    })) as CatalogEntry<K>[];
     return {
       entries,
       revision,
@@ -74,7 +108,12 @@ export async function openCatalog<K extends CatalogKind>(kind: K, jobType?: JobM
       },
     };
   }
-  const fallback = (await snapshotRows(kind)).filter(row => !scope || (row.metadata as JobMeta).type === scope);
+  const fallback = (await snapshotRows(kind)).filter(row =>
+    (!scope || (row.metadata as JobMeta).type === scope) &&
+    (!activeAt || kind !== 'jobs' || isActiveJobRow(row.metadata as JobMeta, activeAt)) &&
+    (!center || row.slug.startsWith(`${center}/`)) &&
+    (!indexable || ('indexable' in row.metadata && row.metadata.indexable))
+  );
   const payloads = new Map(fallback.map(row => [row.slug, row.payload]));
   const entries = fallback.map(({ slug, metadata }) => ({ slug, metadata }));
   return {

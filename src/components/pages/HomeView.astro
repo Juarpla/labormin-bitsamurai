@@ -43,7 +43,7 @@ const index = jobIndex(locale, featured);
 const catalogTotals = [
   { label: 'Empleos', count: employments.length, path: '/jobs' },
   { label: 'Prácticas', count: active.length - employments.length, path: '/practicas' },
-  { label: 'Opciones de formación', count: education.length, path: '/formacion' },
+  { label: 'Centros y plataformas de formación', count: education.length, path: '/formacion' },
 ];
 const fmtCount = (n: number) => new Intl.NumberFormat('es-PE').format(n);
 const feedUpdatedAt = new Intl.DateTimeFormat('es-PE', { dateStyle: 'long' }).format(

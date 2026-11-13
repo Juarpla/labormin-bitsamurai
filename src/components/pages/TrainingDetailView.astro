@@ -1,0 +1,121 @@
+---
+import CatalogPagination from '../CatalogPagination.astro';
+import GuideIcon from '../guides/GuideIcon.astro';
+import TrainingIllustration from '../TrainingIllustration.astro';
+import TrainingLocation from '../TrainingLocation.astro';
+import TrainingVacancies from '../TrainingVacancies.astro';
+import { modeLabels, trainingPlace } from '../../lib/training';
+import { trainingPath } from '../../lib/training-program.mjs';
+import { trainingTopics } from '../../lib/training-topics.mjs';
+import { trainingGuidePath, verifiedDate } from '../../lib/education';
+import type { CatalogEntry, Training, TrainingProgram } from '../../lib/catalog-data';
+import type { TrainingOpportunity } from '../../lib/training-opportunities';
+import '../../styles/training-detail.css';
+
+interface Props {
+  center: Training;
+  program?: TrainingProgram;
+  programs: CatalogEntry<'programs'>[];
+  page: { page: number; pages: number; total: number };
+  opportunities?: { job: TrainingOpportunity[]; internship: TrainingOpportunity[] };
+}
+const { center, program, programs, page, opportunities } = Astro.props;
+const online = (program ? program.mode : center.mode) === 'virtual';
+// A district in a directory may describe the institution, while a program
+// runs elsewhere. Prefer the region unless the program or provider is clear.
+const place = online ? undefined : program?.location ?? trainingPlace(center, center.group === 'carreras');
+const centerAction = center.actionUrl === center.officialUrl || /(?:google\.com\/maps|maps\.app\.goo\.gl)/i.test(center.actionUrl)
+  ? { label: 'Consultar fuente del centro', url: center.officialUrl }
+  : { label: 'Consultar oferta del centro', url: center.actionUrl };
+const action = program ? program.action ?? { label: 'Consultar el programa en la fuente', url: program.source.url } : centerAction;
+const facts = program ? [
+  { label: 'Costo', icon: 'cost', value: program.cost?.label ?? 'Por consultar' },
+  { label: 'Duración', icon: 'time', value: program.duration ?? 'Por consultar' },
+  { label: 'Credencial', icon: 'credential', value: program.credential ?? 'Por consultar' },
+  { label: 'Modalidad', icon: 'remote', value: modeLabels[program.mode ?? 'consultar'] },
+] as const : [];
+const groups = [
+  { kind: 'alumni', title: 'Qué cuentan los egresados' },
+  { kind: 'employers', title: 'Vínculos con empresas' },
+  { kind: 'outlook', title: 'Panorama laboral' },
+] as const;
+const perspectives = groups.map(group => ({ ...group, notes: program?.notes?.filter(note => note.kind === group.kind) ?? [] })).filter(group => group.notes.length);
+const programTopics = program?.topics ?? [];
+const illustration = online ? 'virtual' : programTopics.some(topic => trainingTopics[topic].mining) ? 'mining'
+  : programTopics.some(topic => ['electronics', 'instrumentation', 'homeElectrical'].includes(topic)) ? 'electronics' : 'workshop';
+const sources = [...new Map([
+  ...(!program || program.reviewed ? center.additionalSources ?? [] : []),
+  { label: program ? 'Fuente institucional o directorio del centro' : 'Fuente del centro', url: center.officialUrl },
+  ...(program ? [program.source] : []),
+  ...(program?.action ? [program.action] : []),
+].map(source => [source.url, source])).values()];
+const checkedAt = program?.source.verifiedAt ?? center.lastVerifiedAt;
+---
+<article class="training-detail" data-training-detail={program ? 'program' : 'center'}>
+  <nav class="training-breadcrumb" aria-label="Ruta de navegación">
+    <a href="/formacion/#resultados">Formación</a>
+    {program && <><span aria-hidden="true">/</span><a href={trainingPath(center.id)}>{center.name}</a></>}
+  </nav>
+
+  <header class="training-detail-header">
+    <h1>{program?.title ?? center.name}</h1>
+    {program?.summary && <p class="training-deck">{program.summary}</p>}
+    {program && <div class="training-header-links">
+      <a class="training-action" href={action.url}>{action.label} <span aria-hidden="true">↗</span></a>
+      <a class="training-text-link" href="#oportunidades">Empleos y prácticas <span aria-hidden="true">↓</span></a>
+    </div>}
+  </header>
+
+  {program && <dl class="training-facts" aria-label="Datos para elegir">
+    {facts.map(fact => <div>
+      <dt><GuideIcon kind={fact.icon} />{fact.label}</dt>
+      <dd>{fact.value}</dd>
+    </div>)}
+  </dl>}
+
+  {program?.curriculum && <section class="training-section training-curriculum" aria-labelledby="training-curriculum-title">
+    <h2 id="training-curriculum-title">Qué aprenderás</h2>
+    <div class="training-curriculum-graphic"><TrainingIllustration kind={illustration} /></div>
+    <ul>{program.curriculum.map(item => <li>{item}</li>)}</ul>
+  </section>}
+
+  {!program && <section class="training-section" aria-labelledby="programas">
+    <h2 id="programas">Programas del centro</h2>
+    {programs.length ? <>
+      <ul class="training-center-programs" role="list">
+        {programs.map(({ slug, metadata }) => <li><a href={trainingPath(center.id, slug.split('/')[1])}><span>{metadata.title}<small>{modeLabels[metadata.mode]}{metadata.costLabel && ` · ${metadata.costLabel}`}</small></span><span aria-hidden="true">→</span></a></li>)}
+      </ul>
+      <CatalogPagination page={page} anchor="programas" label="Programas del centro" />
+    </> : <p>{center.program}</p>}
+  </section>}
+
+  <TrainingLocation place={place} online={online} notes={program?.notes} />
+
+  <section class="training-section" aria-labelledby="training-admission-title">
+    <h2 id="training-admission-title">{online ? 'Cómo acceder' : 'Admisión y cupos'}</h2>
+    <div class="training-admission">
+      <p>{program ? program.admission ?? 'Consulta los requisitos, el calendario y los documentos para inscribirte en la fuente del programa.' : center.admission}</p>
+      {program?.cost?.detail && <p>{program.cost.detail}</p>}
+      {program?.availability && <p>{program.availability}</p>}
+      {!program && <p>{center.status}</p>}
+      <a class="training-text-link" href={action.url}>{action.label} <span aria-hidden="true">↗</span></a>
+    </div>
+  </section>
+
+  {perspectives.length > 0 && <section class="training-section training-perspectives" aria-labelledby="training-perspectives-title">
+    <h2 id="training-perspectives-title">Estudiar y trabajar en esta área</h2>
+    {perspectives.map(group => <section>
+      <h3>{group.title}</h3>
+      {group.notes.map(note => <div><p>{note.text}</p><a class="training-text-link" href={note.url}>{note.label}</a></div>)}
+    </section>)}
+  </section>}
+
+  {opportunities && <TrainingVacancies jobs={opportunities.job} internships={opportunities.internship} />}
+
+  <footer class="training-section training-sources" aria-labelledby="training-sources-title">
+    <h2 id="training-sources-title">Fuentes consultadas</h2>
+    <p>Fuente principal consultada el <time datetime={checkedAt}>{verifiedDate(checkedAt)}</time>.</p>
+    <ul>{sources.map(source => <li><a class="training-text-link" href={source.url}>{source.label} <span aria-hidden="true">↗</span></a></li>)}</ul>
+    <a class="training-text-link" href={`${trainingGuidePath}/#comparar`}>Qué comparar antes de inscribirte <span aria-hidden="true">→</span></a>
+  </footer>
+</article>

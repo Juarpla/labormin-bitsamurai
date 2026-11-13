@@ -5,10 +5,11 @@ import GuideIcon from '../components/guides/GuideIcon.astro';
 import { paginate, resultRange, searchText } from '../lib/pagination';
 import Layout from '../layouts/Layout.astro';
 import AdSlot from '../components/AdSlot.astro';
-import { departments, trainingGroups, trainingGuidePath, verifiedDate } from '../lib/education';
+import { departments, trainingGroups, trainingGuidePath } from '../lib/education';
 import '../styles/formation.css';
-import { openCatalog } from '../lib/catalog';
-const catalog = await openCatalog('training');
+import { catalogRecord, openCatalog, openTrainingPrograms } from '../lib/catalog';
+import { trainingDirectory } from '../lib/training';
+import { trainingPath } from '../lib/training-program.mjs';
 const images = { habilidad: '/images/formacion/habilidad.png', certificado: '/images/formacion/certificado.png', carrera: '/images/formacion/carrera.png' };
 const params = Astro.url.searchParams;
 const type = params.get('tipo') ?? '';
@@ -18,16 +19,20 @@ const cost = params.get('costo') ?? '';
 const query = (params.get('q') ?? '').slice(0, 120);
 const includeVirtual = !params.getAll('virtual').includes('0') || params.getAll('virtual').includes('1');
 const optionId = params.get('opcion');
+if (optionId && /^[a-z0-9-]{1,120}$/.test(optionId) && await catalogRecord('training', optionId)) {
+  return Astro.redirect(trainingPath(optionId), 301);
+}
+const [centers, programs] = await Promise.all([openCatalog('training'), openTrainingPrograms()]);
+const directory = trainingDirectory(centers.entries, programs.entries);
 const words = searchText(query).split(/\s+/).filter(Boolean);
-const filtered = catalog.entries.filter(({metadata: option}) =>
+const filtered = directory.filter(option =>
   (!type || option.type === type) &&
+  (includeVirtual || option.mode !== 'virtual') &&
   (!department || option.department === department || (includeVirtual && option.mode === 'virtual')) &&
   (!mode || option.mode === mode) && (!cost || option.costKind === cost) &&
   words.every(word => option.search.includes(word))
 );
-const focusIndex = filtered.findIndex(option => option.slug === optionId);
-const page = paginate(filtered, Astro.url, undefined, 'pagina', focusIndex);
-const options = await catalog.read(page.items.map(item => item.slug));
+const page = paginate(filtered, Astro.url);
 const icons = { habilidad: 'materials', certificado: 'credential', carrera: 'map' } as const;
 function typeLink(value: string) {
   const next = new URLSearchParams(params);
@@ -80,29 +85,19 @@ function typeLink(value: string) {
     <section class="formation-results" aria-labelledby="resultados">
       <div class="formation-result-heading"><h2 id="resultados" tabindex="-1">Explora opciones de formación</h2><p id="formation-count" >Opciones: {resultRange(page)}</p></div>
       <div id="formation-list">
-        {options.map(option => <article id={option.id} class="formation-row scroll-mt-28" data-training-row>
-          <div class="formation-row-main">
+        {page.items.map(option => <article id={option.slug.replace('/', '--')} data-training-row>
+          <a class="formation-row" href={trainingPath(option.center, option.isProgram ? option.slug.split('/')[1] : undefined)}>
             <span class="formation-card-icon"><GuideIcon kind={icons[option.type]} /></span>
-            <header><h3>{option.title}</h3><p>{option.name}</p><p class="formation-location"><img src="/icons/geo-alt.svg" alt="" width="16" height="16"/>{option.location}</p></header>
-            <div class="formation-cost"><strong>{option.costLabel}</strong><p>{option.costNote}</p>{option.id === 'cetpro-juliaca' && <p>Un año académico · confirma el programa</p>}</div>
-          </div>
-          <details class="formation-details" open={optionId === option.id}>
-            <summary><span class="details-closed">Ver detalles</span><span class="details-open">Cerrar detalles</span><span aria-hidden="true"> →</span><span class="sr-only"> de {option.name}</span></summary>
-            <div class="formation-details-body">
-              <dl>{[['Programa',option.program],['Costo completo',option.cost],['Duración',option.duration],['Credencial',option.credential],['Requisitos de acceso',option.admission],['Disponibilidad',option.status]].map(([label,value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
-              <div class="formation-detail-footer"><div class="formation-source-links">
-                <a href={option.officialUrl} target="_blank" rel="noopener">Fuente oficial <span aria-hidden="true">↗</span><span class="sr-only"> (nueva pestaña)</span></a>
-                {option.actionUrl !== option.officialUrl && <a href={option.actionUrl} target="_blank" rel="noopener">Oferta del centro ↗<span class="sr-only"> (nueva pestaña)</span></a>}
-                {option.additionalSources?.map(source => <a href={source.url} target="_blank" rel="noopener">{source.label} ↗<span class="sr-only"> (nueva pestaña)</span></a>)}
-              </div><p>Fuente consultada: <time datetime={option.lastVerifiedAt}>{verifiedDate(option.lastVerifiedAt)}</time></p></div>
-            </div>
-          </details>
+            <header><h3>{option.title}</h3>{option.isProgram && <p>{option.name}</p>}<p class="formation-location"><img src="/icons/geo-alt.svg" alt="" width="16" height="16"/>{option.location}</p></header>
+            <div class="formation-cost"><strong>{option.costLabel}</strong>{option.costNote && <p>{option.costNote}</p>}</div>
+            <span class="formation-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h15m-6-6 6 6-6 6" /></svg></span>
+          </a>
         </article>)}
       </div>
       <CatalogPagination page={page} anchor="resultados" label="Páginas de formación" />
       <div class="formation-empty" id="formation-empty" hidden={page.total > 0}><h3>No encontramos opciones con estos filtros</h3><p>La selección aún no cubre todos los departamentos. Prueba otra modalidad o consulta los directorios oficiales de la guía.</p><a href="/formacion/#resultados">Limpiar filtros</a><a href={`${trainingGuidePath}#directorios`}>Buscar en directorios oficiales →</a></div>
     </section>
-    <p class="formation-context">Selección documentada de {catalog.entries.length} opciones; aún no cubre todo el Perú. Incluye habilidades útiles para el sector y programas mineros. El objetivo “Un certificado” orienta la búsqueda: confirma la credencial, modalidad y cupos con cada centro. <a href={`${trainingGuidePath}#comparar`}>Cómo comparar costos y certificados →</a> · <a href="/guias/#formacion">Guías de formación y seguridad →</a></p>
+    <p class="formation-context">{programs.entries.length.toLocaleString('es-PE')} programas documentados en {centers.entries.length} instituciones y plataformas. Cuando la fuente solo registra el centro, puedes consultar su ficha. <a href={`${trainingGuidePath}#comparar`}>Cómo comparar costos y certificados →</a> · <a href="/guias/#formacion">Guías de formación y seguridad →</a></p>
     <aside class="formation-guide" aria-labelledby="formation-guide-title"><h2 id="formation-guide-title">Antes de elegir, compara bien.</h2><div><p>Costo completo, práctica y credencial: qué preguntar al centro.</p><a href={trainingGuidePath}>Leer la guía <span aria-hidden="true">↗</span></a></div><p>Datos de la guía · <time datetime="2026-10-26">26 oct 2026</time></p></aside>
     </section>
     <AdSlot slotId="formacion-side-2" size={{ w: 160, h: 600 }} media="(min-width: 1280px)" class="sticky top-24 hidden w-fit self-start xl:col-start-3 xl:row-start-1 xl:block" />

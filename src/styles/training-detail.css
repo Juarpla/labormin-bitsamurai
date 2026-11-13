@@ -1,0 +1,147 @@
+.training-detail {
+  --detail-line: var(--color-graphite-700);
+  --detail-copy: var(--color-graphite-200);
+  --detail-accent: var(--color-brand-400);
+  max-width: 66rem;
+  margin-inline: auto;
+  padding: clamp(1.5rem, 4vw, 3.5rem) clamp(1.25rem, 4vw, 3rem) clamp(3rem, 7vw, 5.5rem);
+  color: var(--detail-copy);
+  line-height: 1.62;
+  overflow-wrap: anywhere;
+}
+
+.training-detail :is(h1, h2, h3) {
+  color: var(--color-graphite-100);
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.16;
+  letter-spacing: -.025em;
+  text-wrap: balance;
+}
+
+.training-detail h1 { font-size: clamp(2.35rem, 6vw, 4.3rem); max-width: 19ch; }
+.training-detail h2 { font-size: clamp(1.65rem, 3vw, 2.3rem); margin-bottom: .9rem; }
+.training-detail h3 { font-size: 1.3rem; }
+.training-detail p { max-width: 69ch; }
+.training-detail :is(a, summary):focus-visible { outline: 2px solid var(--detail-accent); outline-offset: 4px; }
+.training-detail :is([id]) { scroll-margin-top: 7rem; }
+
+.training-breadcrumb { display: flex; align-items: baseline; flex-wrap: wrap; gap: .25rem .65rem; font-size: .875rem; }
+.training-breadcrumb a { padding-block: .35rem; text-decoration: underline; text-decoration-color: var(--detail-line); text-underline-offset: 4px; }
+.training-breadcrumb a:hover { color: var(--detail-accent); }
+.training-breadcrumb span { color: var(--detail-accent); }
+.training-detail-header { margin-top: clamp(1.2rem, 3vw, 2.6rem); }
+.training-deck { font-size: clamp(1rem, 2vw, 1.2rem); margin-top: .9rem; max-width: 58ch; }
+.training-header-links { display: flex; gap: .65rem 1.4rem; align-items: center; flex-wrap: wrap; margin-top: 1.5rem; }
+
+.training-action, .training-text-link { text-underline-offset: 4px; font-weight: 600; }
+.training-action {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: .65rem;
+  padding: .55rem 1.1rem;
+  background: var(--color-brand-500);
+  border-radius: 2rem;
+  color: var(--color-graphite-950);
+  font-size: .9rem;
+}
+.training-action:hover { background: var(--detail-accent); }
+.training-text-link { color: var(--detail-accent); text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--detail-accent) 55%, transparent); }
+.training-text-link:hover { color: var(--color-brand-300); text-decoration-color: currentColor; }
+
+.training-facts {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, .95fr) minmax(0, 1.35fr) minmax(8.5rem, .8fr);
+  border: 1px solid var(--detail-line);
+  border-radius: 16px;
+  background: var(--color-graphite-900);
+  margin-block: clamp(1.55rem, 4vw, 2.6rem) 0;
+  font-size: .9rem;
+}
+.training-facts > div { min-width: 0; padding: clamp(.95rem, 2.3vw, 1.45rem); }
+.training-facts > div + div { border-inline-start: 1px solid var(--detail-line); }
+.training-facts dt { display: flex; align-items: center; gap: .5rem; font-size: .82rem; }
+.training-facts dt .guide-icon { flex: 0 0 1.2rem; width: 1.2rem; height: 1.2rem; color: var(--detail-accent); }
+.training-facts dd { margin-top: .45rem; line-height: 1.48; color: var(--color-graphite-100); font-weight: 600; }
+
+.training-section { margin-top: clamp(2rem, 5vw, 3.5rem); }
+.training-curriculum { display: flow-root; }
+.training-curriculum-graphic { float: right; width: min(36%, 18rem); margin: 0 0 .65rem 1.35rem; shape-outside: inset(0 round 16px); }
+.training-curriculum ul { list-style: disc; padding-left: 1.25rem; max-width: 76ch; }
+.training-curriculum li { padding-left: .2rem; margin-bottom: .48rem; }
+.training-curriculum li::marker, .training-sources li::marker { color: var(--detail-accent); }
+
+.training-location, .training-admission { padding: clamp(1rem, 3vw, 1.7rem); border: 1px solid var(--detail-line); border-radius: 16px; }
+.training-location { display: flow-root; background: var(--color-graphite-900); }
+.training-location-graphic { float: right; width: min(34%, 17rem); margin: 0 0 .45rem 1rem; shape-outside: inset(0 round 16px); }
+.training-location-copy h3 { margin: .15rem 0 .5rem; }
+.training-location-copy :is(p, address) + p { margin-top: .75rem; }
+.training-location-copy address { font-style: normal; }
+.training-location-links { display: flex; flex-wrap: wrap; gap: .35rem 1.3rem; margin-top: .6rem; font-size: .88rem; }
+.training-location-links a { display: inline-flex; min-height: 2.75rem; align-items: center; gap: .3rem; }
+
+.training-map { clear: both; margin-top: .85rem; border-top: 1px solid var(--detail-line); padding-top: .65rem; }
+.training-map summary { display: flex; width: fit-content; min-height: 2.75rem; align-items: center; gap: .6rem; cursor: pointer; color: var(--detail-accent); font-weight: 600; list-style: none; }
+.training-map summary::-webkit-details-marker { display: none; }
+.training-map summary svg { width: 1rem; height: 1rem; stroke: currentColor; stroke-width: 1.5; transition: transform .25s cubic-bezier(.16, 1, .3, 1); }
+.training-map[open] summary svg { transform: rotate(180deg); }
+.training-map .training-map-open, .training-map[open] .training-map-closed { display: none; }
+.training-map[open] .training-map-open { display: inline; }
+.training-map iframe { margin-top: .6rem; width: 100%; height: clamp(15rem, 36vw, 22rem); border: 1px solid var(--detail-line); border-radius: 12px; background: var(--color-graphite-850); }
+.training-map iframe[hidden] { display: none; }
+.training-map-status { margin-top: .35rem; font-size: .875rem; }
+.training-map-fallback { display: inline-flex; align-items: center; gap: .3rem; min-height: 2.75rem; margin-top: .3rem; font-size: .88rem; }
+
+.training-admission p + p { margin-top: .7rem; }
+.training-admission a { display: inline-block; margin-top: .7rem; }
+.training-perspectives > section { padding-block: 1rem; border-top: 1px solid var(--detail-line); }
+.training-perspectives h3 { margin-bottom: .45rem; }
+.training-perspectives :is(section, div) a { display: inline-block; margin-top: .4rem; font-size: .9rem; }
+.training-perspectives div + div { margin-top: .75rem; }
+
+.training-opportunities { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1.25rem, 4vw, 2.5rem); }
+.training-vacancies { padding-top: 1.15rem; border-top: 1px solid var(--detail-line); }
+.training-section-heading { display: flex; align-items: center; gap: .6rem; margin-bottom: .6rem; }
+.training-section-heading h2 { margin: 0; }
+.training-section-heading > svg { width: 1.65rem; height: 1.65rem; color: var(--detail-accent); }
+.training-vacancies > p { font-size: .91rem; }
+.training-vacancy-list { display: grid; gap: .9rem; margin-top: 1rem; }
+.training-vacancy-list .job-card { border-radius: 0 0 12px 12px; }
+.training-vacancy-list .job-card:hover { transform: none; }
+.training-vacancy-list .job-card h3 { font-size: 1rem; }
+.training-vacancy-list .job-card :is(.text-graphite-400, .text-graphite-500) { color: color-mix(in srgb, var(--color-graphite-400) 75%, var(--color-graphite-200)); }
+.training-match { padding: .7rem .9rem; border: 1px solid var(--detail-line); border-bottom: 0; border-radius: 12px 12px 0 0; font-size: .82rem; background: var(--color-graphite-850); }
+.training-match strong { color: var(--detail-accent); font-weight: 600; }
+.training-match p { margin-top: .16rem; }
+.training-all-opportunities { display: inline-flex; align-items: center; gap: .5rem; min-height: 2.75rem; margin-top: .55rem; font-size: .9rem; }
+
+.training-center-programs { border-top: 1px solid var(--detail-line); }
+.training-center-programs a { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: .9rem .65rem; border-bottom: 1px solid var(--detail-line); color: var(--color-graphite-100); font-weight: 600; }
+.training-center-programs a:hover { background: var(--color-graphite-900); }
+.training-center-programs a > span + span { color: var(--detail-accent); }
+.training-center-programs small { display: block; margin-top: .2rem; font-weight: 400; color: var(--detail-copy); }
+.training-sources { border-top: 1px solid var(--detail-line); padding-top: 1.2rem; font-size: .9rem; }
+.training-sources ul { display: grid; gap: .4rem; list-style: disc; padding-left: 1.25rem; margin-block: .7rem 1.2rem; }
+.training-sources time { font-variant-numeric: tabular-nums; }
+
+@media (max-width: 860px) {
+  .training-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .training-facts > div:nth-child(3) { border-inline-start: 0; }
+  .training-facts > div:nth-child(n+3) { border-top: 1px solid var(--detail-line); }
+}
+
+@media (max-width: 560px) {
+  .training-opportunities { grid-template-columns: 1fr; gap: 0; }
+  .training-curriculum-graphic, .training-location-graphic { float: none; width: min(100%, 14.5rem); margin: 0 auto .65rem; }
+  .training-facts { grid-template-columns: 1fr; font-size: .875rem; }
+  .training-facts > div { display: grid; grid-template-columns: minmax(6.1rem, .75fr) minmax(0, 1.25fr); gap: .8rem; padding-block: .72rem; }
+  .training-facts > div + div { border-inline-start: 0; border-top: 1px solid var(--detail-line); }
+  .training-facts dt { align-items: start; }
+  .training-facts dd { margin: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .training-map summary svg, .training-vacancy-list .job-card { transition: none; }
+}

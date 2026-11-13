@@ -145,6 +145,25 @@ export function jobDate(value, endOfDay = false) {
   return Date.parse(/^\d{4}-\d{2}-\d{2}T[\d:.]+$/.test(value) ? value + '-05:00' : value);
 }
 
+const spanishMonths = 'enero febrero marzo abril mayo junio julio agosto septiembre octubre noviembre diciembre'.split(' ');
+const applicationDeadlineLabel = /(?:plazo l[ií]mite|fecha l[ií]mite|fecha de cierre) (?:de|para) postulaci[oó]n/i;
+const applicationDeadlinePattern = new RegExp(`${applicationDeadlineLabel.source}\\s*:?\\s*(?:` +
+  `(\\d{1,2})[/-](\\d{1,2})[/-](20\\d{2})|(\\d{1,2}) de (${spanishMonths.join('|')}) del? (20\\d{2}))(?!\\d)`, 'gi');
+
+function deadlineFromAnnouncement(description) {
+  if (!description || !/postulaci/i.test(description)) return Infinity;
+  let earliest = Infinity;
+  for (const [, d, m, y, day, month, year] of sourceText(description).replace(/\s+/g, ' ').matchAll(applicationDeadlinePattern)) {
+    const mm = m ?? String(spanishMonths.indexOf(month.toLowerCase()) + 1);
+    const iso = `${y ?? year}-${mm.padStart(2, '0')}-${(d ?? day).padStart(2, '0')}`;
+    const midnight = Date.parse(`${iso}T00:00:00Z`);
+    if (Number.isFinite(midnight) && new Date(midnight).toISOString().startsWith(iso)) {
+      earliest = Math.min(earliest, jobDate(iso, true));
+    }
+  }
+  return earliest;
+}
+
 export function jobExpiration(job) {
   const published = jobDate(job.publishedAt);
   const firstSeen = jobDate(job.firstReferenceAt);
@@ -153,7 +172,8 @@ export function jobExpiration(job) {
     Number.isFinite(firstSeen) ? firstSeen : (Number.isFinite(published) ? published : jobDate(job.postedAt)),
   );
   const cutoff = Number.isFinite(reference) ? reference + 30 * DAY_MS : Infinity;
-  const deadline = jobDate(job.validThrough, true);
+  const declared = jobDate(job.validThrough, true);
+  const deadline = Math.min(Number.isFinite(declared) ? declared : Infinity, deadlineFromAnnouncement(job.description));
   const fromEmployer = Number.isFinite(deadline) && deadline < cutoff;
   const time = fromEmployer ? deadline : cutoff;
   return Number.isFinite(time) ? { time, date: new Date(time).toISOString(), reason: fromEmployer ? 'expired' : 'stale' } : null;

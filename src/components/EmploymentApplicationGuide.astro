@@ -6,6 +6,8 @@ import JobExperienceGuide from './JobExperienceGuide.astro';
 import GuideIcon from './guides/GuideIcon.astro';
 import { applicationPreparation } from '../lib/application-preparation';
 import { education } from '../lib/education';
+import { trainingPath } from '../lib/training-program.mjs';
+import { guidanceContext } from '../lib/job-guidance.mjs';
 import type { careerGuidance } from '../lib/job-guidance.mjs';
 import type { Job } from '../schemas';
 
@@ -13,6 +15,15 @@ interface Props { guide: ReturnType<typeof careerGuidance>; job: Job; title: str
 const { guide, job, title, tools, experience, analysis } = Astro.props;
 const training = guide.trainingIds.flatMap((id: string) => education.filter(option => option.id === id));
 const preparation = applicationPreparation(job, title, guide.skill ?? guide.experienceSkill, tools, experience, guide.questions[0]);
+const { skillId } = guidanceContext(job);
+const skillPrograms: Record<string, Record<string, string>> = {
+  'mine-planning': { 'narciso-villanueva': 'explotacion-minera', chalhuahuacho: 'explotacion-minera' },
+  'industrial-electronics': { 'jose-carlos-mariategui': 'electronica-industrial', 'cetpro-juliaca': 'electronica-y-electricidad' },
+  electrical: { 'promae-comas': 'instalaciones-electricas', 'cetpro-juliaca': 'electronica-y-electricidad', 'jose-carlos-mariategui': 'electronica-industrial' },
+  'mechanical-maintenance': { chalhuahuacho: 'mecanica-de-produccion-industrial' },
+  safety: { 'capacita-t': 'salud-y-seguridad-para-ambientes-de-trabajo-moderno' },
+  mining: { 'narciso-villanueva': 'explotacion-minera', chalhuahuacho: 'explotacion-minera' },
+};
 
 ---
 <section class="mt-10 border-t border-graphite-700 pt-7" aria-labelledby="application-guide-title" data-application-guide>
@@ -62,7 +73,7 @@ const preparation = applicationPreparation(job, title, guide.skill ?? guide.expe
                 <dd class="ml-1.5 inline">{option.duration}</dd>
               </div>
             </dl>
-            <a class="mt-3 inline-block text-sm font-semibold text-brand-400 underline-offset-4 hover:underline" href={`/formacion/?opcion=${encodeURIComponent(option.id)}#${option.id}`}>Ver programa y condiciones <span aria-hidden="true">→</span></a>
+            <a class="mt-3 inline-block text-sm font-semibold text-brand-400 underline-offset-4 hover:underline" href={trainingPath(option.id, skillId ? skillPrograms[skillId]?.[option.id] : undefined)}>Ver formación y condiciones <span aria-hidden="true">→</span></a>
           </li>
         ))}
       </ul>

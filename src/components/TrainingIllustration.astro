@@ -1,0 +1,51 @@
+---
+interface Props { kind: 'electronics' | 'mining' | 'virtual' | 'workshop' | 'location' | 'campus' }
+const { kind } = Astro.props;
+---
+<svg viewBox="0 0 288 176" fill="none" class="training-illustration" aria-hidden="true" focusable="false">
+  {kind === 'electronics' && <>
+    <rect class="panel" x="24" y="22" width="240" height="132" rx="15" />
+    <path class="trace" d="M45 58h31l18 18h22m-71 42h32l17-18h22m56-24h20l22-22h29m-71 46h20l22 22h29M54 84h62m56 0h68M136 64V45h44m-27 67v18h-47" />
+    <rect class="accent filled" x="116" y="64" width="56" height="48" rx="5" />
+    <path class="accent" d="M128 86h8l5-9 7 19 5-10h7" />
+    <path class="trace" d="M127 60v-6m9 6v-6m17 6v-6m9 6v-6m-35 62v6m9-6v6m17-6v6m9-6v6" />
+    <circle class="accent" cx="44" cy="58" r="4" /><circle class="trace" cx="44" cy="118" r="4" /><circle class="trace" cx="242" cy="54" r="4" /><circle class="accent" cx="242" cy="122" r="4" />
+    <path class="trace" d="M43 37h25m165 103h14M42 140h10m176-103h19" />
+  </>}
+  {kind === 'mining' && <>
+    <rect class="panel" x="24" y="22" width="240" height="132" rx="15" />
+    <path class="trace" d="M39 55h40l12 15h32l13 14h38l13-12h23l9-17h30M39 73h30l14 15h32l14 14h52l14-13h25l10-15h19M39 93h22l13 14h34l13 14h68l14-13h25l10-14h11M39 132h210" />
+    <path class="accent" d="m59 40 52 29 35 39 43-25 41-41" stroke-dasharray="3 7" />
+    <circle class="accent filled" cx="59" cy="40" r="5" /><circle class="accent filled" cx="146" cy="108" r="5" /><circle class="accent filled" cx="230" cy="42" r="5" />
+  </>}
+  {kind === 'virtual' && <>
+    <rect class="panel" x="35" y="24" width="194" height="111" rx="11" />
+    <path class="trace" d="M35 44h194m-180-10h2m8 0h2m8 0h2m49 102-5 15m28-15 5 15m-48 0h65M135 64h72m-72 13h50m-50 13h34" />
+    <rect class="trace" x="51" y="57" width="67" height="57" rx="6" />
+    <path class="accent" d="m79 73 18 12-18 12V73Z" />
+    <rect class="accent filled" x="183" y="103" width="67" height="44" rx="7" />
+    <path class="accent" d="m194 122 5 5 9-10m10 6h19m-43 13h43" />
+  </>}
+  {kind === 'workshop' && <>
+    <rect class="panel" x="24" y="22" width="240" height="132" rx="15" />
+    <path class="trace" d="M47 120h194m-180 0v19m165-19v19M47 39h194m-168 0v12m50-12v12m50-12v12m50-12v12" />
+    <path class="accent" d="M69 102 96 72l17 15 20-25 17 12 26-23 33 22m-140 29h140V73" />
+    <path class="trace" d="M103 102v10m70-10v10M70 62h13m-7-6v12m148 35h15m-8-7v14" />
+    <circle class="accent filled" cx="133" cy="62" r="4" /><circle class="accent filled" cx="176" cy="51" r="4" />
+  </>}
+  {(kind === 'location' || kind === 'campus') && <>
+    <rect class="panel" x="24" y="22" width="240" height="132" rx="15" />
+    <path class="trace" d="m37 119 62-75 55 42 47-36 49 33M52 140l61-73 44 34 46-37 40 27M39 78l38 28 37 29 37-47 29 26 39-42m-96 68 21-26 39 25 45-49m-180-41 26 18m153 52 24 18" />
+    {kind === 'campus'
+      ? <><path class="accent filled" d="M175 63c0 16-23 37-23 37s-23-21-23-37a23 23 0 0 1 46 0Z" /><circle class="accent" cx="152" cy="63" r="8" /></>
+      : <ellipse class="accent filled" cx="152" cy="80" rx="32" ry="23" stroke-dasharray="3 6" />}
+  </>}
+</svg>
+
+<style>
+  .training-illustration { display: block; width: 100%; height: auto; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .panel { fill: var(--color-graphite-900); stroke: var(--color-graphite-700); }
+  .trace { stroke: var(--color-graphite-400); }
+  .accent { stroke: var(--color-brand-400); }
+  .filled { fill: var(--color-graphite-850); }
+</style>

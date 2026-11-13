@@ -1,0 +1,38 @@
+---
+import GuideIcon from './guides/GuideIcon.astro';
+import JobCard from './JobCard.astro';
+import { trainingMatchText, type TrainingOpportunity } from '../lib/training-opportunities';
+import { publishedExperience } from '../lib/job-guidance.mjs';
+import { trainingQualifications } from '../lib/training-topics.mjs';
+
+interface Props { jobs: TrainingOpportunity[]; internships: TrainingOpportunity[]; }
+const { jobs, internships } = Astro.props;
+const groups = [
+  { id: 'empleos', heading: 'Empleos vigentes', icon: 'practice' as const, entries: jobs, path: '/jobs/', link: 'Ver todos los empleos', empty: 'Por ahora no hay empleos vigentes con una coincidencia documentada.' },
+  { id: 'practicas', heading: 'Prácticas vigentes', icon: 'credential' as const, entries: internships, path: '/practicas/', link: 'Ver todas las prácticas', empty: 'Por ahora no hay prácticas vigentes con una coincidencia documentada.' },
+];
+---
+<div class="training-opportunities" id="oportunidades">
+  {groups.map(group => <section class="training-section training-vacancies" aria-labelledby={`${group.id}-training-heading`} data-training-vacancies={group.id}>
+    <div class="training-section-heading"><GuideIcon kind={group.icon} /><h2 id={`${group.id}-training-heading`}>{group.heading}</h2></div>
+    {group.entries.length ? <>
+      <p>{group.id === 'empleos' ? 'Revisa el título y la experiencia que pide cada empleador.' : 'Confirma si la práctica admite tu especialidad y qué convenio o constancia solicita.'}</p>
+      <ul class="training-vacancy-list" role="list">
+        {group.entries.map(({ job, match }) => {
+          const { credential, requirements } = trainingQualifications(job.description);
+          const experience = publishedExperience({ description: requirements });
+          return <li data-match-kind={match.kind}>
+            <div class="training-match">
+              <strong>{match.kind === 'direct' ? 'Coincidencia directa' : 'Área afín'}</strong>
+              <p>{trainingMatchText(match)}</p>
+              {credential && <p>Formación solicitada «{credential}».</p>}
+              {experience && experience.months > 0 && <p>Entre los requisitos figura «{experience.text}».</p>}
+            </div>
+            <JobCard job={job} variant="compact" />
+          </li>;
+        })}
+      </ul>
+    </> : <p>{group.empty}</p>}
+    <a class="training-text-link training-all-opportunities" href={group.path}>{group.link} <span aria-hidden="true">→</span></a>
+  </section>)}
+</div>

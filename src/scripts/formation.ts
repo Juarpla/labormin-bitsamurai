@@ -6,17 +6,8 @@ if (filterDetails) {
 }
 
 const id = location.hash.slice(1);
-if (/^[a-z0-9-]+$/i.test(id) && id !== 'resultados') {
-  const card = document.getElementById(id);
-  if (card?.hasAttribute('data-training-row')) {
-    card.querySelector('details')!.open = true;
-    card.scrollIntoView();
-  } else {
-    const url = new URL(location.href);
-    if (!url.searchParams.has('opcion')) {
-      url.search = '';
-      url.searchParams.set('opcion', id);
-      location.replace(url);
-    }
-  }
+if (/^[a-z0-9-]{1,120}$/.test(id) && id !== 'resultados' && !location.search.includes('opcion=')) {
+  // Fragments never reach the server. Resolve old links through the same
+  // validated redirect as ?opcion=, including centers outside page one.
+  location.replace(`/formacion/?opcion=${encodeURIComponent(id)}`);
 }

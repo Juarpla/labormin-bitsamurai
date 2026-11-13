@@ -19,7 +19,8 @@ export function compactArchiveEntry(entry) {
 }
 
 export function archiveEntry(job, reason) {
-  return compactArchiveEntry({ ...job, reason });
+  const closing = reason === 'expired' ? jobExpiration(job) : null;
+  return compactArchiveEntry({ ...job, ...(closing?.reason === 'expired' && { validThrough: closing.date }), reason });
 }
 
 /** Keep a source listing's first reference stable across observations and disappearances. */

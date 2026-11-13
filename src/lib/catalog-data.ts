@@ -4,7 +4,11 @@ import { education } from './education';
 import { events } from './events';
 import { editorialGuides, visualGuides, type GuideMetadata } from './editorial-guides';
 import { searchText } from './pagination';
+import trainingPrograms from '../data/training-programs.json';
+import { programKey, programMetadata, programSchema } from './training-program.mjs';
+import { jobTrainingEvidence } from './training-topics.mjs';
 import type { Event, Job } from '../schemas';
+import type { z } from 'zod';
 
 export type CatalogKind = keyof CatalogTypes;
 export type JobRecord = { job: Job | null; clearView?: ReturnType<typeof clearViewFor> };
@@ -19,15 +23,19 @@ export type JobMeta = {
   tier: number;
   search: string;
   excerptKey: string;
+  training?: NonNullable<ReturnType<typeof jobTrainingEvidence>> | null;
 };
 export type Training = typeof education[number];
-export type TrainingMeta = Pick<Training, 'type' | 'department' | 'mode' | 'costKind'> & { search: string };
+export type TrainingMeta = Pick<Training, 'type' | 'department' | 'mode' | 'costKind' | 'name' | 'location' | 'costLabel'> & { search: string };
+export type TrainingProgram = z.infer<typeof programSchema>;
+export type TrainingProgramMeta = ReturnType<typeof programMetadata>;
 export type GuideSummary = Omit<GuideMetadata, 'steps'> & { visual?: boolean };
 export type GuideArticle = (GuideSummary & { visual: true }) | (GuideMetadata & { visual?: false; html: string; updatedAt: string });
 export type EventMeta = { endsOn: string; date: string };
 type CatalogTypes = {
   jobs: [JobMeta, JobRecord];
   training: [TrainingMeta, Training];
+  programs: [TrainingProgramMeta, TrainingProgram];
   events: [EventMeta, Event];
   guides: [GuideSummary, GuideArticle];
 };
@@ -53,6 +61,7 @@ function jobRow(job: Job): CatalogRow<'jobs'> {
       tier: tierOf(job),
       search: searchText(`${titleFor(job, 'es')} ${job.title} ${job.company} ${job.city ?? ''} ${job.locationRaw ?? ''}`),
       excerptKey: job.excerpt.trim().replace(/\s+/g, ' ').toLowerCase(),
+      training: jobTrainingEvidence(job) ?? null,
     },
     payload: { job, clearView: clearViewFor(job) },
   };
@@ -76,9 +85,13 @@ const snapshot = {
     slug: option.id,
     metadata: {
       type: option.type, department: option.department, mode: option.mode, costKind: option.costKind,
+      name: option.name, location: option.location, costLabel: option.costLabel,
       search: searchText(`${option.title} ${option.name} ${option.location} ${option.program}`),
     },
     payload: option,
+  })),
+  programs: () => programSchema.array().parse(trainingPrograms).map(program => ({
+    slug: programKey(program), metadata: programMetadata(program), payload: program,
   })),
   events: () => events.map(event => ({
     slug: event.id,

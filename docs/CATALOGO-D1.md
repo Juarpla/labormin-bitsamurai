@@ -5,23 +5,25 @@ muestran hasta 12 registros por página; Guías, hasta cuatro por tema. Los filt
 se aplican al catálogo completo antes de buscar los detalles de la página.
 La navegación y los formularios usan URL compartibles y funcionan sin JavaScript.
 
-- `catalog_jobs`: vacantes, prácticas y archivo. La URL de detalle sigue siendo
+- `catalog_jobs`: vacantes y prácticas vigentes. La URL de detalle sigue siendo
   `/jobs/{slug}/` para todas. La ingestión sigue validando fuentes y elegibilidad.
 - `catalog_guides`: índice y contenido de las guías editoriales; todas comparten
   `/guias/{slug}/`. Las dos guías visuales existentes conservan su componente
   editorial especial, sus anclas y sus espacios para anuncios.
-- `catalog_training` y `catalog_events`: fichas y fuentes documentadas.
+- `catalog_training`: centros y plataformas. `catalog_programs` guarda los
+  programas por centro y su evidencia. Cada programa usa `/formacion/{centro}/{programa}/`.
+  Los centros también tienen una URL con sus programas documentados.
+- `catalog_events`: fichas y fuentes documentadas.
 - `catalog_ready`: habilita la lectura de cada catálogo cuando su carga termina.
   Un entorno sin carga usa la instantánea validada del repositorio. Para empleos,
-  también usa esa instantánea si contiene un feed más nuevo que D1. Inicio y
-  Archivo todavía se generan desde la instantánea; el cron sigue respaldando
-  su ingestión en Git.
+  también usa esa instantánea si contiene un feed más nuevo que D1. El cron
+  sigue respaldando la ingestión de las vacantes en Git.
 
 Cada fila tiene un `slug` estable, una posición, metadatos ligeros para el
 listado y el contenido completo. Los metadatos y el contenido deben actualizarse
 juntos. El Worker lee D1 por el binding privado `CATALOG_DB`. El navegador no
-recibe credenciales ni conecta directamente a la base. Las fichas salen en
-`/sitemap-catalog.xml`, referenciado en `robots.txt`.
+recibe credenciales ni conecta directamente a la base. Las fichas de programa
+marcadas como revisadas salen en `/sitemap-catalog.xml`, referenciado en `robots.txt`.
 
 ## Operación
 
@@ -50,6 +52,14 @@ recibe credenciales ni conecta directamente a la base. Las fichas salen en
   oficiales. En eventos, sincroniza las fechas del contenido con los metadatos
   `date` y `endsOn`; en formación, actualiza `search` (minúsculas y sin
   tildes) si cambias el programa o la institución.
+- Para cargar solo los programas del repositorio, ejecuta
+  `node scripts/catalog/publish-training.mjs --remote`. El comando aplica
+  la migración y conserva las fichas existentes, incluidas las editadas en D1.
+  Para añadir o actualizar un programa, usa
+  `node scripts/catalog/publish-training.mjs /ruta/programa.json --remote`.
+  Toma como ejemplo una ficha de `scripts/education/training-reviewed.json`
+  y conserva `center` y `slug` para que el enlace siga funcionando. Puedes
+  pasar un solo programa o un arreglo. Omite `--remote` para probar en D1 local.
 
 Verifica un despliegue con `pnpm build`, `pnpm astro preview --background` y
 `node scripts/check-runtime-catalog.mjs`. Para verificar D1 en el entorno

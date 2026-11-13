@@ -1,5 +1,7 @@
 ---
 import options from '../../data/education.json';
+import { trainingPath } from '../../lib/training-program.mjs';
+import { guidePrograms } from '../../lib/education';
 type Option = (typeof options)[number];
 interface Props { option: Option; }
 const { option } = Astro.props;
@@ -71,6 +73,7 @@ const summary = summaries[option.id];
     <div><dt>Disponibilidad</dt><dd>{option.status}</dd></div>
   </dl></details>
   <footer class="option-sources">
+    <a href={trainingPath(option.id, guidePrograms[option.id])}>Ver ficha de formación <span aria-hidden="true">→</span></a>
     <a href={option.officialUrl} target="_blank" rel="noopener">Fuente oficial <span aria-hidden="true">↗</span></a>
     {option.actionUrl !== option.officialUrl && <a href={option.actionUrl} target="_blank" rel="noopener">Oferta del centro <span aria-hidden="true">↗</span></a>}
     {option.additionalSources?.map(source => <a href={source.url} target="_blank" rel="noopener">{source.label} <span aria-hidden="true">↗</span></a>)}

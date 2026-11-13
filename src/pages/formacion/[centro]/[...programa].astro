@@ -1,0 +1,46 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import TrainingDetailView from '../../../components/pages/TrainingDetailView.astro';
+import { catalogRecord, openTrainingPrograms } from '../../../lib/catalog';
+import { catalogNow } from '../../../lib/catalog-data';
+import { paginate } from '../../../lib/pagination';
+import { trainingPath } from '../../../lib/training-program.mjs';
+import { trainingOpportunities } from '../../../lib/training-opportunities';
+
+export const prerender = false;
+
+const { centro = '', programa } = Astro.params;
+const validSlug = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const validPath = centro.length <= 120 && validSlug.test(centro) &&
+  (programa === undefined || (programa.length <= 120 && validSlug.test(programa)));
+const [institution, entry] = await Promise.all([
+  validPath ? catalogRecord('training', centro) : undefined,
+  validPath && programa ? catalogRecord('programs', `${centro}/${programa}`) : undefined,
+]);
+const center = institution?.payload;
+const program = entry?.payload;
+const found = Boolean(center && (!programa || program));
+if (!found) Astro.response.status = 404;
+Astro.response.headers.set('Cache-Control', 'no-store');
+
+const catalog = center && !programa ? await openTrainingPrograms({ center: centro }) : undefined;
+const entries = [...catalog?.entries ?? []].sort((a, b) =>
+  Number(b.metadata.indexable) - Number(a.metadata.indexable) || a.metadata.priority - b.metadata.priority ||
+  a.metadata.title.localeCompare(b.metadata.title, 'es-PE'));
+const page = paginate(entries, Astro.url);
+const opportunities = center && program ? await trainingOpportunities(program, center, catalogNow()) : undefined;
+const path = validPath ? trainingPath(centro, programa) : '/formacion/';
+const name = found ? program?.title ?? center?.name : 'Ficha de formación no disponible';
+const description = program?.summary ?? (found ? `Consulta la formación documentada de ${center?.name}.` : 'Explora cursos, carreras e instituciones en el buscador de Formación de Labormin.');
+---
+<Layout title={`${name}${program ? ` · ${center?.name}` : ''} | Labormin`} description={description} path={path} noindex={!entry?.metadata.indexable || !found} ads={false}>
+  {found && center ? (
+    <TrainingDetailView center={center} program={program} programs={page.items} page={page} opportunities={opportunities} />
+  ) : (
+    <section class="mx-auto max-w-3xl px-5 py-20" data-training-not-found>
+      <h1 class="font-display text-4xl font-semibold">Ficha de formación no disponible</h1>
+      <p class="mt-4 text-graphite-200">Busca por programa, institución o departamento.</p>
+      <a class="mt-6 inline-flex min-h-11 items-center rounded-full bg-brand-500 px-5 font-semibold text-graphite-950 hover:bg-brand-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-400" href="/formacion/#resultados">Volver a Formación</a>
+    </section>
+  )}
+</Layout>

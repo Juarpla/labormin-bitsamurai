@@ -33,6 +33,7 @@ const feed = JSON.parse(readFileSync('src/data/jobs.json', 'utf8')).jobs;
 const exclude = JSON.parse(readFileSync('src/data/overrides.json', 'utf8')).exclude ?? {};
 const active = feed.filter(job => !exclude[job.id] && !isExpired(job));
 const activeSlugs = new Set(active.map(job => job.slug));
+const activeBySlug = new Map(active.map(job => [job.slug, job]));
 const archive = JSON.parse(readFileSync('src/data/jobs-archive.json', 'utf8'))
   .filter(entry => !activeSlugs.has(entry.slug));
 const inactiveSlugs = new Set([...archive, ...feed.filter(job => !activeSlugs.has(job.slug))].map(entry => entry.slug));
@@ -81,11 +82,62 @@ for (const route of ['/jobs/', '/practicas/', '/formacion/', '/eventos/', '/guia
 }
 const first = await get('/formacion/');
 const second = await get('/formacion/?pagina=2');
-const records = html => [...html.matchAll(/<article id="([^"]+)"[^>]*data-training-row/g)].map(([, id]) => id);
+const records = html => [...html.matchAll(/class="formation-row" href="([^"]+)"/g)].map(([, path]) => path);
 assert.equal(records(first).length, 12);
 assert.equal(records(second).length, 12);
 assert.ok(records(second).every(id => !records(first).includes(id)));
-assert.match(await get('/formacion/?q=capacita'), /id="capacita-t"/);
+assert.doesNotMatch(first, /class="formation-details"/);
+const seed = JSON.parse(readFileSync('src/data/training-programs.json', 'utf8'));
+const pathFor = ({ center, slug }) => `/formacion/${center}/${slug}/`;
+for (const program of seed.filter(row => row.reviewed)) assert.ok(urls.has(pathFor(program)), pathFor(program));
+const basic = '/formacion/capacita-t/abc-digital/';
+const campus = '/formacion/jose-carlos-mariategui/electronica-industrial/';
+const electricity = '/formacion/promae-comas/instalaciones-electricas/';
+const virtualCourses = records(await get('/formacion/?q=capacita&modalidad=virtual&costo=gratuito'));
+assert.equal(virtualCourses.length, 12);
+assert.ok(virtualCourses.every(path => path.startsWith('/formacion/capacita-t/')));
+assert.equal(records(await get('/formacion/?q=capacita&virtual=0')).length, 0);
+assert.ok(records(await get('/formacion/?q=instalaciones+electricas&departamento=Lima&modalidad=presencial&virtual=0')).includes(electricity));
+const legacy = await fetch(base + '/formacion/?opcion=capacita-t', { redirect: 'manual' });
+assert.equal(legacy.status, 301);
+assert.equal(legacy.headers.get('location'), '/formacion/capacita-t/');
+const center = await get('/formacion/capacita-t/');
+assert.match(center, /data-training-detail="center"/);
+assert.match(center, /Página 1 de \d+/);
+assert.doesNotMatch(center, /src="https:\/\/www\.google\.com\/maps/);
+for (const [path, location, reviewed] of [
+  [campus, 'campus', true], [electricity, 'campus', true], [basic, 'virtual', false],
+  ['/formacion/chalhuahuacho/explotacion-minera/', 'campus', true],
+  ['/formacion/cetpro-juliaca/electronica-y-electricidad/', 'city', true],
+  ['/formacion/cetpro-pisco-ica/', 'region', false],
+]) {
+  const html = await get(path);
+  assert.equal(urls.has(path), reviewed, path);
+  assert.equal(/content="noindex, follow"/.test(html), !reviewed, path);
+  assert.ok(html.includes(`href="https://labormin.com${path}"`), path);
+  assert.ok(html.includes(`data-training-location="${location}"`), path);
+  assert.doesNotMatch(html, /adsbygoogle|data-ad-slot=|fundingchoicesmessages\.google\.com| src="https:\/\/www\.google\.com\/maps/);
+  if (location === 'campus') assert.match(html, /<iframe[^>]+data-training-map-src="https:\/\/www\.google\.com\/maps/);
+  else assert.doesNotMatch(html, /data-training-map-src="https:/);
+  if (!html.includes('data-training-detail="program"')) continue;
+  for (const [section, internships] of [['empleos', false], ['practicas', true]]) {
+    const group = html.match(new RegExp(`data-training-vacancies="${section}">([\\s\\S]*?)<\\/section>`))?.[1];
+    assert.ok(group, `${path}: ${section}`);
+    const slugs = [...group.matchAll(/href="\/jobs\/([a-z0-9-]+)\/?"/g)].map(([, slug]) => slug);
+    assert.ok(slugs.length <= 3);
+    for (const slug of slugs) {
+      assert.ok(activeSlugs.has(slug), `Formación enlaza una vacante retirada: ${slug}`);
+      const job = activeBySlug.get(slug);
+      assert.equal(Boolean(job.internship && job.country === 'PE'), internships);
+    }
+  }
+}
+for (const path of ['/formacion/no-existe/', '/formacion/capacita-t/no-existe/', '/formacion/capacita-t/abc-digital/otra/']) {
+  const html = await get(path, 404);
+  assert.match(html, /data-training-not-found/);
+  assert.match(html, /content="noindex, follow"/);
+  assert.doesNotMatch(html, /adsbygoogle|data-ad-slot=/);
+}
 assert.match(await get('/jobs/?q=zzzz-no-results'), /id="jobs-empty" class="mt-10"/);
 await get('/guias/catalog-test-not-found/', 404);
-console.log(`Catálogo HTTP: ${guides.length} guías, ${active.length} empleos vigentes, archivo, paginación, anuncios y 404.`);
+console.log(`Catálogo HTTP: ${guides.length} guías, ${active.length} vacantes vigentes, fichas de formación, sitemap, paginación, anuncios y 404.`);

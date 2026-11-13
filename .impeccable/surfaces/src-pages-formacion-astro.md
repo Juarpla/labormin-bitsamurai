@@ -45,3 +45,13 @@ radio de 16 px e iconos SVG por objetivo. Programa, institución y costo se
 pueden escanear sin abrir las fichas. Cada página presenta hasta 12 opciones;
 los formularios y los enlaces de paginación mantienen la búsqueda en la URL.
 Los detalles siguen siendo desplegables nativos y conservan sus fuentes.
+
+## Fichas de programa — 13 de noviembre de 2026
+
+El buscador conserva las tarjetas en una columna y la paginación. Cada
+tarjeta enlaza a una ficha o al centro cuando la fuente solo documenta la
+institución. La ficha usa Fraunces, Inter, superficies grafito y ámbar para
+acciones y foco. Presenta el título, la inscripción y cuatro datos de consulta
+antes de la malla. Las ilustraciones SVG acompañan el texto en escritorio y se
+apilan en móvil. La sede verificada puede mostrar un mapa por interacción.
+Los bloques de empleos y prácticas se alimentan de las vacantes vigentes.

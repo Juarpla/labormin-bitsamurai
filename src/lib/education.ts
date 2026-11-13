@@ -35,13 +35,12 @@ const discovery: Record<string, Discovery> = {
 // documented originals.
 function deriveDiscovery(record: { group: string; location: string; program: string; title?: string }): Discovery {
   const oficios = record.group === 'oficios';
+  const department = record.location.split('·').map(part => part.trim()).findLast(part => departments.includes(part)) ?? '';
   return {
     // Con investigación de oferta, el título son los cursos publicados del centro.
     title: record.title ?? (oficios ? 'Formación técnica-productiva' : record.program.split(',')[0]!),
-    department: record.location.split('·').pop()!.trim(),
-    // Sin indicio de virtualidad, la formación presencial es la norma en estas
-    // fuentes (centros físicos): se declara presencial confirmada.
-    mode: 'presencial',
+    department,
+    mode: 'consultar',
     costKind: 'consultar',
     costLabel: 'Precio por consultar',
     costNote: oficios ? 'Costos: consultar con el centro' : 'Arancel: consultar con la institución',
@@ -58,6 +57,13 @@ export const education = records.map(record => {
 // The guide documents these options in depth; every other record lives only in
 // the /formacion catalog (TrainingOption has editorial summaries for these ids).
 export const guideOptionIds: string[] = ['capacita-t', 'jovenes-productivos', 'cetpro-juliaca', 'promae-comas', 'jose-carlos-mariategui', 'narciso-villanueva', 'chalhuahuacho'];
+
+// The comparison guide mixes program profiles and institution overviews.
+export const guidePrograms: Partial<Record<string, string>> = {
+  'promae-comas': 'instalaciones-electricas',
+  'jose-carlos-mariategui': 'electronica-industrial',
+  'narciso-villanueva': 'explotacion-minera',
+};
 
 export const trainingGuidePath = '/guias/formacion-minera-gratuita-economica-peru';
 

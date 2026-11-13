@@ -83,6 +83,7 @@ try {
     throw new Error('La verificación de D1 no coincide con la importación.');
   }
   console.log('Importación confirmada por D1:', counts);
+  if (!jobsOnly) run(process.execPath, ['scripts/catalog/publish-training.mjs', ...(remote ? ['--remote'] : [])]);
   if (jobsOnly && process.env.GITHUB_OUTPUT) {
     const status = superseded ? 'superseded' : 'completed';
     appendFileSync(process.env.GITHUB_OUTPUT, `status=${status}\nrevision=${stored.source_revision}\njobs=${counts.jobs - counts.internships - counts.archived}\ninternships=${counts.internships}\narchived_removed=${superseded ? 0 : before.archived}\n`);

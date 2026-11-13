@@ -14,12 +14,13 @@ const archive = JSON.parse(fs.readFileSync('src/data/jobs-archive.json','utf8'))
 const unavailable = archive.find(entry => entry.reason === 'stale');
 const practice = jobs.find(job => job.slug.startsWith('ausenco-environmental-mine-closure-engineer-junior') && job.internship)
   ?? jobs.find(job => job.internship && job.description);
+const trainingCampus = '/formacion/jose-carlos-mariategui/electronica-industrial/';
 const pages = [
   ['education','/guias/formacion-minera-gratuita-economica-peru'],
   ['verification','/guias/verificar-oferta-remota-visa-salario'],
   ['editorial','/guias/cv-minero-sin-experiencia/'],['archive-index','/archivo/'],
   ['unavailable',`/jobs/${unavailable?.slug ?? 'catalog-test-not-found'}/`,404],
-  ['training','/formacion'],['events','/eventos'],['practices','/practicas'],['about','/about'],['privacy','/privacy'],['guides','/guias'],['jobs','/jobs'],
+  ['training','/formacion'],['training-campus', trainingCampus],['events','/eventos'],['practices','/practicas'],['about','/about'],['privacy','/privacy'],['guides','/guias'],['jobs','/jobs'],
   ['job',`/jobs/${jobs[0].slug}`],
   ...(practice ? [['practice',`/jobs/${practice.slug}`]] : []),
   ['full-job',`/jobs/${jobs.find(job => jobPosting(job)).slug}`],
@@ -106,11 +107,45 @@ for (const [engine,type] of Object.entries({chromium,webkit})) {
     await page.locator('#training-query').fill('capacita');
     await page.getByRole('button', { name: 'Aplicar filtros' }).click();
     assert.equal(new URL(page.url()).searchParams.has('pagina'), false);
-    assert.equal(await page.locator('#capacita-t').count(), 1);
+    const course = page.locator('[data-training-row] a').first();
+    const coursePath = await course.getAttribute('href');
+    assert.match(coursePath, /^\/formacion\/capacita-t\/[^/]+\/$/);
+    await course.click();
+    assert.equal(new URL(page.url()).pathname, coursePath);
+    assert.equal(await page.locator('[data-training-location="virtual"]').count(), 1);
+    assert.equal(await page.locator('[data-training-map]').count(), 0);
     const lastOption = JSON.parse(fs.readFileSync('src/data/education.json')).at(-1).id;
     await page.goto(base + '/formacion/#' + lastOption);
-    await page.waitForURL(url => url.searchParams.get('opcion') === lastOption);
-    assert.equal(await page.locator(`#${lastOption} details`).getAttribute('open'), '');
+    await page.waitForURL(url => url.pathname === `/formacion/${lastOption}/`);
+    assert.equal(await page.locator('[data-training-detail="center"]').count(), 1);
+
+    const maps = [];
+    let releaseMap;
+    const allowMap = new Promise(resolve => { releaseMap = resolve; });
+    await page.route('https://www.google.com/maps**', async route => {
+      maps.push(route.request().url());
+      await allowMap;
+      await route.fulfill({ contentType: 'text/html', body: '<title>Mapa de prueba</title>' });
+    });
+    await page.goto(base + trainingCampus, { waitUntil: 'networkidle' });
+    const map = page.locator('[data-training-map-src]');
+    assert.deepEqual(maps, []);
+    assert.equal(await map.getAttribute('src'), null);
+    await page.getByText('Ver mapa', { exact: true }).click();
+    await page.waitForFunction(() => document.querySelector('[data-training-map-src]')?.hasAttribute('src'));
+    assert.equal(await page.getByText('Cargando el mapa de Google…').isVisible(), true);
+    assert.equal(await page.getByRole('link', { name: 'Abrir el mapa en otra pestaña' }).isVisible(), true);
+    releaseMap();
+    await page.frameLocator('[data-training-map-src]').locator('title').waitFor({ state: 'attached' });
+    await page.locator('[data-training-map-status]').waitFor({ state: 'hidden' });
+    assert.equal(maps.length, 1);
+    assert.equal(await map.isVisible(), true);
+    await page.getByText('Ocultar mapa', { exact: true }).click();
+    assert.equal(await map.isVisible(), false);
+    await page.getByText('Ver mapa', { exact: true }).click();
+    assert.equal(await map.isVisible(), true);
+    assert.equal(maps.length, 1);
+    assert.equal(await page.locator('.ad-wrap, script[src*="adsbygoogle"]').count(), 0);
     assert.deepEqual(errors,[],`${engine}: browser errors`);
     assert.deepEqual(adRequests,[],`${engine}: advertising must remain paused until CMP verification`);
     console.log(`✓ ${engine}: mobile/desktop, editorial pages, no overflow, archive, filters, quick view, employment description and recommendations`);

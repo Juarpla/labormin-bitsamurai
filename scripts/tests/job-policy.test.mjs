@@ -175,6 +175,25 @@ test('expiry respects the Lima day, the earlier employer deadline and the exact 
   assert.equal(jobPosting(full, at), null);
 });
 
+test('an application deadline published in the description expires the listing and survives archiving', async () => {
+  const { isExpired, jobExpiration } = await import('../../src/lib/job-policy.mjs');
+  const { archiveEntry } = await import('../../src/lib/job-archive.mjs');
+  const job = { slug: 'minas', postedAt: '2026-10-28', validThrough: '2026-11-30' };
+  const closing = new Date('2026-11-04T05:00:00Z');
+  for (const description of [
+    '<p>Plazo límite de postulación: 03/11/2026Te ofrecemos capacitación.</p>',
+    '<p>Fecha límite de postulación: <strong>3 de noviembre del 2026</strong></p>',
+    '<p><strong>Fecha límite</strong> de postulación 3/11/2026</p>',
+  ]) {
+    const candidate = { ...job, description };
+    assert.equal(isExpired(candidate, new Date(closing.getTime() - 1)), false);
+    assert.equal(isExpired(candidate, closing), true);
+    assert.equal(archiveEntry(candidate, 'expired').validThrough, closing.toISOString());
+  }
+  assert.equal(jobExpiration({ ...job, description: 'Fecha límite de postulación: 31/10/2026.' }).date, '2026-11-01T05:00:00.000Z');
+  assert.equal(jobExpiration({ ...job, description: 'Fecha límite de postulación: 31/11/2026. Inducción: 09/11/2026.' }).date, jobExpiration(job).date);
+});
+
 test('an observed listing keeps its clock until verified republication', async () => {
   const { withStableDates, updateArchive, compactArchiveEntry } = await import('../../src/lib/job-archive.mjs');
   const old = { id: 'a', slug: 'a', country: 'PE', remote: false, postedAt: '2026-10-01', description: 'Descripción de fuente. '.repeat(8) };

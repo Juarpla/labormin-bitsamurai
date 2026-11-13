@@ -1,0 +1,148 @@
+[
+  {
+    "center": "jose-carlos-mariategui",
+    "slug": "electronica-industrial",
+    "title": "Electrónica Industrial",
+    "source": { "label": "Plan de estudios del IES José Carlos Mariátegui", "url": "https://iesjcm.edu.pe/newsites/index.php/electronica-industrial/", "verifiedAt": "2026-11-13" },
+    "summary": "Aprende a instalar y mantener equipos electrónicos y a automatizar procesos. La malla va de circuitos y mediciones a sensores, controladores y redes industriales.",
+    "mode": "presencial",
+    "cost": { "kind": "parcial", "label": "S/ 210 de admisión · S/ 100 de matrícula base", "detail": "Importes publicados para 2026. Pide el costo total por periodo y los pagos de materiales y titulación." },
+    "duration": "3 años · 6 periodos",
+    "credential": "Bachiller técnico y título de profesional técnico en Electrónica Industrial, según los requisitos de cada trámite.",
+    "admission": "Revisa el prospecto y solicita el desglose de pagos. El programa publica clases de 4 a 9 p. m. Confirma el turno al postular.",
+    "availability": "Consulta el próximo cronograma con el instituto.",
+    "action": { "label": "Consultar admisión", "url": "https://iesjcm.edu.pe/newsites/index.php/admision/" },
+    "curriculum": ["Circuitos, mediciones y tableros eléctricos", "Instrumentación, sensores y actuadores", "Automatización con PLC y SCADA", "Redes industriales y experiencias en situaciones reales de trabajo"],
+    "location": { "kind": "campus", "label": "Samegua · Moquegua", "address": "Av. Andrés Avelino Cáceres s/n, Samegua, Mariscal Nieto, Moquegua", "source": { "label": "Sede y mapa del instituto", "url": "https://iesjcm.edu.pe/newsites/index.php/locales/" }, "embed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2390.342449445873!2d-70.904593!3d-17.1839103!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91449ea04ab4f76d%3A0xef05d0b1228073b2!2sInstituto%20de%20Educaci%C3%B3n%20Superior%20P%C3%BAblico%20Jos%C3%A9%20Carlos%20Mari%C3%A1tegui!5e0!3m2!1ses!2spe!4v1690000000000!5m2!1ses!2spe" },
+    "notes": [
+      { "kind": "area", "text": "Samegua está a unos 5 km de la ciudad de Moquegua, según la municipalidad distrital. Como el turno publicado termina a las 9 p. m., consulta el transporte de regreso antes de elegir horario.", "label": "Municipalidad Distrital de Samegua", "url": "https://munisamegua.gob.pe/la-ciudad/informacion-local" },
+      { "kind": "employers", "text": "El instituto informa que cuenta con convenios para realizar experiencias formativas en empresas e instituciones. Pide al área académica la lista de sedes y cupos que corresponde a tu promoción.", "label": "Convenios descritos por el instituto", "url": "https://iesjcm.edu.pe/newsites/index.php/electronica-industrial/" },
+      { "kind": "outlook", "text": "La Encuesta de Demanda Ocupacional del MTPE proyectó 101 puestos nuevos para profesionales técnicos de Electricidad y Energía en Moquegua en 2025. Es un dato regional de una familia de carreras. Las vacantes de abajo se consultan por separado.", "label": "MTPE · Proyección de demanda en Moquegua para 2025", "url": "https://cdn.www.gob.pe/uploads/document/file/7467445/6357219-edo-al-2025-version-ejecutiva-moquegua%282%29.pdf?v=1737584263" }
+    ],
+    "topics": ["electronics", "instrumentation"],
+    "reviewed": true
+  },
+  {
+    "center": "promae-comas",
+    "slug": "instalaciones-electricas",
+    "title": "Instalaciones Eléctricas",
+    "source": { "label": "Oferta y taller de CETPRO PROMAE Comas", "url": "https://www.promaecomas.edu.pe/#programas", "verifiedAt": "2026-11-13" },
+    "summary": "Esta opción ocupacional se enfoca en instalaciones de edificios. El centro documenta prácticas con tableros de distribución, canalizaciones y equipos de iluminación.",
+    "mode": "presencial",
+    "cost": { "kind": "consultar", "label": "Tarifa por consultar", "detail": "Pide el monto de la opción ocupacional y pregunta qué herramientas o materiales debes llevar." },
+    "credential": "Pregunta qué constancia o certificado entrega esta opción ocupacional.",
+    "admission": "El centro publica una edad mínima de 14 años, dos fotos tamaño carné y una copia del DNI o carné de extranjería. Consulta el horario y la duración de esta opción.",
+    "availability": "Confirma los cupos y la fecha de inicio con el centro.",
+    "action": { "label": "Consultar al CETPRO", "url": "https://www.promaecomas.edu.pe/#contacto" },
+    "curriculum": ["Colocación de cajas y tuberías", "Instalación y mantenimiento de tableros de distribución", "Montaje de accesorios y equipos de iluminación", "Mantenimiento de artefactos eléctricos"],
+    "location": { "kind": "campus", "label": "Comas · Lima", "address": "Calle San Germán 155, Comas, Lima", "source": { "label": "Dirección y mapa del CETPRO", "url": "https://www.promaecomas.edu.pe/#contacto" }, "embed": "https://www.google.com/maps?q=Calle+San+German+155+Comas+Lima+Peru&output=embed" },
+    "notes": [
+      { "kind": "area", "text": "La entrada queda a la altura del km 12 de la avenida Túpac Amaru, en Lima Norte. El centro identifica la calle San Germán también por su nombre anterior, Uchumayo.", "label": "Referencia de llegada publicada por el CETPRO", "url": "https://www.promaecomas.edu.pe/#contacto" },
+      { "kind": "alumni", "text": "En el testimonio publicado por el CETPRO, un egresado cuenta que empezó sin conocimientos de electricidad y terminó instalando tableros por su cuenta. El centro no publica su nombre.", "label": "Historias de egresados publicadas por el CETPRO", "url": "https://www.promaecomas.edu.pe/#testimonios" }
+    ],
+    "topics": ["homeElectrical"],
+    "reviewed": true
+  },
+  {
+    "center": "cetpro-juliaca",
+    "slug": "electronica-y-electricidad",
+    "title": "Electrónica y Electricidad",
+    "source": { "label": "Ficha del programa del CETPRO Horacio Zeballos Gámez", "url": "https://cetprohzgj.edu.pe/carreras/electronica-y-electricidad", "verifiedAt": "2026-11-13" },
+    "summary": "Practica instalaciones eléctricas en viviendas y montaje de circuitos. El segundo módulo se dedica a la reparación de equipos eléctricos y electrónicos.",
+    "mode": "presencial",
+    "cost": { "kind": "parcial", "label": "Sin pensiones · S/ 350 de mantenimiento", "detail": "El programa publica un pago único de S/ 350 para mantenimiento de máquinas. Admisión pide confirmar el monto al matricularte." },
+    "duration": "1 año · 2 módulos · 1.056 horas académicas",
+    "credential": "Certificado por módulo y título de auxiliar técnico al aprobar ambos, según el centro.",
+    "admission": "Edad mínima de 14 años, copia del DNI y pago de mantenimiento al matricularte.",
+    "availability": "Pregunta por el turno, la sede y los cupos de este programa.",
+    "action": { "label": "Consultar admisión", "url": "https://cetprohzgj.edu.pe/admision" },
+    "curriculum": ["Instalaciones eléctricas domiciliarias y montaje de proyectos electrónicos", "Reparación y mantenimiento de equipos eléctricos, electrónicos y de telefonía celular"],
+    "location": { "kind": "city", "label": "Juliaca · Puno", "source": { "label": "Sedes del CETPRO en Juliaca", "url": "https://cetprohzgj.edu.pe/contacto" } },
+    "notes": [
+      { "kind": "area", "text": "El centro tiene dos sedes en Juliaca. El Edificio Azul está en Jr. Lima 430, segundo piso, a una cuadra de la plaza Bolognesi. La otra sede se encuentra junto al parque El Triciclista, en la urbanización César Vallejo. Confirma dónde se dictan los módulos antes de ir.", "label": "Contacto y referencias de ambas sedes", "url": "https://cetprohzgj.edu.pe/contacto" }
+    ],
+    "topics": ["homeElectrical"],
+    "reviewed": true
+  },
+  {
+    "center": "narciso-villanueva",
+    "slug": "explotacion-minera",
+    "title": "Explotación Minera",
+    "source": { "label": "Oferta del IESTP Narciso Villanueva Manzo", "url": "https://iesnarcisovillanuevamanzo.edu.pe/", "verifiedAt": "2026-11-13" },
+    "summary": "Carrera técnica en Conchucos. El diccionario del MTPE describe la especialidad como formación para operaciones de mina subterránea y a cielo abierto. Solicita la malla de la promoción al instituto.",
+    "cost": { "kind": "parcial", "label": "Sin mensualidades de enseñanza", "detail": "Consulta los pagos por matrícula, materiales, prácticas y titulación." },
+    "duration": "3 años · 6 semestres",
+    "credential": "Título de profesional técnico en Explotación Minera, según la institución.",
+    "admission": "Consulta la admisión con tus documentos de identidad y de estudios secundarios. Pide el calendario que corresponde a la próxima promoción.",
+    "availability": "La admisión 2026-I aparece cerrada. Confirma las fechas de 2027-I directamente con el instituto.",
+    "curriculum": ["Operación minera subterránea y a cielo abierto", "Sostenimiento, perforación y transporte de minerales, según la descripción de la especialidad del MTPE"],
+    "location": { "kind": "campus", "label": "Conchucos · Áncash", "address": "Av. Los Incas, mz. K1, lote 13, sector Flor del Valle, Conchucos, Pallasca, Áncash", "source": { "label": "Dirección de la sede central publicada por el IESTP", "url": "https://iesnarcisovillanuevamanzo.edu.pe/" } },
+    "notes": [
+      { "kind": "area", "text": "La sede está en el sector Flor del Valle del distrito de Conchucos, en la provincia de Pallasca. Si vienes de otro distrito, confirma con el instituto cómo llegar a la avenida Los Incas.", "label": "Contacto del instituto en Conchucos", "url": "https://iesnarcisovillanuevamanzo.edu.pe/" },
+      { "kind": "outlook", "text": "Las áreas que describe Mi Carrera sirven para orientar la búsqueda de trabajo. Revisa qué anuncios aceptan formación técnica y cuáles piden ingeniería o experiencia en una operación.", "label": "Diccionario de carreras del MTPE", "url": "https://micarrera.trabajo.gob.pe/carreras-profesionales/diccionario-carreras" }
+    ],
+    "topics": ["extraction"],
+    "reviewed": true
+  },
+  {
+    "center": "chalhuahuacho",
+    "slug": "explotacion-minera",
+    "title": "Explotación Minera",
+    "source": { "label": "Malla curricular del IESTP Chalhuahuacho", "url": "https://iestpchalhuahuacho.edu.pe/explotacion-minera/", "verifiedAt": "2026-11-13" },
+    "summary": "La carrera reúne trabajo de campo y planificación. El plan empieza por topografía y muestreo, continúa con operaciones de mina y termina con supervisión y seguridad.",
+    "mode": "presencial",
+    "cost": { "kind": "parcial", "label": "S/ 180 por el examen 2026-I", "detail": "Importe de una convocatoria anterior. Consulta el próximo examen y el costo completo de los estudios." },
+    "duration": "3 años · 6 ciclos",
+    "credential": "El instituto describe el perfil de profesional técnico. Confirma la denominación del título y los trámites de egreso.",
+    "admission": "La convocatoria anterior pidió acreditar educación básica concluida y presentar el documento de identidad. Verifica el próximo prospecto.",
+    "availability": "La inscripción 2026-I terminó el 16 de abril de 2026.",
+    "action": { "label": "Consultar la próxima admisión", "url": "https://iestpchalhuahuacho.edu.pe/admision/" },
+    "curriculum": ["Topografía de superficie y subterránea y muestreo de minerales", "Métodos de explotación, geomecánica y ventilación", "Planeamiento de operaciones y seguridad minera"],
+    "location": { "kind": "campus", "label": "Challhuahuacho · Apurímac", "address": "Sector 3, manzana 22, lote 1, Challhuahuacho, Cotabambas, Apurímac", "source": { "label": "Sede y mapa del instituto", "url": "https://iestpchalhuahuacho.edu.pe/local/" }, "embed": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15477.448888170224!2d-72.2476962!3d-14.1147831!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x916c13d1d3a4fdd3%3A0xb4798d77d0447a9d!2sI.E.S.T.P.%20Chalhuahuacho!5e0!3m2!1ses-419!2spe!4v1733499292567!5m2!1ses-419!2spe" },
+    "notes": [
+      { "kind": "area", "text": "El instituto está en el sector 3 de Challhuahuacho, en la provincia de Cotabambas. El plan publicado indica turno de mañana de lunes a viernes. Si viajas desde otra localidad, confirma horario y acceso a la sede antes de inscribirte.", "label": "Horario del programa en Challhuahuacho", "url": "https://iestpchalhuahuacho.edu.pe/explotacion-minera/" },
+      { "kind": "outlook", "text": "El instituto menciona topografía, muestreo y planeamiento entre sus campos laborales. Revisa qué puestos aceptan el título técnico y qué experiencia pide cada operación.", "label": "Campo laboral según el instituto", "url": "https://iestpchalhuahuacho.edu.pe/explotacion-minera/" }
+    ],
+    "topics": ["extraction", "surveying", "drilling"],
+    "reviewed": true
+  },
+  {
+    "center": "capacita-t",
+    "slug": "salud-y-seguridad-para-ambientes-de-trabajo-moderno",
+    "title": "Salud y seguridad para ambientes de trabajo moderno",
+    "source": { "label": "Curso publicado en CAPACÍTA-T", "url": "https://capacitacionlaboral.trabajo.gob.pe/cursos/salud-y-seguridad-para-ambientes-de-trabajo-moderno/", "verifiedAt": "2026-11-13" },
+    "summary": "Curso en línea para reconocer riesgos laborales y organizar medidas de prevención. Incluye ejercicios con la matriz de identificación de peligros, evaluación de riesgos y controles (IPERC).",
+    "mode": "virtual",
+    "cost": { "kind": "gratuito", "label": "Curso y certificado gratuitos" },
+    "duration": "16 horas · a tu ritmo",
+    "credential": "Certificado de Fundación Romero al aprobar las evaluaciones.",
+    "admission": "Crea una cuenta desde la ficha de CAPACÍTA-T. El aula puede solicitar un registro con el proveedor del curso.",
+    "availability": "Abre la ficha para comprobar el acceso al aula.",
+    "action": { "label": "Abrir el curso en CAPACÍTA-T", "url": "https://capacitacionlaboral.trabajo.gob.pe/cursos/salud-y-seguridad-para-ambientes-de-trabajo-moderno/" },
+    "curriculum": ["Cultura de prevención y principios de seguridad y salud en el trabajo", "Identificación de riesgos y aplicación de una matriz IPERC", "Higiene ocupacional y ergonomía, incluido el trabajo remoto"],
+    "notes": [
+      { "kind": "outlook", "text": "IPERC y prevención son útiles para leer los requisitos de un aviso de seguridad. Para postular a una operación, comprueba qué título, experiencia e inducción específica exige el empleador.", "label": "Temario del curso de seguridad", "url": "https://capacitacionlaboral.trabajo.gob.pe/cursos/salud-y-seguridad-para-ambientes-de-trabajo-moderno/" }
+    ],
+    "topics": ["safety"],
+    "reviewed": true
+  },
+  {
+    "center": "jovenes-productivos",
+    "slug": "almacen-despacho-y-reposicion-de-mercaderia",
+    "title": "Almacén, despacho y reposición de mercadería",
+    "source": { "label": "Capacitación laboral del programa Jóvenes Productivos", "url": "https://comunidad.jovenesproductivos.gob.pe/capacitacion_laboral/", "verifiedAt": "2026-11-13" },
+    "summary": "El MTPE incluye esta capacitación en su oferta virtual. Sirve como punto de partida para explorar tareas de almacén, despacho y reposición en el sector minero y otras industrias.",
+    "mode": "virtual",
+    "cost": { "kind": "gratuito", "label": "Capacitación virtual gratuita" },
+    "credential": "El programa ofrece certificación en sus cursos virtuales. Verifica en el aula cómo obtenerla para este curso.",
+    "admission": "Consulta el registro y las condiciones de acceso en el aula virtual del programa.",
+    "availability": "El programa lo incluye en su listado. Consulta el aula para comprobar el acceso y la duración.",
+    "action": { "label": "Consultar el aula virtual", "url": "https://aulavirtual.jovenesproductivos.gob.pe/" },
+    "curriculum": ["Almacén de mercadería", "Despacho y reposición"],
+    "notes": [
+      { "kind": "outlook", "text": "Al comparar ofertas de almacén, revisa si piden manejo de inventarios o de un sistema como SAP, y si requieren estudios técnicos, licencia o experiencia. Estos requisitos dependen de la vacante.", "label": "Catálogo de la capacitación del MTPE", "url": "https://comunidad.jovenesproductivos.gob.pe/capacitacion_laboral/" }
+    ],
+    "topics": ["logistics"],
+    "reviewed": true
+  }
+]
