@@ -16,7 +16,10 @@ concurrency:
 
 jobs:
   refresh:
-    if: github.ref == 'refs/heads/main' && (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success')
+    if: >-
+      github.ref == 'refs/heads/main' &&
+      (github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.display_title != 'Solo sincronizar D1'))
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:

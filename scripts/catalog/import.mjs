@@ -1,4 +1,4 @@
-import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { appendFileSync, existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { basename, join } from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -57,10 +57,15 @@ try {
     `(SELECT COUNT(*) FROM catalog_${kind} WHERE EXISTS (SELECT 1 FROM catalog_ready WHERE name = ${quote(kind)})) AS ${kind}`
   ).join(',')};`);
   const [stored] = wrangler.query("SELECT source_revision FROM catalog_ready WHERE name = 'jobs';");
-  if (stored?.source_revision > data.jobsRevision) {
+  const superseded = stored?.source_revision > data.jobsRevision;
+  if (superseded) {
     console.log('D1 ya tiene un feed más reciente; se conservó esa edición.');
   } else if (!counts || stored?.source_revision !== data.jobsRevision || counts.jobs !== data.jobs.length || kinds.some(kind => !counts[kind])) throw new Error('La verificación de D1 no coincide con la importación.');
   console.log('Importación confirmada por D1:', counts);
+  if (jobsOnly && process.env.GITHUB_OUTPUT) {
+    const status = superseded ? 'superseded' : 'completed';
+    appendFileSync(process.env.GITHUB_OUTPUT, `status=${status}\nrevision=${stored.source_revision}\njobs=${counts?.jobs ?? ''}\n`);
+  }
 } finally {
   // Astro writes an ignored deploy redirect even for --outDir. Restore the
   // previous redirect if the current one still belongs to this export.

@@ -1,10 +1,15 @@
 name: 01 · Actualizar vacantes
+run-name: ${{ inputs.sync_d1_only && 'Solo sincronizar D1' || '01 · Actualizar vacantes' }}
 
 on:
   schedule:
     - cron: '0 4 * * *' # daily 04:00 UTC
   workflow_dispatch:
     inputs:
+      sync_d1_only:
+        description: 'Solo sincronizar D1 con las vacantes publicadas en main'
+        type: boolean
+        default: false
       sources:
         description: 'Override LM_SOURCES (e.g. "indeed,seek"). Empty = weekday schedule.'
         required: false
@@ -46,7 +51,7 @@ jobs:
       # LinkedIn Mon/Wed/Fri · Indeed Tue/Thu · Seek Sat+Tue. Sun = `none`
       # (sentinel: an EMPTY LM_SOURCES would mean "run ALL sources" in ingest).
       - name: Pick Apify sources for today
-        if: ${{ !inputs.presentation_only }}
+        if: ${{ !inputs.sync_d1_only && !inputs.presentation_only }}
         id: sources
         env:
           SOURCES_OVERRIDE: ${{ inputs.sources }}
@@ -67,7 +72,7 @@ jobs:
           echo "LM_SOURCES=$s"
 
       - name: Ingest job boards
-        if: ${{ !inputs.presentation_only }}
+        if: ${{ !inputs.sync_d1_only && !inputs.presentation_only }}
         run: node scripts/ingest.mjs
         env:
           ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
@@ -76,7 +81,7 @@ jobs:
           LM_SOURCES: ${{ steps.sources.outputs.value }}
 
       - name: Commit refreshed feed (if changed)
-        if: ${{ !inputs.presentation_only }}
+        if: ${{ !inputs.sync_d1_only && !inputs.presentation_only }}
         run: |
           git config user.name "labormin-bot"
           git config user.email "bot@labormin.com"
@@ -93,6 +98,7 @@ jobs:
           fi
 
       - name: Prepare Vista clara and English titles
+        if: ${{ !inputs.sync_d1_only }}
         env:
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
           AGNES_MODEL: ${{ vars.AGNES_MODEL }}
@@ -108,6 +114,7 @@ jobs:
         run: node scripts/prepare-job-presentation.mjs
 
       - name: Commit prepared presentation (if changed)
+        if: ${{ !inputs.sync_d1_only }}
         run: |
           if [[ -n "$(git status --porcelain src/data/job-presentation.json)" ]]; then
             git config user.name "labormin-bot"
@@ -120,13 +127,43 @@ jobs:
 
       # El deploy lo dispara Workers Builds (Git-connected) con cada push.
 
-      - name: Synchronize the approved feed to D1
+      - name: Sincronizar vacantes con D1
+        id: d1
         env:
           CATALOG_D1_API_TOKEN: ${{ secrets.CATALOG_D1_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          if [[ -n "$CATALOG_D1_API_TOKEN" ]]; then
-            node scripts/catalog/import.mjs --remote --jobs-only
-          else
-            echo "::notice::CATALOG_D1_API_TOKEN is missing. The Worker uses the current build snapshot when D1 is older."
+          if [[ -z "$CATALOG_D1_API_TOKEN" ]]; then
+            echo 'status=missing_token' >> "$GITHUB_OUTPUT"
+            echo '::warning::Sincronización D1 omitida. Falta el secreto CATALOG_D1_API_TOKEN.'
+            exit 0
           fi
+          node scripts/catalog/import.mjs --remote --jobs-only
+
+      - name: Mostrar resultado de la sincronización D1
+        if: ${{ !cancelled() }}
+        env:
+          D1_STEP_OUTCOME: ${{ steps.d1.outcome }}
+          D1_STATUS: ${{ steps.d1.outputs.status }}
+          D1_REVISION: ${{ steps.d1.outputs.revision }}
+          D1_JOBS: ${{ steps.d1.outputs.jobs }}
+        run: |
+          case "$D1_STEP_OUTCOME:$D1_STATUS" in
+            success:completed)
+              result="Completada. D1 confirmó $D1_JOBS registros del feed $D1_REVISION."
+              ;;
+            success:missing_token)
+              result='Omitida. Falta el secreto `CATALOG_D1_API_TOKEN`.'
+              ;;
+            success:superseded)
+              result="Omitida. D1 ya contiene la edición más reciente $D1_REVISION."
+              ;;
+            skipped:*)
+              result='Omitida. La ejecución se detuvo antes de llegar a D1.'
+              ;;
+            *)
+              result='Falló. Revisa el paso «Sincronizar vacantes con D1».'
+              ;;
+          esac
+          printf '### Sincronización de vacantes con D1\n\n%s\n' "$result" >> "$GITHUB_STEP_SUMMARY"
+          echo "$result"

@@ -33,6 +33,11 @@ recibe credenciales ni conecta directamente a la base. Las fichas salen en
   los secretos de GitHub Actions con permiso **Account → D1 → Edit** en la
   cuenta de Labormin. La tarea actualiza solo empleo y prácticas; no sobreescribe
   las guías, la formación ni los eventos que se gestionen en D1.
+- Para reimportar las vacantes publicadas, abre **01 · Actualizar vacantes**
+  en GitHub Actions, elige **Run workflow** en `main` y marca **Solo sincronizar D1**.
+  El modo omite la consulta de fuentes y la preparación con IA. En **Summary**
+  verás si la sincronización se completó, se omitió o falló. Si se completó,
+  GitHub muestra la revisión del feed y el recuento de registros que confirmó D1.
 - Para agregar o actualizar una guía editorial sin tocar Astro, prepara un
   JSON con `slug`, `title`, `description`, `group` (`primer-empleo`,
   `formacion` o `evaluar`), `icon` (`credential`, `materials`, `time`,
