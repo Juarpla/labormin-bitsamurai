@@ -69,6 +69,21 @@
           "url": "https://fortunamining.com/mine/caylloma-mine-peru/"
         }
       ]
+    },
+    "pe:compania minera poderosa": {
+      "checkedAt": "2026-11-14",
+      "facts": [
+        {
+          "text": "Compañía Minera Poderosa impulsa la implementación de 180 micromedidores en el sistema de agua potable de Piás",
+          "label": "poderosa.com.pe",
+          "url": "https://poderosa.com.pe/"
+        },
+        {
+          "text": "Compañía Minera Poderosa continúa fortaleciendo la transparencia ambiental mediante Monitoreo Participativo para el Proyecto Palca",
+          "label": "poderosa.com.pe",
+          "url": "https://poderosa.com.pe/"
+        }
+      ]
     }
   },
   "places": {
@@ -112,5 +127,11 @@
         }
       ]
     }
+  },
+  "attempts": {
+    "companies:pe:minera chinalco": "2026-11-14T19:54:56.740Z",
+    "companies:pe:minera chinalco peru": "2026-11-14T19:54:56.740Z",
+    "companies:pe:compania minera poderosa": "2026-11-14T19:54:56.740Z",
+    "companies:pe:southern copper": "2026-11-14T19:54:56.740Z"
   }
 }
