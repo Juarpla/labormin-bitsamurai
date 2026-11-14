@@ -125,7 +125,7 @@
 .training-guides { border-top: 1px solid var(--detail-line); padding-top: 1.2rem; }
 .training-guide-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 20rem));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
 }
 .training-guide-grid > li { display: grid; }
@@ -134,14 +134,14 @@
   flex-direction: column;
   align-items: flex-start;
   gap: .75rem;
-  aspect-ratio: 1;
+  min-block-size: clamp(14rem, 24vw, 18rem);
   padding: clamp(1rem, 3vw, 1.5rem);
   border: 1px solid var(--detail-line);
   border-radius: 16px;
   background: var(--color-graphite-900);
 }
 .training-guide-card:is(:hover, :focus-visible) { border-color: var(--detail-accent); }
-.training-guide-card p { font-size: .9375rem; }
+.training-guide-card p { max-width: 42ch; font-size: .9375rem; }
 .training-guide-cta {
   display: inline-flex;
   align-items: center;
@@ -165,7 +165,7 @@
 }
 
 @media (max-width: 640px) {
-  .training-guide-grid { grid-template-columns: minmax(0, 20rem); }
+  .training-guide-grid { grid-template-columns: minmax(0, 1fr); }
 }
 
 @media (max-width: 560px) {

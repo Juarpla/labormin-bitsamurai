@@ -13,7 +13,7 @@ const area = notes.filter(note => note.kind === 'area');
 <section class="training-section" id="ubicacion" aria-labelledby="training-location-title" data-training-location={online ? 'virtual' : place?.kind ?? 'unknown'}>
   <h2 id="training-location-title">{online ? 'Cómo se dicta' : 'Ubicación y acceso'}</h2>
   <div class="training-location">
-    <div class="training-location-graphic"><TrainingIllustration kind={online ? 'virtual' : campus ? 'campus' : 'location'} /></div>
+    <div class="training-location-graphic"><TrainingIllustration kind={online ? 'online-access' : campus ? 'campus' : 'location'} /></div>
     <div class="training-location-copy">
       <h3>{online ? 'Aula virtual · desde Perú' : place?.label ?? 'Perú'}</h3>
       {online ? null : (

@@ -1,5 +1,5 @@
 ---
-interface Props { kind: 'electronics' | 'mining' | 'virtual' | 'workshop' | 'location' | 'campus' }
+interface Props { kind: 'electronics' | 'mining' | 'virtual' | 'workshop' | 'location' | 'campus' | 'online-access' }
 const { kind } = Astro.props;
 ---
 <svg viewBox="0 0 288 176" fill="none" class="training-illustration" aria-hidden="true" focusable="false">
@@ -25,6 +25,14 @@ const { kind } = Astro.props;
     <path class="accent" d="m79 73 18 12-18 12V73Z" />
     <rect class="accent filled" x="183" y="103" width="67" height="44" rx="7" />
     <path class="accent" d="m194 122 5 5 9-10m10 6h19m-43 13h43" />
+  </>}
+  {kind === 'online-access' && <>
+    <rect class="panel" x="53" y="28" width="182" height="101" rx="10" />
+    <rect class="trace" x="64" y="39" width="160" height="79" rx="4" />
+    <path class="trace filled" d="M32 129h224l-7 12a12 12 0 0 1-10 6H49a12 12 0 0 1-10-6l-7-12Z" />
+    <path class="trace" d="M125 137h38" />
+    <path class="accent" d="M114 70a45 45 0 0 1 60 0m-50 10a30 30 0 0 1 40 0m-30 10a15 15 0 0 1 20 0" />
+    <circle class="accent filled" cx="144" cy="100" r="2.5" />
   </>}
   {kind === 'workshop' && <>
     <rect class="panel" x="24" y="22" width="240" height="132" rx="15" />
