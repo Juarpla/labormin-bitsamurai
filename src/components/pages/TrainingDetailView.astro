@@ -76,7 +76,7 @@ const suggestedGuides = guideSlugs
 
   {program?.curriculum && <section class="training-section" aria-labelledby="training-curriculum-title">
     <JobSectionHeading id="training-curriculum-title" step={1} class="training-step-heading">Qué aprenderás</JobSectionHeading>
-    <div class="training-illustrated-content">
+    <div class="training-section-body training-illustrated-content">
       <ul class="training-curriculum-list">{program.curriculum.map(item => <li>{item}</li>)}</ul>
       <div class="training-section-graphic"><TrainingIllustration kind={illustration} /></div>
     </div>
@@ -96,7 +96,7 @@ const suggestedGuides = guideSlugs
 
   <section class="training-section" aria-labelledby="training-admission-title">
     <JobSectionHeading id="training-admission-title" step={locationStep && locationStep + 1} class="training-step-heading">{online ? 'Cómo acceder' : 'Admisión y cupos'}</JobSectionHeading>
-    <div class="training-admission">
+    <div class="training-section-body training-admission">
       <p>{program ? program.admission ?? 'Consulta los requisitos, el calendario y los documentos para inscribirte en la fuente del programa.' : center.admission}</p>
       {program?.cost?.detail && <p>{program.cost.detail}</p>}
       {program?.availability && <p>{program.availability}</p>}
@@ -105,12 +105,14 @@ const suggestedGuides = guideSlugs
     </div>
   </section>
 
-  {perspectives.length > 0 && <section class="training-section training-perspectives" aria-labelledby="training-perspectives-title">
+  {perspectives.length > 0 && <section class="training-section" aria-labelledby="training-perspectives-title">
     <JobSectionHeading id="training-perspectives-title" step={locationStep && locationStep + 2} class="training-step-heading">Estudiar y trabajar en esta área</JobSectionHeading>
-    {perspectives.map(group => <section>
-      <h3>{group.title}</h3>
-      {group.notes.map(note => <div><p>{note.text}</p><a class="training-text-link" href={note.url}>{note.label}</a></div>)}
-    </section>)}
+    <div class="training-section-body training-perspectives">
+      {perspectives.map(group => <section>
+        <h3>{group.title}</h3>
+        {group.notes.map(note => <div><p>{note.text}</p><a class="training-text-link" href={note.url}>{note.label}</a></div>)}
+      </section>)}
+    </div>
   </section>}
 
   {opportunities && <TrainingVacancies jobs={opportunities.job} internships={opportunities.internship} />}

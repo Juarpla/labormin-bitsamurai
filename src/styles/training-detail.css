@@ -69,6 +69,11 @@
 .training-section { margin-top: clamp(2rem, 5vw, 3.5rem); }
 .training-detail .training-step-heading { align-items: baseline; }
 .training-step-heading > span[aria-hidden] { align-self: start; margin-top: .2em; }
+.training-section-body {
+  padding: clamp(1rem, 2.5vw, 1.7rem);
+  border: 1px solid var(--detail-line);
+  border-radius: 16px;
+}
 .training-illustrated-content {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, min(34%, 18rem));
@@ -86,7 +91,7 @@
 .training-location-links { display: flex; flex-wrap: wrap; gap: .35rem 1.3rem; margin-top: .6rem; font-size: .88rem; }
 .training-location-links a { display: inline-flex; min-height: 2.75rem; align-items: center; gap: .3rem; }
 
-.training-map { margin-top: .85rem; border-top: 1px solid var(--detail-line); padding-top: .65rem; }
+.training-map { margin-top: .5rem; }
 .training-map summary { display: flex; width: fit-content; min-height: 2.75rem; align-items: center; gap: .6rem; cursor: pointer; color: var(--detail-accent); font-weight: 600; list-style: none; }
 .training-map summary::-webkit-details-marker { display: none; }
 .training-map summary svg { width: 1rem; height: 1rem; stroke: currentColor; stroke-width: 1.5; transition: transform .25s cubic-bezier(.16, 1, .3, 1); }
@@ -102,7 +107,7 @@
 .training-admission a { display: inline-block; margin-top: .7rem; }
 .training-perspectives > section + section { margin-top: 1.2rem; }
 .training-perspectives h3 { margin-bottom: .45rem; }
-.training-perspectives :is(section, div) a { display: inline-block; margin-top: .4rem; font-size: .9rem; }
+.training-perspectives a { display: inline-block; margin-top: .4rem; font-size: .9rem; }
 .training-perspectives div + div { margin-top: .75rem; }
 
 .training-opportunities { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1.25rem, 4vw, 2.5rem); }
