@@ -11530,31 +11530,41 @@
       "universidad-nacional-santiago-antunez-de-mayolo/ingenieria-de-minas": 0.4489
     },
     "semanticSignature": "30a1772fd169e416fa38cd2c08aba71d20c79b2877b496c7644f49785913e9b9",
-    "generatedAt": "2026-11-14T20:15:17.784Z",
+    "generatedAt": "2026-11-14T20:17:40.106Z",
     "analysisSignature": "30a1772fd169e416fa38cd2c08aba71d20c79b2877b496c7644f49785913e9b9",
     "analysis": {
-      "skills": [
+      "role": [
         {
-          "evidence": "Manejo de Excel a nivel avanzando",
-          "advice": "Crea una plantilla de captura de datos para registrar la profundidad de anclajes y usa tablas dinámicas para visualizar la tasa de fallas en un ejercicio académico de geomecánica."
+          "evidence": "Levantar información geomecánica de campo para elaboración de data.",
+          "advice": "Registra parámetros de fracturas y orientación en bitácoras de campo; esto documenta la heterogeneidad del macizo y permite comparar zonas con alta intersección de planos."
         },
         {
-          "evidence": "Software Geomecánicos",
-          "advice": "Simula el comportamiento de un bloque inestable en RocLab y documenta el análisis de estabilidad del techo en un reporte breve para validar tus competencias."
+          "evidence": "control de calidad de sostenimiento instalado en Mina",
+          "advice": "Verifica que el anclaje cumpla la resistencia especificada y registra la tensión aplicada; esa medición respalda la decisión de mantener o reforzar el sostenimiento en el frente de avance."
+        }
+      ],
+      "skills": [
+        {
+          "evidence": "Manejo de RS2 y Leapfrog a nivel básico",
+          "advice": "Estudia los menús de voladizo y bloques; crea un modelo 3D simulado con datos de sondeos para comparar la geometría del macizo y exportar secciones."
+        },
+        {
+          "evidence": "Manejo de Excel a nivel avanzando",
+          "advice": "Practica tablas dinámicas y macros sencillas; construye un resumen de parámetros geomecánicos para identificar tendencias de fracturación y preparar reportes comparativos."
         }
       ],
       "experience": [
         {
-          "evidence": "Egresada(o) o Bachiller de",
-          "advice": "Realiza un proyecto final de grado supervisado donde evalúes la calidad de un macizo rocoso mediante mapeo de discontinuidades para obtener evidencia de campo."
+          "evidence": "Egresada(o) o Bachiller de la carrera",
+          "advice": "Solicita una práctica corta en un laboratorio universitario o voluntariado en campañas geológicas; documenta en tu portafolio la toma de datos y el análisis básico de estabilidad."
         },
         {
-          "evidence": "Apoyar en la elaboración de reportes",
-          "advice": "Practica redactar un informe técnico de sostenimiento en un taller universitario o voluntariado minero, detallando los hallazgos y recomendaciones de la medición."
+          "evidence": "Apoyar en la elaboración de reportes geomecánicos",
+          "advice": "Redacta informes técnicos sobre casos de falla simulada en clase; entrega una revisión de sostenimiento con conclusiones claras para evaluar si el diseño es adecuado para el entorno."
         }
       ],
-      "company": "Investiga la ubicación de la Unidad Minera Inmaculada en Ayacucho y confirma el régimen 14x7 para preparar una pregunta sobre la logística de traslado y el alojamiento desde Arequipa.",
-      "visit": "Pregunta en qué sede minera se desarrollará la práctica y qué documentación oficial necesitas entregar para asegurar tu convenio."
+      "company": "Hochschild opera la Unidad Minera Inmaculada en Ayacucho. Investiga el régimen 14x7 y la cobertura de traslados para preparar una pregunta sobre la logística de llegada y el alojamiento durante la práctica.",
+      "visit": "Pregunta a selección quién cubre el traslado desde Arequipa, cómo es el régimen de 14x7 y qué convenio de práctica se firma antes de trasladarse a la sede en Ayacucho."
     }
   }
 }
