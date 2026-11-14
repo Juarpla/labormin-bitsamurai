@@ -10557,5 +10557,464 @@
       "visit": "Pregunta a selección por el proceso de traslado y alojamiento durante los primeros días, así como por la disponibilidad de transporte de acercamiento desde tu zona de origen hasta el campamento."
     },
     "generatedAt": "2026-11-12T12:52:39.169Z"
+  },
+  "scc-2931": {
+    "tipId": "role",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "trainingIds": [],
+    "opportunityIds": [],
+    "careerSignature": "81c59631747c3a148f731d53e29d9cdcc028eac84c4c38b9add939774c68ecf2",
+    "analysisSignature": "bd87e0b17d05c98eaca7361215da4c82315c450c7edb8e3948170bd255ce0ad1",
+    "analysis": {
+      "skills": [
+        {
+          "evidence": "Conocimientos de perforación en máquinas rotativas",
+          "advice": "Estudia los manuales de Epiroc y BoartLongyear para entender los sistemas de rotación. Crea una presentación visual que explique cómo ajustas los parámetros de rotación para maximizar la eficiencia de la perforación."
+        },
+        {
+          "evidence": "mecánica/electricidad básica de preferencia",
+          "advice": "Revisa los diagramas eléctricos y mecánicos de las perforadoras. Prepara una guía de diagnóstico para identificar fallas comunes en los componentes básicos y documenta los pasos de reparación."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "2 años de experiencia operando Perforadoras Diamantina",
+          "advice": "Si tienes menos de 2 años, realiza prácticas supervisadas en talleres o canteras. Documenta tu registro de horas de operación y las incidencias resueltas para acreditar tu familiaridad con el equipo."
+        },
+        {
+          "evidence": "responsabilidad por la maquinaria, equipos y herramientas",
+          "advice": "Organiza un bitácora de mantenimiento preventivo para tus herramientas de estudio o prácticas. Muestra cómo registras el estado de cada equipo y las acciones correctivas que implementas para evitar fallos."
+        }
+      ],
+      "company": "Investiga la ubicación de las minas Toquepala y Cuajone para identificar en cuál sede operan perforadoras diamantinas. Prepara una pregunta sobre los modelos específicos de Epiroc o BoartLongyear que se encuentran en esa sede para demostrar interés técnico.",
+      "visit": "Confirma en qué mina (Toquepala o Cuajone) y en qué turno se asignará la operación antes de aceptar el traslado. Pregunta quién gestiona el alojamiento y el transporte entre la ciudad más cercana y la sede asignada."
+    },
+    "generatedAt": "2026-11-14T11:47:53.097Z"
+  },
+  "ct-04192E060FAADFEC61373E686DCF3405": {
+    "analysisSignature": "cbaf91edc3e23689219eb1a87cd1fec75d4c2f2563bf836c290e08a2bf0bc693",
+    "analysis": {
+      "skills": [
+        {
+          "evidence": "gestión documentaria del Sistema",
+          "advice": "Crea una carpeta digital simulada con copias de IPERC y actas de capacitación para organizar registros ficticios y presentar el flujo de custodia como portafolio."
+        },
+        {
+          "evidence": "ISO 45001 y del D.S. 024-2016-EM",
+          "advice": "Resume en un cuadro comparativo los requisitos de ambas normas aplicados a un área minera hipotética y compártelo como evidencia de estudio técnico."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "1 año de experiencia en funciones similares",
+          "advice": "Documenta una tarea supervisada de auditoría interna en tu universidad o voluntariado minero para mostrar competencias básicas sin suplantar la antigüedad requerida."
+        },
+        {
+          "evidence": "Licencia de manejo A-IIa",
+          "advice": "Verifica si tu licencia está vigente y añade una declaración jurada de disponibilidad para conducir unidades de transporte de personal en campamento."
+        }
+      ],
+      "company": "Investiga en el anuncio si Manpower gestiona la logística de traslado y hospedaje en Cusco, y prepara una pregunta sobre cómo se coordina el ingreso al campamento y la cobertura de los gastos durante el turno 14x7.",
+      "visit": "Confirma el punto de encuentro exacto y el horario de presentación en el campamento de Cusco, además de si el empleador cubre el traslado desde la ciudad hasta la base."
+    },
+    "generatedAt": "2026-11-14T11:47:53.097Z"
+  },
+  "ct-220CA95C03B2A40561373E686DCF3405": {
+    "analysisSignature": "7d0c81c6c5ac5cf8ea50f1fbca296c89157b55d6deda08f78ba6ebdfaca89ef0",
+    "analysis": {
+      "skills": [
+        {
+          "evidence": "Seguridad y Salud Ocupacional",
+          "advice": "Resume las normas de seguridad del proyecto en un folleto de 4 páginas y practica su lectura para explicarlas en la entrevista."
+        },
+        {
+          "evidence": "Mecánica y Manejo defensivo",
+          "advice": "Prepara una lista de chequeo de mantenimiento básico de vehículos ligeros y ensaya su dictado técnico ante el evaluador."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "3 años como conductor de camioneta",
+          "advice": "Redacta un resumen de tu trayectoria en unidades mineras detallando las rutas operadas y el tipo de flota para adjuntar al CV."
+        },
+        {
+          "evidence": "Licencia de conducir vigente, mínimo A-IIA",
+          "advice": "Organiza una carpeta digital con la copia de tu licencia y el historial de siniestralidad limpio para presentar en selección."
+        }
+      ],
+      "company": null,
+      "visit": "Confirma el punto exacto de partida en Arequipa y el proceso de movilización inicial hacia la sede operativa."
+    },
+    "generatedAt": "2026-11-14T11:47:53.097Z"
+  },
+  "csb-minsur-1335774362": {
+    "tipId": "software",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "trainingIds": [],
+    "opportunityIds": [],
+    "careerSignature": "025b37b1d71587f08ebc63f837756acf8fe621fb5f59ef0dc3b07e79dd35dfa9",
+    "analysisSignature": "25835f867ac684a6703e5347e0db6b9aa037cb96ebfb9c5a054d82ad189d1902",
+    "analysis": {
+      "skills": [
+        {
+          "evidence": "negociación de derechos superficiales",
+          "advice": "Prepara un ejemplo de simulacro de negociación con comunidades simuladas para documentar tu capacidad de diálogo y cierre de acuerdos."
+        },
+        {
+          "evidence": "saneamiento físico legal",
+          "advice": "Desarrolla un estudio de caso sobre la resolución de un caso hipotético de saneamiento para evidenciar tu conocimiento procedimental."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "manejo de sistemas GIS",
+          "advice": "Ejecuta un proyecto académico aplicando herramientas GIS a un catastro predial simulado y documenta los resultados obtenidos."
+        },
+        {
+          "evidence": "Experiencia profesional mínima de 8 años",
+          "advice": "Si cumples el requisito, documenta tus logros en gestión predial real; si no, indica que este anuncio exige trayectoria profesional extensa."
+        }
+      ],
+      "company": "Investiga el rol de Minsur en el ICMM y su relación con Breca para formular una pregunta sobre cómo esos estándares impactan las decisiones de adquisición de tierras.",
+      "visit": "Consulta a selección qué sede o proyecto específico requiere esta gestión predial y si el cargo exige desplazamientos frecuentes a zonas de campo."
+    },
+    "generatedAt": "2026-11-14T11:47:53.097Z"
+  },
+  "ct-96536DABC1C044EF61373E686DCF3405": {
+    "analysisSignature": "ece7cde68c3976c41f74f77552eacd4a61ac4879bf2e679e890a47f3ec68f380",
+    "analysis": {
+      "skills": [
+        {
+          "evidence": "Conocimiento solido en montaje y desmontaje de equipos de bombeo",
+          "advice": "Aprende los procedimientos de montaje y desmontaje de equipos de bombeo a través de manuales técnicos y cursos en línea. Practica estos procedimientos en laboratorios o talleres de ingeniería mecánica."
+        },
+        {
+          "evidence": "Conocimiento de mantenimiento de electrobombas",
+          "advice": "Estudia los principios de funcionamiento y mantenimiento de electrobombas mediante cursos en línea y libros técnicos. Realiza ejercicios prácticos de mantenimiento en laboratorios o talleres de ingeniería eléctrica."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "2 años de experiencia en unidades mineras",
+          "advice": "Busca oportunidades de prácticas o voluntariado en empresas mineras o proyectos de explotación minera. Participa en actividades de supervisión y apoyo en operaciones mineras bajo la guía de profesionales experimentados."
+        },
+        {
+          "evidence": "Conocimiento en trabajos de izaje",
+          "advice": "Gana experiencia en trabajos de izaje mediante la participación en proyectos de construcción o minería, donde puedas asistir a operarios experimentados y aprender sobre los procedimientos y equipos utilizados."
+        }
+      ],
+      "company": "Investiga la estructura organizacional de Metal Sur Famin S.R.L. para entender cómo se distribuyen las responsabilidades y autoridades en el área de operaciones mineras.",
+      "visit": "Visita la página de Metal Sur Famin S.R.L. para confirmar la ubicación exacta de la sede en Challhuahuacho y los requisitos específicos para el proceso de selección."
+    },
+    "generatedAt": "2026-11-14T11:47:53.097Z"
+  },
+  "ct-B99E26CC084963BA61373E686DCF3405": {
+    "tipId": "software",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "trainingIds": [
+      "cetpro-naciones-unidas-callao"
+    ],
+    "opportunityIds": [],
+    "careerSignature": "fa498d17681c94dd8f3acf77618ac90436fc6b1b5abb5d0e666c2c55d0d12f8d",
+    "analysisSignature": "429e55b510f5f6dc1f44ee64b690cf23d5d8d484b46d5ac267f91241b90a6db9",
+    "analysis": {
+      "skills": [
+        {
+          "evidence": "Manejo de office intermedio",
+          "advice": "Elige una herramienta de Office mencionada en el anuncio y prepara un ejemplo concreto de cómo la usaste. Por ejemplo, si es Excel, crea una hoja de cálculo que muestre cómo organizaste y analizaste datos de inventario."
+        },
+        {
+          "evidence": "Deseable conocimiento en SAP",
+          "advice": "Elige una herramienta mencionada en el anuncio y prepara un ejemplo concreto de cómo la usaste. Por ejemplo, si es SAP, investiga cómo se usa en la gestión de almacenes y prepara un caso de estudio simulado sobre cómo aplicarías SAP para gestionar inventarios."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "Recepcionar, verificar y almacenar mercadería",
+          "advice": "Elige una tarea del anuncio y prepara un ejemplo que muestre cómo la abordarías. Por ejemplo, si es recepcionar mercadería, describe cómo organizaste y verificaste la recepción de productos en un proyecto académico o voluntario."
+        },
+        {
+          "evidence": "Realizar actividades de carga, descarga, picking y despacho",
+          "advice": "Elige una tarea del anuncio y prepara un ejemplo que muestre cómo la abordarías. Por ejemplo, si es picking, describe cómo organizaste y realizaste el picking de productos en un proyecto académico o voluntario."
+        }
+      ],
+      "company": "Investiga cómo Ransa gestiona la logística en la minería y cómo se adapta a las necesidades de sus clientes. Por ejemplo, pregunta sobre los procesos de almacenamiento y despacho que Ransa ha implementado en proyectos mineros.",
+      "visit": "Pregunta sobre la operación o sede específica donde se realizará el trabajo, el régimen laboral y si cubren el traslado."
+    },
+    "generatedAt": "2026-11-14T11:47:53.097Z"
+  },
+  "ct-BBA71CA2A97CD19461373E686DCF3405": {
+    "analysisSignature": "a0ff73dc70de4a2c7d87cecd800258f93b7d78699eebe1742097acd69bcb3963",
+    "analysis": {
+      "skills": [
+        {
+          "evidence": "Manejo de Office a nivel intermedio",
+          "advice": "Prepara una carpeta digital organizada con cotizaciones ficticias en Excel y presentaciones de producto en PowerPoint para demostrar capacidad de gestión de datos sin software específico."
+        },
+        {
+          "evidence": "Reportar visitas y resultados en el CRM",
+          "advice": "Practica el registro de métricas comerciales simuladas en una hoja de cálculo estructurada como CRM, documentando el ciclo de venta y el seguimiento de prospectos de forma ordenada."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "2 años de experiencia",
+          "advice": "Documenta tus dos años de experiencia B2B en un CV ejecutivo destacando cierres concretos en sectores industriales, sin mezclarlos con prácticas académicas o voluntariados iniciales."
+        },
+        {
+          "evidence": "ventas B2B en los sectores construcción",
+          "advice": "Selecciona un proyecto comercial real donde hayas gestionado clientes B2B y redacta un caso de uso breve que muestre cómo amplió tu cartera de cuentas asignadas."
+        }
+      ],
+      "company": "Investiga el portafolio de marcas representadas como SKF y Loctite en el sector industrial para preparar una pregunta sobre cómo la nueva división de herramientas planea integrar estas líneas con la oferta actual de mantenimiento.",
+      "visit": "Pregunta al equipo de selección si el régimen de trabajo es presencial completo en la sede de Av. Argentina 3006 y qué tipo de vehículo o medios de transporte se asignan para las visitas a clientes industriales."
+    },
+    "generatedAt": "2026-11-14T11:47:53.097Z"
+  },
+  "ct-DB5F6BD3A562DF5261373E686DCF3405": {
+    "analysisSignature": "33571c6d4e336262338f0644c5bde602a9a1eccbf653c2fcec0b6ac1bc61b38e",
+    "analysis": {
+      "skills": [
+        {
+          "evidence": "Manejo de Microsoft Office a nivel intermedio",
+          "advice": "Practica la creación de tablas dinámicas y fórmulas en Excel para procesar datos de inventario. Entregable: una plantilla de control de proveedores en formato de hoja de cálculo funcional."
+        },
+        {
+          "evidence": "Conocimiento de ERP Odoo (deseable)",
+          "advice": "Explora módulos de inventario y compras en instancias de prueba gratuitas de Odoo. Entregable: un diagrama de flujo personalizado que muestre el ciclo de vida de una orden de compra en el sistema."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "Identificar, buscar y seleccionar proveedores",
+          "advice": "Realiza un ejercicio académico donde analices el costo total de adquisición para tres productos industriales. Entregable: un cuadro comparativo justificado con criterios de calidad y plazos de entrega."
+        },
+        {
+          "evidence": "Generar órdenes de compra y realizar seguimiento",
+          "advice": "Simula el proceso administrativo redactando una orden de compra ficticia y su respectivo acta de seguimiento. Entregable: documentación modelo lista para ser auditada por un profesional del área."
+        }
+      ],
+      "company": "Investiga las líneas de abastecimiento industrial del cliente final de AIMTALENT para el sector minero. Prepara una pregunta sobre cómo el asistente prioriza las especificaciones técnicas frente a las comerciales al verificar solicitudes de compra.",
+      "visit": "Consulta el proceso de validación documental de proveedores y si existen requisitos específicos de seguro o transporte para la recepción de materiales en el Cercado de Lima."
+    },
+    "generatedAt": "2026-11-14T11:47:53.097Z"
+  },
+  "ct-B2CB395D26EC536B61373E686DCF3405": {
+    "tipId": "role",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "careerSignature": "0718b04d527956f52159aab8e65a2ce93cb623fcf076ded6c8d302741689ead4",
+    "analysisSignature": "b27ccb2b3833474029d60979a6012cbf652f3b2c8afd82923f9611362fe1903a",
+    "analysis": {
+      "skills": [
+        {
+          "evidence": "manejo de equipos de poder",
+          "advice": "Solicita un certificado de un curso técnico o realizá prácticas en talleres escolares para demostrar la capacidad de operar herramientas básicas de corte y conformación."
+        },
+        {
+          "evidence": "corte, pulido, rolado, plegado",
+          "advice": "Practica en talleres de metalurgia básica o cursos de oficios para ejecutar simulaciones de estas tareas y documenta el proceso como proyecto técnico inicial."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "apoyo a los operarios",
+          "advice": "Ganar experiencia realizando voluntariado en talleres de manufactura o prácticas supervisadas en empresas de construcción donde actúes como asistente de línea."
+        },
+        {
+          "evidence": "organización de estos mismos",
+          "advice": "Desarrolla un plan de ordenamiento de materiales en tu lugar de estudio o práctica y preséntalo como evidencia de tu capacidad de logística básica."
+        }
+      ],
+      "company": "Revisa el perfil de P.A. PERU S.A.C. y su línea MEPAR para preparar una pregunta sobre cómo se integran las áreas de ingeniería civil y mineral en el flujo de trabajo diario del ayudante.",
+      "visit": "Pregunta por el procedimiento de ingreso a la planta de Lurín, los equipos de protección individual obligatorios y el método de coordinación con el operario principal durante las horas de trabajo."
+    },
+    "generatedAt": "2026-11-14T11:47:53.097Z"
+  },
+  "ct-DE9D3DF05364A79561373E686DCF3405": {
+    "analysisSignature": "8188500db41bae264f9d7bc5cc5cf84e16c82632599fd238c3cc59d8ee5fc691",
+    "analysis": {
+      "skills": [
+        {
+          "evidence": "Excel nivel intermedio avanzado",
+          "advice": "Ejercita la creación de tablas dinámicas y funciones de búsqueda en un set de datos de proveedores para entregar una matriz comparativa de costos actualizada."
+        },
+        {
+          "evidence": "matrices de evaluación",
+          "advice": "Desarrolla un modelo en hoja de cálculo que compare precios, plazos y garantías de tres proveedores hipotéticos para generar un informe de recomendación de adjudicación."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "Procesos de licitación de gran envergadura",
+          "advice": "Documenta en tu portafolio el rol específico que asumiste en una licitación CAPEX real, detallando la coordinación con áreas usuarias y el control de plazos de entrega."
+        },
+        {
+          "evidence": "negociación con proveedores",
+          "advice": "Realiza un ejercicio académico supervisado simulando una negociación de servicios logísticos, presentando al docente los términos contractuales acordados y la justificación de la selección."
+        }
+      ],
+      "company": "Investiga el alcance de la suplencia en el sector portuario para preguntar cómo se define el hito de cierre del contrato temporal y quién asume el traspaso de las órdenes de compra pendientes.",
+      "visit": "Pregunta a selección si el traslado desde Pisco opera todos los días laborables y qué ocurre con la movilidad en caso de imprevistos climáticos en la zona costera."
+    },
+    "generatedAt": "2026-11-14T11:47:53.097Z"
+  },
+  "ct-BF5220185ADFF20761373E686DCF3405": {
+    "analysisSignature": "3c9c4931363948b2f48e3e2f81220ee01a5526cc4e3774ee8698e3b73aa5c66d",
+    "analysis": {
+      "skills": [
+        {
+          "evidence": "Diseñar y desarrollar piezas gráficas",
+          "advice": "Crea tres piezas para redes sociales con paletas corporativas para probar cómo aplicas directrices visuales en un proyecto simulado de marketing digital."
+        },
+        {
+          "evidence": "Elaborar material publicitario físico y digital",
+          "advice": "Diseña un brochure y un banner digital idénticos para comparar la adaptación entre formatos impresos y pantallas en tu portafolio académico."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "Mínimo 1 año de experiencia en diseño gráfico",
+          "advice": "Si cumples el año, lista dos trabajos anteriores con fechas y resultados; si no, documenta un proyecto freelance supervisado o voluntariado que demuestre tu práctica diaria."
+        },
+        {
+          "evidence": "Diseñar contenido visual para campañas publicitarias",
+          "advice": "Describe un caso real o simulado de campaña donde definiste la identidad visual, especificando tu rol exacto y los entregables finales que presentaste."
+        }
+      ],
+      "company": "Investiga la presencia de P.A. PERU S.A.C. en proyectos mineros y de infraestructura para entender su sector, y prepara una pregunta sobre cómo el diseño gráfico se integra en sus campañas institucionales o comunicados internos.",
+      "visit": "Pregunta a selección si el horario sabatino remoto incluye tareas específicas de diseño y si el equipo asignado trabaja coordinado con otras áreas de ingeniería o construcción."
+    },
+    "generatedAt": "2026-11-14T11:47:53.097Z"
+  },
+  "nv-BMPE-1118473156": {
+    "analysisSignature": "dec3a862c18a8029134c48a837516cc10f016e1b3def92668c10d09d6ee78b0e",
+    "analysis": {
+      "skills": [
+        {
+          "evidence": "Power BI, SAP, AutoCAD",
+          "advice": "Practica importando datos de un proyecto simulado en Power BI y construye un dashboard de avance de obra. Genera un portafolio con tres visualizaciones de costos o plazos para mostrarlo en la entrevista."
+        },
+        {
+          "evidence": "Especialización, diplomado en gestión de proyectos",
+          "advice": "Inscríbete en un diplomado de gestión de proyectos mineros certificado. Al finalizar, presenta el acta de culminación o el plan de estudios como evidencia de formación aplicada a la minería subterránea."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "Experiencia mayor a 7 años",
+          "advice": "Consolida un currículum técnico que detalle tus 7 años en cargos afines. Incluye referencias verificables de ex empleadores o contratos de consultoría en minería subterránea para acreditar la antigüedad requerida."
+        },
+        {
+          "evidence": "proyectos de procesamiento mineral",
+          "advice": "Documenta tu participación en al menos un proyecto real de procesamiento mineral. Prepara un informe de logros que especifique tu rol, los resultados obtenidos y el impacto en la línea base del proyecto."
+        }
+      ],
+      "company": "Investiga la reputación del cliente en minería subterránea y los estándares de seguridad que aplica. Prepara una pregunta sobre cómo se integran las directrices de calidad y medio ambiente en las fases críticas de construcción para demostrar interés en la operación.",
+      "visit": "Pregunta a selección quién cubre el traslado hasta Ayacucho y cómo se organiza el régimen de 14 por 7 días. Solicita información sobre la logística de alojamiento y el proceso de adaptación inicial en la zona centro del Perú."
+    },
+    "generatedAt": "2026-11-14T11:47:53.097Z"
+  },
+  "nv-BMPE-1118606509": {
+    "analysisSignature": "19cc6e974f72d6e61ef87c4f35e577e61a378d7021d349d212b5b3f97751a09f",
+    "analysis": {
+      "skills": [
+        {
+          "evidence": "Elaborar el Gantt de actividades de parada de planta",
+          "advice": "Usa MS Project para construir un cronograma simulado de una parada de planta ficticia con hitos de mantenimiento predictivo y preventivo. Entregable: archivo MPP o PDF del cronograma."
+        },
+        {
+          "evidence": "Proponer y elaborar planes y hojas de ruta en SAP-PM",
+          "advice": "Identifica un entorno de pruebas de SAP-PM o un caso de estudio de un curso gratuito. Ejecuta el registro de una orden de mantenimiento y genera una hoja de ruta básica. Entregable: captura de pantalla del flujo."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "Experiencia mínima de 2 años como planificador de mantenimiento",
+          "advice": "No intentes sustituir los 2 años requeridos con certificados. Si cumples con la titulación, documenta cualquier pasantía supervisada o trabajo de campo en plantas concentradoras para acreditar la curva de aprendizaje."
+        },
+        {
+          "evidence": "Coordinar con Logística el aprovisionamiento oportuno de componentes",
+          "advice": "Realiza un ejercicio académico donde lances una requisición de materiales y la vincules con una orden de trabajo. Usa hojas de cálculo para simular el seguimiento de stock y tiempos de entrega. Entregable: tablero de control de requisiciones."
+        }
+      ],
+      "company": null,
+      "visit": null
+    },
+    "generatedAt": "2026-11-14T11:47:53.097Z"
+  },
+  "nv-BMPE-1118607039": {
+    "analysisSignature": "40b4d6968b76b548988f37421b3f9fd6cf35754bc5953e681fec898ffe43dde9",
+    "analysis": {
+      "skills": [
+        {
+          "evidence": "ETAP o DIgSILENT",
+          "advice": "Simula un análisis de fallas cortocircuited en un esquema de potencia y guarda el informe de resultados para mostrar tu manejo de la herramienta."
+        },
+        {
+          "evidence": "SAP a nivel usuario",
+          "advice": "Crea un documento que describa cómo registras solicitudes de mantenimiento y compras de componentes críticos en una interfaz de gestión."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "3 años en operación y mantenimiento",
+          "advice": "Documenta un proyecto de supervisión real donde hayas coordinado a contratistas y gestionado la confiabilidad de sistemas eléctricos."
+        },
+        {
+          "evidence": "coordinaciones con el COES",
+          "advice": "Describe una interacción regulatoria con una entidad de energía, detallando el seguimiento de reportes de demanda y el cierre de requerimientos."
+        }
+      ],
+      "company": "Investiga el enfoque de ManpowerGroup en la inclusión laboral y su modelo de contratación para el cliente minero, y prepara una pregunta sobre el desarrollo profesional dentro de la planilla directa.",
+      "visit": "Pregunta en qué sede de campo se realizarán las rotaciones de 10x10 y quién gestiona el alojamiento y traslado."
+    },
+    "generatedAt": "2026-11-14T11:47:53.097Z"
+  },
+  "nv-BMPE-1118606656": {
+    "analysisSignature": "5d385074116f19aef40523f8db9cb9475e0d849a74badbd47424d6f106df399f",
+    "analysis": {
+      "skills": [
+        {
+          "evidence": "Maquinarias y operaciones mineras",
+          "advice": "Investiga las marcas y modelos de maquinaria pesada que Overprimr re-manufactura, y elabora un mapeo de las piezas críticas para demostrar conocimiento técnico."
+        },
+        {
+          "evidence": "re-manufactura de equipos y componentes",
+          "advice": "Diseña una ficha técnica simulada de un equipo de minería que se reconstruye, detallando su estado, intervenciones y vida útil restante para usarla en la entrevista."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "cartera de clientes en minería",
+          "advice": "Organiza un portafolio con referencias de proveedores de repuestos o servicios mineros en los que hayas gestionado pedidos, destacando el sector y la magnitud de cada contrato."
+        },
+        {
+          "evidence": "visitas al campo de nuestros actuales y potenciales clientes",
+          "advice": "Documenta experiencias previas de atención en planta o coordinación con clientes del sector industrial, enfocándote en los tiempos de respuesta y resolucion de conflictos técnicos."
+        }
+      ],
+      "company": "Investiga el historial de Overprimr en remanufactura de equipos mineros y su posición frente a proveedores de repuestos de maquinaria pesada para plantear una estrategia de captación de contratos.",
+      "visit": "Pregunta cómo se estructura el itinerario de traslados entre Chorrillos y Huachipa, y quién asume los gastos de movilidad diaria para asegurar el cumplimiento de la disponibilidad solicitada."
+    },
+    "generatedAt": "2026-11-14T11:47:53.097Z"
   }
 }
