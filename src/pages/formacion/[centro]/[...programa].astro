@@ -1,6 +1,8 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import AdSlot from '../../../components/AdSlot.astro';
 import TrainingDetailView from '../../../components/pages/TrainingDetailView.astro';
+import { adsenseServingEnabled } from '../../../lib/ads';
 import { catalogRecord, openTrainingPrograms } from '../../../lib/catalog';
 import { catalogNow } from '../../../lib/catalog-data';
 import { paginate } from '../../../lib/pagination';
@@ -20,6 +22,8 @@ const [institution, entry] = await Promise.all([
 const center = institution?.payload;
 const program = entry?.payload;
 const found = Boolean(center && (!programa || program));
+const indexable = found && Boolean(entry?.metadata.indexable);
+const showAdSlots = indexable && (import.meta.env.DEV || adsenseServingEnabled(import.meta.env.PUBLIC_ADSENSE_ENABLED));
 if (!found) Astro.response.status = 404;
 Astro.response.headers.set('Cache-Control', 'no-store');
 
@@ -33,9 +37,23 @@ const path = validPath ? trainingPath(centro, programa) : '/formacion/';
 const name = found ? program?.title ?? center?.name : 'Ficha de formación no disponible';
 const description = program?.summary ?? (found ? `Consulta la formación documentada de ${center?.name}.` : 'Explora cursos, carreras e instituciones en el buscador de Formación de Labormin.');
 ---
-<Layout title={`${name}${program ? ` · ${center?.name}` : ''} | Labormin`} description={description} path={path} noindex={!entry?.metadata.indexable || !found} ads={false}>
+<Layout title={`${name}${program ? ` · ${center?.name}` : ''} | Labormin`} description={description} path={path} noindex={!indexable}>
   {found && center ? (
-    <TrainingDetailView center={center} program={program} programs={page.items} page={page} opportunities={opportunities} />
+    <>
+      <div class:list={[showAdSlots && 'xl:mx-auto xl:grid xl:max-w-[88.25rem] xl:grid-cols-[162px_minmax(0,1fr)_162px] xl:gap-4']}>
+        {showAdSlots && <AdSlot slotId="formacion-detail-side-1" size={{ w: 160, h: 600 }} media="(min-width: 1280px)" class="sticky top-24 hidden w-fit self-start xl:col-start-1 xl:row-start-1 xl:block" />}
+        <div class="min-w-0 xl:col-start-2 xl:row-start-1">
+          <TrainingDetailView center={center} program={program} programs={page.items} page={page} opportunities={opportunities}>
+            {showAdSlots && <AdSlot slotId="formacion-detail-top-1" size={{ w: 320, h: 50 }} media="(max-width: 1023.98px)" class="guide-mobile-ad mx-auto w-fit lg:hidden" />}
+          </TrainingDetailView>
+        </div>
+        {showAdSlots && <AdSlot slotId="formacion-detail-side-2" size={{ w: 160, h: 600 }} media="(min-width: 1280px)" class="sticky top-24 hidden w-fit self-start xl:col-start-3 xl:row-start-1 xl:block" />}
+      </div>
+      {showAdSlots && <>
+        <AdSlot slotId="formacion-detail-bottom-desktop-1" size={{ w: 970, h: 90 }} media="(min-width: 1024px)" class="mx-auto w-fit hidden lg:block" />
+        <AdSlot slotId="formacion-detail-bottom-mobile-1" size={{ w: 320, h: 100 }} media="(max-width: 1023.98px)" class="guide-mobile-ad mx-auto w-fit lg:hidden" />
+      </>}
+    </>
   ) : (
     <section class="mx-auto max-w-3xl px-5 py-20" data-training-not-found>
       <h1 class="font-display text-4xl font-semibold">Ficha de formación no disponible</h1>

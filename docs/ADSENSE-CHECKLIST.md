@@ -123,6 +123,9 @@ La investigación y las fuentes están en
 - [ ] Habilitar la publicidad únicamente después de esas comprobaciones.
 - [ ] Para unidades manuales, configurar IDs numéricos reales en
   `PUBLIC_ADSENSE_SLOTS`. Nunca usar los nombres internos como IDs de cuenta.
+  Las fichas indexables de programas de Formación usan `formacion-detail-top-1`,
+  `formacion-detail-side-1`, `formacion-detail-side-2`,
+  `formacion-detail-bottom-desktop-1` y `formacion-detail-bottom-mobile-1`.
 
 La revisión del sitio y la activación de anuncios son pasos distintos. La pausa
 no obliga a esperar por un panel inaccesible para solicitar revisión; evita

@@ -64,6 +64,8 @@ const suggestedGuides = guideSlugs
     </div>}
   </header>
 
+  <slot />
+
   {program && <dl class="training-facts" aria-label="Datos para elegir">
     {facts.map(fact => <div>
       <dt><GuideIcon kind={fact.icon} />{fact.label}</dt>
@@ -112,9 +114,16 @@ const suggestedGuides = guideSlugs
 
   {suggestedGuides.length > 0 && <section class="training-section training-guides" aria-labelledby="training-guides-title">
     <h2 id="training-guides-title">Guías para conseguir trabajo</h2>
-    <ul role="list">
+    <ul class="training-guide-grid" role="list">
       {suggestedGuides.map(({ slug, metadata }) => <li>
-        <a class="training-text-link" href={`/guias/${slug}/`}>{metadata.title}</a>
+        <a class="training-guide-card" href={`/guias/${slug}/`} aria-labelledby={`training-guide-${slug}`} aria-describedby={`training-guide-summary-${slug}`}>
+          <h3 id={`training-guide-${slug}`}>{metadata.title}</h3>
+          <p id={`training-guide-summary-${slug}`}>{metadata.description}</p>
+          <span class="training-guide-cta" aria-hidden="true">
+            Leer la guía
+            <svg viewBox="0 0 16 16" fill="none" focusable="false"><path d="M3 8h10m-4-4 4 4-4 4" /></svg>
+          </span>
+        </a>
       </li>)}
     </ul>
   </section>}

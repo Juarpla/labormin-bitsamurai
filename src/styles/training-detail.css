@@ -123,12 +123,49 @@
 .training-center-programs a > span + span { color: var(--detail-accent); }
 .training-center-programs small { display: block; margin-top: .2rem; font-weight: 400; color: var(--detail-copy); }
 .training-guides { border-top: 1px solid var(--detail-line); padding-top: 1.2rem; }
-.training-guides a { display: inline-block; min-height: 2.75rem; padding-block: .6rem; }
+.training-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 20rem));
+  gap: 1rem;
+}
+.training-guide-grid > li { display: grid; }
+.training-guide-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .75rem;
+  aspect-ratio: 1;
+  padding: clamp(1rem, 3vw, 1.5rem);
+  border: 1px solid var(--detail-line);
+  border-radius: 16px;
+  background: var(--color-graphite-900);
+}
+.training-guide-card:is(:hover, :focus-visible) { border-color: var(--detail-accent); }
+.training-guide-card p { font-size: .9375rem; }
+.training-guide-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  min-height: 2.75rem;
+  margin-top: auto;
+  padding: .45rem .85rem;
+  border: 1px solid var(--detail-line);
+  border-radius: 2rem;
+  color: var(--detail-accent);
+  font-size: .875rem;
+  font-weight: 600;
+}
+.training-guide-card:is(:hover, :focus-visible) .training-guide-cta { border-color: currentColor; }
+.training-guide-cta svg { width: 1rem; height: 1rem; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 
 @media (max-width: 860px) {
   .training-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .training-facts > div:nth-child(3) { border-inline-start: 0; }
   .training-facts > div:nth-child(n+3) { border-top: 1px solid var(--detail-line); }
+}
+
+@media (max-width: 640px) {
+  .training-guide-grid { grid-template-columns: minmax(0, 20rem); }
 }
 
 @media (max-width: 560px) {
