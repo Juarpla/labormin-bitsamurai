@@ -59,8 +59,7 @@ const suggestedGuides = guideSlugs
     <h1>{program?.title ?? center.name}</h1>
     {program?.summary && <p class="training-deck">{program.summary}</p>}
     {program && <div class="training-header-links">
-      <a class="training-action" href={action.url}>{action.label} <span aria-hidden="true">↗</span></a>
-      <a class="training-text-link" href="#oportunidades">Empleos y prácticas <span aria-hidden="true">↓</span></a>
+      <a class="training-action" href={action.url}>{action.label}</a>
     </div>}
   </header>
 
@@ -98,7 +97,7 @@ const suggestedGuides = guideSlugs
       {program?.cost?.detail && <p>{program.cost.detail}</p>}
       {program?.availability && <p>{program.availability}</p>}
       {!program && <p>{center.status}</p>}
-      <a class="training-text-link" href={action.url}>{action.label} <span aria-hidden="true">↗</span></a>
+      <a class="training-text-link" href={action.url}>{action.label}</a>
     </div>
   </section>
 

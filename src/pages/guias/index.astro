@@ -4,14 +4,15 @@ import CatalogPagination from '../../components/CatalogPagination.astro';
 import { paginate, resultRange } from '../../lib/pagination';
 import Layout from '../../layouts/Layout.astro';
 import AdSlot from '../../components/AdSlot.astro';
+import GuideCard from '../../components/guides/GuideCard.astro';
 import GuideIcon from '../../components/guides/GuideIcon.astro';
 import EditorialRoute from '../../components/guides/EditorialRoute.astro';
 import { openCatalog } from '../../lib/catalog';
 import { guideGroups } from '../../lib/editorial-guides';
 
 const catalog = await openCatalog('guides');
-const guides = catalog.entries.map(({ slug, metadata }) => ({ slug, ...metadata }));
-const sections = guideGroups.map(group => ({ group, page: paginate(guides.filter(guide => guide.group === group.id), Astro.url, 4, group.id) }));
+const guides = catalog.entries;
+const sections = guideGroups.map(group => ({ group, page: paginate(guides.filter(guide => guide.metadata.group === group.id), Astro.url, 4, group.id) }));
 ---
 <Layout title="Guías para trabajar en minería — Labormin" description="Guías de Labormin para buscar tu primer empleo minero, elegir formación y evaluar las condiciones de una vacante en Perú." path="/guias/">
   <div class="xl:grid xl:grid-cols-[160px_56rem_160px] xl:justify-center xl:gap-4">
@@ -25,8 +26,14 @@ const sections = guideGroups.map(group => ({ group, page: paginate(guides.filter
         <EditorialRoute steps={['Busca tu puesto', 'Refuerza habilidades', 'Compara ofertas']} />
       </header>
 
-      <nav class="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm" aria-label="Temas de las guías">
-        {guideGroups.map(group => <a class="text-brand-400 underline underline-offset-4 hover:text-brand-300" href={`#${group.id}`}>{group.title}</a>)}
+      <nav class="mt-7 grid gap-2 sm:grid-cols-3" aria-label="Temas de las guías">
+        {guideGroups.map(group => (
+          <a class="flex min-h-11 items-center gap-2.5 rounded-xl border border-graphite-700 bg-graphite-900 px-3 py-2 text-sm font-semibold text-graphite-100 transition-colors hover:border-brand-500/60 hover:text-brand-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400" href={`#${group.id}`}>
+            <span class="shrink-0 text-brand-400 [&_svg]:size-5"><GuideIcon kind={group.icon} /></span>
+            <span class="flex-1">{group.title}</span>
+            <span class="text-brand-400" aria-hidden="true">→</span>
+          </a>
+        ))}
       </nav>
 
       <AdSlot slotId="guias-top-1" size={{w:320,h:50}} media="(max-width: 1023.98px)" class="guide-mobile-ad mx-auto w-fit lg:hidden" />
@@ -39,12 +46,7 @@ const sections = guideGroups.map(group => ({ group, page: paginate(guides.filter
         {page.pages > 1 && <p class="mt-2 text-sm text-graphite-300">Guías: {resultRange(page)}</p>}
         <ul class="mt-5 grid gap-4 sm:grid-cols-2" role="list">
           {page.items.map(guide => <li class="min-w-0">
-            <a href={`/guias/${guide.slug}/`} class="group grid h-full grid-cols-[auto_minmax(0,1fr)] content-start items-start gap-x-3 gap-y-2 rounded-2xl border border-graphite-800 bg-graphite-900 p-5 transition-colors hover:border-brand-500/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400">
-              <span class="grid size-9 place-items-center rounded-lg bg-brand-500/10 text-brand-400 [&_svg]:size-6"><GuideIcon kind={guide.icon} /></span>
-              <h3 class="self-center text-pretty font-display text-lg font-semibold leading-snug text-graphite-100 group-hover:text-brand-400 group-focus-visible:text-brand-400">{guide.title}</h3>
-              <p class="col-start-2 text-sm leading-relaxed text-graphite-200">{guide.description}</p>
-              <svg viewBox="0 0 24 24" class="col-start-2 mt-1 size-5 text-brand-400" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg>
-            </a>
+            <GuideCard {...guide} />
           </li>)}
         </ul>
         <CatalogPagination page={page} anchor={group.id} key={group.id} label={`Páginas de ${group.title}`} />
@@ -57,3 +59,12 @@ const sections = guideGroups.map(group => ({ group, page: paginate(guides.filter
     <AdSlot slotId="guias-bottom-mobile-1" size={{w:320,h:100}} media="(max-width: 1023.98px)" class="guide-mobile-ad mx-auto w-fit lg:hidden" />
   </div>
 </Layout>
+
+<style>
+  :global(body:has(#primer-empleo:target)) a[href="#primer-empleo"],
+  :global(body:has(#formacion:target)) a[href="#formacion"],
+  :global(body:has(#evaluar:target)) a[href="#evaluar"] {
+    border-color: var(--color-brand-600);
+    color: var(--color-brand-400);
+  }
+</style>

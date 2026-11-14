@@ -1,9 +1,17 @@
 ---
 interface Props { steps: readonly [string, string, string] }
 const { steps } = Astro.props;
+const key = 'editorial-route-light';
 ---
 <figure class="editorial-route">
   <svg viewBox="0 0 600 128" fill="none" class="block w-full text-brand-400" aria-hidden="true">
+    <!-- The route sits above a softly lit, graphitic surface. -->
+    <defs>
+      <radialGradient id={key} cx="17%" cy="20%" r="84%">
+        <stop stop-color="#515c71" stop-opacity=".45"/><stop offset=".55" stop-color="#323c50" stop-opacity=".18"/><stop offset="1" stop-color="#10131a" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect x="10" y="16" width="580" height="96" rx="8" fill={`url(#${key})`}/>
     <g stroke="var(--color-graphite-700)" stroke-width="1">
       <path d="M10 112h580M10 16h580M100 16v96m200-96v96m200-96v96" stroke-dasharray="3 6"/>
     </g>

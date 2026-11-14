@@ -1,5 +1,6 @@
 ---
 export const prerender = false;
+import ChapterCallout from '../components/ChapterCallout.astro';
 import CatalogPagination from '../components/CatalogPagination.astro';
 import GuideIcon from '../components/guides/GuideIcon.astro';
 import { paginate, resultRange, searchText } from '../lib/pagination';
@@ -38,8 +39,7 @@ function typeLink(value: string) {
   const next = new URLSearchParams(params);
   next.delete('pagina');
   next.delete('opcion');
-  if (value) next.set('tipo', value);
-  else next.delete('tipo');
+  next.set('tipo', value);
   return `/formacion/${next.size ? '?' + next : ''}#resultados`;
 }
 
@@ -58,7 +58,6 @@ function typeLink(value: string) {
         <span><strong>{group.label}</strong><span>{group.description}</span></span>
       </a>)}
     </nav>
-    <a class="formation-all" href={typeLink('')}>Ver toda la formación <span aria-hidden="true">→</span></a>
     <AdSlot slotId="formacion-top-1" size={{ w: 320, h: 50 }} media="(max-width: 1023.98px)" class="mx-auto w-fit lg:hidden" />
     <form id="formation-filters" class="formation-filters" role="search" aria-label="Filtrar formación" method="get" action="/formacion/#resultados">
       {type && <input type="hidden" name="tipo" value={type} />}
@@ -97,8 +96,7 @@ function typeLink(value: string) {
       <CatalogPagination page={page} anchor="resultados" label="Páginas de formación" />
       <div class="formation-empty" id="formation-empty" hidden={page.total > 0}><h3>No encontramos opciones con estos filtros</h3><p>La selección aún no cubre todos los departamentos. Prueba otra modalidad o consulta los directorios oficiales de la guía.</p><a href="/formacion/#resultados">Limpiar filtros</a><a href={`${trainingGuidePath}#directorios`}>Buscar en directorios oficiales →</a></div>
     </section>
-    <p class="formation-context">{programs.entries.length.toLocaleString('es-PE')} programas documentados en {centers.entries.length} instituciones y plataformas. Cuando la fuente solo registra el centro, puedes consultar su ficha. <a href={`${trainingGuidePath}#comparar`}>Cómo comparar costos y certificados →</a> · <a href="/guias/#formacion">Guías de formación y seguridad →</a></p>
-    <aside class="formation-guide" aria-labelledby="formation-guide-title"><h2 id="formation-guide-title">Antes de elegir, compara bien.</h2><div><p>Costo completo, práctica y credencial: qué preguntar al centro.</p><a href={trainingGuidePath}>Leer la guía <span aria-hidden="true">↗</span></a></div><p>Datos de la guía · <time datetime="2026-10-26">26 oct 2026</time></p></aside>
+    <ChapterCallout class="mt-9" compact title="Antes de elegir, compara bien." description="Qué preguntar sobre el costo total, las horas de práctica y la credencial antes de inscribirte." href={trainingGuidePath} label="Leer la guía" />
     </section>
     <AdSlot slotId="formacion-side-2" size={{ w: 160, h: 600 }} media="(min-width: 1280px)" class="sticky top-24 hidden w-fit self-start xl:col-start-3 xl:row-start-1 xl:block" />
   </div>

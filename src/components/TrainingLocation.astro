@@ -20,17 +20,16 @@ const area = notes.filter(note => note.kind === 'area');
         campus ? <address>{campus.address}</address> : <p>{place ? 'Ubicación de referencia. Confirma la sede y el horario con el centro.' : 'Consulta en la fuente dónde se imparte esta formación.'}</p>
       )}
       {area.map(note => <p>{note.text} <a class="training-text-link" href={note.url}>{note.label}</a></p>)}
-      <div class="training-location-links">
-        {maps && <a class="training-text-link" href={maps} target="_blank" rel="noopener noreferrer">{campus ? 'Abrir en Google Maps' : 'Ver la zona en Google Maps'} <span aria-hidden="true">↗</span><span class="sr-only"> (nueva pestaña)</span></a>}
-        {place?.source && !area.some(note => note.url === place.source?.url) && <a class="training-text-link" href={place.source.url}>{place.source.label}</a>}
-      </div>
+      {place?.source && !area.some(note => note.url === place.source?.url) && <div class="training-location-links">
+        <a class="training-text-link" href={place.source.url}>{place.source.label}</a>
+      </div>}
     </div>
     {campus?.embed && <details class="training-map" data-training-map>
       <summary><span class="training-map-closed">Ver mapa</span><span class="training-map-open">Ocultar mapa</span> <svg viewBox="0 0 16 16" aria-hidden="true" fill="none"><path d="m4 6 4 4 4-4"/></svg></summary>
       <p class="training-map-status" data-training-map-status role="status" hidden></p>
       <iframe title={`Mapa de la sede en ${campus.label}`} data-training-map-src={campus.embed} hidden referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      <a class="training-text-link training-map-fallback" href={maps} target="_blank" rel="noopener noreferrer">Abrir el mapa en otra pestaña <span aria-hidden="true">↗</span></a>
-      <noscript><p>Abre el enlace de Google Maps para ver la sede.</p></noscript>
+      <a class="training-text-link training-map-fallback" href={maps} target="_blank" rel="noopener noreferrer">Abrir el mapa en otra pestaña</a>
+      <noscript><p>Usa el enlace «Abrir el mapa en otra pestaña» para ver la sede.</p></noscript>
     </details>}
   </div>
 </section>

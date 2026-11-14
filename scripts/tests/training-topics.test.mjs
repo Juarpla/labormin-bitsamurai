@@ -31,3 +31,14 @@ test('training displays employer qualifications and ignores years of company exp
     assert.equal(trainingQualifications(`<h3>Requisitos</h3><p>${title}.</p>`).credential, title);
   }
 });
+
+test('match the published Ingeniería Geológica degree and hidrogeología roles', () => {
+  const topics = topicsForProgram('Ingeniería Geológica');
+  const evidence = jobTrainingEvidence({
+    title: 'Practicante de Hidrogeología',
+    description: '<p>Bachiller en Ingeniería Geológica.</p>',
+    country: 'PE',
+  });
+  assert.deepEqual(topics, ['geology']);
+  assert.deepEqual(matchTrainingJob(topics, evidence), { kind: 'direct', topic: 'geology', inTitle: true });
+});

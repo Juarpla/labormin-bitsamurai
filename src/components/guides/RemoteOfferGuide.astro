@@ -1,4 +1,5 @@
 ---
+import type { CatalogEntry } from '../../lib/catalog-data';
 import GuideLayout from '../../layouts/GuideLayout.astro';
 import OfferGraphic from '../../components/guides/OfferGraphic.astro';
 import '../../styles/offer-guide.css';
@@ -25,8 +26,9 @@ const payChecks = [
   {title:'Ubicación aplicable', text:'Un rango de Estados Unidos puede ser solo para quienes trabajan allí. No lo conviertas en una oferta para residentes en Perú.'},
   {title:'Base y beneficios', text:'Aclara si incluye bonos, acciones o viáticos. Si ves una errata o cifras incompatibles, pregunta; no corrijas mentalmente el anuncio.'}
 ];
+const { related } = Astro.props as { related: CatalogEntry<'guides'>[] };
 ---
-<GuideLayout visual title="Cómo verificar una oferta: remoto, visa y salario" description="Comprueba si puedes trabajar desde Perú, qué apoyo migratorio declara una vacante y qué salario se aplica a tu ubicación." path="/guias/verificar-oferta-remota-visa-salario">
+<GuideLayout visual related={related} title="Cómo verificar una oferta: remoto, visa y salario" description="Comprueba si puedes trabajar desde Perú, qué apoyo migratorio declara una vacante y qué salario se aplica a tu ubicación." path="/guias/verificar-oferta-remota-visa-salario">
   <header slot="hero" class="offer-hero">
     <h1>¿Remoto desde Perú?<br/><em>Compruébalo.</em></h1>
     <div><p class="offer-deck">Cómo leer una oferta: ubicación, visa y salario, antes de postular.</p><p class="offer-byline">Investigación de Labormin<br/>Revisión editorial: 12 de noviembre de 2026</p></div>
@@ -35,7 +37,7 @@ const payChecks = [
     <section class="offer-map" aria-labelledby="tres-comprobaciones">
       <h2 id="tres-comprobaciones">Tres preguntas que el anuncio debe resolver</h2>
       <nav aria-label="Comprobaciones de una oferta">
-        {checks.map(check => <a href={`#${check.id}`}><OfferGraphic kind={check.id}/><div><h3>{check.title}</h3><p>{check.text}</p><span>{check.action} <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3v14m-5-5 5 5 5-5"/></svg></span></div></a>)}
+        {checks.map(check => <a href={`#${check.id}`}><OfferGraphic kind={check.id}/><div><h3>{check.title}</h3><p>{check.text}</p><span>{check.action} <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h14m-5-5 5 5-5 5"/></svg></span></div></a>)}
       </nav>
       <span class="offer-rule" aria-hidden="true"></span>
     </section>

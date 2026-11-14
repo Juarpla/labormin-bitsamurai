@@ -1,7 +1,8 @@
 ---
 import GuideIcon from './guides/GuideIcon.astro';
 import JobCard from './JobCard.astro';
-import { trainingMatchText, type TrainingOpportunity } from '../lib/training-opportunities';
+import type { TrainingOpportunity } from '../lib/training-opportunities';
+import { trainingMatchText } from '../lib/training-affinity.mjs';
 import { publishedExperience } from '../lib/job-guidance.mjs';
 import { trainingQualifications } from '../lib/training-topics.mjs';
 
@@ -19,13 +20,12 @@ const groups = [
       <p>{group.id === 'empleos' ? 'Revisa el título y la experiencia que pide cada empleador.' : 'Confirma si la práctica admite tu especialidad y qué convenio o constancia solicita.'}</p>
       <ul class="training-vacancy-list" role="list">
         {group.entries.map(({ job, match }) => {
-          const { credential, requirements } = trainingQualifications(job.description);
+          const { requirements } = trainingQualifications(job.description);
           const experience = publishedExperience({ description: requirements });
           return <li data-match-kind={match.kind}>
             <div class="training-match">
               <strong>{match.kind === 'direct' ? 'Coincidencia directa' : 'Área afín'}</strong>
-              <p>{trainingMatchText(match)}</p>
-              {credential && <p>Formación solicitada «{credential}».</p>}
+              <p>{trainingMatchText(match, job)}</p>
               {experience && experience.months > 0 && <p>Entre los requisitos figura «{experience.text}».</p>}
             </div>
             <JobCard job={job} variant="compact" />

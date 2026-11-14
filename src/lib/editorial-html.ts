@@ -1,7 +1,9 @@
 import sanitizeHtml from 'sanitize-html';
 
 export function editorialHtml(html: string) {
-  return sanitizeHtml(html, {
+  // Both the bundled guides and existing D1 rows retain their reference lists.
+  const [body] = html.split(/<h[23]\b[^>]*>\s*Fuentes consultadas\s*<\/h[23]>/i, 1);
+  return sanitizeHtml(body, {
     allowedTags: [
       'p', 'h2', 'h3', 'h4', 'a', 'strong', 'em', 'ul', 'ol', 'li', 'blockquote',
       'figure', 'figcaption', 'svg', 'use', 'table', 'thead', 'tbody', 'tr', 'th', 'td',

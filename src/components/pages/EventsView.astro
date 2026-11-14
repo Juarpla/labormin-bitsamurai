@@ -1,4 +1,5 @@
 ---
+import ChapterCallout from '../ChapterCallout.astro';
 import CatalogPagination from '../CatalogPagination.astro';
 import { paginate, resultRange } from '../../lib/pagination';
 import AdSlot from '../AdSlot.astro';
@@ -83,7 +84,7 @@ const typeLabel: Record<string, string> = {
               rel="noopener nofollow"
               class="rounded-full bg-brand-500 px-4 py-2 text-xs font-semibold text-graphite-950 hover:bg-brand-400"
             >
-              {t('events.official')} ↗
+              {t('events.official')}
             </a>
             <span class="text-[11px] text-graphite-500">
               {t('events.updated', { date: e.lastVerifiedAt })}
@@ -95,9 +96,7 @@ const typeLabel: Record<string, string> = {
   </div>
 
   <CatalogPagination page={page} anchor="resultados" label="Páginas de eventos" />
-  <p class="mt-8 text-xs leading-relaxed text-graphite-500">
-    ℹ {t('events.lead')}
-  </p>
+  <ChapterCallout class="mt-10" compact title="¿Buscas tu próximo empleo minero?" description="Explora las vacantes vigentes y filtra por área, ubicación y modalidad." href="/jobs/" label="Ver empleos" />
 </section>
 
   <AdSlot

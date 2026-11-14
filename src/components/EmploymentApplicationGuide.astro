@@ -5,17 +5,19 @@ import type { jobAnalysis } from '../lib/job-analysis.mjs';
 import JobExperienceGuide from './JobExperienceGuide.astro';
 import GuideIcon from './guides/GuideIcon.astro';
 import { applicationPreparation } from '../lib/application-preparation';
+import { degreesForJob } from '../lib/job-training';
 import { education } from '../lib/education';
 import { trainingPath } from '../lib/training-program.mjs';
 import { guidanceContext } from '../lib/job-guidance.mjs';
 import type { careerGuidance } from '../lib/job-guidance.mjs';
 import type { Job } from '../schemas';
 
-interface Props { guide: ReturnType<typeof careerGuidance>; job: Job; title: string; tools: string[]; experience?: string; analysis: ReturnType<typeof jobAnalysis> }
-const { guide, job, title, tools, experience, analysis } = Astro.props;
+interface Props { region?: string; guide: ReturnType<typeof careerGuidance>; job: Job; title: string; tools: string[]; experience?: string; analysis: ReturnType<typeof jobAnalysis> }
+const { region, guide, job, title, tools, experience, analysis } = Astro.props;
 const training = guide.trainingIds.flatMap((id: string) => education.filter(option => option.id === id));
 const preparation = applicationPreparation(job, title, guide.skill ?? guide.experienceSkill, tools, experience, guide.questions[0]);
 const { skillId } = guidanceContext(job);
+const degrees = await degreesForJob(job, region);
 const skillPrograms: Record<string, Record<string, string>> = {
   'mine-planning': { 'narciso-villanueva': 'explotacion-minera', chalhuahuacho: 'explotacion-minera' },
   'industrial-electronics': { 'jose-carlos-mariategui': 'electronica-industrial', 'cetpro-juliaca': 'electronica-y-electricidad' },
@@ -50,7 +52,23 @@ const skillPrograms: Record<string, Record<string, string>> = {
     <span class="mt-0.5 shrink-0 text-brand-400 [&_svg]:size-5"><GuideIcon kind="credential" /></span>
     <span>Empieza por la habilidad obligatoria que te falta. Antes de inscribirte, comprueba que el programa la enseñe y compara las horas de práctica, el costo total y la credencial.</span>
   </p>}
-  {training.length ? (
+  {degrees.length > 0 && (
+    <ul class="mt-4 grid gap-3 sm:grid-cols-2" role="list">
+      {degrees.map(({ slug, metadata, center, department }) => (
+        <li class="min-w-0">
+          <a href={`/formacion/${slug}/`} class="group flex h-full items-start gap-3 rounded-xl border border-graphite-700 bg-graphite-850 p-4 hover:border-brand-500/50">
+            <span class="shrink-0 text-brand-400 [&_svg]:size-6"><GuideIcon kind="credential" /></span>
+            <div class="min-w-0 flex-1">
+              <h3 class="font-semibold leading-snug text-graphite-100 group-hover:text-brand-400">{metadata.title}</h3>
+              <p class="mt-1 text-sm leading-relaxed text-graphite-200">{center.name} · {department || center.location}</p>
+              <span class="mt-2 inline-block text-sm font-semibold text-brand-400">Ver programa <span aria-hidden="true">→</span></span>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
+  {training.length > 0 && (
     <>
       {guide.skill && <p class="mt-5 text-sm text-graphite-300">Opciones relacionadas con {guide.skill}.</p>}
       <ul class="mt-4 grid gap-3 sm:grid-cols-2">
@@ -78,8 +96,9 @@ const skillPrograms: Record<string, Record<string, string>> = {
         ))}
       </ul>
     </>
-  ) : (
-    <p class="mt-4 max-w-prose text-sm leading-relaxed text-graphite-300">El directorio aún no tiene una opción específica para esta vacante. <a href="/formacion/" class="inline-block font-medium text-brand-400 hover:text-brand-300">Explora más formaciones <span aria-hidden="true">↗</span></a></p>
+  )}
+  {!training.length && !degrees.length && (
+    <a href="/formacion/" class="mt-4 inline-block text-sm font-medium text-brand-400 hover:text-brand-300">Buscar opciones de formación <span aria-hidden="true">→</span></a>
   )}
 </section>
 

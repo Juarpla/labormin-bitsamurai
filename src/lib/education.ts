@@ -1,4 +1,5 @@
 import records from '../data/education.json';
+import { departments } from './peru-regions.mjs';
 
 // Discovery metadata and short editorial labels, derived from the documented
 // records. These never overwrite source facts or imply an open admission.
@@ -8,7 +9,7 @@ export const trainingGroups = [
   { id: 'carrera', sourceGroup: 'carreras', label: 'Una carrera', description: 'Construye una base técnica', image: 'carrera' },
 ] as const;
 
-export const departments = ['Amazonas', 'Áncash', 'Apurímac', 'Arequipa', 'Ayacucho', 'Cajamarca', 'Callao', 'Cusco', 'Huancavelica', 'Huánuco', 'Ica', 'Junín', 'La Libertad', 'Lambayeque', 'Lima', 'Loreto', 'Madre de Dios', 'Moquegua', 'Pasco', 'Piura', 'Puno', 'San Martín', 'Tacna', 'Tumbes', 'Ucayali'];
+export { departments } from './peru-regions.mjs';
 
 type Discovery = {
   title: string;

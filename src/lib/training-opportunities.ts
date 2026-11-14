@@ -4,7 +4,7 @@ import { allJobs } from './jobs';
 import { isExpired } from './job-policy.mjs';
 import { searchText } from './pagination';
 import { trainingDepartment } from './training';
-import { jobTrainingEvidence, matchTrainingJob, topicsForProgram, trainingTopics } from './training-topics.mjs';
+import { jobTrainingEvidence, matchTrainingJob, topicsForProgram } from './training-topics.mjs';
 import type { Job } from '../schemas';
 
 type Evidence = JobMeta['training'];
@@ -56,12 +56,4 @@ export async function trainingOpportunities(program: TrainingProgram, center: Tr
     }
   }
   return result;
-}
-
-export function trainingMatchText(match: Match) {
-  const topic = trainingTopics[match.topic].label;
-  const where = match.inTitle ? 'el puesto' : 'los requisitos';
-  return match.kind === 'direct'
-    ? `Coincide en ${topic} con ${where}.`
-    : `${topic[0].toUpperCase()}${topic.slice(1)} figura en ${where} y se relaciona con ${trainingTopics[match.subject].label}.`;
 }

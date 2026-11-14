@@ -74,8 +74,8 @@ const summary = summaries[option.id];
   </dl></details>
   <footer class="option-sources">
     <a href={trainingPath(option.id, guidePrograms[option.id])}>Ver ficha de formación <span aria-hidden="true">→</span></a>
-    <a href={option.officialUrl} target="_blank" rel="noopener">Fuente oficial <span aria-hidden="true">↗</span></a>
-    {option.actionUrl !== option.officialUrl && <a href={option.actionUrl} target="_blank" rel="noopener">Oferta del centro <span aria-hidden="true">↗</span></a>}
-    {option.additionalSources?.map(source => <a href={source.url} target="_blank" rel="noopener">{source.label} <span aria-hidden="true">↗</span></a>)}
+    <a href={option.officialUrl} target="_blank" rel="noopener">Fuente oficial</a>
+    {option.actionUrl !== option.officialUrl && <a href={option.actionUrl} target="_blank" rel="noopener">Oferta del centro</a>}
+    {option.additionalSources?.map(source => <a href={source.url} target="_blank" rel="noopener">{source.label}</a>)}
   </footer>
 </article>

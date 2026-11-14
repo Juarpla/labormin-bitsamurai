@@ -144,5 +144,61 @@
     ],
     "topics": ["logistics"],
     "reviewed": true
+  },
+  {
+    "center": "universidad-nacional-de-san-antonio-abad-del-cusco",
+    "slug": "ingenieria-geologica",
+    "title": "Ingeniería Geológica",
+    "source": {
+      "label": "Escuela Profesional de Ingeniería Geológica · UNSAAC",
+      "url": "https://go.unsaac.edu.pe/",
+      "verifiedAt": "2026-11-14"
+    },
+    "summary": "La carrera estudia los procesos geológicos y forma para explorar recursos minerales, evaluar terrenos y analizar riesgos geológicos.",
+    "mode": "presencial",
+    "duration": "10 semestres",
+    "credential": "Bachiller en Ingeniería Geológica y título profesional de Ingeniero Geólogo.",
+    "curriculum": [
+      "Estudio de rocas y procesos geológicos",
+      "Exploración de recursos minerales e hidrogeológicos",
+      "Geotecnia y evaluación de riesgos geológicos"
+    ],
+    "location": {
+      "kind": "city",
+      "label": "Cusco",
+      "source": {
+        "label": "Campus publicado por la UNSAAC",
+        "url": "https://go.unsaac.edu.pe/"
+      }
+    },
+    "reviewed": true
+  },
+  {
+    "center": "universidad-nacional-mayor-de-san-marcos",
+    "slug": "ingenieria-geologica",
+    "title": "Ingeniería Geológica",
+    "source": {
+      "label": "Escuela Profesional de Ingeniería Geológica · UNMSM",
+      "url": "https://figmmg.unmsm.edu.pe/historia-epi-geologica/",
+      "verifiedAt": "2026-11-14"
+    },
+    "summary": "La carrera estudia los procesos de la Tierra y la exploración de recursos minerales, hídricos y energéticos. Incorpora prácticas de campo.",
+    "mode": "presencial",
+    "duration": "5 años · 10 semestres",
+    "credential": "Bachiller en Ingeniería Geológica y título profesional de Ingeniero Geólogo.",
+    "curriculum": [
+      "Procesos geodinámicos y estructuras geológicas",
+      "Exploración de recursos minerales e hidrogeología",
+      "Geotecnia y prevención de riesgos geológicos"
+    ],
+    "location": {
+      "kind": "region",
+      "label": "Lima",
+      "source": {
+        "label": "Ubicación publicada por la UNMSM",
+        "url": "https://figmmg.unmsm.edu.pe/historia-epi-geologica/"
+      }
+    },
+    "reviewed": true
   }
 ]

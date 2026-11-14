@@ -30,7 +30,7 @@ const { advice, guide, step, experience, internship } = Astro.props;
           <li class="grid grid-cols-[1.75rem_minmax(0,1fr)] gap-x-3 gap-y-1.5 py-3.5 sm:grid-cols-[1.75rem_minmax(0,1fr)_auto]">
             <span class="mt-0.5 text-brand-400 [&_svg]:size-6"><GuideIcon kind="practice" /></span>
             <div>
-              <a href={'/jobs/' + job.slug + '/'} class="font-semibold text-graphite-100 underline-offset-4 hover:text-brand-400 hover:underline">{job.title} <span class="text-brand-400" aria-hidden="true">↗</span></a>
+              <a href={'/jobs/' + job.slug + '/'} class="font-semibold text-graphite-100 underline-offset-4 hover:text-brand-400 hover:underline">{job.title} <span class="text-brand-400" aria-hidden="true">→</span></a>
               <p class="mt-0.5 text-sm text-graphite-300">{job.company}{job.city && ' · ' + job.city}</p>
             </div>
             <p class="col-start-2 w-fit max-w-52 self-start rounded-lg border border-graphite-700 bg-graphite-850 px-2.5 py-1 text-xs font-medium text-graphite-200 sm:col-start-auto">{experience?.text ?? 'Experiencia por confirmar'}</p>
@@ -39,6 +39,6 @@ const { advice, guide, step, experience, internship } = Astro.props;
       </ul>
     </>
   ) : (
-    <p class="mt-4 max-w-prose text-sm leading-relaxed text-graphite-300">Por ahora no hay oportunidades afines de nivel inicial en el catálogo. <a href="/practicas/" class="inline-block font-medium text-brand-400 hover:text-brand-300">Explora más prácticas <span aria-hidden="true">↗</span></a></p>
+    <p class="mt-4 max-w-prose text-sm leading-relaxed text-graphite-300">Por ahora no hay oportunidades afines de nivel inicial en el catálogo. <a href="/practicas/" class="inline-block font-medium text-brand-400 hover:text-brand-300">Explora más prácticas <span aria-hidden="true">→</span></a></p>
   )}
 </section>

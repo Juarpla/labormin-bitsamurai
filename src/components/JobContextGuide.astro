@@ -1,4 +1,5 @@
 ---
+import type { jobWorksite } from '../lib/job-worksite.mjs';
 import type { Job } from '../schemas';
 import { countryName, DEFAULT_COUNTRY } from '../lib/i18n';
 import type { jobAnalysis } from '../lib/job-analysis.mjs';
@@ -8,12 +9,21 @@ import GuideIcon from './guides/GuideIcon.astro';
 import JobRoleJourney from './JobRoleJourney.astro';
 import JobSectionHeading from './JobSectionHeading.astro';
 
-interface Props { job: Job; skill: string | null; title: string; experience?: string; analysis: ReturnType<typeof jobAnalysis> }
-const { job, skill, title, experience, analysis } = Astro.props;
+interface Props { job: Job; skill: string | null; title: string; experience?: string; analysis: ReturnType<typeof jobAnalysis>; worksite: ReturnType<typeof jobWorksite> }
+const { job, skill, title, experience, analysis, worksite } = Astro.props;
 const city = job.city?.trim();
 const country = countryName(job.country);
 const remoteBase = countryName(DEFAULT_COUNTRY);
-const place = city ? `${city}, ${country}` : country;
+const destination = worksite.conflicting ? worksite.region : city ?? worksite.region;
+const place = destination ? `${destination}, ${country}` : country;
+const publishedPlace = city ?? job.locationRaw;
+const shiftText = worksite.roster
+  ? `El aviso indica régimen ${worksite.roster}. Pide el punto de embarque y el horario de salida del primer turno.`
+  : worksite.mineRoster
+    ? 'El aviso menciona régimen minero. Pregunta cuántos días se trabaja y descansa, y desde dónde sale la movilidad a la unidad.'
+    : analysis?.visit ?? (job.internship
+      ? 'Pregunta en qué sede se realiza la práctica y cómo se organiza la movilidad si hay salidas a campo.'
+      : 'Pide la dirección de la operación, el horario de ingreso y el punto de embarque antes de organizar el traslado.');
 const maps = (query: string) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
 const search = (query: string) => `https://www.google.com/search?q=${encodeURIComponent(query)}`;
 const employer = employerContext(job.company, job.country, job.internship);
@@ -21,21 +31,19 @@ const profile = employer?.profile;
 const locations = employer?.locations ?? [];
 const reviews = employer?.reviewSummary?.highlights ?? employer?.reviewHighlights ?? [];
 const companySearch = search(job.internship ? `${job.company} experiencias de practicantes` : `${job.company} opiniones laborales ${title}`);
-const locationChecks: { icon: 'time' | 'credential' | 'travel' | 'cost'; title: string; text: string; link?: { href: string; label: string } }[] = job.remote ? [
+const locationChecks: { icon: 'time' | 'credential' | 'travel' | 'cost'; title: string; text: string }[] = job.remote ? [
   { icon: 'time', title: 'Horario y coordinación', text: 'Confirma cuántas horas debes coincidir con el equipo, por qué canales coordinan y si hay reuniones o viajes presenciales.' },
   { icon: 'credential', title: 'Contrato y equipo', text: 'Pregunta qué entidad te contrataría desde Perú y quién cubre el equipo, las licencias y la conexión.' },
 ] : [
   {
     icon: 'travel', title: 'Traslado y régimen',
-    text: job.internship
-      ? 'Confirma si la práctica es en oficina o en operación. Pregunta desde dónde sale el transporte si hay visitas a mina.'
-      : 'Pregunta dónde empieza el traslado, cuánto toma y si los turnos implican quedarte en campamento. Revisa el clima y la altitud de la operación.',
-    link: city ? { href: search(`clima altitud ${place}`), label: 'Consultar clima y altitud' } : undefined,
+    text: shiftText,
   },
   {
     icon: 'cost', title: 'Gastos y alojamiento',
-    text: 'Con la sede confirmada, compara alojamiento, comidas y transporte. Pregunta qué gastos cubre la empresa.',
-    link: city ? { href: maps(`alojamiento en ${place}`), label: 'Buscar alojamiento en el mapa' } : undefined,
+    text: worksite.mineRoster || worksite.roster
+      ? 'Pregunta si el régimen incluye campamento, comidas y movilidad, y qué gastos quedan a tu cargo durante el descanso.'
+      : 'Pregunta si la empresa cubre el transporte o el alojamiento antes de calcular cuánto gastarías.',
   },
 ];
 ---
@@ -50,7 +58,7 @@ const locationChecks: { icon: 'time' | 'credential' | 'travel' | 'cost'; title: 
     {experience && <> El anuncio menciona <strong class="text-graphite-100">{experience}</strong>.</>}
   </p>
   <JobRoleJourney skill={skill} internship={job.internship} />
-  <a href={job.internship ? '/practicas/' : search(`${title} funciones empleo minería ${job.remote ? remoteBase : country}`)} target={job.internship ? undefined : '_blank'} rel={job.internship ? undefined : 'noopener noreferrer'} class="mt-3 inline-block text-sm font-semibold text-brand-400 underline-offset-4 hover:underline">{job.internship ? 'Ver prácticas vigentes' : 'Buscar puestos similares'} <span aria-hidden="true">{job.internship ? '→' : '↗'}</span></a>
+  <a href={job.internship ? '/practicas/' : search(`${title} funciones empleo minería ${job.remote ? remoteBase : country}`)} target={job.internship ? undefined : '_blank'} rel={job.internship ? undefined : 'noopener noreferrer'} class="mt-3 inline-block text-sm font-semibold text-brand-400 underline-offset-4 hover:underline">{job.internship ? 'Ver prácticas vigentes' : 'Buscar puestos similares'}{job.internship && <> <span aria-hidden="true">→</span></>}</a>
 </section>
 
 <section class="mt-10 border-t border-graphite-700 pt-7" aria-labelledby="place-context-title">
@@ -62,14 +70,16 @@ const locationChecks: { icon: 'time' | 'credential' | 'travel' | 'cost'; title: 
         <h3 class="font-semibold text-graphite-100">{job.remote ? `Trabajo remoto desde ${remoteBase}` : place}</h3>
         <p class="mt-1 max-w-prose text-sm leading-relaxed text-graphite-200">{job.remote
           ? 'Si vas a trabajar desde casa, revisa tu conexión, un respaldo de internet y un espacio para llamadas. Si necesitas un espacio alternativo, comprueba sus horarios y conectividad.'
-          : city
-            ? 'Usa la ciudad publicada como referencia. Pide la dirección de la sede y el punto de encuentro antes de trazar la ruta.'
-            : locations.length
-              ? `El anuncio ubica la vacante en ${country}. Confirma la unidad antes de organizar el viaje. Las ubicaciones de la empresa se detallan en la siguiente sección.`
-              : `La vacante indica ${country}. Pide el departamento y la sede para calcular el viaje.`}</p>
-        <a href={maps(job.remote ? `coworking en ${remoteBase}` : place)} target="_blank" rel="noopener noreferrer" class="mt-2 inline-block text-sm font-semibold text-brand-400 underline-offset-4 hover:underline">
-          {job.remote ? 'Buscar espacios de coworking en Google Maps' : `Ver ${city || country} en Google Maps`} <span aria-hidden="true">↗</span>
-        </a>
+          : worksite.conflicting
+            ? `El anuncio menciona ${worksite.region} para la ${job.internship ? 'práctica' : 'vacante'}, pero el portal la registra en ${publishedPlace}. Confirma el nombre de la unidad y el lugar de incorporación con selección.`
+            : destination
+              ? `La ubicación publicada es ${destination}. Confirma con selección la unidad o sede antes de planear tu llegada.`
+              : locations.length
+                ? `El anuncio ubica la vacante en ${country}. Confirma la unidad antes de organizar el viaje. Las ubicaciones de la empresa se detallan en la siguiente sección.`
+                : `La vacante indica ${country}. Pide el departamento y la sede para calcular el viaje.`}</p>
+        {(job.remote || (city && !worksite.conflicting)) && <a href={maps(job.remote ? `coworking en ${remoteBase}` : place)} target="_blank" rel="noopener noreferrer" class="mt-2 inline-block text-sm font-semibold text-brand-400 underline-offset-4 hover:underline">
+          {job.remote ? 'Buscar espacios de coworking en Google Maps' : `Ver ${city || country} en Google Maps`}
+        </a>}
       </div>
     </div>
     {!job.remote && locations.length > 0 && (
@@ -77,17 +87,16 @@ const locationChecks: { icon: 'time' | 'credential' | 'travel' | 'cost'; title: 
         <p class="max-w-prose text-sm leading-relaxed text-graphite-200">
           {employer?.travel}
         </p>
-        <a href="#company-locations" class="mt-1 inline-block text-sm font-medium text-brand-400 underline-offset-4 hover:underline">Ver sedes y accesos</a>
+        <a href="#company-locations" class="mt-1 inline-block text-sm font-medium text-brand-400 underline-offset-4 hover:underline">Ver sedes y accesos <span aria-hidden="true">→</span></a>
       </div>
     )}
     <ul role="list" class="grid divide-y divide-graphite-700 border-t border-graphite-700 bg-graphite-900 sm:grid-cols-2 sm:divide-x sm:divide-y-0">
-      {locationChecks.map(({ icon, title, text, link }) => (
+      {locationChecks.map(({ icon, title, text }) => (
         <li class="flex items-start gap-3 p-4 sm:p-5">
           <span class="shrink-0 text-brand-400 [&_svg]:size-5"><GuideIcon kind={icon} /></span>
           <div>
             <h3 class="text-sm font-semibold text-graphite-100">{title}</h3>
             <p class="mt-1 text-sm leading-relaxed text-graphite-200">{text}</p>
-            {link && <a href={link.href} target="_blank" rel="noopener noreferrer" class="mt-2 inline-block text-sm font-semibold text-brand-400 underline-offset-4 hover:underline">{link.label} <span aria-hidden="true">↗</span></a>}
           </div>
         </li>
       ))}
@@ -99,7 +108,7 @@ const locationChecks: { icon: 'time' | 'credential' | 'travel' | 'cost'; title: 
   <JobSectionHeading id="company-context-title" step={4}>Investiga a {job.company}</JobSectionHeading>
   {(profile || analysis?.company) && (
     <div class="mt-4 max-w-prose space-y-2 text-sm leading-relaxed text-graphite-200">
-      {profile && <p>{profile.summary} <a href={profile.summaryUrl ?? employer?.officialUrl} target="_blank" rel="noopener noreferrer" class="text-brand-400 underline-offset-4 hover:underline">Perfil oficial <span aria-hidden="true">↗</span></a></p>}
+      {profile && <p>{profile.summary} <a href={profile.summaryUrl ?? employer?.officialUrl} target="_blank" rel="noopener noreferrer" class="text-brand-400 underline-offset-4 hover:underline">Perfil oficial</a></p>}
       {analysis?.company && <p><strong class="text-graphite-100">Qué investigar.</strong> {analysis.company}</p>}
     </div>
   )}
@@ -130,13 +139,13 @@ const locationChecks: { icon: 'time' | 'credential' | 'travel' | 'cost'; title: 
     </div>
   )}
 
-  {(profile?.contactUrl || analysis?.visit) && (
+  {(profile?.contactUrl || employer?.profile?.contactTip || (job.remote && analysis?.visit)) && (
     <div class="mt-5 max-w-prose space-y-2 text-sm leading-relaxed text-graphite-200">
       <h3 class="font-semibold text-graphite-100">Contacto y llegada</h3>
       {profile?.contactTip && <p>{profile.contactTip}</p>}
-      {analysis?.visit && <p>{analysis.visit}</p>}
+      {job.remote && analysis?.visit && <p>{analysis.visit}</p>}
       <div class="flex flex-wrap gap-x-5 gap-y-1">
-        {profile?.contactUrl && <a href={profile.contactUrl} target="_blank" rel="noopener noreferrer" class="font-semibold text-brand-400 underline-offset-4 hover:underline">Contacto oficial <span aria-hidden="true">↗</span></a>}
+        {profile?.contactUrl && <a href={profile.contactUrl} target="_blank" rel="noopener noreferrer" class="font-semibold text-brand-400 underline-offset-4 hover:underline">Contacto oficial</a>}
         {profile?.phone && <a href={`tel:${profile.phone}`} class="font-semibold text-brand-400 underline-offset-4 hover:underline">Central {profile.phoneLabel}</a>}
       </div>
     </div>
@@ -159,7 +168,7 @@ const locationChecks: { icon: 'time' | 'credential' | 'travel' | 'cost'; title: 
     </>
   ) : (
     <div class="mt-2 pl-4">
-      <a href={companySearch} target="_blank" rel="noopener noreferrer" class="inline-block text-sm font-semibold text-brand-400 underline-offset-4 hover:underline">{job.internship ? 'Buscar testimonios de practicantes' : 'Buscar opiniones laborales'} <span aria-hidden="true">↗</span></a>
+      <a href={companySearch} target="_blank" rel="noopener noreferrer" class="inline-block text-sm font-semibold text-brand-400 underline-offset-4 hover:underline">{job.internship ? 'Buscar testimonios de practicantes' : 'Buscar opiniones laborales'}</a>
     </div>
   )}
 </section>

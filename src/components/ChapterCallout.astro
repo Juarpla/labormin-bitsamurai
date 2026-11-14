@@ -1,0 +1,18 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  label: string;
+  class?: string;
+  compact?: boolean;
+}
+const { title, description, href, label, class: className, compact = false } = Astro.props;
+---
+<div class:list={['chapter-callout rounded-3xl border border-brand-600/40 bg-gradient-to-b from-brand-500/10 to-transparent text-center', compact ? 'p-6 sm:p-9' : 'p-10 sm:p-16', className]}>
+  <h2 class:list={['font-display font-semibold text-graphite-100', compact ? 'text-2xl sm:text-3xl' : 'text-3xl sm:text-5xl']}>{title}</h2>
+  <p class="mx-auto mt-3 max-w-xl text-graphite-200">{description}</p>
+  <a href={href} class:list={['chapter-callout-link inline-flex items-center gap-2 rounded-full bg-brand-500 text-sm font-semibold text-graphite-950 transition-colors hover:bg-brand-400', compact ? 'mt-5 px-6 py-3' : 'mt-8 px-8 py-4']}>
+    {label} <span aria-hidden="true">→</span>
+  </a>
+</div>

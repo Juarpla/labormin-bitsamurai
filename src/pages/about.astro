@@ -20,7 +20,17 @@ const t = useTranslations(locale);
       <p>Si necesitas ganar experiencia, la ficha puede mostrarte <a href="/practicas">prácticas</a> u otros puestos relacionados que piden poca o ninguna experiencia. Así puedes ver qué requisitos ya cumples y en qué oportunidades podrías empezar.</p>
       <h2>Cómo comunicar un error o un cobro sospechoso</h2>
       <p>Si encuentras un dato incorrecto o alguien pide dinero en nombre de Labormin, escribe a <a href="mailto:labormin.com@gmail.com">labormin.com@gmail.com</a> con el enlace y una descripción del problema. También puedes usar nuestra <a href="/contact">página de contacto</a>.</p>
-      <p class="text-sm text-graphite-400"><a href="/guias">Consultar guías</a> · <a href="/privacy">Privacidad</a></p>
+    </div>
+    <div class="mt-8 grid gap-3 sm:grid-cols-2">
+      {[
+        { href: '/guias/', title: 'Consultar guías', description: 'Prepara tu postulación y aprende a evaluar ofertas.' },
+        { href: '/privacy/', title: 'Privacidad', description: 'Conoce cómo Labormin trata tus datos.' },
+      ].map(({ href, title, description }) => (
+        <a href={href} class="group rounded-2xl border border-graphite-700 bg-graphite-900 p-5 hover:border-brand-500/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400">
+          <span class="flex items-baseline justify-between gap-4 font-semibold text-graphite-100 group-hover:text-brand-400">{title} <span class="text-brand-400" aria-hidden="true">→</span></span>
+          <span class="mt-2 block text-sm leading-relaxed text-graphite-200">{description}</span>
+        </a>
+      ))}
     </div>
   </article>
 
