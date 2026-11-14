@@ -4,8 +4,8 @@ interface Props { kind: 'cursos' | 'oficios' | 'carreras'; }
 const { kind } = Astro.props;
 const id = `training-graphic-${kind}`;
 const fill = `url(#${id}-surface)`;
-const rim = `url(#${id}-rim)`;
-const amber = `url(#${id}-amber)`;
+const rim = 'var(--color-graphite-400)';
+const amber = 'var(--color-brand-400)';
 ---
 <svg class="training-graphic" viewBox="0 0 180 104" fill="none" aria-hidden="true" focusable="false">
   <GraphicLighting id={id} width={180} height={104} />
@@ -37,8 +37,8 @@ const amber = `url(#${id}-amber)`;
       <path stroke={amber} d="m133 10 22 9-22 9-22-9 22-9Zm-12 14v10q12 8 24 0V24m10-5v16" />
     </>}
   </g>
-  <!-- Grain over the lit object surfaces. -->
-  <rect x="4" y="4" width="172" height="96" rx="10" filter={`url(#${id}-grain)`} clip-path={`url(#${id}-bounds)`} opacity=".12" stroke="none" style="mix-blend-mode:soft-light"/>
+  <!-- Subtle texture on the diagram. -->
+  <rect x="4" y="4" width="172" height="96" rx="10" filter={`url(#${id}-grain)`} clip-path={`url(#${id}-bounds)`} opacity=".045" stroke="none" style="mix-blend-mode:soft-light"/>
 </svg>
 <style>
   .training-graphic{display:block;width:180px;max-width:100%;height:auto;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}

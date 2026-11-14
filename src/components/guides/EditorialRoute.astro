@@ -5,11 +5,11 @@ const key = 'editorial-route-light';
 ---
 <figure class="editorial-route">
   <svg viewBox="0 0 600 128" fill="none" class="block w-full text-brand-400" aria-hidden="true">
-    <!-- The route sits above a softly lit, graphitic surface. -->
+    <!-- A restrained graphite field separates the route from its labels. -->
     <defs>
-      <radialGradient id={key} cx="17%" cy="20%" r="84%">
-        <stop stop-color="#515c71" stop-opacity=".45"/><stop offset=".55" stop-color="#323c50" stop-opacity=".18"/><stop offset="1" stop-color="#10131a" stop-opacity="0"/>
-      </radialGradient>
+      <linearGradient id={key} x2="0" y2="1">
+        <stop stop-color="#1b2230"/><stop offset="1" stop-color="#10131a"/>
+      </linearGradient>
     </defs>
     <rect x="10" y="16" width="580" height="96" rx="8" fill={`url(#${key})`}/>
     <g stroke="var(--color-graphite-700)" stroke-width="1">

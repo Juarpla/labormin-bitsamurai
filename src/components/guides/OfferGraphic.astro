@@ -4,8 +4,8 @@ interface Props { kind: 'remoto' | 'visa' | 'salario'; }
 const { kind } = Astro.props;
 const id = `offer-graphic-${kind}`;
 const fill = `url(#${id}-surface)`;
-const rim = `url(#${id}-rim)`;
-const amber = `url(#${id}-amber)`;
+const rim = 'var(--color-graphite-400)';
+const amber = 'var(--color-brand-400)';
 ---
 <svg class="offer-graphic" viewBox="0 0 180 104" fill="none" aria-hidden="true" focusable="false">
   <GraphicLighting id={id} width={180} height={104} />
@@ -30,8 +30,8 @@ const amber = `url(#${id}-amber)`;
       <path stroke={amber} d="M103 75h38m-38 7h38"/><path class="muted" stroke-dasharray="2 5" d="M92 42v42"/>
     </>}
   </g>
-  <!-- Grain over the lit object surfaces. -->
-  <rect x="4" y="4" width="172" height="96" rx="10" filter={`url(#${id}-grain)`} clip-path={`url(#${id}-bounds)`} opacity=".12" stroke="none" style="mix-blend-mode:soft-light"/>
+  <!-- Subtle texture on the diagram. -->
+  <rect x="4" y="4" width="172" height="96" rx="10" filter={`url(#${id}-grain)`} clip-path={`url(#${id}-bounds)`} opacity=".045" stroke="none" style="mix-blend-mode:soft-light"/>
 </svg>
 <style>
   .offer-graphic{display:block;width:180px;max-width:100%;height:auto;stroke:var(--color-graphite-200);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}

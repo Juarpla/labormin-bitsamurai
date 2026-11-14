@@ -13,21 +13,15 @@ const map = kind === 'location' || kind === 'campus';
 ---
 <svg viewBox="0 0 288 176" fill="none" class="training-illustration" aria-hidden="true" focusable="false">
   <defs>
-    <!-- Upper-left light, graphite shadow and a cool reflected edge. -->
-    <radialGradient id={`${key}-sky`} cx="22%" cy="16%" r="92%">
-      <stop stop-color="#485466"/><stop offset=".4" stop-color="#252e3e"/><stop offset=".78" stop-color="#141b27"/><stop offset="1" stop-color="#0b1018"/>
-    </radialGradient>
-    <linearGradient id={`${key}-steel`} x1="0" y1="0" x2=".88" y2="1">
-      <stop stop-color="#8d9bae"/><stop offset=".23" stop-color="#566379"/><stop offset=".56" stop-color="#273040"/><stop offset=".84" stop-color="#121925"/><stop offset="1" stop-color="#46556c"/>
+    <!-- Tonal fills separate the surfaces. Fine strokes carry the detail. -->
+    <linearGradient id={`${key}-sky`} x2="0" y2="1">
+      <stop stop-color="#181e29"/><stop offset="1" stop-color="#11151d"/>
     </linearGradient>
-    <linearGradient id={`${key}-rock`} x2=".15" y2="1">
-      <stop stop-color="#82786a"/><stop offset=".22" stop-color="#586172"/><stop offset=".56" stop-color="#343d4c"/><stop offset=".85" stop-color="#1a2230"/><stop offset="1" stop-color="#3a4356"/>
+    <linearGradient id={`${key}-steel`} x2="0" y2="1">
+      <stop stop-color="#293242"/><stop offset="1" stop-color="#1c2430"/>
     </linearGradient>
-    <radialGradient id={`${key}-amber`} cx="26%" cy="18%" r="88%">
-      <stop stop-color="#fff0bc"/><stop offset=".26" stop-color="#ffd57a"/><stop offset=".57" stop-color="#f5a623"/><stop offset=".83" stop-color="#a75913"/><stop offset="1" stop-color="#d18a12"/>
-    </radialGradient>
-    <linearGradient id={`${key}-glint`} x2=".75" y2="1">
-      <stop stop-color="#e9edf4" stop-opacity=".65"/><stop offset=".37" stop-color="#c6cedd" stop-opacity=".26"/><stop offset=".7" stop-color="#7a8598" stop-opacity="0"/><stop offset="1" stop-color="#a0b5cc" stop-opacity=".3"/>
+    <linearGradient id={`${key}-rock`} x2="0" y2="1">
+      <stop stop-color="#2c3545"/><stop offset="1" stop-color="#171e29"/>
     </linearGradient>
     <clipPath id={`${key}-frame`}><path d={panel}/></clipPath>
     <clipPath id={`${key}-bench`}><path d={benches[0]}/></clipPath>
@@ -35,93 +29,85 @@ const map = kind === 'location' || kind === 'campus';
       <feTurbulence type="fractalNoise" baseFrequency=".61" numOctaves="3" seed="23" stitchTiles="stitch"/>
       <feColorMatrix type="saturate" values="0"/>
     </filter>
-    <filter id={`${key}-soft`}><feGaussianBlur stdDeviation="3.5"/></filter>
   </defs>
 
-  <!-- Recessed backdrop. Grain is clipped and limited to the illustration. -->
-  <ellipse cx="146" cy="153" rx="121" ry="9" fill="#02050a" opacity=".7" filter={paint('soft')}/>
-  <path d={panel} fill={paint('sky')} stroke={paint('glint')}/>
+  <!-- Graphite backdrop. Grain is clipped and limited to the illustration. -->
+  <path d={panel} fill={paint('sky')} stroke="#3a4356"/>
   <g clip-path={paint('frame')}>
     {kind === 'mining' && <>
       <!-- Far ridges, cut faces, and the broken strata in the open pit. -->
       <path d="M12 63 41 43 57 47 85 25 119 41 149 59 174 49 204 35 227 50 246 46 276 65v93H12Z" fill={paint('steel')} opacity=".57"/>
       <path d="M12 68l45-9 32-20 40 16 33 13 42-18 32 7 40 12v89H12Z" fill="#222936"/>
-      {benches.map(path => <path d={path} fill={paint('rock')} stroke={paint('glint')} stroke-width="1.1"/>)}
+      {benches.map(path => <path d={path} fill={paint('rock')} stroke="#68768b" stroke-width="1.1"/>)}
       <g clip-path={paint('bench')}>
         <path d="M10 81h44l23 17h45l24 25h38l19-21h30l23-25h21M14 103h38l19 13h43l26 25h52l22-23h26l22-22h13M24 142h46l19 9m126-4 32-11 25-15" stroke="#d4b78d" opacity=".3"/>
         <path d="m19 78 12 11-7 8m22 0 5 10-13 10m39-22 8 10 4 16m20 4 14 15m99-40 8 8-12 12m35-34 7 10-6 12m-49 20 5 10" stroke="#10151c" opacity=".8"/>
-        <path d="M13 77h47l23 15h41l24 25h34l19-21h29l22-24h24" stroke="#141925" stroke-width="6" transform="translate(0 5)" filter={paint('soft')}/>
       </g>
-      <!-- Survey line and polished survey markers. -->
+      <!-- Survey line and amber survey markers. -->
       <path d="m49 65 48 16 59 47 49-36 39-29" stroke="#ffc247" stroke-width="1.15" stroke-dasharray="3 4" opacity=".9"/>
-      <g fill={paint('amber')} stroke={paint('glint')}>
+      <g fill="#ffc247" stroke="#171e29">
         <circle cx="49" cy="65" r="4"/><circle cx="97" cy="81" r="3"/><circle cx="156" cy="128" r="4.5"/><circle cx="205" cy="92" r="3"/><circle cx="244" cy="63" r="4"/>
       </g>
     </>}
 
     {kind === 'electronics' && <>
-      <!-- Etched board, copper traces and raised semiconductor. -->
-      <rect x="32" y="33" width="224" height="110" rx="10" fill="#090d13" opacity=".75" filter={paint('soft')}/>
-      <rect x="30" y="29" width="224" height="110" rx="10" fill={paint('steel')} stroke={paint('glint')}/>
+      <!-- Etched board, copper traces and semiconductor. -->
+      <rect x="30" y="29" width="224" height="110" rx="10" fill={paint('steel')} stroke="#677489"/>
       <path d="M47 54h35l18 18h22m-75 43h30l19-20h26m53-23h22l22-18h20m-63 42h16l21 19h23M53 81h63m58 6h63m-97-24V46h46m-35 62v16h-45" stroke="#d9a65d" stroke-width="1.4" opacity=".76"/>
-      <g fill={paint('amber')}>
+      <g fill="#ffc247">
         <circle cx="46" cy="54" r="4"/><circle cx="46" cy="115" r="4"/><circle cx="241" cy="54" r="4"/><circle cx="239" cy="115" r="4"/>
       </g>
-      <rect x="112" y="59" width="68" height="52" rx="6" fill="#090e16" opacity=".9" filter={paint('soft')}/>
       <path d="M122 58V50m9 8v-8m9 8v-8m9 8v-8m9 8v-8m9 8v-8m-45 62v8m9-8v8m9-8v8m9-8v8m9-8v8m9-8v8" stroke="#bcb2a1" stroke-width="2.2"/>
-      <rect x="113" y="59" width="65" height="50" rx="6" fill={paint('steel')} stroke={paint('glint')}/>
+      <rect x="113" y="59" width="65" height="50" rx="6" fill={paint('steel')} stroke="#677489"/>
       <path d="M125 84h9l7-11 9 20 6-9h10" stroke="#ffc247" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </>}
 
     {(kind === 'virtual' || kind === 'online-access') && <>
-      <!-- Beveled aluminum case and screen reflections. -->
-      <rect x="51" y="34" width="184" height="104" rx="11" fill="#060910" opacity=".85" filter={paint('soft')}/>
-      <rect x="48" y="28" width="184" height="102" rx="10" fill={paint('steel')} stroke={paint('glint')}/>
+      <!-- Computer, screen details and access indicators. -->
+      <rect x="48" y="28" width="184" height="102" rx="10" fill={paint('steel')} stroke="#677489"/>
       <rect x="55" y="36" width="170" height="85" rx="5" fill={paint('sky')} stroke="#141b25"/>
       <path d="M57 38h164l-105 34H57Z" fill="#e9edf4" opacity=".055"/>
       {kind === 'online-access' ? <>
-        <path d="M28 129h224l-8 12a10 10 0 0 1-9 5H45a10 10 0 0 1-9-5Z" fill={paint('steel')} stroke={paint('glint')}/>
+        <path d="M28 129h224l-8 12a10 10 0 0 1-9 5H45a10 10 0 0 1-9-5Z" fill={paint('steel')} stroke="#677489"/>
         <path d="M122 135h35" stroke="#b2bdcd" stroke-linecap="round" opacity=".7"/>
-        <g stroke={paint('amber')} stroke-width="4" stroke-linecap="round">
+        <g stroke="#ffc247" stroke-width="4" stroke-linecap="round">
           <path d="M107 65a49 49 0 0 1 66 0m-55 12a33 33 0 0 1 44 0m-33 12a17 17 0 0 1 22 0"/>
         </g>
-        <circle cx="140" cy="101" r="3.5" fill={paint('amber')}/>
+        <circle cx="140" cy="101" r="3.5" fill="#ffc247"/>
       </> : <>
         <path d="m132 130-5 11h26l-5-11m-28 14h40" stroke="#99a7bc" stroke-width="1.5" stroke-linecap="round"/>
-        <rect x="66" y="55" width="65" height="48" rx="5" fill={paint('steel')} stroke={paint('glint')}/>
-        <path d="m92 67 19 12-19 12Z" fill={paint('amber')} stroke={paint('glint')}/>
+        <rect x="66" y="55" width="65" height="48" rx="5" fill={paint('steel')} stroke="#677489"/>
+        <path d="m92 67 19 12-19 12Z" fill="#2c2518" stroke="#ffc247"/>
         <path d="M145 59h61m-61 14h47m-47 14h35" stroke="#aeb9c9" stroke-width="2" opacity=".7"/>
-        <rect x="174" y="101" width="76" height="39" rx="6" fill={paint('steel')} stroke={paint('glint')}/>
+        <rect x="174" y="101" width="76" height="39" rx="6" fill={paint('steel')} stroke="#677489"/>
         <path d="m186 120 4 4 10-11m9 5h28m-51 12h51" stroke="#ffc247" stroke-linecap="round" stroke-width="1.6"/>
       </>}
     </>}
 
     {kind === 'workshop' && <>
       <!-- A caliper over a ruled workstation. -->
-      <path d="M29 124 73 42h143l40 82-15 16H44Z" fill={paint('steel')} stroke={paint('glint')}/>
+      <path d="M29 124 73 42h143l40 82-15 16H44Z" fill={paint('steel')} stroke="#677489"/>
       <path d="M39 120h206L211 49H78Z" fill="#131a25"/>
       <path d="M56 103h175M65 87h157m-147-15h137M90 56l-27 61m55-61-12 61m40-61v61m28-61 15 61m12-61 31 61" stroke="#8291a6" opacity=".35"/>
-      <path d="M78 65h128v14h-31v27h-12V79h-49v27H99V79H78Z" fill={paint('steel')} stroke={paint('glint')}/>
+      <path d="M78 65h128v14h-31v27h-12V79h-49v27H99V79H78Z" fill={paint('steel')} stroke="#677489"/>
       <path d="M87 70h102m-91 1v6m12-6v5m12-5v6m12-6v5m12-5v6m12-6v5m12-5v6" stroke="#e0e8f5" opacity=".65"/>
-      <rect x="150" y="60" width="44" height="23" rx="3" fill={paint('amber')} stroke={paint('glint')}/>
+      <rect x="150" y="60" width="44" height="23" rx="3" fill="#2c2518" stroke="#ffc247"/>
       <rect x="157" y="64" width="27" height="11" rx="2" fill="#222c40"/>
       <path d="M162 69h16" stroke="#ffd57a" stroke-dasharray="2 2"/>
     </>}
 
     {map && <>
-      <!-- Folded relief map, illuminated folds, then the location marker. -->
-      <path d="m24 117 31-71 50 12 50-19 52 15 32-12 27 75-44 23-58-16-51 21-47-13Z" fill="#060910" filter={paint('soft')}/>
-      <path d="m26 111 30-69 50 12 50-19 52 15 32-12 25 72-44 24-57-16-51 21-47-13Z" fill={paint('steel')} stroke={paint('glint')}/>
+      <!-- Map contours, route and campus marker. -->
+      <path d="m26 111 30-69 50 12 50-19 52 15 32-12 25 72-44 24-57-16-51 21-47-13Z" fill={paint('steel')} stroke="#677489"/>
       <path d="m56 42 50 12 7 85-47-13Zm100-7 52 15 13 84-57-16Z" fill={paint('sky')} opacity=".5"/>
       <path d="m44 99 25-28 50 9 39-23 30 11 32-4 20-12m-201 61 34-25 50 12 36-28 29 13 36-2 26-18M66 124l21-20 41 13 33-25 31 6 34 8 30-19" stroke="#d2dbe8" stroke-width="1.2" opacity=".55"/>
       <path d="m66 111 33-40 34 14 36-22 61 32" stroke="#ffc247" stroke-dasharray="3 4" stroke-width="1.5"/>
       {kind === 'campus' ?
-        <><path d="M190 60c0 17-26 43-26 43s-26-26-26-43a26 26 0 0 1 52 0Z" fill={paint('amber')} stroke={paint('glint')}/><circle cx="164" cy="59" r="9" fill={paint('sky')} stroke="#b4681c"/></>
+        <><path d="M190 60c0 17-26 43-26 43s-26-26-26-43a26 26 0 0 1 52 0Z" fill="#211e19" stroke="#ffc247" stroke-width="1.8"/><circle cx="164" cy="59" r="9" stroke="#ffc247" stroke-width="1.4"/></>
         : <ellipse cx="167" cy="74" rx="28" ry="17" fill="#f5a623" fill-opacity=".16" stroke="#ffc247" stroke-dasharray="3 4"/>}
     </>}
 
-    <path d={panel} filter={paint('grain')} opacity=".12" style="mix-blend-mode: soft-light"/>
-    <path d="M24 128V34a8 8 0 0 1 8-8h190" stroke={paint('glint')} opacity=".34"/>
+    <path d={panel} filter={paint('grain')} opacity=".045" style="mix-blend-mode: soft-light"/>
   </g>
 </svg>
 

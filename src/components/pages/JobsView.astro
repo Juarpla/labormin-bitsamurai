@@ -77,21 +77,16 @@ const payload = JSON.stringify({ index: jobIndex(locale, jobs) });
     <div class="flex flex-col items-center rounded-2xl border border-graphite-800 bg-graphite-900/40 px-6 py-14 text-center sm:py-16">
       <svg width="80" height="80" viewBox="0 0 80 80" fill="none" aria-hidden="true">
         <defs>
-          <radialGradient id="jobs-lens" cx="29%" cy="22%" r="84%">
-            <stop stop-color="#4e5a70"/><stop offset=".46" stop-color="#283345"/><stop offset=".85" stop-color="#141822"/><stop offset="1" stop-color="#273144"/>
-          </radialGradient>
-          <linearGradient id="jobs-lens-rim" x2=".7" y2="1">
-            <stop stop-color="#c6cedd"/><stop offset=".42" stop-color="#7a8598"/><stop offset=".78" stop-color="#3a4356"/><stop offset="1" stop-color="#9aa8bc"/>
+          <linearGradient id="jobs-lens" x2="0" y2="1">
+            <stop stop-color="#232c3b"/><stop offset="1" stop-color="#141822"/>
           </linearGradient>
-          <filter id="jobs-lens-shadow"><feGaussianBlur stdDeviation="2.5"/></filter>
           <clipPath id="jobs-lens-edge"><circle cx="36" cy="34" r="21"/></clipPath>
         </defs>
-        <!-- Cast shadow, brushed metal rim and a reflection in the lens. -->
-        <ellipse cx="39" cy="59" rx="26" ry="6" fill="#05080e" filter="url(#jobs-lens-shadow)"/>
-        <path d="m52 50 12 12" stroke="url(#jobs-lens-rim)" stroke-width="6" stroke-linecap="round"/>
-        <circle cx="36" cy="34" r="22" fill="url(#jobs-lens)" stroke="url(#jobs-lens-rim)" stroke-width="2"/>
+        <!-- Graphite lens with a thin contour and amber detail. -->
+        <path d="m52 50 12 12" stroke="#7a8598" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="36" cy="34" r="22" fill="url(#jobs-lens)" stroke="#7a8598" stroke-width="2"/>
         <g clip-path="url(#jobs-lens-edge)">
-          <path d="M14 33a23 23 0 0 1 31-19L16 42Z" fill="#e9edf4" opacity=".085"/>
+          <path d="M14 33a23 23 0 0 1 31-19L16 42Z" fill="#e9edf4" opacity=".035"/>
           <path d="M26 39a10 10 0 0 1 20 0m-24 0h28" stroke="#ffc247" stroke-width="2" stroke-linecap="round"/>
           <path d="M36 29v6" stroke="#ffd57a" stroke-width="2" stroke-linecap="round"/>
         </g>

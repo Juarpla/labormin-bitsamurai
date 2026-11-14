@@ -1,14 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <!-- Graphite tile and beveled amber outline. -->
-  <defs>
-    <radialGradient id="graphite" cx="24%" cy="16%" r="94%">
-      <stop stop-color="#3a4356"/><stop offset=".55" stop-color="#1a1f2b"/><stop offset="1" stop-color="#0a0b0e"/>
-    </radialGradient>
-    <linearGradient id="amber" x2=".75" y2="1">
-      <stop stop-color="#fff0bc"/><stop offset=".4" stop-color="#ffc247"/><stop offset=".8" stop-color="#d18a12"/><stop offset="1" stop-color="#f5a623"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="14" fill="url(#graphite)"/>
-  <path d="M32 10 14 24l5 24h26l5-24L32 10Zm0 8 12 9-4 15H24l-4-15 12-9Z" fill="url(#amber)"/>
-  <rect x="30" y="27" width="4" height="14" rx="2" fill="url(#amber)"/>
+  <rect width="64" height="64" rx="14" fill="#10131a"/>
+  <path d="M32 10 14 24l5 24h26l5-24L32 10Zm0 8 12 9-4 15H24l-4-15 12-9Z" fill="#ffc247"/>
+  <rect x="30" y="27" width="4" height="14" rx="2" fill="#ffc247"/>
 </svg>

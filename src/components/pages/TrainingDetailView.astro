@@ -1,5 +1,6 @@
 ---
 import CatalogPagination from '../CatalogPagination.astro';
+import JobSectionHeading from '../JobSectionHeading.astro';
 import GuideIcon from '../guides/GuideIcon.astro';
 import TrainingIllustration from '../TrainingIllustration.astro';
 import TrainingLocation from '../TrainingLocation.astro';
@@ -20,6 +21,7 @@ interface Props {
   opportunities?: { job: TrainingOpportunity[]; internship: TrainingOpportunity[] };
 }
 const { center, program, programs, page, opportunities } = Astro.props;
+const locationStep = program ? (program.curriculum ? 2 : 1) : undefined;
 const online = (program ? program.mode : center.mode) === 'virtual';
 // A district in a directory may describe the institution, while a program
 // runs elsewhere. Prefer the region unless the program or provider is clear.
@@ -72,10 +74,12 @@ const suggestedGuides = guideSlugs
     </div>)}
   </dl>}
 
-  {program?.curriculum && <section class="training-section training-curriculum" aria-labelledby="training-curriculum-title">
-    <h2 id="training-curriculum-title">Qué aprenderás</h2>
-    <div class="training-curriculum-graphic"><TrainingIllustration kind={illustration} /></div>
-    <ul>{program.curriculum.map(item => <li>{item}</li>)}</ul>
+  {program?.curriculum && <section class="training-section" aria-labelledby="training-curriculum-title">
+    <JobSectionHeading id="training-curriculum-title" step={1} class="training-step-heading">Qué aprenderás</JobSectionHeading>
+    <div class="training-illustrated-content">
+      <ul class="training-curriculum-list">{program.curriculum.map(item => <li>{item}</li>)}</ul>
+      <div class="training-section-graphic"><TrainingIllustration kind={illustration} /></div>
+    </div>
   </section>}
 
   {!program && <section class="training-section" aria-labelledby="programas">
@@ -88,10 +92,10 @@ const suggestedGuides = guideSlugs
     </> : <p>{center.program}</p>}
   </section>}
 
-  <TrainingLocation place={place} online={online} notes={program?.notes} />
+  <TrainingLocation step={locationStep} place={place} online={online} notes={program?.notes} />
 
   <section class="training-section" aria-labelledby="training-admission-title">
-    <h2 id="training-admission-title">{online ? 'Cómo acceder' : 'Admisión y cupos'}</h2>
+    <JobSectionHeading id="training-admission-title" step={locationStep && locationStep + 1} class="training-step-heading">{online ? 'Cómo acceder' : 'Admisión y cupos'}</JobSectionHeading>
     <div class="training-admission">
       <p>{program ? program.admission ?? 'Consulta los requisitos, el calendario y los documentos para inscribirte en la fuente del programa.' : center.admission}</p>
       {program?.cost?.detail && <p>{program.cost.detail}</p>}
@@ -102,7 +106,7 @@ const suggestedGuides = guideSlugs
   </section>
 
   {perspectives.length > 0 && <section class="training-section training-perspectives" aria-labelledby="training-perspectives-title">
-    <h2 id="training-perspectives-title">Estudiar y trabajar en esta área</h2>
+    <JobSectionHeading id="training-perspectives-title" step={locationStep && locationStep + 2} class="training-step-heading">Estudiar y trabajar en esta área</JobSectionHeading>
     {perspectives.map(group => <section>
       <h3>{group.title}</h3>
       {group.notes.map(note => <div><p>{note.text}</p><a class="training-text-link" href={note.url}>{note.label}</a></div>)}

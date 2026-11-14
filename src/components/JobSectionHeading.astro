@@ -2,12 +2,18 @@
 interface Props {
   id?: string;
   step?: number;
+  class?: string;
 }
-const { id, step } = Astro.props;
+const { id, step, class: className } = Astro.props;
 ---
-<h2 id={id} class:list={['font-display text-2xl font-semibold text-graphite-100', step && 'flex items-start gap-3']}>
+<h2 id={id} class:list={['font-display text-2xl font-semibold text-graphite-100', step && 'flex items-start gap-3', className]}>
   {step && (
-    <span class="mt-0.5 grid size-7 shrink-0 place-items-center rounded-lg border border-brand-500/30 bg-brand-500/10 font-sans text-sm font-semibold tabular-nums text-brand-400" aria-hidden="true">{step}</span>
+    <span class="relative mt-0.5 grid size-7 shrink-0 place-items-center font-sans text-sm font-semibold tabular-nums text-brand-400" aria-hidden="true">
+      <svg class="absolute inset-0 size-full" viewBox="0 0 28 28" fill="none" focusable="false">
+        <rect x=".5" y=".5" width="27" height="27" rx="7.5" class="fill-brand-500/10 stroke-brand-500/30" />
+      </svg>
+      <span class="relative">{step}</span>
+    </span>
   )}
   <span><slot /></span>
 </h2>

@@ -2,22 +2,14 @@
 interface Props { id: string; width: number; height: number }
 const { id, width, height } = Astro.props;
 ---
-<!-- Directional surface light, metallic rim, and warm reflected light. -->
+<!-- Tonal graphite with restrained borders and a clipped texture. -->
 <defs>
-  <radialGradient id={`${id}-surface`} cx="20%" cy="14%" r="96%">
-    <stop stop-color="#5a6579"/><stop offset=".33" stop-color="#333e50"/><stop offset=".72" stop-color="#1a2230"/><stop offset="1" stop-color="#131924"/>
-  </radialGradient>
-  <linearGradient id={`${id}-rim`} x1="0" y1="0" x2=".8" y2="1">
-    <stop stop-color="#e9edf4" stop-opacity=".8"/><stop offset=".4" stop-color="#9eaac0" stop-opacity=".7"/><stop offset=".76" stop-color="#657187" stop-opacity=".35"/><stop offset="1" stop-color="#c6cedd" stop-opacity=".58"/>
-  </linearGradient>
-  <linearGradient id={`${id}-amber`} x1="0" y1="0" x2=".7" y2="1">
-    <stop stop-color="#fff0bc"/><stop offset=".3" stop-color="#ffd57a"/><stop offset=".6" stop-color="#f5a623"/><stop offset=".84" stop-color="#cb7f18"/><stop offset="1" stop-color="#ffc247"/>
+  <linearGradient id={`${id}-surface`} x2="0" y2="1">
+    <stop stop-color="#232c3b"/><stop offset="1" stop-color="#141a24"/>
   </linearGradient>
   <clipPath id={`${id}-bounds`}><rect x="4" y="4" width={width - 8} height={height - 8} rx="10"/></clipPath>
-  <filter id={`${id}-shadow`}><feGaussianBlur stdDeviation="3"/></filter>
   <filter id={`${id}-grain`}>
-    <feTurbulence baseFrequency=".56" numOctaves="3" seed="31" type="fractalNoise" stitchTiles="stitch"/>
+    <feTurbulence baseFrequency=".56" numOctaves="2" seed="31" type="fractalNoise" stitchTiles="stitch"/>
     <feColorMatrix type="saturate" values="0"/>
   </filter>
 </defs>
-<ellipse cx={width / 2} cy={height - 9} rx={width * .36} ry="5" fill="#04070d" opacity=".65" filter={`url(#${id}-shadow)`} stroke="none"/>
