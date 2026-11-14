@@ -6,7 +6,7 @@
  *   LLM_PROVIDER_ORDER      optional; comma list of model-var names, e.g.
  *                           "MISTRAL_MODEL,WORKERS_AI_MODEL,OPENCODE_GO_MODEL".
  *                           The prefix before "_MODEL" selects the provider.
- *                           Default: the three above, in that order.
+ *                           Default: DEFAULT_PROVIDER_ORDER below.
  *   AGNES_API_KEY           https://platform.agnes-ai.com (AGNES_MODEL, default agnes-3.0-flash)
  *   MISTRAL_API_KEY         https://console.mistral.ai
  *   MISTRAL_MODEL           default codestral-2508
@@ -60,13 +60,14 @@ const PROVIDERS = {
   },
 };
 
-const DEFAULT_ORDER = 'MISTRAL_MODEL,WORKERS_AI_MODEL,OPENCODE_GO_MODEL';
+/** Default failover chain, shared by every caller (presentation and guidance). */
+export const DEFAULT_PROVIDER_ORDER = 'AGNES_MODEL,OPENCODE_GO_MODEL,WORKERS_AI_MODEL,MISTRAL_MODEL';
 
 /** Resolves the provider chain from LLM_PROVIDER_ORDER + credentials.
  *  Entries are model-var names ("MISTRAL_MODEL"); unknown prefixes are logged
  *  and skipped, duplicates deduped, providers missing credentials dropped. */
 export function resolveChain(getEnv, log = () => {}) {
-  const order = (getEnv('LLM_PROVIDER_ORDER') || DEFAULT_ORDER).trim();
+  const order = (getEnv('LLM_PROVIDER_ORDER') || DEFAULT_PROVIDER_ORDER).trim();
   const chain = [];
   const seen = new Set();
   for (const rawEntry of order.split(',')) {

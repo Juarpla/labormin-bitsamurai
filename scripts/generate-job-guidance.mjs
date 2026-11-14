@@ -19,7 +19,7 @@ if (!Number.isSafeInteger(maxCalls) || maxCalls < 0 || maxCalls > 120) {
   throw Error('JOB_GUIDANCE_MAX_CALLS must be an integer between 0 and 120.');
 }
 const providers = resolveChain(name => name === 'LLM_PROVIDER_ORDER'
-  ? process.env.JOB_GUIDANCE_PROVIDER_ORDER || 'AGNES_MODEL,OPENCODE_GO_MODEL,WORKERS_AI_MODEL,MISTRAL_MODEL'
+  ? process.env.JOB_GUIDANCE_PROVIDER_ORDER
   : process.env[name], console.log);
 if (!maxCalls || !providers.length) {
   console.log('Job guidance skipped. Editorial guidance remains available.');

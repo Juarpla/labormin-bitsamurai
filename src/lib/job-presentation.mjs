@@ -1,9 +1,9 @@
 import { createHash } from 'node:crypto';
 import { decodeHTML } from 'entities';
 import { visaEvidence } from './job-policy.mjs';
-import { callProvider, extractJson, resolveChain, withFailover } from './llm.js';
+import { callProvider, DEFAULT_PROVIDER_ORDER, extractJson, resolveChain, withFailover } from './llm.js';
 
-export const PRESENTATION_ORDER = 'AGNES_MODEL,OPENCODE_GO_MODEL,WORKERS_AI_MODEL,MISTRAL_MODEL';
+export const PRESENTATION_ORDER = DEFAULT_PROVIDER_ORDER;
 export const sectionLabels = {
   overview: 'Sobre la vacante',
   duties: 'Funciones',

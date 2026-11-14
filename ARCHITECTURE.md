@@ -256,7 +256,7 @@ respect `prefers-reduced-motion`.
 | `LM_SOURCES` | no | CI-only: comma list of Apify platforms to run; derived from the weekday by `refresh-jobs.yml` (empty/unset = run all, e.g. local dev) |
 | LLM_PROVIDER_ORDER | no | Vista clara and English titles. Defaults to AGNES_MODEL,OPENCODE_GO_MODEL,WORKERS_AI_MODEL,MISTRAL_MODEL |
 | JOB_PRESENTATION_MAX_CALLS | no | Total calls per run, including failed calls and corrections. Defaults to 30. Use 0 to pause or up to 120 |
-| `JOB_GUIDANCE_PROVIDER_ORDER` | no | Background application guidance. Defaults to `AGNES_MODEL`. For Workers AI fallback use `AGNES_MODEL,WORKERS_AI_MODEL` |
+| `JOB_GUIDANCE_PROVIDER_ORDER` | no | Background application guidance. Defaults to `AGNES_MODEL,OPENCODE_GO_MODEL,WORKERS_AI_MODEL,MISTRAL_MODEL` |
 | `JOB_GUIDANCE_MAX_CALLS` | no | Provider calls per guidance run, including failures. Defaults to 30, with a maximum of 120. Set to 0 to pause |
 | `INGEST_FAST` | no | local only: caps every source at N items for fast smoke tests |
 
