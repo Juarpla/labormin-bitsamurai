@@ -11,13 +11,14 @@ import { trainingPath } from '../lib/training-program.mjs';
 import { guidanceContext } from '../lib/job-guidance.mjs';
 import type { careerGuidance } from '../lib/job-guidance.mjs';
 import type { Job } from '../schemas';
+import type { jobWorksite } from '../lib/job-worksite.mjs';
 
-interface Props { region?: string; guide: ReturnType<typeof careerGuidance>; job: Job; title: string; tools: string[]; experience?: string; analysis: ReturnType<typeof jobAnalysis> }
-const { region, guide, job, title, tools, experience, analysis } = Astro.props;
+interface Props { worksite: ReturnType<typeof jobWorksite>; guide: ReturnType<typeof careerGuidance>; job: Job; title: string; tools: string[]; experience?: string; analysis: ReturnType<typeof jobAnalysis> }
+const { worksite, guide, job, title, tools, experience, analysis } = Astro.props;
 const training = guide.trainingIds.flatMap((id: string) => education.filter(option => option.id === id));
-const preparation = applicationPreparation(job, title, guide.skill ?? guide.experienceSkill, tools, experience, guide.questions[0]);
+const preparation = applicationPreparation(job, title, guide.skill ?? guide.experienceSkill, tools, experience, guide.questions[0], worksite);
 const { skillId } = guidanceContext(job);
-const degrees = await degreesForJob(job, region);
+const degrees = await degreesForJob(job, worksite.region);
 const skillPrograms: Record<string, Record<string, string>> = {
   'mine-planning': { 'narciso-villanueva': 'explotacion-minera', chalhuahuacho: 'explotacion-minera' },
   'industrial-electronics': { 'jose-carlos-mariategui': 'electronica-industrial', 'cetpro-juliaca': 'electronica-y-electricidad' },

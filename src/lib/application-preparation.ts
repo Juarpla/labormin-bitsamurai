@@ -1,4 +1,5 @@
 import type { Job } from '../schemas';
+import type { jobWorksite } from './job-worksite.mjs';
 
 const titles = [
   { icon: 'credential', title: 'Ajusta tu CV' },
@@ -29,10 +30,14 @@ const byListing = new Map<string, string[]>([
   ]],
 ]);
 
-export function applicationPreparation(job: Job, title: string, skill: string | null, tools: string[], experience?: string, question?: string) {
+export function applicationPreparation(job: Job, title: string, skill: string | null, tools: string[], experience?: string, question?: string, worksite?: ReturnType<typeof jobWorksite>) {
   const role = skill ? `el trabajo de ${skill}` : `el puesto de «${title}»`;
   const examples = job.internship ? 'un proyecto de estudios' : 'un proyecto o trabajo anterior';
-  const workplace = job.city ? `en ${job.city}` : `de ${job.company}`;
+  const region = worksite?.region;
+  const workplace = region || job.city;
+  const onsite = worksite?.conflicting
+    ? `El aviso menciona ${region}. Confirma en qué unidad debes presentarte y desde dónde empieza el traslado.`
+    : `Confirma en qué sede ${workplace ? `de ${workplace}` : `de ${job.company}`} se realiza ${role}. ${job.internship ? 'Comprueba la duración y el horario de la práctica.' : 'Pregunta por el régimen y el punto de recojo.'}`;
   const text = byListing.get(job.id) ?? [
     `${job.internship ? 'Indica tu carrera y tu ciclo o fecha de egreso. ' : ''}${experience ? `Para acreditar «${experience}», indica fechas y responsabilidades en tu CV.` : 'Prioriza las responsabilidades que puedas respaldar con ejemplos.'} Destaca ${examples} relacionado con ${role}.`,
     tools.length
@@ -41,7 +46,7 @@ export function applicationPreparation(job: Job, title: string, skill: string | 
     question ?? `Pregunta qué primera tarea te asignaría el equipo de ${job.company} y cómo evaluaría tu trabajo en «${title}».`,
     job.remote
       ? `Confirma con ${job.company} qué horario y equipo necesitarías para ${role} desde Perú y si debes asistir a reuniones presenciales.`
-      : `Confirma en qué sede ${workplace} se realiza ${role} y si requiere desplazarte a una operación. ${job.internship ? 'Comprueba la duración y el horario de la práctica.' : 'Pregunta por el régimen y el punto de recojo.'}`,
+      : onsite,
     `Consulta con ${job.company} ${job.internship ? 'el monto de la subvención' : job.salary ? 'si el monto publicado es bruto o neto' : `el rango de sueldo para «${title}»`}. Si te indican que habrá desplazamientos, pregunta cómo los cubren.`,
     job.internship
       ? `Confirma si ${job.company} acepta estudiantes o egresados para «${title}» y qué constancia debes presentar para el convenio.`

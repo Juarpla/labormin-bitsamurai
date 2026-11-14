@@ -54,7 +54,10 @@ const facts = [
   { label: 'Licencia', value: driving, icon: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 10h4m-4 4h4m4-4h2m-2 4h2"/>' },
 ].filter(fact => fact.value);
 
-const jsonLd = jobPosting(job, now);
+const posting = jobPosting(worksite.conflicting ? { ...job, city: undefined } : job, now);
+const jsonLd = posting?.jobLocation && worksite.conflicting
+  ? { ...posting, jobLocation: { ...posting.jobLocation, address: { ...posting.jobLocation.address, addressRegion: worksite.region } } }
+  : posting;
 ---
 
 <article class="mx-auto max-w-4xl px-4 py-12 sm:px-6">
@@ -161,7 +164,7 @@ const jsonLd = jobPosting(job, now);
   </section>
 
   {guide && <><JobContextGuide worksite={worksite} analysis={analysis} job={job} skill={guide.skill ?? (job.internship ? guide.experienceSkill : null)} title={titleFor(job, locale)} experience={verifiedExperience} />
-  <EmploymentApplicationGuide region={worksite.region} analysis={analysis} guide={guide} job={job} title={titleFor(job, locale)} tools={tools} experience={verifiedExperience} /></>}
+  <EmploymentApplicationGuide worksite={worksite} analysis={analysis} guide={guide} job={job} title={titleFor(job, locale)} tools={tools} experience={verifiedExperience} /></>}
 
   {related.length > 0 && (
     <section class="mt-16">
