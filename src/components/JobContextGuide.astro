@@ -130,7 +130,7 @@ const locationChecks: { icon: 'time' | 'credential' | 'travel' | 'cost'; title: 
     <div class="mt-4 max-w-prose space-y-2 text-sm leading-relaxed text-graphite-200">
       {profile && <p>{profile.summary} <a href={profile.summaryUrl ?? employer?.officialUrl} target="_blank" rel="noopener noreferrer" class="text-brand-400 underline-offset-4 hover:underline">Perfil oficial</a></p>}
       {companyFacts.map(fact => <p>{fact.text} <a href={fact.url} class="text-brand-400 hover:underline">{fact.label}</a></p>)}
-      {analysis?.company && <p><strong class="text-graphite-100">Qué investigar.</strong> {analysis.company}</p>}
+      {analysis?.company && !companyFacts.length && !profile && <p>{analysis.company}</p>}
     </div>
   ) : null}
   {confidential ? <p class="mt-3 max-w-prose text-sm leading-relaxed text-graphite-200">El empleador figura como confidencial. Pide la razón social y el nombre de la unidad al equipo de selección.</p> : <>

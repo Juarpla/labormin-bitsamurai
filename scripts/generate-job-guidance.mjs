@@ -2,6 +2,7 @@ import { readFile, rename, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { analysisContext, analysisMessages, analysisSignature, jobAnalysis, readAnalysis } from '../src/lib/job-analysis.mjs';
 import { publishedRole } from '../src/lib/job-role.mjs';
+import { jobWorksite } from '../src/lib/job-worksite.mjs';
 import { prepareTrainingVectors } from './job-training-vectors.mjs';
 import { callProvider, extractJson, resolveChain } from '../src/lib/llm.js';
 import {
@@ -77,9 +78,12 @@ for (const { job, context, duties, entry } of roleCandidates) {
   const ranking = careerGuidanceContext(job, jobs, now);
   const [, catalog] = careerGuidanceMessages(ranking);
   const [analysisSystem] = analysisMessages(context);
+  const worksite = jobWorksite(job);
+  const sedeDelAviso = worksite.location
+    ? { nombre: worksite.location.name, región: worksite.region } : worksite.region ?? null;
   const messages = [
     { role: 'system', content: `${analysisSystem.content} Añade ranking como objeto con tipId (un ID), questionIds (dos IDs distintos, uno técnico si existe), trainingIds (todos los IDs ordenados por afinidad) y opportunityIds (hasta tres IDs). Escoge IDs del catálogo o devuelve listas vacías si no hay candidatos.` },
-    { role: 'user', content: JSON.stringify({ vacante: context, funcionesPublicadas: duties, catálogo: JSON.parse(catalog.content) }) },
+    { role: 'user', content: JSON.stringify({ vacante: context, funcionesPublicadas: duties, sedeDelAviso, catálogo: JSON.parse(catalog.content) }) },
   ];
 
   for (const provider of activeProviders) {
