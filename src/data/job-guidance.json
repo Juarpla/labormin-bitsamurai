@@ -11501,5 +11501,70 @@
       "company": "Investiga cómo Overall Strategy se posiciona como consultora de recursos humanos para el cliente minero del rubro, identificando su enfoque en diversidad e inclusión como parte de su cultura organizacional.",
       "visit": "Pregunta a selección si el puesto se asigna a una mina específica en la zona de Ica o Nazca y qué procedimiento de traslado o reubicación aplica para un residente de Nazca."
     }
+  },
+  "nv-BMPE-1118607308": {
+    "semantic": {
+      "universidad-nacional-mayor-de-san-marcos/ingenieria-geologica": 0.5963,
+      "universidad-nacional-de-san-antonio-abad-del-cusco/ingenieria-geologica": 0.5834,
+      "universidad-nacional-jorge-basadre-grohmann/ingenieria-de-geologia-geotecnia": 0.4936,
+      "universidad-nacional-ciro-alegria/ingenieria-de-minas-y-maquinaria-pesada": 0.4706,
+      "pontificia-universidad-catolica-del-peru/ingenieria-de-minas": 0.4489,
+      "universidad-catolica-de-santa-maria/ingenieria-de-minas": 0.4489,
+      "universidad-catolica-de-trujillo-benedicto-xvi/ingenieria-de-minas": 0.4489,
+      "universidad-continental/ingenieria-de-minas": 0.4489,
+      "universidad-nacional-daniel-alcides-carrion/ingenieria-de-minas": 0.4489,
+      "universidad-nacional-de-huancavelica/ingenieria-de-minas": 0.4489,
+      "universidad-nacional-de-ingenieria/ingenieria-de-minas": 0.4489,
+      "universidad-nacional-de-moquegua/ingenieria-de-minas": 0.4489,
+      "universidad-nacional-de-piura/ingenieria-de-minas": 0.4489,
+      "universidad-nacional-de-san-agustin/ingenieria-de-minas": 0.4489,
+      "universidad-nacional-de-san-antonio-abad-del-cusco/ingenieria-de-minas": 0.4489,
+      "universidad-nacional-de-san-cristobal-de-huamanga/ingenieria-de-minas": 0.4489,
+      "universidad-nacional-de-trujillo/ingenieria-de-minas": 0.4489,
+      "universidad-nacional-del-altiplano/ingenieria-de-minas": 0.4489,
+      "universidad-nacional-del-centro-del-peru/ingenieria-de-minas": 0.4489,
+      "universidad-nacional-jorge-basadre-grohmann/ingenieria-de-minas": 0.4489,
+      "universidad-nacional-mayor-de-san-marcos/ingenieria-de-minas": 0.4489,
+      "universidad-nacional-micaela-bastidas-de-apurimac/ingenieria-de-minas": 0.4489,
+      "universidad-nacional-san-luis-gonzaga/ingenieria-de-minas": 0.4489,
+      "universidad-nacional-santiago-antunez-de-mayolo/ingenieria-de-minas": 0.4489
+    },
+    "semanticSignature": "30a1772fd169e416fa38cd2c08aba71d20c79b2877b496c7644f49785913e9b9",
+    "generatedAt": "2026-11-14T20:15:17.784Z",
+    "analysisSignature": "30a1772fd169e416fa38cd2c08aba71d20c79b2877b496c7644f49785913e9b9",
+    "analysis": {
+      "role": [
+        {
+          "evidence": "control de calidad de sostenimiento",
+          "advice": "Verificar las dimensiones de los anclajes y la profundidad de la perforación para decidir si el anclaje cumple con el diseño requerido o necesita corrección."
+        },
+        {
+          "evidence": "Levantar información geomecánica de campo",
+          "advice": "Registrar discontinuidades y parámetros de esfuerzo del macizo rocoso para actualizar el modelo geomecánico y garantizar la estabilidad del frente de trabajo."
+        }
+      ],
+      "skills": [
+        {
+          "evidence": "Manejo de Excel a nivel avanzando",
+          "advice": "Crea una plantilla de captura de datos para registrar la profundidad de anclajes y usa tablas dinámicas para visualizar la tasa de fallas en un ejercicio académico de geomecánica."
+        },
+        {
+          "evidence": "Software Geomecánicos",
+          "advice": "Simula el comportamiento de un bloque inestable en RocLab y documenta el análisis de estabilidad del techo en un reporte breve para validar tus competencias."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "Egresada(o) o Bachiller de",
+          "advice": "Realiza un proyecto final de grado supervisado donde evalúes la calidad de un macizo rocoso mediante mapeo de discontinuidades para obtener evidencia de campo."
+        },
+        {
+          "evidence": "Apoyar en la elaboración de reportes",
+          "advice": "Practica redactar un informe técnico de sostenimiento en un taller universitario o voluntariado minero, detallando los hallazgos y recomendaciones de la medición."
+        }
+      ],
+      "company": "Investiga la ubicación de la Unidad Minera Inmaculada en Ayacucho y confirma el régimen 14x7 para preparar una pregunta sobre la logística de traslado y el alojamiento desde Arequipa.",
+      "visit": "Pregunta en qué sede minera se desarrollará la práctica y qué documentación oficial necesitas entregar para asegurar tu convenio."
+    }
   }
 }
