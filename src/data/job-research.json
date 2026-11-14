@@ -1,0 +1,116 @@
+{
+  "companies": {
+    "pe:volcan compania minera": {
+      "checkedAt": "2026-11-14",
+      "facts": [
+        {
+          "text": "Volcan publica cuatro unidades operativas en la sierra central: Yauli, Chungar, Cerro de Pasco y Alpamarca. En Cerro de Pasco dispone de una planta de lixiviación de óxidos.",
+          "label": "Operaciones de Volcan",
+          "url": "https://www.volcan.com.pe/es/operaciones/"
+        }
+      ]
+    },
+    "pe:antamina": {
+      "checkedAt": "2026-11-14",
+      "facts": [
+        {
+          "text": "Antamina produce concentrados de cobre y zinc, entre otros metales. Su mina está en San Marcos, provincia de Huari, y su puerto de embarque Punta Lobitos está en Huarmey.",
+          "label": "Perfil de Antamina",
+          "url": "https://www.antamina.com/quienes-somos/"
+        }
+      ]
+    },
+    "pe:compania minera antamina": {
+      "checkedAt": "2026-11-14",
+      "facts": [
+        {
+          "text": "Antamina produce concentrados de cobre y zinc, entre otros metales. Su mina está en San Marcos, provincia de Huari, y su puerto de embarque Punta Lobitos está en Huarmey.",
+          "label": "Perfil de Antamina",
+          "url": "https://www.antamina.com/quienes-somos/"
+        }
+      ]
+    },
+    "pe:hochschild": {
+      "checkedAt": "2026-11-14",
+      "facts": [
+        {
+          "text": "En Perú, Hochschild opera Inmaculada, una mina subterránea de oro y plata. El grupo también publica operaciones en Argentina y Brasil.",
+          "label": "Operaciones de Hochschild",
+          "url": "https://www.hochschildmining.com/es/donde-operamos/operaciones-en-marcha/"
+        }
+      ]
+    },
+    "pe:minsur": {
+      "checkedAt": "2026-11-14",
+      "facts": [
+        {
+          "text": "Minsur ubica la operación de estaño San Rafael en Antauta, región Puno. Su mapa de operaciones también identifica Mina Justa como una operación de su subsidiaria.",
+          "label": "Operaciones de Minsur",
+          "url": "https://www.minsur.com/wp-content/uploads/pdf/Brochure/Estao-sostenible.pdf"
+        }
+      ]
+    },
+    "pe:compania de minas buenaventura": {
+      "checkedAt": "2026-11-14",
+      "facts": [
+        {
+          "text": "Entre las operaciones que Buenaventura publica figura Uchucchacua, una mina subterránea de plata, plomo y zinc en Oyón. Su mapa corporativo también permite consultar otros proyectos del grupo.",
+          "label": "Operaciones de Buenaventura",
+          "url": "https://buenaventura.com/operaciones-y-proyectos/"
+        }
+      ]
+    },
+    "pe:minera bateas": {
+      "checkedAt": "2026-11-14",
+      "facts": [
+        {
+          "text": "Minera Bateas opera Caylloma, una mina subterránea del distrito del mismo nombre, en Arequipa. Fortuna informa que allí se producen plata, oro, zinc y plomo.",
+          "label": "Ficha de Caylloma en Fortuna Mining",
+          "url": "https://fortunamining.com/mine/caylloma-mine-peru/"
+        }
+      ]
+    }
+  },
+  "places": {
+    "pe:cerro de pasco": {
+      "checkedAt": "2026-11-14",
+      "facts": [
+        {
+          "text": "Cerro de Pasco está a 4 338 m s. n. m. PROMPERÚ sitúa la ciudad a unos 295 km de Lima por la Carretera Central. Esa es la referencia para llegar a la ciudad. Confirma el punto de embarque o de ingreso a la unidad con selección.",
+          "label": "Ficha regional de PROMPERÚ",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/2059947/Ficha%20Regi%C3%B3n%20Pasco.pdf"
+        }
+      ]
+    },
+    "pe:cusco": {
+      "checkedAt": "2026-11-14",
+      "facts": [
+        {
+          "text": "La ciudad de Cusco está a 3 399 m s. n. m. PROMPERÚ documenta conexiones por aire desde Lima y Arequipa y un acceso terrestre desde Lima por Abancay. La ciudad sirve como referencia regional para organizar el viaje.",
+          "label": "Guía de Cusco de PROMPERÚ",
+          "url": "https://repositorio.promperu.gob.pe/server/api/core/bitstreams/2058d963-db24-466d-b756-3e863fe9476b/content"
+        }
+      ]
+    },
+    "pe:arequipa": {
+      "checkedAt": "2026-11-14",
+      "facts": [
+        {
+          "text": "La ciudad de Arequipa está a 2 335 m s. n. m. El aeropuerto Rodríguez Ballón está en el distrito de Cayma. Si viajas para incorporarte a una unidad minera, confirma dónde te recoge el transporte de personal.",
+          "label": "Guía de Arequipa de PROMPERÚ",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/5565159/4950525-arequipa-gppv_espanol_web_2023.pdf"
+        }
+      ]
+    },
+    "pe:lima": {
+      "checkedAt": "2026-11-14",
+      "facts": [
+        {
+          "text": "Si llegas en avión, el terminal del Aeropuerto Internacional Jorge Chávez está en el Callao. PROMPERÚ documenta el servicio AeroDirecto desde el Centro de Lima y otros distritos. Verifica la ruta y el horario para el día de tu traslado.",
+          "label": "Acceso al aeropuerto según PROMPERÚ",
+          "url": "https://target2.promperu.gob.pe/blog-viajero/lima/nuevo-aeropuerto-internacional-jorge-chavez-datos-clave-para-un-viaje-sin-contratiempos/"
+        }
+      ]
+    }
+  }
+}

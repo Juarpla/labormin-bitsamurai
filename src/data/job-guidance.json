@@ -11016,5 +11016,52 @@
       "visit": "Pregunta cómo se estructura el itinerario de traslados entre Chorrillos y Huachipa, y quién asume los gastos de movilidad diaria para asegurar el cumplimiento de la disponibilidad solicitada."
     },
     "generatedAt": "2026-11-14T11:47:53.097Z"
+  },
+  "nv-BMPE-1118510217": {
+    "semantic": {
+      "jovenes-productivos/almacen-despacho-y-reposicion-de-mercaderia": 0.572,
+      "capacita-t/logistica-de-un-restaurante": 0.5703,
+      "cetpro-cesar-vallejo-ucayali/logistica-y-almacenes": 0.5624,
+      "cetpro-juana-iris-cuadros-rivera-lima/logistica-y-almacenes": 0.5624,
+      "cetpro-r-f-s-de-yugoslavia-ancash/logistica-y-almacenes": 0.5624,
+      "cetpro-virgen-de-las-mercedes-tacna/logistica-y-manualidades": 0.5188,
+      "capacita-t/logistica-360-claves-para-una-gestion-moderna-y-eficiente": 0.5094,
+      "capacita-t/word-y-excel-para-el-trabajo-nivel-basico": 0.4218,
+      "capacita-t/excel-basico": 0.3963,
+      "capacita-t/excel-basico-2": 0.3963,
+      "cetpro-san-jeronimo-apurimac/curso-de-excel-nivel-avanzado": 0.3946,
+      "capacita-t/excel-basico-lengua-de-senas-peruana-lsp": 0.3681,
+      "capacita-t/excel-intermedio": 0.3519,
+      "capacita-t/excel-intermedio-2": 0.3519,
+      "capacita-t/excel-basico-aimara": 0.3484,
+      "capacita-t/excel-intermedio-lengua-de-senas-peruana-lsp": 0.3319,
+      "capacita-t/excel-intermedio-aimara": 0.3272,
+      "capacita-t/excel-basico-quechua": 0.3252,
+      "capacita-t/excel-intermedio-quechua": 0.2974
+    },
+    "semanticSignature": "4d0db677b9fe1ca8a0e4cbac469a873e0407372acf3c85e26cabc970e66ab3f1",
+    "generatedAt": "2026-11-14T19:49:39.189Z",
+    "analysisSignature": "4d0db677b9fe1ca8a0e4cbac469a873e0407372acf3c85e26cabc970e66ab3f1",
+    "analysis": {
+      "role": [
+        {
+          "evidence": "Realizar seguimiento a las órdenes de compra generadas.",
+          "advice": "Diseña un registro en Excel que cruce las ordenes de compra con los despachos para demostrar cómo detectarias demoras en el abastecimiento."
+        }
+      ],
+      "skills": [
+        {
+          "evidence": "Manejo de Office a nivel intermedio.",
+          "advice": "Construye una macro o tablas dinamicas para procesar datos de inventario y practicar el analisis en el entorno solicitado."
+        },
+        {
+          "evidence": "conocimiento de cadena de suministro y herramientas estadisticas.",
+          "advice": "Aplica un curso basico de estadistica para calcular la demanda esperada de materiales y documentar el metodo utilizado."
+        }
+      ],
+      "experience": [],
+      "company": "Investiga los procesos de abastecimiento de la mina Cerro De Pasco y prepara una pregunta sobre como se integran las ordenes de compra con los requisitos de seguridad ocupacional en el sitio.",
+      "visit": "Consulta la disponibilidad de un convenio de practica y si el regimen especifica el lugar de trabajo en Cerro De Pasco y la cobertura de viaticos."
+    }
   }
 }

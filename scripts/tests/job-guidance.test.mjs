@@ -57,24 +57,24 @@ test('career guidance ranks only catalog entries with published junior experienc
   const role = { ...job, title: 'Ingeniero(a) Minas – Mediano Plazo', description: '5 años de experiencia en planes de minado.' };
   const candidate = { ...job, title: 'Practicante Profesional de Planeamiento - Mina', internship: true };
   const options = [
-    { ...candidate, id: 'unknown', description: 'Convenio con la universidad.' },
+    { ...candidate, id: 'unknown', company: 'Different employer', description: 'Convenio con la universidad.' },
     { ...candidate, id: 'mixed', description: '3 meses de prácticas preprofesionales. Experiencia mínima de 3 años.' },
     { ...candidate, id: 'zero', description: 'No se requiere experiencia previa.' },
     { ...candidate, id: 'six', company: 'Another mine', description: 'Experiencia mínima de 6 meses.' },
     { ...candidate, id: 'expired', validThrough: '2026-11-08', description: 'No se requiere experiencia.' },
   ];
   const context = careerGuidanceContext(role, options, now);
-  assert.deepEqual(context.opportunities.map(({ job, experience }) => [job.id, experience.months]), [['zero', 0], ['six', 6]]);
+  assert.deepEqual(context.opportunities.map(({ job, experience }) => [job.id, experience?.months ?? null]), [['zero', 0], ['unknown', null], ['six', 6]]);
   assert.equal(careerGuidance(context).trainingIds.length, 2);
   assert.doesNotMatch(JSON.stringify(careerGuidanceMessages(context)), /Convenio con la universidad|Ingeniero\(a\)/);
   const entry = {
     careerSignature: careerGuidanceSignature(context),
     tipId: 'planning', questionIds: ['planning-evidence', 'placement'],
-    trainingIds: [...context.trainingIds].reverse(), opportunityIds: ['six', 'zero'],
+    trainingIds: [...context.trainingIds].reverse(), opportunityIds: ['six', 'zero', 'unknown'],
   };
   assert.equal(validCareerGuidance(entry, context), true);
-  assert.equal(validCareerGuidance({ ...entry, opportunityIds: ['six', 'expired'] }, context), false);
-  assert.deepEqual(careerGuidance(context, entry).opportunities.map(item => item.job.id), ['six', 'zero']);
+  assert.equal(validCareerGuidance({ ...entry, opportunityIds: ['six', 'expired', 'unknown'] }, context), false);
+  assert.deepEqual(careerGuidance(context, entry).opportunities.map(item => item.job.id), ['zero', 'unknown', 'six']);
 });
 
 test('an environmental permits internship recommends distinct current entry opportunities without changing training', () => {
@@ -97,8 +97,8 @@ test('an environmental permits internship recommends distinct current entry oppo
   assert.equal(guide.experienceSkill, 'gestión ambiental minera');
   assert.deepEqual(guide.trainingIds, []);
   assert.deepEqual(guide.opportunities.map(({ job, experience }) => [job.id, experience?.months ?? null]), [
-    ['closure', 12],
     ['environment', null],
+    ['closure', 12],
   ]);
 });
 
@@ -125,4 +125,15 @@ test('career guidance always offers two distinct tips without changing cached se
   const result = careerGuidance(context);
   assert.equal(result.tips.length, 2);
   assert.notEqual(result.tips[0], result.tips[1]);
+});
+
+test('a logistics practice finds a current multi-area program with warehouse duties', () => {
+  const now = new Date('2026-11-09T12:00:00Z');
+  const role = { ...job, title: 'Practicante Profesional de Logística', internship: true };
+  const program = { ...job, id: 'bateas', title: 'Programa de Prácticas Profesionales', internship: true,
+    description: 'Lima: Logística. Unidad minera: Almacén Mina. No haber realizado prácticas profesionales previamente.' };
+  const unrelated = { ...job, id: 'other', title: 'Practicante de Geotecnia', internship: true,
+    description: 'Revisa documentación de seguridad y compras de EPP.' };
+  const matches = careerGuidance(careerGuidanceContext(role, [program, unrelated], now)).opportunities;
+  assert.deepEqual(matches.map(({job, experience}) => [job.id, experience?.months]), [['bateas', 0]]);
 });

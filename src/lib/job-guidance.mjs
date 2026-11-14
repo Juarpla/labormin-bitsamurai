@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto';
 import trainingRecords from '../data/education.json' with { type: 'json' };
+import { roleTopics, topicLabel } from './job-matching.mjs';
 import { isExpired, sourceText } from './job-policy.mjs';
 
 const skills = {
@@ -37,6 +38,11 @@ const skills = {
     questions: ['site-safety', 'technical-evidence'],
     education: 'capacita-t',
   },
+  logistics: {
+    label: 'logística',
+    title: /\b(?:logistica|almacen|almacenes|abastecimiento|inventarios|compras|supply chain|warehouse)\b/,
+    questions: ['logistics-tasks', 'technical-evidence'],
+  },
   geology: {
     label: 'geología',
     title: /\b(?:geologia|geolog[oa]s?|logueo geologico)\b/,
@@ -60,6 +66,7 @@ const questions = {
   equipment: '¿Con qué equipos o sistemas se trabaja y qué experiencia concreta debo acreditar con ellos?',
   'technical-evidence': '¿Qué experiencia o certificación es obligatoria y qué evidencia aceptan para acreditarla?',
   'site-safety': '¿Qué inducción o certificaciones de seguridad piden antes de ingresar a la operación?',
+  'logistics-tasks': '¿Qué controles usan para conciliar inventarios y dar seguimiento a las órdenes de compra?',
   'geology-tasks': '¿El puesto se centra en campo, logueo, muestreo o análisis, y qué herramientas debo manejar?',
   'blasting-tasks': '¿Qué tareas de voladura realizaría y qué autorizaciones o experiencia son obligatorias?',
   'mine-tasks': '¿Qué labores de mina asumiría y qué parte del trabajo se realiza en campo?',
@@ -197,9 +204,9 @@ const tips = {
   verify: 'Anota las dudas sobre el lugar, el horario y las condiciones para consultarlas con el empleador.',
 };
 
-const entryRole = /\b(?:practicante|trainee|becari[oa]|auxiliar|ayudante|asistente|junior|jr)\b/;
+const entryRole = /\b(?:practicante|trainee|becari[oa]|auxiliar|ayudante|asistente|junior|jr|operari[oa])\b/;
 const practiceRole = /\b(?:practicantes?|practicas?|interns?|internship|becari[oa]s?)\b/;
-const seniorRole = /\b(?:jefe|gerente|senior|supervisor|coordinador|administrativ[oa])\b/;
+const seniorRole = /\b(?:jef[ea]|gerente|senior|supervisor[a]?|coordinador[a]?)\b/;
 const numericExperience = /(?:\bexperiencia\s+(?:(?:m[ií]nima|previa|deseable)\s+)?(?:de\s+)?(?:(?:al menos|entre)\s+)?(\d+)(?:\s*(?:a|y|–|-)\s*(\d+))?\s+(años?|mes(?:es)?)|(\d+)(?:\s*(?:a|y|–|-)\s*(\d+))?\s+(años?|mes(?:es)?)\s+(?:de\s+)?(?:experiencia|pr[aá]cticas?\s+preprofesionales))/giu;
 const singleYearExperience = /\b(?:un año de experiencia|experiencia (?:m[ií]nima )?de un año)\b/giu;
 
@@ -225,7 +232,7 @@ export function publishedExperience(job) {
   });
   for (const match of text.matchAll(singleYearExperience)) mentions.push({ text: match[0], months: 12 });
   if (mentions.length) return mentions.reduce((a, b) => a.months >= b.months ? a : b);
-  const none = text.match(/\b(?:sin experiencia (?:previa|laboral)|no (?:se )?(?:requiere|exige) experiencia(?: previa| laboral)?|no es necesaria (?:la )?experiencia)\b/i);
+  const none = text.match(/\b(?:sin experiencia (?:previa|laboral)|no (?:se )?(?:requiere|exige) experiencia(?: previa| laboral)?|no es necesaria (?:la )?experiencia|no haber realizado pr[aá]cticas profesionales previamente)\b/i);
   return none ? { text: none[0], months: 0 } : null;
 }
 
@@ -245,23 +252,37 @@ export function careerGuidanceContext(job, jobs, now = new Date()) {
   const trainingIds = [...new Set([...baseTraining, ...geoTrainingIds(job)])].slice(0, 8);
   const experienceArea = experienceAreaFor(job);
   const experienceSkill = experienceArea === 'environmental-management' ? 'gestión ambiental minera' : base.skill;
-  const isPractice = practiceRole.test(titleOf(job));
+  const isPractice = Boolean(job.internship || practiceRole.test(titleOf(job)));
+  const subject = roleTopics(job);
   const currentKey = opportunityKey(job);
   const opportunities = [];
-  if (experienceArea) {
-    for (const candidate of jobs) {
-      if (candidate.id === job.id || candidate.country !== job.country || candidate.remote !== job.remote ||
-          experienceAreaFor(candidate) !== experienceArea || !isCurrentGuidanceJob(candidate, now) ||
-          opportunityKey(candidate) === currentKey) continue;
-      const title = titleOf(candidate);
-      const candidateIsPractice = practiceRole.test(title);
-      if ((!candidate.internship && !candidateIsPractice && !entryRole.test(title)) || seniorRole.test(title)) continue;
-      const experience = publishedExperience(candidate);
-      if (experience && experience.months <= 12) opportunities.push({ job: candidate, experience });
-      if (!experience && isPractice && candidateIsPractice) opportunities.push({ job: candidate, experience: null });
-    }
+  const maximum = Math.max(12, isPractice ? publishedExperience(job)?.months ?? 0 : 0);
+  for (const candidate of jobs) {
+    if (candidate.id === job.id || candidate.country !== job.country || candidate.remote !== job.remote ||
+        !isCurrentGuidanceJob(candidate, now) || opportunityKey(candidate) === currentKey) continue;
+    const title = titleOf(candidate);
+    const candidateIsPractice = Boolean(candidate.internship || practiceRole.test(title));
+    if ((!candidateIsPractice && !entryRole.test(title)) || seniorRole.test(title)) continue;
+    const other = roleTopics(candidate);
+    const shared = subject.title.find(topic => other.title.includes(topic));
+    const cross = subject.title.find(topic => other.requirements.includes(topic));
+    const sameSpecialty = experienceArea && experienceAreaFor(candidate) === experienceArea;
+    const generalProgram = candidateIsPractice && /\bprograma de practicas\b/.test(title);
+    const match = shared || (generalProgram ? cross : undefined);
+    if (!sameSpecialty && !match) continue;
+    const experience = publishedExperience(candidate);
+    if (experience ? experience.months > maximum : !candidateIsPractice) continue;
+    opportunities.push({
+      job: candidate, experience,
+      topic: match ? topicLabel(match) : experienceSkill,
+      practice: candidateIsPractice,
+      direct: Boolean(shared || sameSpecialty),
+    });
   }
-  opportunities.sort((a, b) => (a.experience?.months ?? 13) - (b.experience?.months ?? 13) ||
+  const experienceRank = item => item.experience?.months ?? 1;
+  opportunities.sort((a, b) => Number(b.practice) - Number(a.practice) ||
+    Number(b.direct) - Number(a.direct) || experienceRank(a) - experienceRank(b) ||
+    Number(b.job.city === job.city) - Number(a.job.city === job.city) ||
     b.job.postedAt.localeCompare(a.job.postedAt));
   const seen = new Set();
   const uniqueOpportunities = opportunities.filter(({ job: candidate }) => {
@@ -275,7 +296,7 @@ export function careerGuidanceContext(job, jobs, now = new Date()) {
 
 export function careerGuidanceSignature(context) {
   return createHash('sha256').update(JSON.stringify([
-    2, guidanceSignature(context), context.tipIds, context.trainingIds,
+    3, guidanceSignature(context), context.tipIds, context.trainingIds,
     context.opportunities.map(({ job, experience }) => [job.id, experience?.months ?? null]),
   ])).digest('hex');
 }
@@ -311,9 +332,6 @@ export function careerGuidance(context, entry) {
   const selected = entry?.careerSignature === careerGuidanceSignature(context) && validCareerGuidance(entry, context);
   const hasPracticeQuestions = context.options.includes('internship') &&
     entry?.signature === guidanceSignature(context) && validGuidanceQuestions(entry.questionIds, context);
-  const opportunities = selected
-    ? entry.opportunityIds.map(id => context.opportunities.find(item => item.job.id === id))
-    : context.opportunities.slice(0, 3);
   return {
     skill: context.skill,
     tip: tips[selected ? entry.tipId : context.tipIds[0]],
@@ -321,6 +339,6 @@ export function careerGuidance(context, entry) {
     questions: (selected || hasPracticeQuestions ? entry.questionIds : context.fallback).map(id => questions[id]),
     trainingIds: (selected ? entry.trainingIds : context.trainingIds).filter(id => context.relatedTrainingIds.includes(id)),
     experienceSkill: context.experienceSkill,
-    opportunities,
+    opportunities: context.opportunities.slice(0, 3),
   };
 }

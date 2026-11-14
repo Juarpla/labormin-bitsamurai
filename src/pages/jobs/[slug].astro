@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import JobDetailView from '../../components/pages/JobDetailView.astro';
 import JobUnavailableView from '../../components/pages/JobUnavailableView.astro';
-import { allJobs, locationLine, titleFor } from '../../lib/jobs';
+import { locationLine, titleFor } from '../../lib/jobs';
 import { useTranslations } from '../../lib/i18n';
 import { catalogRecord, openCatalog } from '../../lib/catalog';
 import { catalogNow, isActiveJobRow } from '../../lib/catalog-data';
@@ -27,8 +27,11 @@ if (job && entry) {
   const candidateType = job.internship && job.country === 'PE' ? 'internship' : 'job';
   const catalog = await openCatalog('jobs', undefined, at);
   const active = catalog.entries.filter(item => isActiveJobRow(item.metadata, at));
-  const activeSlugs = new Set(active.map(item => item.slug));
-  guidancePool = allJobs.filter(item => activeSlugs.has(item.slug));
+  // Include live D1 rows even when they arrived after the Worker build.
+  const relevant = active.filter(item => item.slug !== slug && item.metadata.country === job.country &&
+    item.metadata.remote === job.remote && (item.metadata.type === 'internship' ||
+      /\b(?:trainee|auxiliar|ayudante|asistente|junior|jr|operari[oa])\b/i.test(item.slug)));
+  guidancePool = (await catalog.read(relevant.map(item => item.slug))).flatMap(row => row.job ? [row.job] : []);
   const sameType = active.filter(item => item.metadata.type === candidateType);
   const { excerptKey } = entry.metadata;
   const name = titleFor(job, 'es');
@@ -36,14 +39,12 @@ if (job && entry) {
   description = excerptKey && sameType.filter(item => item.metadata.excerptKey === excerptKey).length === 1
     ? job.excerpt
     : `${name} en ${job.company} · ${locationLine(job, useTranslations('es'))}. Consulta los requisitos y cómo postular.`;
-  const candidates = sameType.filter(item => item.slug !== slug &&
-    (candidateType === 'internship' || item.metadata.country === job.country || item.metadata.category === job.category));
-  if (candidateType === 'internship') {
-    const relevance = ({ metadata }: typeof candidates[number]) => 2 * Number(job.category !== 'other' && metadata.category === job.category) + Number(metadata.country === job.country);
-    candidates.sort((a, b) => relevance(b) - relevance(a));
+  if (!job.internship) {
+    const candidates = sameType.filter(item => item.slug !== slug &&
+      (item.metadata.country === job.country || item.metadata.category === job.category));
+    alternatives = (await catalog.read(candidates.slice(0, 10).map(item => item.slug)))
+      .flatMap(row => row.job && !isExpired(row.job, now) ? [row.job] : []);
   }
-  alternatives = (await catalog.read(candidates.slice(0, 10).map(item => item.slug)))
-    .flatMap(row => row.job && !isExpired(row.job, now) ? [row.job] : []);
 } else {
   Astro.response.status = 404;
 }

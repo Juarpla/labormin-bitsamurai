@@ -39,6 +39,14 @@ jobs:
         with:
           node-version: 22
 
+      - uses: pnpm/action-setup@v4
+      - run: pnpm install --frozen-lockfile
+      - uses: actions/cache@v4
+        with:
+          path: /tmp/labormin-job-vectors.json
+          key: job-training-vectors-v1-${{ github.run_id }}
+          restore-keys: job-training-vectors-v1-
+
       - name: Generate guidance from the published feed
         run: node scripts/generate-job-guidance.mjs
         env:
@@ -55,12 +63,29 @@ jobs:
           JOB_GUIDANCE_PROVIDER_ORDER: ${{ vars.JOB_GUIDANCE_PROVIDER_ORDER }}
           JOB_GUIDANCE_MAX_CALLS: ${{ inputs.max_calls || vars.JOB_GUIDANCE_MAX_CALLS }}
 
+      - name: Research official employer and travel sources
+        run: node scripts/research-job-context.mjs
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+          AGNES_MODEL: ${{ vars.AGNES_MODEL }}
+          OPENCODE_GO_API_KEY: ${{ secrets.OPENCODE_GO_API_KEY }}
+          OPENCODE_GO_MODEL: ${{ vars.OPENCODE_GO_MODEL }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          WORKERS_AI_MODEL: ${{ vars.WORKERS_AI_MODEL }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          MISTRAL_MODEL: ${{ vars.MISTRAL_MODEL }}
+          JOB_GUIDANCE_PROVIDER_ORDER: ${{ vars.JOB_GUIDANCE_PROVIDER_ORDER }}
+          JOB_GUIDANCE_SLUGS: ${{ inputs.slugs }}
+          JOB_RESEARCH_LIMIT: ${{ vars.JOB_RESEARCH_LIMIT }}
+
       - name: Publish guidance cache if changed
         run: |
-          if git diff --quiet -- src/data/job-guidance.json; then exit 0; fi
+          if git diff --quiet -- src/data/job-guidance.json src/data/job-research.json; then exit 0; fi
           git config user.name "labormin-bot"
           git config user.email "bot@labormin.com"
-          git add -- src/data/job-guidance.json
+          git add -- src/data/job-guidance.json src/data/job-research.json
           git commit -m "chore(data): refresh job guidance"
           for attempt in 1 2 3; do
             git pull --rebase origin main || { git rebase --abort; exit 1; }

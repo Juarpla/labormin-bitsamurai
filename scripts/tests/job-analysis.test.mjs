@@ -27,7 +27,7 @@ test('accepts source-grounded guidance, invalidates it if the announcement or ty
 });
 
 test('rejects invented evidence and generated contact links', () => {
-  assert.equal(readAnalysis({ ...analysis, skills: [{ ...analysis.skills[0], evidence: 'manejo de Excel' }, analysis.skills[1]] }, context), null);
+  assert.deepEqual(readAnalysis({ ...analysis, skills: [{ ...analysis.skills[0], evidence: 'manejo de Excel' }, analysis.skills[1]] }, context)?.skills, [analysis.skills[1]]);
   assert.equal(readAnalysis({ ...analysis, visit: 'Para coordinar la visita, llama a selección en el número 999 999 999.' }, context), null);
   assert.equal(readAnalysis({ ...analysis, visit: 'Para coordinar la visita, escribe al correo personal recluta@example.org.' }, context), null);
 });

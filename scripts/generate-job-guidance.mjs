@@ -1,6 +1,7 @@
 import { readFile, rename, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { analysisContext, analysisMessages, analysisSignature, jobAnalysis, readAnalysis } from '../src/lib/job-analysis.mjs';
+import { prepareTrainingVectors } from './job-training-vectors.mjs';
 import { callProvider, extractJson, resolveChain } from '../src/lib/llm.js';
 import {
   careerGuidanceContext, careerGuidanceMessages, careerGuidanceSignature, validCareerGuidance,
@@ -39,6 +40,21 @@ const candidates = jobs.filter(job => isCurrentGuidanceJob(job, now) &&
 const missingSlugs = requestedSlugs.filter(slug => !candidates.some(job => job.slug === slug));
 if (missingSlugs.length) throw new Error(`No active vacancies match: ${missingSlugs.join(', ')}`);
 
+const semanticJobs = candidates.filter(job => cache.get(job.id)?.semanticSignature !== analysisSignature(analysisContext(job)));
+let vectors = new Map();
+try {
+  vectors = await prepareTrainingVectors(semanticJobs, Math.min(maxCalls, 40));
+} catch {
+  console.warn('Embeddings no disponibles. Se conserva la afinidad comprobada en el catálogo.');
+}
+for (const job of semanticJobs) {
+  if (!vectors.has(job.id)) continue;
+  cache.set(job.id, {
+    ...cache.get(job.id), semantic: vectors.get(job.id),
+    semanticSignature: analysisSignature(analysisContext(job)),
+    generatedAt: now.toISOString(),
+  });
+}
 const activeProviders = new Set(providers);
 let calls = 0;
 let generated = 0;
@@ -47,7 +63,7 @@ for (const job of candidates) {
   if (calls >= maxCalls || !activeProviders.size) break;
   const context = analysisContext(job);
   const existing = cache.get(job.id);
-  if (jobAnalysis(context, existing)) continue;
+  if (jobAnalysis(context, existing) && Array.isArray(existing.analysis?.role)) continue;
 
   const ranking = careerGuidanceContext(job, jobs, now);
   const [, catalog] = careerGuidanceMessages(ranking);
@@ -102,4 +118,5 @@ if (output !== original) {
   await writeFile(temp, output, { flag: 'wx' });
   await rename(temp, cacheFile);
 }
+console.log(`Formación: ${[...vectors.values()].filter(scores => Object.keys(scores).length).length} vacantes con ranking vectorial.`);
 console.log(`Job guidance: ${generated} generated, ${calls}/${maxCalls} provider calls.`);

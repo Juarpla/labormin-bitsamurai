@@ -9,7 +9,7 @@ import EmploymentApplicationGuide from '../EmploymentApplicationGuide.astro';
 import JobContextGuide from '../JobContextGuide.astro';
 import { careerGuidance, careerGuidanceContext, publishedExperience } from '../../lib/job-guidance.mjs';
 import { mentionedTools, requirementEmphasis, requirementItems } from '../../lib/job-description.mjs';
-import { analysisContext, jobAnalysis } from '../../lib/job-analysis.mjs';
+import { analysisContext, analysisSignature, jobAnalysis } from '../../lib/job-analysis.mjs';
 import cachedGuidance from '../../data/job-guidance.json';
 import JobCard from '../JobCard.astro';
 import { useTranslations, type Locale } from '../../lib/i18n';
@@ -31,7 +31,10 @@ const backHref = locale === 'es' ? backPath : `/${locale}${backPath}`;
 const { sections } = clearView ?? clearViewFor(job);
 const cached = cachedGuidance[job.id as keyof typeof cachedGuidance];
 const guide = careerGuidance(careerGuidanceContext(job, guidancePool, now), cached);
-const analysis = jobAnalysis(analysisContext(job), cached);
+const context = analysisContext(job);
+const analysis = jobAnalysis(context, cached);
+const semantic = cached && 'semanticSignature' in cached && cached.semanticSignature === analysisSignature(context) &&
+  'semantic' in cached ? cached.semantic as Record<string, number> : undefined;
 
 const worksite = jobWorksite(job);
 const location = worksite.conflicting ? `${worksite.region} en el anuncio · ${job.city || job.locationRaw} en el portal` : locationLine(job, t);
@@ -163,10 +166,10 @@ const jsonLd = posting?.jobLocation && worksite.conflicting
     <div class="mt-4"><EmploymentApplyLink href={job.url} /></div>
   </section>
 
-  {guide && <><JobContextGuide worksite={worksite} analysis={analysis} job={job} skill={guide.skill ?? (job.internship ? guide.experienceSkill : null)} title={titleFor(job, locale)} experience={verifiedExperience} />
-  <EmploymentApplicationGuide worksite={worksite} analysis={analysis} guide={guide} job={job} title={titleFor(job, locale)} tools={tools} experience={verifiedExperience} /></>}
+  {guide && <><JobContextGuide worksite={worksite} analysis={analysis} job={job} title={titleFor(job, locale)} />
+  <EmploymentApplicationGuide semantic={semantic} worksite={worksite} analysis={analysis} guide={guide} job={job} title={titleFor(job, locale)} tools={tools} experience={verifiedExperience} /></>}
 
-  {related.length > 0 && (
+  {!job.internship && related.length > 0 && (
     <section class="mt-16">
       <JobSectionHeading>{job.internship ? 'Otras prácticas' : t('common.related')}</JobSectionHeading>
       <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

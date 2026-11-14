@@ -4,23 +4,29 @@ import type { Job } from '../schemas';
 import { countryName, DEFAULT_COUNTRY } from '../lib/i18n';
 import type { jobAnalysis } from '../lib/job-analysis.mjs';
 import { employerContext } from '../lib/employer-context';
+import JobAnalysisAdvice from './JobAnalysisAdvice.astro';
 import JobLocationMap from './JobLocationMap.astro';
 import GuideIcon from './guides/GuideIcon.astro';
-import JobRoleJourney from './JobRoleJourney.astro';
+import { publishedRole } from '../lib/job-role.mjs';
+import { researchedCompany, researchedPlace } from '../lib/job-research.mjs';
 import JobSectionHeading from './JobSectionHeading.astro';
 
-interface Props { job: Job; skill: string | null; title: string; experience?: string; analysis: ReturnType<typeof jobAnalysis>; worksite: ReturnType<typeof jobWorksite> }
-const { job, skill, title, experience, analysis, worksite } = Astro.props;
+interface Props { job: Job; title: string; analysis: ReturnType<typeof jobAnalysis>; worksite: ReturnType<typeof jobWorksite> }
+const { job, title, analysis, worksite } = Astro.props;
+const role = publishedRole(job);
 const city = job.city?.trim();
 const country = countryName(job.country);
 const remoteBase = countryName(DEFAULT_COUNTRY);
 const destination = worksite.conflicting ? worksite.region : city ?? worksite.region;
 const place = destination ? `${destination}, ${country}` : country;
+const localFacts = researchedPlace(job, destination);
+const companyFacts = researchedCompany(job);
 const publishedPlace = city ?? job.locationRaw;
+const publishedRegime = /\bdisponibilidad para (?:realizar pr[aá]cticas|trabajar) (?:en|bajo) r[eé]gimen\b/i.test(job.description);
 const shiftText = worksite.roster
   ? `El aviso indica régimen ${worksite.roster}. Pide el punto de embarque y el horario de salida del primer turno.`
-  : worksite.mineRoster
-    ? 'El aviso menciona régimen minero. Pregunta cuántos días se trabaja y descansa, y desde dónde sale la movilidad a la unidad.'
+  : worksite.mineRoster || publishedRegime
+    ? 'El aviso pide disponibilidad para trabajar por régimen. Confirma cuántos días se trabaja y descansa y desde dónde sale la movilidad.'
     : analysis?.visit ?? (job.internship
       ? 'Pregunta en qué sede se realiza la práctica y cómo se organiza la movilidad si hay salidas a campo.'
       : 'Pide la dirección de la operación, el horario de ingreso y el punto de embarque antes de organizar el traslado.');
@@ -42,7 +48,7 @@ const locationChecks: { icon: 'time' | 'credential' | 'travel' | 'cost'; title: 
   },
   {
     icon: 'cost', title: 'Gastos y alojamiento',
-    text: worksite.mineRoster || worksite.roster
+    text: worksite.mineRoster || worksite.roster || publishedRegime
       ? 'Pregunta si el régimen incluye campamento, comidas y movilidad, y qué gastos quedan a tu cargo durante el descanso.'
       : 'Pregunta si la empresa cubre el transporte o el alojamiento antes de calcular cuánto gastarías.',
   },
@@ -50,16 +56,20 @@ const locationChecks: { icon: 'time' | 'credential' | 'travel' | 'cost'; title: 
 ---
 <section class="mt-10 border-t border-graphite-700 pt-7" aria-labelledby="role-context-title">
   <JobSectionHeading id="role-context-title" step={2}>{job.internship ? 'Conoce la práctica' : 'Conoce el puesto'}</JobSectionHeading>
-  <p class="mt-3 max-w-prose text-sm leading-relaxed text-graphite-200">
-    Para <strong class="text-graphite-100">{title}</strong>, {job.internship
-      ? 'revisa qué tareas podrías aprender y pregunta quién supervisaría tu trabajo'
-      : skill
-        ? `toma ${skill} como punto de partida para comparar funciones y herramientas`
-        : 'compara el alcance de las tareas con otros anuncios de la misma especialidad'}.
-    {experience && <> El anuncio menciona <strong class="text-graphite-100">{experience}</strong>.</>}
-  </p>
-  <JobRoleJourney skill={skill} internship={job.internship} />
-  <a href={job.internship ? '/practicas/' : search(`${title} funciones empleo minería ${job.remote ? remoteBase : country}`)} target={job.internship ? undefined : '_blank'} rel={job.internship ? undefined : 'noopener noreferrer'} class="mt-3 inline-block text-sm font-semibold text-brand-400 underline-offset-4 hover:underline">{job.internship ? 'Ver prácticas vigentes' : 'Buscar puestos similares'}{job.internship && <> <span aria-hidden="true">→</span></>}</a>
+  {(role.tasks.length || role.requirements.length) ? (
+    <div class="mt-4 rounded-xl border border-graphite-700 p-4 sm:p-5">
+      <h3 class="text-sm font-semibold text-graphite-100">{role.tasks.length ? 'Qué harás según el aviso' : 'Qué perfil busca el empleador'}</h3>
+      <ul class="mt-2 list-disc space-y-2 pl-4 text-sm leading-relaxed text-graphite-200 marker:text-brand-400">
+        {(role.tasks.length ? role.tasks : role.requirements).map(item => <li>{item}</li>)}
+      </ul>
+    </div>
+  ) : (
+    <p class="mt-3 max-w-prose text-sm leading-relaxed text-graphite-200">
+      {role.specialty ? `El puesto corresponde al área de ${role.specialty}. ` : ''}
+      Consulta con selección cuáles serán tus funciones y cómo se evaluará tu trabajo.
+    </p>
+  )}
+  {analysis?.role?.length ? <JobAnalysisAdvice items={analysis.role} /> : null}
 </section>
 
 <section class="mt-10 border-t border-graphite-700 pt-7" aria-labelledby="place-context-title">
@@ -78,6 +88,9 @@ const locationChecks: { icon: 'time' | 'credential' | 'travel' | 'cost'; title: 
               : locations.length
                 ? `El anuncio ubica la vacante en ${country}. Confirma la unidad antes de organizar el viaje. Las ubicaciones de la empresa se detallan en la siguiente sección.`
                 : `La vacante indica ${country}. Pide el departamento y la sede para calcular el viaje.`}</p>
+        {localFacts.map(fact => <p class="mt-2 max-w-prose text-sm leading-relaxed text-graphite-200">
+          {fact.text} <a href={fact.url} class="text-brand-400 hover:underline">{fact.label}</a>
+        </p>)}
         {(job.remote || (city && !worksite.conflicting)) && <a href={maps(job.remote ? `coworking en ${remoteBase}` : place)} target="_blank" rel="noopener noreferrer" class="mt-2 inline-block text-sm font-semibold text-brand-400 underline-offset-4 hover:underline">
           {job.remote ? 'Buscar espacios de coworking en Google Maps' : `Ver ${city || country} en Google Maps`}
         </a>}
@@ -107,12 +120,13 @@ const locationChecks: { icon: 'time' | 'credential' | 'travel' | 'cost'; title: 
 
 <section class="mt-10 border-t border-graphite-700 pt-7" aria-labelledby="company-context-title">
   <JobSectionHeading id="company-context-title" step={4}>{confidential ? 'Identifica al empleador' : `Investiga a ${job.company}`}</JobSectionHeading>
-  {(profile || analysis?.company) && (
+  {(profile || companyFacts.length || analysis?.company) ? (
     <div class="mt-4 max-w-prose space-y-2 text-sm leading-relaxed text-graphite-200">
       {profile && <p>{profile.summary} <a href={profile.summaryUrl ?? employer?.officialUrl} target="_blank" rel="noopener noreferrer" class="text-brand-400 underline-offset-4 hover:underline">Perfil oficial</a></p>}
+      {companyFacts.map(fact => <p>{fact.text} <a href={fact.url} class="text-brand-400 hover:underline">{fact.label}</a></p>)}
       {analysis?.company && <p><strong class="text-graphite-100">Qué investigar.</strong> {analysis.company}</p>}
     </div>
-  )}
+  ) : null}
   {confidential ? <p class="mt-3 max-w-prose text-sm leading-relaxed text-graphite-200">El empleador figura como confidencial. Pide la razón social y el nombre de la unidad al equipo de selección.</p> : <>
     <h3 id="company-locations" class="mt-4 scroll-mt-28 font-semibold text-graphite-100">Sedes y operaciones</h3>
     {locations.length ? (
