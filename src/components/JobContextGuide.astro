@@ -58,7 +58,7 @@ const locationChecks: { icon: 'time' | 'credential' | 'travel' | 'cost'; title: 
 ---
 <section class="mt-10 border-t border-graphite-700 pt-7" aria-labelledby="role-context-title">
   <JobSectionHeading id="role-context-title" step={2}>{job.internship ? 'Conoce la práctica' : 'Conoce el puesto'}</JobSectionHeading>
-  {role.explanation && !analysis?.role?.length && <p class="mt-3 max-w-prose text-sm leading-relaxed text-graphite-200">{role.explanation}</p>}
+  {role.explanation && <p class="mt-3 max-w-prose text-sm leading-relaxed text-graphite-200">{role.explanation}</p>}
   {(role.tasks.length || role.requirements.length) ? (
     <div class="mt-4 rounded-xl border border-graphite-700 p-4 sm:p-5">
       <h3 class="text-sm font-semibold text-graphite-100">{role.tasks.length ? 'Qué harás según el aviso' : 'Qué perfil busca el empleador'}</h3>
@@ -72,7 +72,7 @@ const locationChecks: { icon: 'time' | 'credential' | 'travel' | 'cost'; title: 
       Consulta con selección cuáles serán tus funciones y cómo se evaluará tu trabajo.
     </p>
   )}
-  {analysis?.role?.length ? <JobAnalysisAdvice items={analysis.role} /> : null}
+  {analysis?.role?.length && !role.explanation ? <JobAnalysisAdvice items={analysis.role} /> : null}
 </section>
 
 <section class="mt-10 border-t border-graphite-700 pt-7" aria-labelledby="place-context-title">
