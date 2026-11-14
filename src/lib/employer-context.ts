@@ -14,6 +14,14 @@ interface ReviewSummary {
   highlights: { topic: string; text: string }[];
 }
 
+interface EmployerTestimonial {
+  role: string;
+  place: string;
+  date: string;
+  text: string;
+  url: string;
+}
+
 const reviewCache: Record<string, { all: ReviewSummary; internships?: ReviewSummary }> = reviews;
 
 export function employerContext(company: string, country: string, internship?: boolean) {
@@ -27,5 +35,6 @@ export function employerContext(company: string, country: string, internship?: b
   const collected = reviewCache[id];
   const practiceSample = internship ? collected?.internships : undefined;
   const locations: EmployerLocation[] = context.locations;
-  return { ...context, profile, locations, reviewSummary: practiceSample ?? collected?.all, practiceSample: Boolean(practiceSample) };
+  const testimonials: EmployerTestimonial[] = context.testimonials ?? [];
+  return { ...context, profile, locations, testimonials, reviewSummary: practiceSample ?? collected?.all, practiceSample: Boolean(practiceSample) };
 }

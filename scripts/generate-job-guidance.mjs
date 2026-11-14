@@ -1,6 +1,7 @@
 import { readFile, rename, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { analysisContext, analysisMessages, analysisSignature, jobAnalysis, readAnalysis } from '../src/lib/job-analysis.mjs';
+import { publishedRole } from '../src/lib/job-role.mjs';
 import { prepareTrainingVectors } from './job-training-vectors.mjs';
 import { callProvider, extractJson, resolveChain } from '../src/lib/llm.js';
 import {
@@ -59,18 +60,26 @@ const activeProviders = new Set(providers);
 let calls = 0;
 let generated = 0;
 
-for (const job of candidates) {
-  if (calls >= maxCalls || !activeProviders.size) break;
+const roleCandidates = candidates.map(job => {
   const context = analysisContext(job);
-  const existing = cache.get(job.id);
-  if (jobAnalysis(context, existing) && Array.isArray(existing.analysis?.role)) continue;
+  const entry = cache.get(job.id);
+  const existing = jobAnalysis(context, entry);
+  const duties = publishedRole(job).tasks.filter(task => context.anuncio.includes(task.replace(/\s+/g, ' ')));
+  const pending = !Array.isArray(existing?.role) || (duties.length > 0 && !existing.role.length);
+  return { job, context, duties, entry, existing, pending };
+}).filter(candidate => candidate.pending)
+  .sort((a, b) => Number(Boolean(a.existing)) - Number(Boolean(b.existing)) ||
+    (a.existing && b.existing ? (a.entry.generatedAt ?? '').localeCompare(b.entry.generatedAt ?? '') : 0));
+
+for (const { job, context, duties, entry } of roleCandidates) {
+  if (calls >= maxCalls || !activeProviders.size) break;
 
   const ranking = careerGuidanceContext(job, jobs, now);
   const [, catalog] = careerGuidanceMessages(ranking);
   const [analysisSystem] = analysisMessages(context);
   const messages = [
     { role: 'system', content: `${analysisSystem.content} Añade ranking como objeto con tipId (un ID), questionIds (dos IDs distintos, uno técnico si existe), trainingIds (todos los IDs ordenados por afinidad) y opportunityIds (hasta tres IDs). Escoge IDs del catálogo o devuelve listas vacías si no hay candidatos.` },
-    { role: 'user', content: JSON.stringify({ vacante: context, catálogo: JSON.parse(catalog.content) }) },
+    { role: 'user', content: JSON.stringify({ vacante: context, funcionesPublicadas: duties, catálogo: JSON.parse(catalog.content) }) },
   ];
 
   for (const provider of activeProviders) {
@@ -93,7 +102,11 @@ for (const job of candidates) {
       continue;
     }
     const analysis = readAnalysis(result, context);
-    if (!analysis) {
+    if (analysis?.role && duties.length) {
+      const publishedDuties = duties.join(' ').replace(/\s+/g, ' ');
+      analysis.role = analysis.role.filter(item => publishedDuties.includes(item.evidence));
+    }
+    if (!analysis || (duties.length > 0 && !analysis.role?.length)) {
       console.warn(`Job analysis did not validate: ${job.slug} (${provider.name}).`);
       continue;
     }
@@ -101,7 +114,7 @@ for (const job of candidates) {
     const selection = { tipId, questionIds, trainingIds, opportunityIds };
     const ranked = validCareerGuidance(selection, ranking);
     cache.set(job.id, {
-      ...existing,
+      ...entry,
       ...(ranked && { ...selection, signature: undefined, careerSignature: careerGuidanceSignature(ranking) }),
       analysisSignature: analysisSignature(context),
       analysis,

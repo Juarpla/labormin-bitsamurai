@@ -1,4 +1,34 @@
 {
+  "hochschild": {
+    "aliases": ["hochschild", "hochschild mining", "hochschild mining plc"],
+    "officialUrl": "https://www.hochschildmining.com/es/donde-operamos/operaciones-en-marcha/",
+    "reviewsUrl": "https://pe.indeed.com/cmp/Hochschild-Mining-PLC/reviews",
+    "locations": [
+      {
+        "name": "Unidad Minera Inmaculada",
+        "address": "Ayacucho",
+        "region": "Ayacucho",
+        "description": "Mina subterránea de oro y plata. Hochschild sitúa la entrada de la veta Ángela a unos 4.400 m s. n. m.",
+        "sourceUrl": "https://www.hochschildmining.com/es/donde-operamos/operaciones-en-marcha/inmaculada/"
+      }
+    ],
+    "testimonials": [
+      {
+        "role": "Practicante profesional",
+        "place": "Surco, Lima",
+        "date": "2024-09-27",
+        "text": "Destacó el ambiente de trabajo y señaló que encontró pocas oportunidades de crecimiento.",
+        "url": "https://pe.indeed.com/cmp/Hochschild-Mining-PLC/reviews/ambiente-laboral-oportundades?id=5b635fd1d01bc313"
+      },
+      {
+        "role": "Practicante preprofesional de Planeamiento",
+        "place": "Ayacucho",
+        "date": "2017-09-26",
+        "text": "Contó que los ingenieros le enseñaron cómo funcionaba la operación y le confiaron tareas del día a día.",
+        "url": "https://pe.indeed.com/cmp/Hochschild-Mining-PLC/reviews/buen-ambiente-laboral?id=3297d503f65e879e"
+      }
+    ]
+  },
   "southern-copper": {
     "aliases": [
       "southern copper",

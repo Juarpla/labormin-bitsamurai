@@ -11,13 +11,13 @@ import { publishedRole } from '../lib/job-role.mjs';
 import { researchedCompany, researchedPlace } from '../lib/job-research.mjs';
 import JobSectionHeading from './JobSectionHeading.astro';
 
-interface Props { job: Job; title: string; analysis: ReturnType<typeof jobAnalysis>; worksite: ReturnType<typeof jobWorksite> }
-const { job, title, analysis, worksite } = Astro.props;
+interface Props { job: Job; analysis: ReturnType<typeof jobAnalysis>; worksite: ReturnType<typeof jobWorksite> }
+const { job, analysis, worksite } = Astro.props;
 const role = publishedRole(job);
 const city = job.city?.trim();
 const country = countryName(job.country);
 const remoteBase = countryName(DEFAULT_COUNTRY);
-const destination = worksite.conflicting ? worksite.region : city ?? worksite.region;
+const destination = worksite.location || worksite.conflicting ? worksite.region : city ?? worksite.region;
 const place = destination ? `${destination}, ${country}` : country;
 const localFacts = researchedPlace(job, destination);
 const companyFacts = researchedCompany(job);
@@ -31,13 +31,13 @@ const shiftText = worksite.roster
       ? 'Pregunta en qué sede se realiza la práctica y cómo se organiza la movilidad si hay salidas a campo.'
       : 'Pide la dirección de la operación, el horario de ingreso y el punto de embarque antes de organizar el traslado.');
 const maps = (query: string) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
-const search = (query: string) => `https://www.google.com/search?q=${encodeURIComponent(query)}`;
 const employer = employerContext(job.company, job.country, job.internship);
 const profile = employer?.profile;
-const locations = employer?.locations ?? [];
+const locations = (employer?.locations ?? []).filter(location => location.name !== worksite.location?.name);
+const testimonials = employer?.testimonials ?? [];
+const testimonialDate = new Intl.DateTimeFormat('es-PE', { dateStyle: 'medium', timeZone: 'UTC' });
 const reviews = employer?.reviewSummary?.highlights ?? employer?.reviewHighlights ?? [];
 const confidential = /^confidencial$/i.test(job.company.trim());
-const companySearch = search(job.internship ? `${job.company} experiencias de practicantes` : `${job.company} opiniones laborales ${title}`);
 const locationChecks: { icon: 'time' | 'credential' | 'travel' | 'cost'; title: string; text: string }[] = job.remote ? [
   { icon: 'time', title: 'Horario y coordinación', text: 'Confirma cuántas horas debes coincidir con el equipo, por qué canales coordinan y si hay reuniones o viajes presenciales.' },
   { icon: 'credential', title: 'Contrato y equipo', text: 'Pregunta qué entidad te contrataría desde Perú y quién cubre el equipo, las licencias y la conexión.' },
@@ -48,7 +48,9 @@ const locationChecks: { icon: 'time' | 'credential' | 'travel' | 'cost'; title: 
   },
   {
     icon: 'cost', title: 'Gastos y alojamiento',
-    text: worksite.mineRoster || worksite.roster || publishedRegime
+    text: worksite.campCoverage
+      ? 'El aviso indica que la empresa cubre el alojamiento y la alimentación al 100 %. También cubre traslados desde determinadas ciudades. Confirma si la tuya está incluida.'
+      : worksite.mineRoster || worksite.roster || publishedRegime
       ? 'Pregunta si el régimen incluye campamento, comidas y movilidad, y qué gastos quedan a tu cargo durante el descanso.'
       : 'Pregunta si la empresa cubre el transporte o el alojamiento antes de calcular cuánto gastarías.',
   },
@@ -56,6 +58,7 @@ const locationChecks: { icon: 'time' | 'credential' | 'travel' | 'cost'; title: 
 ---
 <section class="mt-10 border-t border-graphite-700 pt-7" aria-labelledby="role-context-title">
   <JobSectionHeading id="role-context-title" step={2}>{job.internship ? 'Conoce la práctica' : 'Conoce el puesto'}</JobSectionHeading>
+  {role.explanation && !analysis?.role?.length && <p class="mt-3 max-w-prose text-sm leading-relaxed text-graphite-200">{role.explanation}</p>}
   {(role.tasks.length || role.requirements.length) ? (
     <div class="mt-4 rounded-xl border border-graphite-700 p-4 sm:p-5">
       <h3 class="text-sm font-semibold text-graphite-100">{role.tasks.length ? 'Qué harás según el aviso' : 'Qué perfil busca el empleador'}</h3>
@@ -78,16 +81,19 @@ const locationChecks: { icon: 'time' | 'credential' | 'travel' | 'cost'; title: 
     <div class="grid grid-cols-[2.5rem_minmax(0,1fr)] items-start gap-3 bg-graphite-850 p-4 sm:p-5">
       <span class="grid size-10 place-items-center rounded-lg border border-graphite-700 bg-graphite-900 text-brand-400 [&_svg]:size-6"><GuideIcon kind={job.remote ? 'remote' : 'map'} /></span>
       <div>
-        <h3 class="font-semibold text-graphite-100">{job.remote ? `Trabajo remoto desde ${remoteBase}` : place}</h3>
+        <h3 class="font-semibold text-graphite-100">{job.remote ? `Trabajo remoto desde ${remoteBase}` : worksite.location ? `${worksite.location.name} · ${destination}, ${country}` : place}</h3>
         <p class="mt-1 max-w-prose text-sm leading-relaxed text-graphite-200">{job.remote
           ? 'Si vas a trabajar desde casa, revisa tu conexión, un respaldo de internet y un espacio para llamadas. Si necesitas un espacio alternativo, comprueba sus horarios y conectividad.'
-          : worksite.conflicting
+          : worksite.location
+            ? `El aviso identifica esta unidad como sede de la ${job.internship ? 'práctica' : 'vacante'}. ${worksite.conflicting ? `El portal muestra ${publishedPlace}. ` : ''}${worksite.location.description}`
+            : worksite.conflicting
             ? `El anuncio menciona ${worksite.region} para la ${job.internship ? 'práctica' : 'vacante'}, pero el portal la registra en ${publishedPlace}. Confirma el nombre de la unidad y el lugar de incorporación con selección.`
             : destination
               ? `La ubicación publicada es ${destination}. Confirma con selección la unidad o sede antes de planear tu llegada.`
               : locations.length
                 ? `El anuncio ubica la vacante en ${country}. Confirma la unidad antes de organizar el viaje. Las ubicaciones de la empresa se detallan en la siguiente sección.`
                 : `La vacante indica ${country}. Pide el departamento y la sede para calcular el viaje.`}</p>
+        {worksite.location?.sourceUrl && <a href={worksite.location.sourceUrl} class="mt-2 inline-block text-sm font-semibold text-brand-400 hover:underline">Ficha oficial de la unidad</a>}
         {localFacts.map(fact => <p class="mt-2 max-w-prose text-sm leading-relaxed text-graphite-200">
           {fact.text} <a href={fact.url} class="text-brand-400 hover:underline">{fact.label}</a>
         </p>)}
@@ -96,10 +102,10 @@ const locationChecks: { icon: 'time' | 'credential' | 'travel' | 'cost'; title: 
         </a>}
       </div>
     </div>
-    {!job.remote && locations.length > 0 && (
+    {!job.remote && !worksite.location && locations.length > 0 && (
       <div class="border-t border-graphite-700 bg-graphite-900 px-4 py-3 sm:px-5">
         <p class="max-w-prose text-sm leading-relaxed text-graphite-200">
-          {employer?.travel}
+          {employer?.travel ?? 'Consulta las ubicaciones que publica la empresa.'}
         </p>
         <a href="#company-locations" class="mt-1 inline-block text-sm font-medium text-brand-400 underline-offset-4 hover:underline">Ver sedes y accesos <span aria-hidden="true">→</span></a>
       </div>
@@ -128,63 +134,63 @@ const locationChecks: { icon: 'time' | 'credential' | 'travel' | 'cost'; title: 
     </div>
   ) : null}
   {confidential ? <p class="mt-3 max-w-prose text-sm leading-relaxed text-graphite-200">El empleador figura como confidencial. Pide la razón social y el nombre de la unidad al equipo de selección.</p> : <>
-    <h3 id="company-locations" class="mt-4 scroll-mt-28 font-semibold text-graphite-100">Sedes y operaciones</h3>
-    {locations.length ? (
-      <>
-        <p class="mt-1 max-w-prose text-sm leading-relaxed text-graphite-300">
-          {profile?.network ?? 'Ubicaciones publicadas por la empresa.'} Confirma con selección la dirección asignada a esta {job.internship ? 'práctica' : 'vacante'}.
-        </p>
-        <ul role="list" class="mt-3 grid gap-3 sm:grid-cols-2">
+    {!profile && !companyFacts.length && !analysis?.company && locations.length === 0 && !testimonials.length && !reviews.length && (
+      <p class="mt-3 max-w-prose text-sm leading-relaxed text-graphite-200">Pide al equipo de selección la página oficial de {job.company} y confirma qué sede ofrece la vacante.</p>
+    )}
+    {locations.length > 0 && (
+      <div class="mt-5">
+        <h3 id="company-locations" class="scroll-mt-28 font-semibold text-graphite-100">Sedes y operaciones</h3>
+        <ul role="list" class="mt-2 divide-y divide-graphite-700">
           {locations.map(location => (
-            <li class:list={["min-w-0 rounded-xl border border-graphite-700 bg-graphite-900 p-4", location.headquarters && "sm:col-span-2"]}>
-              <h4 class="flex items-start gap-2 font-semibold text-graphite-100">
-                <span class="mt-0.5 shrink-0 text-brand-400 [&_svg]:size-5"><GuideIcon kind="map" /></span>
-                {location.name}
-              </h4>
-              <p class="mt-1 text-sm font-medium text-graphite-300">{location.address}</p>
-              <p class="mt-2 text-sm leading-relaxed text-graphite-200">{location.description}</p>
+            <li class="py-3 first:pt-0">
+              <h4 class="text-sm font-semibold text-graphite-100">{location.name} <span class="font-normal text-graphite-300">· {location.address}</span></h4>
+              <p class="mt-1 max-w-prose text-sm leading-relaxed text-graphite-200">{location.description}</p>
               <JobLocationMap query={location.headquarters ? `${location.address}, ${country}` : `${location.name}, ${job.company}, ${location.address}, ${country}`} label={location.name} />
             </li>
           ))}
         </ul>
-      </>
-    ) : (
-      <div class="mt-2 rounded-xl border border-graphite-700 bg-graphite-900 p-4">
-        <p class="max-w-prose text-sm leading-relaxed text-graphite-200">Busca las ubicaciones de {job.company} y confirma con selección cuál corresponde a la oferta.</p>
-        <JobLocationMap query={`${job.company}, ${job.remote ? remoteBase : place}`} label={job.company} />
       </div>
     )}
-
-    {(profile?.contactUrl || employer?.profile?.contactTip || (job.remote && analysis?.visit)) && (
-      <div class="mt-5 max-w-prose space-y-2 text-sm leading-relaxed text-graphite-200">
-        <h3 class="font-semibold text-graphite-100">Contacto y llegada</h3>
+    {(profile?.contactUrl || profile?.contactTip || (job.remote && analysis?.visit)) && (
+      <div class="mt-4 max-w-prose space-y-2 text-sm leading-relaxed text-graphite-200">
         {profile?.contactTip && <p>{profile.contactTip}</p>}
         {job.remote && analysis?.visit && <p>{analysis.visit}</p>}
         <div class="flex flex-wrap gap-x-5 gap-y-1">
-          {profile?.contactUrl && <a href={profile.contactUrl} target="_blank" rel="noopener noreferrer" class="font-semibold text-brand-400 underline-offset-4 hover:underline">Contacto oficial</a>}
-          {profile?.phone && <a href={`tel:${profile.phone}`} class="font-semibold text-brand-400 underline-offset-4 hover:underline">Central {profile.phoneLabel}</a>}
+          {profile?.contactUrl && <a href={profile.contactUrl} target="_blank" rel="noopener noreferrer" class="font-semibold text-brand-400 hover:underline">Contacto oficial</a>}
+          {profile?.phone && <a href={`tel:${profile.phone}`} class="font-semibold text-brand-400 hover:underline">Central {profile.phoneLabel}</a>}
         </div>
       </div>
     )}
-
-    <h3 class="mt-6 font-semibold text-graphite-100">{employer?.practiceSample ? 'Experiencias de practicantes' : 'Opiniones sobre trabajar en la empresa'}</h3>
-    {reviews.length > 0 ? (
-      <>
-        <p class="mt-1 text-sm text-graphite-300">{employer?.reviewSummary
-          ? `Temas mencionados en una muestra de ${employer.reviewSummary.total} opiniones públicas en Indeed.`
-          : 'Resumen de testimonios públicos en Indeed sobre distintos equipos y sedes.'}</p>
-        <dl class="mt-2 max-w-prose divide-y divide-graphite-700 text-sm leading-relaxed">
-          {reviews.map(review => (
-            <div class="py-2.5">
-              <dt class="font-medium text-graphite-100">{review.topic}</dt>
-              <dd class="mt-0.5 text-graphite-200">{review.text}</dd>
-            </div>
-          ))}
-        </dl>
-      </>
-    ) : (
-      <div class="mt-2 pl-4">
-        <a href={companySearch} target="_blank" rel="noopener noreferrer" class="inline-block text-sm font-semibold text-brand-400 underline-offset-4 hover:underline">{job.internship ? 'Buscar testimonios de practicantes' : 'Buscar opiniones laborales'}</a>
+    {(testimonials.length > 0 || reviews.length > 0) && (
+      <div class="mt-5 border-t border-graphite-700 pt-4">
+        {testimonials.length > 0 && (job.internship || !reviews.length) ? <>
+          <h3 class="font-semibold text-graphite-100">Experiencias de practicantes</h3>
+          <p class="mt-1 text-sm text-graphite-300">Testimonios publicados en Indeed sobre prácticas en distintas áreas.</p>
+          <ul role="list" class="mt-3 grid gap-4 sm:grid-cols-2">
+            {testimonials.map(testimonial => (
+              <li class="min-w-0 border-l border-graphite-700 pl-3 text-sm leading-relaxed">
+                <h4 class="font-semibold text-graphite-100">{testimonial.role}</h4>
+                <p class="mt-1 text-xs text-graphite-300">{testimonial.place} · <time datetime={testimonial.date}>{testimonialDate.format(new Date(testimonial.date))}</time></p>
+                <p class="mt-2 text-graphite-200">{testimonial.text}</p>
+                <a href={testimonial.url} class="mt-1 inline-block text-brand-400 hover:underline" aria-label={`Leer opinión en Indeed de ${testimonial.role}, ${testimonial.place}`}>Leer en Indeed</a>
+              </li>
+            ))}
+          </ul>
+        </> : <>
+          <h3 class="font-semibold text-graphite-100">{employer?.practiceSample ? 'Experiencias de practicantes' : 'Opiniones sobre trabajar en la empresa'}</h3>
+          <p class="mt-1 text-sm text-graphite-300">{employer?.reviewSummary
+            ? `Temas mencionados en una muestra de ${employer.reviewSummary.total} opiniones públicas en Indeed.`
+            : 'Resumen de testimonios públicos en Indeed sobre distintos equipos y sedes.'}</p>
+          <dl class="mt-2 max-w-prose divide-y divide-graphite-700 text-sm leading-relaxed">
+            {reviews.map(review => (
+              <div class="py-2.5">
+                <dt class="font-medium text-graphite-100">{review.topic}</dt>
+                <dd class="mt-0.5 text-graphite-200">{review.text}</dd>
+              </div>
+            ))}
+          </dl>
+          {employer?.reviewsUrl && <a href={employer.reviewsUrl} class="inline-block text-sm text-brand-400 hover:underline">Ver opiniones en Indeed</a>}
+        </>}
       </div>
     )}
   </>}

@@ -37,7 +37,7 @@ const semantic = cached && 'semanticSignature' in cached && cached.semanticSigna
   'semantic' in cached ? cached.semantic as Record<string, number> : undefined;
 
 const worksite = jobWorksite(job);
-const location = worksite.conflicting ? `${worksite.region} en el anuncio · ${job.city || job.locationRaw} en el portal` : locationLine(job, t);
+const location = worksite.conflicting ? `${worksite.location ? worksite.location.name + ', ' : ''}${worksite.region} · ${job.city || job.locationRaw} en el portal` : locationLine(job, t);
 const descriptionText = sourceText(job.description);
 const experience = descriptionText.match(/\b(?:experiencia\s+(?:(?:m[ií]nima|deseable)\s+)?(?:de\s+)?\d+(?:\s*(?:a|–|-)\s*\d+)?\s+(?:años?|mes(?:es)?)|(?:m[ií]nimo\s+(?:de\s+)?|al menos\s+)?\d+(?:\s*(?:a|–|-)\s*\d+)?\s+(?:años?|mes(?:es)?)\s+de\s+experiencia)(?:\s+(?:m[ií]nima|deseable))?\b/iu)?.[0];
 const roster = descriptionText.match(/\b(?:r[eé]gimen|sistema)\s+(?:at[ií]pico\s+)?(?:de\s+)?\d+\s*[x×]\s*\d+\b/iu)?.[0];
@@ -166,7 +166,7 @@ const jsonLd = posting?.jobLocation && worksite.conflicting
     <div class="mt-4"><EmploymentApplyLink href={job.url} /></div>
   </section>
 
-  {guide && <><JobContextGuide worksite={worksite} analysis={analysis} job={job} title={titleFor(job, locale)} />
+  {guide && <><JobContextGuide worksite={worksite} analysis={analysis} job={job} />
   <EmploymentApplicationGuide semantic={semantic} worksite={worksite} analysis={analysis} guide={guide} job={job} title={titleFor(job, locale)} tools={tools} experience={verifiedExperience} /></>}
 
   {!job.internship && related.length > 0 && (

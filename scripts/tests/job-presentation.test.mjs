@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { publishedRole } from '../../src/lib/job-role.mjs';
 import {
   localPresentation, preparePresentation,
   presentationChain, presentationInput, presentationKey,
@@ -13,6 +14,18 @@ const job = {
   url: 'https://jobs.example.com/vacancy',
 };
 const providers = ['agnes', 'opencode-go', 'workers-ai', 'mistral'].map(name => ({ name }));
+
+test('extracts learning duties and requirements after flattened question headings', () => {
+  const description = '<p>Régimen 14x7.¿Cuáles son los temas de aprendizaje? Apoyar en la evaluación de la calidad del macizo rocoso. Medir el sostenimiento de campo.¿Qué requisitos debo cumplir para postular a la vacante? Manejo de RS2 y Leapfrog a nivel básico.</p>';
+  const role = publishedRole({ title: 'Practicante profesional de Geotecnia', description });
+  assert.deepEqual(role.tasks, [
+    'Apoyar en la evaluación de la calidad del macizo rocoso.',
+    'Medir el sostenimiento de campo.',
+  ]);
+  assert.deepEqual(role.requirements, ['Manejo de RS2 y Leapfrog a nivel básico.']);
+  assert.equal(role.specialty, 'geotecnia');
+  assert.match(role.explanation, /controles de instalación/);
+});
 const valid = {
   titleEs: 'Técnico de mantenimiento II',
   blocks: [

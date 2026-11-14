@@ -12,8 +12,8 @@ export const sectionLabels = {
   apply: 'Cómo postular',
 };
 const headings = {
-  duties: 'principales responsabilidades|responsabilidades|funciones(?: principales)?|qué (?:harás|lograrás)|what you(?: will|’ll) do|responsibilities|duties',
-  requirements: 'requisitos(?: del puesto)?|requiere|perfil requerido|qué buscamos|what you(?: will|’ll) need|requirements|qualifications',
+  duties: 'principales responsabilidades|responsabilidades|funciones(?: principales)?|temas de aprendizaje|cuáles son (?:los temas de aprendizaje|las funciones)|qué (?:harás|lograrás)|what you(?: will|’ll) do|responsibilities|duties',
+  requirements: 'requisitos(?: del puesto)?|qué requisitos debo cumplir(?: para postular(?: a la vacante)?)?|requiere|perfil requerido|qué buscamos|what you(?: will|’ll) need|requirements|qualifications',
   conditions: 'condiciones(?: laborales)?|beneficios|qué ofrecemos|benefits|what we offer',
   apply: 'cómo postular|how to apply',
 };
