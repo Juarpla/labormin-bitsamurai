@@ -11073,7 +11073,9 @@
       "company": "Revisa el perfil de P.A. PERU S.A.C. y su línea MEPAR para preparar una pregunta sobre cómo se integran las áreas de ingeniería civil y mineral en el flujo de trabajo diario del ayudante.",
       "visit": "Pregunta por el procedimiento de ingreso a la planta de Lurín, los equipos de protección individual obligatorios y el método de coordinación con el operario principal durante las horas de trabajo."
     },
-    "generatedAt": "2026-11-14T11:47:53.097Z"
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "semantic": {},
+    "semanticSignature": "b27ccb2b3833474029d60979a6012cbf652f3b2c8afd82923f9611362fe1903a"
   },
   "ct-DE9D3DF05364A79561373E686DCF3405": {
     "analysisSignature": "8188500db41bae264f9d7bc5cc5cf84e16c82632599fd238c3cc59d8ee5fc691",
@@ -11101,7 +11103,34 @@
       "company": "Investiga el alcance de la suplencia en el sector portuario para preguntar cómo se define el hito de cierre del contrato temporal y quién asume el traspaso de las órdenes de compra pendientes.",
       "visit": "Pregunta a selección si el traslado desde Pisco opera todos los días laborables y qué ocurre con la movilidad en caso de imprevistos climáticos en la zona costera."
     },
-    "generatedAt": "2026-11-14T11:47:53.097Z"
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "semantic": {
+      "universidad-nacional-daniel-alcides-carrion/administracion": 0.4805,
+      "cetpro-pedro-paulet-lima/asistencia-en-contabilidad": 0.457,
+      "jovenes-productivos/almacen-despacho-y-reposicion-de-mercaderia": 0.4415,
+      "cetpro-carabayllo-lima/asistencia-en-contabilidad": 0.4401,
+      "cetpro-mariscal-caceres-tacna/asistencia-en-contabilidad": 0.4401,
+      "cetpro-san-jeronimo-apurimac/curso-de-excel-nivel-avanzado": 0.4339,
+      "capacita-t/finanzas-para-emprender": 0.4232,
+      "cetpro-cesar-vallejo-ucayali/logistica-y-almacenes": 0.4212,
+      "cetpro-juana-iris-cuadros-rivera-lima/logistica-y-almacenes": 0.4212,
+      "cetpro-r-f-s-de-yugoslavia-ancash/logistica-y-almacenes": 0.4212,
+      "capacita-t/contabilidad-de-costos": 0.4166,
+      "capacita-t/logistica-de-un-restaurante": 0.4063,
+      "capacita-t/finanzas-personales-para-emprendedores-quechua": 0.3898,
+      "capacita-t/finanzas-personales-para-emprendedores-lengua-de-senas-peruana-lsp": 0.3889,
+      "capacita-t/excel-intermedio": 0.3756,
+      "capacita-t/excel-intermedio-2": 0.3756,
+      "capacita-t/word-y-excel-para-el-trabajo-nivel-basico": 0.3749,
+      "cetpro-virgen-de-las-mercedes-tacna/logistica-y-manualidades": 0.3734,
+      "capacita-t/logistica-360-claves-para-una-gestion-moderna-y-eficiente": 0.3732,
+      "capacita-t/excel-intermedio-aimara": 0.3726,
+      "capacita-t/excel-intermedio-lengua-de-senas-peruana-lsp": 0.3695,
+      "jose-carlos-mariategui/contabilidad": 0.3552,
+      "capacita-t/contabilidad-financiera-basica": 0.3478,
+      "capacita-t/excel-basico-lengua-de-senas-peruana-lsp": 0.3417
+    },
+    "semanticSignature": "8188500db41bae264f9d7bc5cc5cf84e16c82632599fd238c3cc59d8ee5fc691"
   },
   "ct-BF5220185ADFF20761373E686DCF3405": {
     "analysisSignature": "3c9c4931363948b2f48e3e2f81220ee01a5526cc4e3774ee8698e3b73aa5c66d",
@@ -11129,7 +11158,9 @@
       "company": "Investiga la presencia de P.A. PERU S.A.C. en proyectos mineros y de infraestructura para entender su sector, y prepara una pregunta sobre cómo el diseño gráfico se integra en sus campañas institucionales o comunicados internos.",
       "visit": "Pregunta a selección si el horario sabatino remoto incluye tareas específicas de diseño y si el equipo asignado trabaja coordinado con otras áreas de ingeniería o construcción."
     },
-    "generatedAt": "2026-11-14T11:47:53.097Z"
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "semantic": {},
+    "semanticSignature": "3c9c4931363948b2f48e3e2f81220ee01a5526cc4e3774ee8698e3b73aa5c66d"
   },
   "nv-BMPE-1118473156": {
     "analysisSignature": "dec3a862c18a8029134c48a837516cc10f016e1b3def92668c10d09d6ee78b0e",
@@ -11157,7 +11188,34 @@
       "company": "Investiga la reputación del cliente en minería subterránea y los estándares de seguridad que aplica. Prepara una pregunta sobre cómo se integran las directrices de calidad y medio ambiente en las fases críticas de construcción para demostrar interés en la operación.",
       "visit": "Pregunta a selección quién cubre el traslado hasta Ayacucho y cómo se organiza el régimen de 14 por 7 días. Solicita información sobre la logística de alojamiento y el proceso de adaptación inicial en la zona centro del Perú."
     },
-    "generatedAt": "2026-11-14T11:47:53.097Z"
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "semantic": {
+      "chalhuahuacho/explotacion-minera": 0.5827,
+      "narciso-villanueva/explotacion-minera": 0.5758,
+      "universidad-nacional-daniel-alcides-carrion/administracion": 0.5447,
+      "jovenes-productivos/almacen-despacho-y-reposicion-de-mercaderia": 0.4733,
+      "castrovirreyna/explotacion-minera": 0.419,
+      "cenfomin-centro-de-formacion-en-mineria/explotacion-minera": 0.419,
+      "erasmo-arellano-guillen/explotacion-minera": 0.419,
+      "essumin/explotacion-minera": 0.419,
+      "instituto-de-formacion-minera-del-peru/explotacion-minera": 0.419,
+      "lircay/explotacion-minera": 0.419,
+      "manuel-nunez-butron/explotacion-minera": 0.419,
+      "mario-samame-boggio/explotacion-minera": 0.419,
+      "oyon/explotacion-minera": 0.419,
+      "recuay/explotacion-minera": 0.419,
+      "ricardo-ramos-plata/explotacion-minera": 0.419,
+      "capacita-t/excel-intermedio-lengua-de-senas-peruana-lsp": 0.3969,
+      "capacita-t/excel-basico-lengua-de-senas-peruana-lsp": 0.3946,
+      "capacita-t/logistica-360-claves-para-una-gestion-moderna-y-eficiente": 0.3786,
+      "cetpro-san-jeronimo-apurimac/curso-de-excel-nivel-avanzado": 0.3743,
+      "cetpro-virgen-de-las-mercedes-tacna/logistica-y-manualidades": 0.3685,
+      "capacita-t/word-y-excel-para-el-trabajo-nivel-basico": 0.3685,
+      "cetpro-cesar-vallejo-ucayali/logistica-y-almacenes": 0.3685,
+      "cetpro-juana-iris-cuadros-rivera-lima/logistica-y-almacenes": 0.3685,
+      "cetpro-r-f-s-de-yugoslavia-ancash/logistica-y-almacenes": 0.3685
+    },
+    "semanticSignature": "dec3a862c18a8029134c48a837516cc10f016e1b3def92668c10d09d6ee78b0e"
   },
   "nv-BMPE-1118606509": {
     "analysisSignature": "19cc6e974f72d6e61ef87c4f35e577e61a378d7021d349d212b5b3f97751a09f",
@@ -11185,7 +11243,22 @@
       "company": null,
       "visit": null
     },
-    "generatedAt": "2026-11-14T11:47:53.097Z"
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "semantic": {
+      "capacita-t/excel-intermedio-lengua-de-senas-peruana-lsp": 0.3833,
+      "capacita-t/excel-intermedio": 0.3754,
+      "capacita-t/excel-intermedio-2": 0.3754,
+      "capacita-t/excel-basico-lengua-de-senas-peruana-lsp": 0.3727,
+      "capacita-t/excel-intermedio-aimara": 0.3571,
+      "capacita-t/excel-intermedio-quechua": 0.351,
+      "capacita-t/word-y-excel-para-el-trabajo-nivel-basico": 0.3478,
+      "capacita-t/excel-basico": 0.3339,
+      "capacita-t/excel-basico-2": 0.3339,
+      "cetpro-san-jeronimo-apurimac/curso-de-excel-nivel-avanzado": 0.3334,
+      "capacita-t/excel-basico-aimara": 0.3262,
+      "capacita-t/excel-basico-quechua": 0.3183
+    },
+    "semanticSignature": "19cc6e974f72d6e61ef87c4f35e577e61a378d7021d349d212b5b3f97751a09f"
   },
   "nv-BMPE-1118607039": {
     "analysisSignature": "40b4d6968b76b548988f37421b3f9fd6cf35754bc5953e681fec898ffe43dde9",
@@ -11213,7 +11286,34 @@
       "company": "Investiga el enfoque de ManpowerGroup en la inclusión laboral y su modelo de contratación para el cliente minero, y prepara una pregunta sobre el desarrollo profesional dentro de la planilla directa.",
       "visit": "Pregunta en qué sede de campo se realizarán las rotaciones de 10x10 y quién gestiona el alojamiento y traslado."
     },
-    "generatedAt": "2026-11-14T11:47:53.097Z"
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "semantic": {
+      "jovenes-productivos/almacen-despacho-y-reposicion-de-mercaderia": 0.5287,
+      "universidad-nacional-daniel-alcides-carrion/administracion": 0.4967,
+      "cetpro-acolla-junin/electricidad": 0.4744,
+      "cetpro-alejandro-taboada-piura/electricidad": 0.4744,
+      "cetpro-aucayo-loreto/electricidad": 0.4744,
+      "cetpro-buenos-aires-lima/electricidad": 0.4744,
+      "cetpro-cesar-vallejo-ucayali/electricidad": 0.4744,
+      "cetpro-chimbote-ancash/electricidad": 0.4744,
+      "cetpro-inca-garcilaso-de-la-vega-huanuco/electricidad": 0.4744,
+      "cetpro-indiana-loreto/electricidad": 0.4744,
+      "cetpro-jose-antonio-encinas-franco-lima/electricidad": 0.4744,
+      "cetpro-juan-pablo-mori-del-aguila-san-martin/electricidad": 0.4744,
+      "cetpro-kotosh-huanuco/electricidad": 0.4744,
+      "cetpro-naciones-unidas-callao/electricidad": 0.4744,
+      "cetpro-nuestra-sra-de-fatima-arequipa/electricidad": 0.4744,
+      "cetpro-pedro-ronceros-calderon-ica/electricidad": 0.4744,
+      "cetpro-san-jeronimo-cusco/electricidad": 0.4744,
+      "cetpro-santa-clotilde-loreto/electricidad": 0.4744,
+      "cetpro-ventanilla-callao/electricidad": 0.4744,
+      "cetpro-victor-bustamante-gamboa-huancavelica/electricidad": 0.4744,
+      "cetpro-yurimaguas-loreto/electricidad": 0.4744,
+      "cetpro-zana-lambayeque/electricidad": 0.4744,
+      "cetpro-escuela-tecnica-paramonga-lima/electricidad-industrial": 0.4491,
+      "cetpro-escuela-tecnica-paramonga-lima/electricidad-automotriz": 0.4094
+    },
+    "semanticSignature": "40b4d6968b76b548988f37421b3f9fd6cf35754bc5953e681fec898ffe43dde9"
   },
   "nv-BMPE-1118606656": {
     "analysisSignature": "5d385074116f19aef40523f8db9cb9475e0d849a74badbd47424d6f106df399f",
@@ -11241,7 +11341,9 @@
       "company": "Investiga el historial de Overprimr en remanufactura de equipos mineros y su posición frente a proveedores de repuestos de maquinaria pesada para plantear una estrategia de captación de contratos.",
       "visit": "Pregunta cómo se estructura el itinerario de traslados entre Chorrillos y Huachipa, y quién asume los gastos de movilidad diaria para asegurar el cumplimiento de la disponibilidad solicitada."
     },
-    "generatedAt": "2026-11-14T11:47:53.097Z"
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "semantic": {},
+    "semanticSignature": "5d385074116f19aef40523f8db9cb9475e0d849a74badbd47424d6f106df399f"
   },
   "nv-BMPE-1118510217": {
     "semantic": {
@@ -11566,5 +11668,1254 @@
       "company": "Hochschild opera la Unidad Minera Inmaculada en Ayacucho. Investiga el régimen 14x7 y la cobertura de traslados para preparar una pregunta sobre la logística de llegada y el alojamiento durante la práctica.",
       "visit": "Pregunta a selección quién cubre el traslado desde Arequipa, cómo es el régimen de 14x7 y qué convenio de práctica se firma antes de trasladarse a la sede en Ayacucho."
     }
+  },
+  "ct-E19F78A53D1A555361373E686DCF3405": {
+    "semantic": {},
+    "semanticSignature": "e29f9c4a43425580d5d4d9d05f3a04cc8da4a1ce099e66bafe455f9616f0bf52",
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "analysisSignature": "e29f9c4a43425580d5d4d9d05f3a04cc8da4a1ce099e66bafe455f9616f0bf52",
+    "analysis": {
+      "role": [
+        {
+          "evidence": "Elaborar y ejecutar planes de seguridad y análisis de riesgos",
+          "advice": "Explica cómo registras variables de campo para detectar desviaciones en el plan físico. Muestra un ejemplo donde identificas un punto ciego y propones la corrección que respalda la continuidad operativa del turno."
+        }
+      ],
+      "skills": [
+        {
+          "evidence": "análisis de riesgos",
+          "advice": "Estudia técnicas básicas de matriz de riesgo para minería. Practica con casos hipotéticos donde debas priorizar controles frente a amenazas identificadas en la documentación del sector."
+        },
+        {
+          "evidence": "Gestionar reportes de incidentes",
+          "advice": "Aprende a estructurar informes claros de eventos. Crea un portafolio simulado con formatos de registro de incidentes que demuestren tu capacidad de síntesis para la dirección."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "experiencia de mínimo 2 añoa en centro control",
+          "advice": "Documenta tus 24 meses en control de seguridad física. Enumera los sistemas de monitoreo utilizados y el volumen de alarmas gestionadas para validar la competencia técnica requerida."
+        },
+        {
+          "evidence": "de preferencia mineria",
+          "advice": "Si tienes experiencia en otro sector, resalta las similitudes operativas con el entorno minero. Describe cómo adaptaste tus protocolos a entornos de alto riesgo para mostrar versatilidad."
+        }
+      ],
+      "company": "Investiga la presencia global de G4S y su enfoque en seguridad física corporativa. Prepara una pregunta sobre cómo la filial peruana integra estándares internacionales con las normas locales aplicables a la unidad minera de Tacna.",
+      "visit": "Pregunta a selección qué modalidad de traslado cubre la empresa para operar en Tacna y confirma el esquema de turnos 14x7, ya que la sede del aviso es esa zona."
+    }
+  },
+  "cm-294276": {
+    "semantic": {
+      "capacita-t/contabilidad-de-costos": 0.3736,
+      "capacita-t/finanzas-para-emprender": 0.3693,
+      "capacita-t/finanzas-personales-para-emprendedores-lengua-de-senas-peruana-lsp": 0.3525,
+      "jose-carlos-mariategui/contabilidad": 0.3429,
+      "cetpro-carabayllo-lima/asistencia-en-contabilidad": 0.3413,
+      "cetpro-mariscal-caceres-tacna/asistencia-en-contabilidad": 0.3413,
+      "capacita-t/finanzas-personales-para-emprendedores-quechua": 0.3271,
+      "cetpro-pedro-paulet-lima/asistencia-en-contabilidad": 0.3248,
+      "capacita-t/contabilidad-financiera-basica": 0.313,
+      "capacita-t/introduccion-y-conceptos-generales-de-finanzas": 0.294,
+      "capacita-t/finanzas": 0.27
+    },
+    "semanticSignature": "b11f245add297299fd2fad396f8b901b02bf1e145984c69387864715b30c2b9c",
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "analysisSignature": "b11f245add297299fd2fad396f8b901b02bf1e145984c69387864715b30c2b9c",
+    "analysis": {
+      "role": [],
+      "skills": [
+        {
+          "evidence": "software de control de costos",
+          "advice": "Practica la importación y conciliación de datos de costos en una plantilla de Excel que simule el flujo de Unifier o Cleopatra. El objetivo es demostrar que puedes identificar desviaciones y preparar un informe de cierre de mes."
+        },
+        {
+          "evidence": "herramientas de programación de proyectos",
+          "advice": "Crea un cronograma en MS Project o Primavera P6 con tareas críticas de construcción. Aprende a ajustar la duración según avances reales para mostrar cómo proteges la fecha de entrega final."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "controles de proyecto del lado del propietario",
+          "advice": "Documenta en tu currículum cómo has liderado la supervisión de presupuestos como Owner. Si no lo tienes, realiza un caso de estudio académico donde asumas este rol para comparar estimaciones iniciales con costos reales."
+        },
+        {
+          "evidence": "experiencia en campo",
+          "advice": "Si tienes menos de 7 años en obra, participa en pasantías o voluntariados técnicos en minería. Usa estos periodos para aprender a validar el avance físico en terreno y contrastarlo con los reportes de oficina."
+        }
+      ],
+      "company": "Investiga el proyecto Zafranal de Teck, ubicado en Arequipa, que produce 126.000 toneladas anuales de cobre. Prepúrate para preguntar cómo el rol de Gerente integra la función de servicios de proyecto con los controles de costos en esa mina a tajo abierto.",
+      "visit": "Consulta con selección cuál es el régimen de trabajo remoto y en qué sede de Lima se realizan las reuniones de coordinación. Pregunta si el traslado inicial desde Lima hacia el distrito de Majes, Arequipa, está cubierto por la empresa o si requiere logística propia."
+    }
+  },
+  "ct-0466808D095E886261373E686DCF3405": {
+    "semantic": {
+      "capacita-t/word-y-excel-para-el-trabajo-nivel-basico": 0.4475,
+      "cetpro-san-jeronimo-apurimac/curso-de-excel-nivel-avanzado": 0.447,
+      "capacita-t/excel-intermedio": 0.4138,
+      "capacita-t/excel-intermedio-2": 0.4138,
+      "capacita-t/excel-intermedio-aimara": 0.3989,
+      "capacita-t/excel-basico": 0.388,
+      "capacita-t/excel-basico-2": 0.388,
+      "capacita-t/excel-intermedio-quechua": 0.3758,
+      "capacita-t/excel-basico-quechua": 0.375,
+      "capacita-t/excel-basico-aimara": 0.3602,
+      "capacita-t/excel-intermedio-lengua-de-senas-peruana-lsp": 0.3555,
+      "capacita-t/excel-basico-lengua-de-senas-peruana-lsp": 0.3379
+    },
+    "semanticSignature": "7e1510b2fea76c5cb882c2133638dfaaa526be143268fce3bec05d6a40644357",
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "analysisSignature": "7e1510b2fea76c5cb882c2133638dfaaa526be143268fce3bec05d6a40644357",
+    "analysis": {
+      "role": [
+        {
+          "evidence": "Realizar prospección y captación de nuevos clientes corporativos.",
+          "advice": "Prepara una lista de empresas potenciales en el sector industrial, construcción y minería en Villa El Salvador. Investiga sus necesidades y contacta a un representante de cada una para presentar tus servicios y recopilar información sobre sus requerimientos."
+        },
+        {
+          "evidence": "Contactar clientes mediante llamadas, correos y WhatsApp.",
+          "advice": "Elabora un script de comunicación que incluya un saludo personalizado, una breve introducción sobre tus servicios y una invitación a una reunión para discutir sus necesidades. Practica tus habilidades de comunicación verbal y escrita utilizando este script con amigos, familiares o mentores."
+        }
+      ],
+      "skills": [
+        {
+          "evidence": "Manejo de Microsoft Office, especialmente Excel.",
+          "advice": "Crea una hoja de cálculo en Excel que organice y analice datos de ventas, como cotizaciones, seguimiento de clientes y reportes de gestión. Incluye gráficos y fórmulas para visualizar y calcular métricas clave."
+        },
+        {
+          "evidence": "Actitud comercial, capacidad de negociación y persuasión.",
+          "advice": "Simula una negociación con un compañero de clase o un mentor, presentando una cotización de servicios de alquiler de plataformas elevadoras. Anota tus puntos clave, objeciones y cómo las resolviste para mejorar tu técnica de persuasión."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "Experiencia en ventas, atención al cliente o funciones comerciales (deseable, no excluyente).",
+          "advice": "Busca oportunidades de voluntariado o prácticas en empresas locales que ofrezcan servicios similares a los de OCI Soluciones de Altura. Participa en actividades como atención al cliente, seguimiento de ventas y elaboración de cotizaciones para ganar experiencia práctica."
+        },
+        {
+          "evidence": "Proactividad, iniciativa y orientación a resultados.",
+          "advice": "Identifica una oportunidad de negocio en tu comunidad, como una empresa local que podría beneficiarse de los servicios de alquiler de plataformas elevadoras. Desarrolla un plan de acción para contactar a la empresa, presentar tus servicios y cerrar una venta, documentando cada paso del proceso."
+        }
+      ],
+      "company": "Investiga si OCI Soluciones de Altura tiene una política de capacitación y desarrollo profesional para nuevos empleados, y qué programas o recursos ofrece para apoyar el crecimiento en el área comercial.",
+      "visit": "Pregunta sobre la estructura organizacional del área comercial y cómo se distribuyen las responsabilidades entre los diferentes roles."
+    }
+  },
+  "ct-61DD620B3885A51361373E686DCF3405": {
+    "semantic": {
+      "universidad-nacional-daniel-alcides-carrion/administracion": 0.5635,
+      "jovenes-productivos/almacen-despacho-y-reposicion-de-mercaderia": 0.4983,
+      "capacita-t/logistica-de-un-restaurante": 0.4165,
+      "cetpro-san-jeronimo-apurimac/curso-de-excel-nivel-avanzado": 0.3943,
+      "cetpro-virgen-de-las-mercedes-tacna/logistica-y-manualidades": 0.3865,
+      "capacita-t/logistica-360-claves-para-una-gestion-moderna-y-eficiente": 0.3852,
+      "cetpro-cesar-vallejo-ucayali/logistica-y-almacenes": 0.3626,
+      "cetpro-juana-iris-cuadros-rivera-lima/logistica-y-almacenes": 0.3626,
+      "cetpro-r-f-s-de-yugoslavia-ancash/logistica-y-almacenes": 0.3626,
+      "capacita-t/word-y-excel-para-el-trabajo-nivel-basico": 0.3606,
+      "capacita-t/excel-basico-lengua-de-senas-peruana-lsp": 0.3536,
+      "capacita-t/excel-intermedio-aimara": 0.3504,
+      "capacita-t/excel-intermedio-lengua-de-senas-peruana-lsp": 0.3486,
+      "capacita-t/excel-intermedio": 0.3475,
+      "capacita-t/excel-intermedio-2": 0.3475,
+      "capacita-t/excel-basico-quechua": 0.3407,
+      "capacita-t/excel-intermedio-quechua": 0.3391,
+      "capacita-t/excel-basico-aimara": 0.3359,
+      "capacita-t/excel-basico": 0.3339,
+      "capacita-t/excel-basico-2": 0.3339
+    },
+    "semanticSignature": "c30b28b2e3df0d59e45f26ed835b39aef0371e9a36d44943571771f2f2a7629a",
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "analysisSignature": "c30b28b2e3df0d59e45f26ed835b39aef0371e9a36d44943571771f2f2a7629a",
+    "analysis": {
+      "role": [
+        {
+          "evidence": "Mantener y actualizar los formatos de control de asistencia",
+          "advice": "Organiza un cuaderno digital con los horarios de entrada y salida para validar que el personal operativo cumpla las 8:00 a.m. - 5:30 p.m. permitiendo detectar ausencias a tiempo."
+        }
+      ],
+      "skills": [
+        {
+          "evidence": "Conocimiento de Excel a nivel intermedio - avanzado",
+          "advice": "Practica el uso de tablas dinámicas y filtros en un caso de control de asistencia para automatizar la detección de horas extra y faltas del personal de campo."
+        },
+        {
+          "evidence": "registrar todas las operaciones bancarias",
+          "advice": "Aprende a estructurar un libro diario simplificado en Excel que concile ingresos y gastos de la unidad, documentando cada retención y venta en columnas específicas."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "Experiencia de 3 años en habilitación de personal para unidades mineras",
+          "advice": "Busca proyectos universitarios de simulación administrativa donde hayas gestionado el ingreso de personal ficticio para acreditar la capacidad de seguimiento de charlas de inducción."
+        },
+        {
+          "evidence": "Programar y hacer seguimiento de charlas de inducción",
+          "advice": "Organiza una jornada de orientación en tu entorno académico donde registres la asistencia de estudiantes a talleres de seguridad, para demostrar tu habilidad de coordinación logística."
+        }
+      ],
+      "company": "Dimarza SAC ofrece mantenimiento de plantas concentradoras y alquiler de equipos de izaje en el sur del Perú. Investiga el tipo de minería del sur para formular preguntas sobre las unidades donde se realizan los mantenimientos.",
+      "visit": "Pregunta en qué unidad minera específica de Arequipa se concentra el personal operativo y cómo se organiza el traslado inicial desde la sede de la empresa hasta el campo."
+    }
+  },
+  "nv-BMPE-1118631779": {
+    "semantic": {
+      "capacita-t/word-y-excel-para-el-trabajo-nivel-basico": 0.3795,
+      "capacita-t/excel-basico-lengua-de-senas-peruana-lsp": 0.3675,
+      "capacita-t/excel-intermedio-lengua-de-senas-peruana-lsp": 0.3573,
+      "capacita-t/excel-intermedio": 0.346,
+      "capacita-t/excel-intermedio-2": 0.346,
+      "capacita-t/excel-basico": 0.3262,
+      "capacita-t/excel-basico-2": 0.3262,
+      "capacita-t/excel-intermedio-quechua": 0.3169,
+      "cetpro-san-jeronimo-apurimac/curso-de-excel-nivel-avanzado": 0.3105,
+      "capacita-t/excel-intermedio-aimara": 0.3079,
+      "capacita-t/excel-basico-quechua": 0.3057,
+      "capacita-t/excel-basico-aimara": 0.2801
+    },
+    "semanticSignature": "3b108fa5c4c79c46f2f50920a68701398df3d005a35428a30539b9bd11a113d3",
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "analysisSignature": "3b108fa5c4c79c46f2f50920a68701398df3d005a35428a30539b9bd11a113d3",
+    "analysis": {
+      "role": [
+        {
+          "evidence": "Registrar los derechohabientes T-REGISTRO",
+          "advice": "Explica cómo mantienes la actualización del registro para que el seguro cubra a cada colaborador. Muestra cómo evitas la exclusión accidental durante la rotación de personal."
+        },
+        {
+          "evidence": "Asegurar el cumplimiento de la normativa legal vigente",
+          "advice": "Detalla cómo interpretas el reglamento interno para gestionar licencias. Describe la línea de decisión que proteje a la empresa ante un posible vencimiento de plazo administrativo."
+        }
+      ],
+      "skills": [
+        {
+          "evidence": "Excel intermedio— indispensable",
+          "advice": "Practica tablas dinámicas y conciliación de datos. Crea un tablero simulado que permita comparar subsidios emitidos contra los reembolsados para identificar discrepancias rápidamente."
+        },
+        {
+          "evidence": "Power BI intermedio — deseable",
+          "advice": "Desarrolla un informe básico desde datos ficticios. El objetivo es mostrar cómo visualizarías la recuperación de subsidios para detectar tendencias de retraso en el último trimestre."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "Experiencia de mínima de 4 años en el rubro minero",
+          "advice": "Documenta proyectos previos donde gestionaste políticas de bienestar. Resume los resultados obtenidos en la reducción de cartera vencida y cómo coordinaste con seguros de salud en entornos operativos."
+        }
+      ],
+      "company": "Investiga el ámbito geográfico de Otuzco para entender la lógica de la visita domiciliaria. Prepara una pregunta sobre cómo se coordina el registro de T-REGISTRO con los seguros locales para evitar la exclusión de trabajadores.",
+      "visit": "Consulta en qué sede específica de Otuzco se realizan las actividades operativas y cómo se coordina el transporte para las visitas hospitalarias en la zona de cobertura de la minera."
+    }
+  },
+  "nv-BMPE-1118631131": {
+    "semantic": {
+      "capacita-t/word-y-excel-para-el-trabajo-nivel-basico": 0.3907,
+      "capacita-t/excel-basico-lengua-de-senas-peruana-lsp": 0.3824,
+      "capacita-t/excel-intermedio-lengua-de-senas-peruana-lsp": 0.377,
+      "cetpro-san-jeronimo-apurimac/curso-de-excel-nivel-avanzado": 0.3634,
+      "capacita-t/excel-intermedio": 0.3487,
+      "capacita-t/excel-intermedio-2": 0.3487,
+      "capacita-t/excel-basico": 0.3383,
+      "capacita-t/excel-basico-2": 0.3383,
+      "capacita-t/excel-intermedio-aimara": 0.316,
+      "capacita-t/excel-basico-aimara": 0.3027,
+      "capacita-t/excel-intermedio-quechua": 0.2849,
+      "capacita-t/excel-basico-quechua": 0.2807
+    },
+    "semanticSignature": "fe34f16e9e69cb7e92d3cd46164ab329bdb1c9d70af2ed3a3d8fd2fb951023b3",
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "analysisSignature": "fe34f16e9e69cb7e92d3cd46164ab329bdb1c9d70af2ed3a3d8fd2fb951023b3",
+    "analysis": {
+      "role": [
+        {
+          "evidence": "proteger la integridad física de las personas",
+          "advice": "Identifica puntos críticos en la mina para verificar cumplimiento normativo y documentar decisiones que prevengan accidentes o daños a activos, asegurando un entorno seguro."
+        },
+        {
+          "evidence": "métodos de investigación de incidentes",
+          "advice": "Aplica técnicas como TASC para analizar la raíz de eventos peligrosos y comparar causas, generando reportes que respalden la mejora continua de la seguridad operativa."
+        }
+      ],
+      "skills": [
+        {
+          "evidence": "Excel intermedio - indispensable",
+          "advice": "Practica tablas dinámicas y funciones de búsqueda para organizar datos de incidentes en minería y generar reportes visuales que permitan comparar tendencias de riesgo mensuales."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "3 años de experiencia en minería",
+          "advice": "Documenta en tu CV casos específicos de minería subterránea donde hayas aplicado protocolos de SSO, destacando la identificación de riesgos y la implementación de controles técnicos."
+        },
+        {
+          "evidence": "cursos de diplomado en Gestión de SSO",
+          "advice": "Inscríbete en una diplomatura de 240 horas para acreditar competencias formales; si no tienes la experiencia laboral, usa este curso como base para realizar ejercicios académicos supervisados."
+        }
+      ],
+      "company": "MINERA LA PATAGONIA opera en Otuzco con sistema 20x10 y ofrece cobertura EPS al 100%. Investiga su línea de desarrollo interno y cómo aplican su filosofía de trabajo inclusivo en sus operaciones mineras locales.",
+      "visit": "Pregunta por el régimen de trabajo 20x10 y quién cubre el traslado a Otuzco. Clarifica si hay alojamiento provisto o si es responsabilidad del postulante antes de aceptar la vacante."
+    }
+  },
+  "nv-BMPE-1118631684": {
+    "semantic": {
+      "jovenes-productivos/almacen-despacho-y-reposicion-de-mercaderia": 0.5875,
+      "cetpro-cesar-vallejo-ucayali/logistica-y-almacenes": 0.5232,
+      "cetpro-juana-iris-cuadros-rivera-lima/logistica-y-almacenes": 0.5232,
+      "cetpro-r-f-s-de-yugoslavia-ancash/logistica-y-almacenes": 0.5232,
+      "universidad-nacional-daniel-alcides-carrion/administracion": 0.5113,
+      "capacita-t/logistica-de-un-restaurante": 0.4703,
+      "cetpro-virgen-de-las-mercedes-tacna/logistica-y-manualidades": 0.4602,
+      "capacita-t/gestion-y-analisis-de-datos": 0.4292,
+      "capacita-t/logistica-360-claves-para-una-gestion-moderna-y-eficiente": 0.4143,
+      "capacita-t/introduccion-al-power-bi": 0.3721,
+      "capacita-t/analisis-de-datos-con-power-bi": 0.3688
+    },
+    "semanticSignature": "d2a0c37652e618be723d9aefe3f56a378fd94a72f811154b752c53e7fa0ac0fd",
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "analysisSignature": "d2a0c37652e618be723d9aefe3f56a378fd94a72f811154b752c53e7fa0ac0fd",
+    "analysis": {
+      "role": [
+        {
+          "evidence": "Realizar la recepción de los materiales y coordinar su almacenamiento en las zonas establecidas siguiendo las indicaciones del Jefe de Almacén.",
+          "advice": "Prepara un informe de recepción de materiales donde documentes los materiales recibidos, sus cantidades, fechas de recepción y las zonas de almacenamiento asignadas. Esto te permitirá evaluar la eficiencia del proceso de recepción y almacenamiento, y comparar los resultados con los estándares de la empresa."
+        },
+        {
+          "evidence": "Verificar el estado de protección, custodia y conservación de los materiales a su cargo, así como la limpieza y ordenamiento respectivo.",
+          "advice": "Realiza una inspección de seguridad en el almacén, documentando el estado de protección, custodia y conservación de los materiales, así como la limpieza y ordenamiento del área. Esto te permitirá identificar áreas de mejora y tomar decisiones basadas en datos para garantizar la seguridad y eficiencia del almacén."
+        }
+      ],
+      "skills": [
+        {
+          "evidence": "Power Bi a nivel avanzado",
+          "advice": "Crea un dashboard en Power BI que muestre los indicadores de compras, consumos y logística inversa del área. Esto te permitirá practicar el uso avanzado de Power BI y demostrar tu capacidad para visualizar y analizar datos."
+        },
+        {
+          "evidence": "Experiencia mínima de 6 meses en actividades mineras o 1 año en sector industrial en la gestión logística.",
+          "advice": "Participa en un proyecto de gestión logística en un entorno minero o industrial, donde puedas aplicar tus conocimientos y habilidades en la gestión de inventarios, coordinación de materiales y seguimiento de órdenes de compra. Documenta tu experiencia y los resultados obtenidos."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "Experiencia mínima de 6 meses en actividades mineras o 1 año en sector industrial en la gestión logística.",
+          "advice": "Busca oportunidades de prácticas o voluntariado en empresas mineras o industriales, donde puedas ganar experiencia en la gestión logística. Documenta tus responsabilidades y los resultados de tus acciones."
+        },
+        {
+          "evidence": "Bachiller en Ing Industrial, Administración o afines.",
+          "advice": "Si no tienes experiencia laboral, busca proyectos académicos o simulaciones que te permitan aplicar tus conocimientos en gestión logística. Documenta tus proyectos y los resultados obtenidos."
+        }
+      ],
+      "company": "Investiga si la empresa GMI - Gestión Minera Integral tiene políticas específicas de gestión logística y seguridad en el almacén. Esto te permitirá preparar preguntas específicas de entrevista y demostrar tu interés en entender y adaptarte a las prácticas de la empresa.",
+      "visit": "Pregunta a selección sobre la estructura del almacén, los procesos de recepción y despacho de materiales, y las políticas de seguridad y custodia de materiales. Esto te permitirá entender mejor el entorno de trabajo y preparar tu visita a la sede."
+    }
+  },
+  "nv-BMPE-1118631249": {
+    "semantic": {
+      "chalhuahuacho/explotacion-minera": 0.5672,
+      "universidad-nacional-de-ingenieria/ingenieria-de-higiene-y-seguridad-industrial": 0.4474,
+      "capacita-t/salud-y-seguridad-para-ambientes-de-trabajo-moderno": 0.4305,
+      "capacita-t/salud-y-seguridad-para-ambientes-de-trabajo-moderno-lengua-de-senas-peruana-lsp": 0.3839,
+      "capacita-t/word-y-excel-para-el-trabajo-nivel-basico": 0.3524,
+      "cetpro-san-jeronimo-apurimac/curso-de-excel-nivel-avanzado": 0.3453,
+      "capacita-t/excel-basico-lengua-de-senas-peruana-lsp": 0.322,
+      "capacita-t/excel-intermedio-lengua-de-senas-peruana-lsp": 0.3142,
+      "capacita-t/excel-basico": 0.3126,
+      "capacita-t/excel-basico-2": 0.3126,
+      "capacita-t/excel-basico-quechua": 0.3054,
+      "capacita-t/excel-intermedio": 0.3044,
+      "capacita-t/excel-intermedio-2": 0.3044,
+      "capacita-t/excel-basico-aimara": 0.3007,
+      "capacita-t/excel-intermedio-aimara": 0.2981,
+      "capacita-t/excel-intermedio-quechua": 0.2863
+    },
+    "semanticSignature": "a28b292a0442c52b065a430a6ab97b0f770c5eebba632d6f496ccace54cbb2a0",
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "analysisSignature": "a28b292a0442c52b065a430a6ab97b0f770c5eebba632d6f496ccace54cbb2a0",
+    "analysis": {
+      "role": [
+        {
+          "evidence": "Realizar el control de avances, tonelajes, consumos y tiempos improductivos",
+          "advice": "Documenta qué variables mides (avances, tonelajes, consumos, tiempos improductivos) y explica cómo esa medición permite detectar desviaciones operativas, comparando la realidad contra las metas para decidir ajustes en la planificación de la guardia."
+        },
+        {
+          "evidence": "Garantizar el cumplimiento de las normativas de seguridad, interviniendo ante la presencia de riesgos graves",
+          "advice": "Detalla cómo verifilas la existencia de riesgos graves y qué decisión tomas al intervenir. Explica que esta acción evalúa la capacidad de aplicar normas de seguridad mineras y documenta la pronta acción para mitigar incidentes."
+        }
+      ],
+      "skills": [
+        {
+          "evidence": "manejo de herramientas ofimáticas, especialmente Excel",
+          "advice": "Practica el armado de tablas dinámicas y fórmulas para consolidar los partes diarios de producción. Entrega una plantilla de reporte en Excel que ordene los datos de tonelajes y consumos de forma clara y auditable."
+        },
+        {
+          "evidence": "gestión de riesgos (IPERC)",
+          "advice": "Estudia la metodología IPERC para identificar y evaluar riesgos. Prepara un caso simulado donde aplicas esta gestión para documentar cómo se controla un riesgo específico en una tarea minera, mostrando el análisis y la acción preventiva."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "7 años en operaciones mineras y 4 años en roles de supervisión o jefatura de guardia",
+          "advice": "Organiza una línea de tiempo que evidencie los 7 años en operaciones y los 4 años en supervisión. Describe en cada etapa tu rol concreto en la jefatura de guardia y el impacto en la continuidad de las operaciones."
+        },
+        {
+          "evidence": "minería subterránea y/o a cielo abierto",
+          "advice": "Selecciona un proyecto minero subterráneo o a cielo abierto en el que hayas participado y explica qué procesos de producción supervisaste. Acredita esta experiencia detallando las tareas específicas de jefatura que realizaste en ese entorno."
+        }
+      ],
+      "company": null,
+      "visit": "Indica a selección la sede exacta en Cayaltí, Lambayeque, el horario de ingreso y el medio de transporte que necesitas para desplazarte al inicio de la guardia."
+    }
+  },
+  "nv-BMPE-1118631244": {
+    "semantic": {},
+    "semanticSignature": "eb38be325e4c6576b2281eec4c5b8a94abcaa04f2afe221753def1f44c5215f7",
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "tipId": "role",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "trainingIds": [
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "oyon",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "careerSignature": "49549f0a4e07fdf65feb75340fb8a09352a8f4d56fd3b994ec19026cbcbfd400",
+    "analysisSignature": "eb38be325e4c6576b2281eec4c5b8a94abcaa04f2afe221753def1f44c5215f7",
+    "analysis": {
+      "role": [
+        {
+          "evidence": "Revisar el vehículo al inicio de cada jornada",
+          "advice": "Ejemplifica cómo verificas niveles de fluidos y frenos antes de circular para documentar la operatividad inicial y respaldar la decisión de habilitar el vehículo para el traslado diario."
+        },
+        {
+          "evidence": "Registrar los mantenimientos realizados y cualquier incidente",
+          "advice": "Muestra cómo registras las intervenciones y eventos imprevistos para crear un historial técnico que permite evaluar el estado del activo y comparar la frecuencia de fallas entre periodos."
+        }
+      ],
+      "skills": [
+        {
+          "evidence": "Conocimientos de mecánica automotriz básica",
+          "advice": "Practica el diagnóstico de fallas comunes en motores diésel y gasolina mediante ejercicios académicos de despiece y mantenimiento preventivo, entregando un informe de verificación funcional antes de circular."
+        },
+        {
+          "evidence": "curso de manejo defensivo y evasivo",
+          "advice": "Completa un curso certificado de manejo defensivo y registra tus horas de práctica supervisada en pista, entregando un portfolio de maniobras de evasión realizadas en condiciones controladas."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "Experiencia mínima de 5 años en minería",
+          "advice": "Describe una labor previa en faenas mineras, detallando tus responsabilidades en la cadena de suministro o seguridad, y entrega una referencia profesional que corrobore tu permanencia y desempeño en el sector."
+        }
+      ],
+      "company": "Investiga cómo ManpowerGroup Perú administra la relación con el cliente minero y la inserción en planilla directa, preparando una pregunta sobre la gestión de la confidencialidad de los traslados y los estándares de seguridad aplicables a la flota.",
+      "visit": "Pregunta a selección por el régimen de horarios de recogida, el lugar exacto de embarque en Lima y quién asume los gastos de combustible y viáticos durante los traslados frecuentes hacia la unidad minera."
+    }
+  },
+  "nv-BMPE-1118631221": {
+    "semantic": {
+      "chalhuahuacho/explotacion-minera": 0.5637,
+      "narciso-villanueva/explotacion-minera": 0.549,
+      "universidad-nacional-daniel-alcides-carrion/administracion": 0.524,
+      "pontificia-universidad-catolica-del-peru/ingenieria-de-minas": 0.5235,
+      "universidad-catolica-de-santa-maria/ingenieria-de-minas": 0.5235,
+      "universidad-catolica-de-trujillo-benedicto-xvi/ingenieria-de-minas": 0.5235,
+      "universidad-continental/ingenieria-de-minas": 0.5235,
+      "universidad-nacional-daniel-alcides-carrion/ingenieria-de-minas": 0.5235,
+      "universidad-nacional-de-huancavelica/ingenieria-de-minas": 0.5235,
+      "universidad-nacional-de-ingenieria/ingenieria-de-minas": 0.5235,
+      "universidad-nacional-de-moquegua/ingenieria-de-minas": 0.5235,
+      "universidad-nacional-de-piura/ingenieria-de-minas": 0.5235,
+      "universidad-nacional-de-san-agustin/ingenieria-de-minas": 0.5235,
+      "universidad-nacional-de-san-antonio-abad-del-cusco/ingenieria-de-minas": 0.5235,
+      "universidad-nacional-de-san-cristobal-de-huamanga/ingenieria-de-minas": 0.5235,
+      "universidad-nacional-de-trujillo/ingenieria-de-minas": 0.5235,
+      "universidad-nacional-del-altiplano/ingenieria-de-minas": 0.5235,
+      "universidad-nacional-del-centro-del-peru/ingenieria-de-minas": 0.5235,
+      "universidad-nacional-jorge-basadre-grohmann/ingenieria-de-minas": 0.5235,
+      "universidad-nacional-mayor-de-san-marcos/ingenieria-de-minas": 0.5235,
+      "universidad-nacional-micaela-bastidas-de-apurimac/ingenieria-de-minas": 0.5235,
+      "universidad-nacional-san-luis-gonzaga/ingenieria-de-minas": 0.5235,
+      "universidad-nacional-santiago-antunez-de-mayolo/ingenieria-de-minas": 0.5235,
+      "universidad-privada-del-norte/ingenieria-de-minas": 0.5235
+    },
+    "semanticSignature": "c609ca31c2ec11c4908ae43dc6aacd71a8090c1963b654c1b01b23171e440fd8",
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "analysisSignature": "c609ca31c2ec11c4908ae43dc6aacd71a8090c1963b654c1b01b23171e440fd8",
+    "analysis": {
+      "role": [
+        {
+          "evidence": "Supervisar y controlar las operaciones diarias",
+          "advice": "Prepara un ejemplo de cómo verificas el cumplimiento del plan de minado para decidir ajustes en la producción o en el uso de equipos durante el turno."
+        },
+        {
+          "evidence": "Verificar el cumplimiento de los estándares de seguridad",
+          "advice": "Describe cómo documentas las condiciones de ventilación y seguridad para respaldar la decisión de continuar o pausar las actividades operativas."
+        }
+      ],
+      "skills": [
+        {
+          "evidence": "Conocimientos en operaciones o planeamiento mina",
+          "advice": "Practica el análisis de un plan de minado hipotético usando software de modelado para documentar decisiones de extracción y eficiencia de recursos en un informe técnico."
+        },
+        {
+          "evidence": "Manejo de Office AutoCAD Power BI",
+          "advice": "Crea un tablero en Power BI con datos de producción simulados y un plano básico en AutoCAD para visualizar el avance operativo y comunicar indicadores clave."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "Experiencia mínima 05 años en Minería Subterránea",
+          "advice": "Si no tienes cinco años, documenta tareas supervisadas en minas semi mecanizadas o voluntariado en campo que demuestren coordinación operativa y reportes de seguridad."
+        },
+        {
+          "evidence": "Legislación Minería vigente",
+          "advice": "Prepara un resumen de las normas de seguridad aplicables a minas subterráneas y un caso práctico de identificación de riesgos usando la metodología IPERC."
+        }
+      ],
+      "company": "Investiga el enfoque de MLP en seguridad, inclusión y desarrollo sostenible para formular una pregunta sobre cómo el equipo maneja la innovación en operaciones subterráneas durante la entrevista.",
+      "visit": "Pregunta a selección por el régimen 20x10, el traslado a Otuzco y los detalles de la cobertura en EPS antes de coordinar tu movilización."
+    }
+  },
+  "nv-BMPE-1118631784": {
+    "semantic": {
+      "cetpro-cesar-vallejo-ucayali/logistica-y-almacenes": 0.5289,
+      "cetpro-juana-iris-cuadros-rivera-lima/logistica-y-almacenes": 0.5289,
+      "cetpro-r-f-s-de-yugoslavia-ancash/logistica-y-almacenes": 0.5289,
+      "universidad-nacional-daniel-alcides-carrion/administracion": 0.5217,
+      "capacita-t/logistica-de-un-restaurante": 0.5188,
+      "jovenes-productivos/almacen-despacho-y-reposicion-de-mercaderia": 0.5031,
+      "capacita-t/logistica-360-claves-para-una-gestion-moderna-y-eficiente": 0.4933,
+      "cetpro-virgen-de-las-mercedes-tacna/logistica-y-manualidades": 0.4796
+    },
+    "semanticSignature": "d0694fc53af1b7fde6d80d4c87b4ecdf211d1cd4b84037fe5acedeeeed62f438",
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "analysisSignature": "d0694fc53af1b7fde6d80d4c87b4ecdf211d1cd4b84037fe5acedeeeed62f438",
+    "analysis": {
+      "role": [
+        {
+          "evidence": "coordinar y controlar de manera integral la gestión logística",
+          "advice": "Explica cómo el control integral de almacenes e inventarios permite verificar la disponibilidad de materiales e insumos. Esta verificación respalda la decisión de liberar transporte para asegurar la continuidad operativa sin sobrestock."
+        }
+      ],
+      "skills": [
+        {
+          "evidence": "planificar, coordinar y controlar de manera integral",
+          "advice": "Estudia métodos de planificación logística y practica simulando flujos de almacenes. Entregable: una matriz de coordinación que vincule inventarios con transportes para minimizar tiempos muertos en la operación minera."
+        },
+        {
+          "evidence": "garantizando el abastecimiento oportuno de materiales",
+          "advice": "Aprende a calcular puntos de reorden y practica con datos históricos de consumo. Entregable: un cronograma de abastecimiento que priorice insumos críticos para evitar paradas de producción en la unidad minera."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "4 años de experiencia en logística",
+          "advice": "Documenta 48 meses en roles de logística cubriendo transportes, compras, almacenes e inventarios. Entregable: un portafolio de proyectos donde evidencies la gestión integral de estos cuatro pilares durante los últimos 4 años."
+        },
+        {
+          "evidence": "Deseable experiencia en el sector minero",
+          "advice": "Busca voluntariado o prácticas supervisadas en operaciones mineras para acreditar familiaridad con la industria. Entregable: un certificado o carta de recomendación que respalde la exposición a riesgos y protocolos específicos del sector minero."
+        }
+      ],
+      "company": "Investiga el modelo de negocio de la explotación aurífera en la zona centro y su estructura de áreas corporativas como Abastecimiento y Contratos. Prepara una pregunta sobre cómo la unidad minera articula los indicadores logísticos con la gerencia de cadena de suministro para asegurar la continuidad.",
+      "visit": "Pregunta por el detalle del sistema de turno 20x10, la logística de transporte terrestre desde Lima, Huancayo o Cerro de Pasco y el alcance exacto del alojamiento y alimentación cubierto al 100%. Aclara también los canales de comunicación con las áreas corporativas durante el trabajo en campo."
+    }
+  },
+  "nv-BMPE-1118631676": {
+    "semantic": {
+      "cetpro-juliaca/dibujo-tecnico-mecanico-soldadura": 0.4835,
+      "cetpro-escuela-tecnica-paramonga-lima/electricidad-industrial": 0.3218,
+      "cetpro-escuela-tecnica-paramonga-lima/soldadura-industrial": 0.3175,
+      "cetpro-puno-puno/carpinteria-metalica": 0.3071,
+      "cetpro-san-juan-loreto/soldadura-electrica": 0.3068,
+      "cetpro-almirante-miguel-grau-piura/carpinteria-metalica": 0.2869,
+      "cetpro-espinar-cusco/carpinteria-metalica": 0.2869,
+      "cetpro-huancayo-junin/carpinteria-metalica": 0.2869,
+      "cetpro-escuela-tecnica-paramonga-lima/electricidad-automotriz": 0.2868,
+      "cetpro-alejandro-taboada-piura/soldadura": 0.2805,
+      "cetpro-chimbote-ancash/soldadura": 0.2805,
+      "cetpro-indiana-loreto/soldadura": 0.2805,
+      "cetpro-julio-c-tello-pasco/soldadura": 0.2805,
+      "cetpro-mariscal-caceres-tacna/soldadura": 0.2805,
+      "cetpro-nicolas-de-pierola-lima/soldadura": 0.2805,
+      "cetpro-nuestra-sra-de-fatima-arequipa/soldadura": 0.2805,
+      "cetpro-padre-jesus-garcia-loreto/soldadura": 0.2805,
+      "cetpro-rosa-ordinoola-de-noblecilla-tumbes/soldadura": 0.2805,
+      "cetpro-acolla-junin/electricidad": 0.2667,
+      "cetpro-alejandro-taboada-piura/electricidad": 0.2667,
+      "cetpro-aucayo-loreto/electricidad": 0.2667,
+      "cetpro-buenos-aires-lima/electricidad": 0.2667,
+      "cetpro-cesar-vallejo-ucayali/electricidad": 0.2667,
+      "cetpro-chimbote-ancash/electricidad": 0.2667
+    },
+    "semanticSignature": "ae125691f349401974ad7480c6a1975f35663b24d3b8bb282b4954d6ab982811",
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "analysisSignature": "ae125691f349401974ad7480c6a1975f35663b24d3b8bb282b4954d6ab982811",
+    "analysis": {
+      "role": [
+        {
+          "evidence": "Verificar y validar los requerimientos de repuestos",
+          "advice": "Explica en la entrevista cómo revisarías las especificaciones técnicas de un repuesto antes de emitirlo, asegurando que cumpla con los estándares de la organización y evite paradas no programadas."
+        }
+      ],
+      "skills": [
+        {
+          "evidence": "Manejo de hidráulica, neumática, electromecánica y soldadura",
+          "advice": "Practica ejercicios de diagnóstico y reparación en bancos de prueba para demostrar competencia en estos sistemas; documenta tus procedimientos y resultados para respaldar tu perfil técnico."
+        },
+        {
+          "evidence": "Dominio de lectura de planos (electrohidráulico, mecánico, otros)",
+          "advice": "Realiza ejercicios académicos de interpretación de planos industriales para mejorar tu precisión en la identificación de componentes y circuitos; compite en concursos técnicos para acreditar esta habilidad."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "Experiencia de 4 años en posiciones similares",
+          "advice": "No sustituyas los años requeridos con cursos; busca prácticas supervisadas o proyectos simulados en mantenimiento minero para acreditar habilidades específicas y ganar exposición real a los entornos operativos."
+        },
+        {
+          "evidence": "Supervisar y controlar el cumplimiento de los procedimientos",
+          "advice": "Participa en auditorías de seguridad o voluntariado en talleres industriales para demostrar tu capacidad de supervisión y control de calidad; documenta tus hallazgos y acciones correctivas para respaldar tu experiencia."
+        }
+      ],
+      "company": "Investiga el compromiso de Volcan con los estándares de seguridad y el manejo ambiental, ya que el anuncio enfatiza la excelencia operativa y la contribución al desarrollo del personal; prepara preguntas sobre cómo se integran estos valores en la rutina diaria de mantenimiento.",
+      "visit": "Pregunta a selección cómo se coordina el traslado a la Unidad Andaychagua y quién cubre los costos, ya que la sede está confirmada en Yauli y el trabajo es presencial, para planificar tu logística antes de aceptar la oferta."
+    }
+  },
+  "nv-BMPE-1118631219": {
+    "semantic": {
+      "chalhuahuacho/explotacion-minera": 0.4837,
+      "capacita-t/salud-y-seguridad-para-ambientes-de-trabajo-moderno-lengua-de-senas-peruana-lsp": 0.3871,
+      "capacita-t/salud-y-seguridad-para-ambientes-de-trabajo-moderno": 0.3863,
+      "capacita-t/analisis-de-datos-con-power-bi": 0.3538,
+      "capacita-t/gestion-y-analisis-de-datos": 0.3459,
+      "capacita-t/introduccion-al-power-bi": 0.342,
+      "universidad-nacional-de-ingenieria/ingenieria-de-higiene-y-seguridad-industrial": 0.3239
+    },
+    "semanticSignature": "1482a17a4516ebaf05080b8787dbe91fa41c72f6bd3a3e36f3ba158a5b2e9b20",
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "analysisSignature": "1482a17a4516ebaf05080b8787dbe91fa41c72f6bd3a3e36f3ba158a5b2e9b20",
+    "analysis": {
+      "role": [
+        {
+          "evidence": "Gestionar los documentos administrativos y operacionales",
+          "advice": "Organiza un repositorio físico o digital donde almacenes formatos de inspección de vehículos y bitácoras de rutas. Esto permite documentar trazabilidad operativa y facilitar auditorías internas del sistema integrado."
+        },
+        {
+          "evidence": "Supervisar el cumplimiento de las operaciones de transporte de mineral",
+          "advice": "Diseña una tabla de control diaria para registrar toneladas movilizadas y horarios de salida de los camiones. Esto ayuda a comparar la meta contra el realizado y respalda la decisión de reasignar equipos si hay retrasos."
+        }
+      ],
+      "skills": [
+        {
+          "evidence": "SAP a nivel intermedio",
+          "advice": "Practica en entornos de prueba gratuitos los módulos de logística para registrar órdenes de transporte y verificar inventarios de repuestos. Entregable: un reporte simulado de estado de flota exportado desde el sistema."
+        },
+        {
+          "evidence": "Power BI en nivel usuario",
+          "advice": "Crea tableros con datos públicos de transporte para visualizar tiempos de viaje y disponibilidad de maquinaria. Entregable: un panel interactivo que permita filtrar información por tipo de vehículo y ruta."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "05 años en el puesto y/o puestos afines",
+          "advice": "Si cumples con los años, documenta casos donde lideraste equipos en logística. Si no, busca roles de coordinación supervisada en empresas de transporte pesado para acreditar gestión de personal."
+        },
+        {
+          "evidence": "02 años gestionando equipos",
+          "advice": "Distingue coordinación de supervisión. En proyectos simulados o voluntariado, lidera grupos pequeños para resolver problemas operativos. Entregable: un plan de capacitación o evaluación de desempeño aplicada a un equipo real o simulado."
+        }
+      ],
+      "company": "Investiga el enfoque de 'minería responsable' y el tamaño de la fuerza laboral (8,000 personas) para preparar una pregunta sobre cómo se integra al personal de contratistas en las capacitaciones de seguridad y medio ambiente.",
+      "visit": "Consulta a selección sobre el régimen de trabajo en Pataz, el alojamiento disponible y la logística de traslado desde Trujillo o Lima, ya que la sede está a 320 km de la ciudad más cercana."
+    }
+  },
+  "nv-BMPE-1118631217": {
+    "semantic": {
+      "chalhuahuacho/explotacion-minera": 0.5628,
+      "universidad-nacional-ciro-alegria/ingenieria-de-minas-y-maquinaria-pesada": 0.5532,
+      "pontificia-universidad-catolica-del-peru/ingenieria-de-minas": 0.5434,
+      "universidad-catolica-de-santa-maria/ingenieria-de-minas": 0.5434,
+      "universidad-catolica-de-trujillo-benedicto-xvi/ingenieria-de-minas": 0.5434,
+      "universidad-continental/ingenieria-de-minas": 0.5434,
+      "universidad-nacional-daniel-alcides-carrion/ingenieria-de-minas": 0.5434,
+      "universidad-nacional-de-huancavelica/ingenieria-de-minas": 0.5434,
+      "universidad-nacional-de-ingenieria/ingenieria-de-minas": 0.5434,
+      "universidad-nacional-de-moquegua/ingenieria-de-minas": 0.5434,
+      "universidad-nacional-de-piura/ingenieria-de-minas": 0.5434,
+      "universidad-nacional-de-san-agustin/ingenieria-de-minas": 0.5434,
+      "universidad-nacional-de-san-antonio-abad-del-cusco/ingenieria-de-minas": 0.5434,
+      "universidad-nacional-de-san-cristobal-de-huamanga/ingenieria-de-minas": 0.5434,
+      "universidad-nacional-de-trujillo/ingenieria-de-minas": 0.5434,
+      "universidad-nacional-del-altiplano/ingenieria-de-minas": 0.5434,
+      "universidad-nacional-del-centro-del-peru/ingenieria-de-minas": 0.5434,
+      "universidad-nacional-jorge-basadre-grohmann/ingenieria-de-minas": 0.5434,
+      "universidad-nacional-mayor-de-san-marcos/ingenieria-de-minas": 0.5434,
+      "universidad-nacional-micaela-bastidas-de-apurimac/ingenieria-de-minas": 0.5434,
+      "universidad-nacional-san-luis-gonzaga/ingenieria-de-minas": 0.5434,
+      "universidad-nacional-santiago-antunez-de-mayolo/ingenieria-de-minas": 0.5434,
+      "universidad-privada-del-norte/ingenieria-de-minas": 0.5434,
+      "narciso-villanueva/explotacion-minera": 0.4807
+    },
+    "semanticSignature": "179e8820a5dfa963997fa8a42f23112e6c3680b38b375821c0c91224c64df914",
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "analysisSignature": "179e8820a5dfa963997fa8a42f23112e6c3680b38b375821c0c91224c64df914",
+    "analysis": {
+      "role": [
+        {
+          "evidence": "Planificar los programas de minado en el largo plazo en la unidad.",
+          "advice": "Un programa de minado de largo plazo ordena la secuencia de extracción en años futuros; al presentarlo, se verifica la viabilidad técnica y económica del yacimiento antes de aprobar inversiones o movimientos de maquinaria pesada."
+        },
+        {
+          "evidence": "Evaluar métodos de explotación largo plazo según la calidad de la roca.",
+          "advice": "Evaluar un método de explotación implica comparar qué técnicas de excavación son aplicables al tipo de roca; esta decisión técnica respalda la seguridad de la operación y determina qué equipos y consumos se requerirán en cada zona."
+        }
+      ],
+      "skills": [
+        {
+          "evidence": "Software de Planeamiento (Deswik - Sched, CAD)",
+          "advice": "Practica en entornos simulados el diseño de secuencias de minado o el modelado de volúmenes usando Deswik u otro software de planificación. Entregable: un ejercicio breve que documente los supuestos técnicos y el flujo de trabajo utilizado en el modelo."
+        },
+        {
+          "evidence": "Ingeniero de Minas (Titulado Colegiado Habilitado)",
+          "advice": "Estudia los módulos de geología minera y topografía para reforzar la base técnica del puesto. Entregable: resume en una página los fundamentos que aplicarías para validar un modelo de yacimiento 3D básico desde la fase de exploración hasta el corte."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "Experiencia mínima de 6 años en posiciones iguales o similares",
+          "advice": "No puedes reducir los 6 años exigidos mediante cursos. Para acreditar experiencia parcial, identifica proyectos de ingeniería en minería donde hayas gestionado un ciclo de minado o un presupuesto, y documenta tu rol específico en ese historial."
+        },
+        {
+          "evidence": "Conocimiento de métodos de explotación minera y de diseño de proyectos mineros",
+          "advice": "Si no tienes experiencia profesional, busca prácticas en consultorías mineras o proyectos académicos donde diseñes una mina virtual a escala reducida. Distingue siempre que se trata de un proyecto simulado para no confundirlo con experiencia laboral certificada."
+        }
+      ],
+      "company": "La empresa opera en la Sierra Central de Perú desde 1943 y es un productor de zinc, plomo y plata; en la entrevista, pregunta cómo la calidad de sus depósitos de bajo costo impacta los estándares de seguridad y el manejo ambiental que se evalúan en esta unidad minera.",
+      "visit": "Pregunta por el proceso de traslado a la Unidad Minera de Ticlio, los detalles del régimen 9x5 y quién asume el alojamiento o los gastos de movilidad durante las primeras semanas de incorporación al equipo."
+    }
+  },
+  "nv-BMPE-1118631011": {
+    "semantic": {
+      "chalhuahuacho/explotacion-minera": 0.4638,
+      "capacita-t/salud-y-seguridad-para-ambientes-de-trabajo-moderno": 0.4424,
+      "universidad-nacional-de-ingenieria/ingenieria-de-higiene-y-seguridad-industrial": 0.3974,
+      "capacita-t/salud-y-seguridad-para-ambientes-de-trabajo-moderno-lengua-de-senas-peruana-lsp": 0.3933
+    },
+    "semanticSignature": "6d8ed978af40e9418b640814f701328486175e6356261c289affc546bc51bf99",
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "analysisSignature": "6d8ed978af40e9418b640814f701328486175e6356261c289affc546bc51bf99",
+    "analysis": {
+      "role": [
+        {
+          "evidence": "Verificar el cumplimiento de estándares de seguridad y salud ocupacional.",
+          "advice": "Describe cómo se verifica una norma específica en el campo para generar evidencia documentada. Explica que esta medición respalda la decisión de exigir correctivas al contratista o al personal operativo para mitigar riesgos técnicos inmediatos."
+        },
+        {
+          "evidence": "Elaborar reportes e informes técnicos.",
+          "advice": "Explica que el reporte documenta los hallazgos identificados durante la inspección para comparar el estado real de la mina con los estándares exigidos. Muestra cómo esta acción permite evaluar la eficacia de las medidas de control implementadas y dejar constancia del cumplimiento legal."
+        }
+      ],
+      "skills": [
+        {
+          "evidence": "Conocimiento de legislación minera y de seguridad.",
+          "advice": "Estudia los textos legales aplicables a SSO en minería para practicar su aplicación práctica. Tu objetivo es poder identificar con precisión qué normativa específica se está verificando durante una fiscalización en campo y documentar su estado."
+        },
+        {
+          "evidence": "Experiencia en gestión de contratistas.",
+          "advice": "Busca casos de estudio sobre supervisión de terceros en minería para entender el flujo de comunicación. Practica elaborar una matriz de seguimiento de hallazgos para demostrar cómo coordinas las acciones correctivas con las empresas subcontratistas."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "8 años de experiencia profesional.",
+          "advice": "No busques sustituir estos años con cursos. Documenta tus ocho años de trayectoria con certificados de trabajo y constancias laborales que respalden cada etapa. Asegúrate de que cada documento refleje responsabilidades técnicas claras en fiscalización o supervisión."
+        },
+        {
+          "evidence": "Licencia AIIB vigente.",
+          "advice": "Si no posees la licencia, esta es un requisito excluyente. No la sustituyas con experiencia previa. Dedica tiempo a preparar el examen de la Junta de Seguridad en el Trabajo para obtener la habilitación y adjunta el documento vigente en tu postulación."
+        }
+      ],
+      "company": "Investiga el alcance de Bureau Veritas en fiscalización de SSO en Ica para preguntar en entrevista por la estrategia actual de mitigación de riesgos en sus minas. Usa solo los datos del anuncio para enfocar tu pregunta en cómo se integra la verificación de estándares en sus procesos operativos.",
+      "visit": "Pregunta a selección por el detalle del traslado y el régimen de trabajo en la sede de Ica. Solicita información específica sobre las condiciones logísticas y el tipo de operación donde se ejecutarán las inspecciones de campo para evaluar la viabilidad de la propuesta."
+    }
+  },
+  "nv-BMPE-1118631010": {
+    "semantic": {
+      "chalhuahuacho/explotacion-minera": 0.4891,
+      "capacita-t/salud-y-seguridad-para-ambientes-de-trabajo-moderno": 0.4575,
+      "universidad-nacional-de-ingenieria/ingenieria-de-higiene-y-seguridad-industrial": 0.4015,
+      "capacita-t/salud-y-seguridad-para-ambientes-de-trabajo-moderno-lengua-de-senas-peruana-lsp": 0.393
+    },
+    "semanticSignature": "93d7bf23238692cd151ea46f48c387e658af0762b02b0261196ed65d5407e45c",
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "analysisSignature": "93d7bf23238692cd151ea46f48c387e658af0762b02b0261196ed65d5407e45c",
+    "analysis": {
+      "role": [
+        {
+          "evidence": "Liderar las actividades de fiscalización",
+          "advice": "En la práctica, liderar la fiscalización implica planificar recorridos y revisar actas para verificar que los contratistas cumplan con los estándares de seguridad; esta medición respalda la decisión de aprobar o detener actividades por riesgo inminente."
+        },
+        {
+          "evidence": "Supervisar el cumplimiento de estándares",
+          "advice": "Supervisar el cumplimiento permite comparar los procedimientos operativos del contratista contra la normativa minera vigente, lo que permite documentar hallazgos y coordinar acciones correctivas para garantizar operaciones seguras."
+        }
+      ],
+      "skills": [
+        {
+          "evidence": "Conocimiento de legislación minera",
+          "advice": "Aprende la normativa de seguridad minera peruana y practica identificando obligaciones legales en casos hipotéticos para entregar un análisis de cumplimiento normativo documentado."
+        },
+        {
+          "evidence": "Elaborar informes de gestión",
+          "advice": "Estudia técnicas de redacción técnica y practica estructurar reportes de seguimiento con hallazgos y recomendaciones para entregar un modelo de informe de fiscalización claro y auditable."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "Mínimo 8 años de experiencia profesional",
+          "advice": "Si cumples con los años, documenta cada supervisión realizada en minería con fechas y resultados para acreditar tu experiencia en fiscalización de Seguridad y Salud Ocupacional de forma profesional."
+        },
+        {
+          "evidence": "Experiencia en gestión de contratistas",
+          "advice": "Si te falta tiempo, gana experiencia supervisada en proyectos académicos o voluntariados auditando contratos de servicios para acreditar tu capacidad de coordinar a terceros en entornos de alto riesgo."
+        }
+      ],
+      "company": "Investiga el alcance de los servicios de fiscalización de Bureau Veritas del Perú en el sector minero para preparar una pregunta sobre cómo documentan las acciones preventivas en sus informes de gestión.",
+      "visit": "Pregunta a selección en qué operación minera específica se realizan las actividades de fiscalización y cómo se organiza el régimen de presencia para coordinar el traslado desde la sede de Ica."
+    }
+  },
+  "nv-BMPE-1118631782": {
+    "semantic": {
+      "capacita-t/word-y-excel-para-el-trabajo-nivel-basico": 0.3569,
+      "cetpro-san-jeronimo-apurimac/curso-de-excel-nivel-avanzado": 0.352,
+      "capacita-t/excel-intermedio-lengua-de-senas-peruana-lsp": 0.3505,
+      "capacita-t/excel-basico-lengua-de-senas-peruana-lsp": 0.3493,
+      "capacita-t/excel-intermedio": 0.3432,
+      "capacita-t/excel-intermedio-2": 0.3432,
+      "capacita-t/excel-basico-quechua": 0.3354,
+      "capacita-t/excel-intermedio-quechua": 0.3332,
+      "capacita-t/excel-basico": 0.3208,
+      "capacita-t/excel-basico-2": 0.3208,
+      "capacita-t/excel-intermedio-aimara": 0.3192,
+      "capacita-t/excel-basico-aimara": 0.2896
+    },
+    "semanticSignature": "dc1929f75060413543546e6651df2badbb9b992d81369fcb4b0a992cba63898a",
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "analysisSignature": "dc1929f75060413543546e6651df2badbb9b992d81369fcb4b0a992cba63898a",
+    "analysis": {
+      "role": [],
+      "skills": [
+        {
+          "evidence": "Minesight, Ventsim y geomecánica",
+          "advice": "Aprende a modelar ventilación y estabilidad en software específico. Practica creando modelos de túneles para documentar el comportamiento del aire y las rocas ante la excavación."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "perforación y voladura en mina",
+          "advice": "Documenta tu participación en diseños de voladura. Detalla cómo aplicaste parámetros de carga para maximizar la rotura de roca minimizando el daño a las estructuras vecinas de la mina."
+        }
+      ],
+      "company": null,
+      "visit": null
+    }
+  },
+  "nv-BMPE-1118631679": {
+    "semantic": {
+      "capacita-t/contabilidad-de-costos": 0.5116,
+      "cetpro-san-jeronimo-apurimac/curso-de-excel-nivel-avanzado": 0.4582,
+      "cetpro-pedro-paulet-lima/asistencia-en-contabilidad": 0.4513,
+      "capacita-t/finanzas-para-emprender": 0.4512,
+      "cetpro-carabayllo-lima/asistencia-en-contabilidad": 0.4257,
+      "cetpro-mariscal-caceres-tacna/asistencia-en-contabilidad": 0.4257,
+      "capacita-t/introduccion-y-conceptos-generales-de-finanzas": 0.4198,
+      "capacita-t/word-y-excel-para-el-trabajo-nivel-basico": 0.4018,
+      "capacita-t/finanzas-personales-para-emprendedores-quechua": 0.39,
+      "capacita-t/finanzas-personales-para-emprendedores-lengua-de-senas-peruana-lsp": 0.3754,
+      "capacita-t/excel-intermedio": 0.3629,
+      "capacita-t/excel-intermedio-2": 0.3629,
+      "capacita-t/excel-basico": 0.3597,
+      "capacita-t/excel-basico-2": 0.3597,
+      "jose-carlos-mariategui/contabilidad": 0.3546,
+      "capacita-t/excel-intermedio-aimara": 0.3543,
+      "capacita-t/contabilidad-financiera-basica": 0.3538,
+      "capacita-t/excel-basico-quechua": 0.3465,
+      "capacita-t/excel-basico-aimara": 0.346,
+      "capacita-t/excel-intermedio-lengua-de-senas-peruana-lsp": 0.3446,
+      "capacita-t/excel-intermedio-quechua": 0.3436,
+      "capacita-t/excel-basico-lengua-de-senas-peruana-lsp": 0.3356,
+      "capacita-t/finanzas": 0.2763
+    },
+    "semanticSignature": "da9cd475bdfa042a885be8a0a73d85e619eabcd57b9b2751f3fc85ec1e925521",
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "tipId": "experience",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "trainingIds": [
+      "universidad-nacional-del-centro-del-peru",
+      "universidad-continental",
+      "la-oroya",
+      "cetpro-san-ramon-junin"
+    ],
+    "opportunityIds": [
+      "ct-626F6C260E303E6561373E686DCF3405",
+      "nv-BMPE-1118515561",
+      "nv-BMPE-1118506767"
+    ],
+    "careerSignature": "f7459aa64894b8b973909f984f23f5ad0aac2bcc1bb506279322733188ef2647",
+    "analysisSignature": "da9cd475bdfa042a885be8a0a73d85e619eabcd57b9b2751f3fc85ec1e925521",
+    "analysis": {
+      "role": [
+        {
+          "evidence": "Revisión y análisis de los resultados operativos de la semana o del mes",
+          "advice": "Explica cómo verificas los costos contra el presupuesto mensual y qué decisión técnica tomaste cuando encontraste un desvío mayor al cinco por ciento."
+        }
+      ],
+      "skills": [
+        {
+          "evidence": "Excel avanzado (macros) y excelente manejo de base de datos",
+          "advice": "Prepara una macro automatizada que consolida tres reportes de costos y presenta el entregable final con el tiempo reducido de procesamiento."
+        },
+        {
+          "evidence": "Estructura y análisis de costos unitarios mineros",
+          "advice": "Elabora una ficha técnica de costos unitarios para una mina de zinc que incluya variables de extracción y tratamiento como referencia."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "Experiencia de 5 años en posiciones similares",
+          "advice": "Identifica un proyecto de proyección de resultados operativos que lideraste y documenta tu aporte específico en el análisis de desvíos."
+        },
+        {
+          "evidence": "Realizar y coordinar el presupuesto anual y forecast",
+          "advice": "Reúne evidencia de un ciclo presupuestal donde coordinaste con áreas operativas y presenta el reporte consolidado final como entregable."
+        }
+      ],
+      "company": "Investiga los estándares de seguridad y manejo ambiental de Volcan, su condición de productor de bajo costo y su historia desde 1943 para formular una pregunta sobre cómo el equipo de costos apoya la excelencia operativa.",
+      "visit": "Pregunta a selección cuál es la operación específica donde te asignarían dentro de la Unidad Andaychagua y cómo cubre la empresa el traslado desde Junín."
+    }
+  },
+  "ct-846AE78CE4EDF51261373E686DCF3405": {
+    "semantic": {
+      "cetpro-escuela-tecnica-paramonga-lima/electricidad-industrial": 0.545,
+      "jovenes-productivos/almacen-despacho-y-reposicion-de-mercaderia": 0.4977,
+      "universidad-nacional-daniel-alcides-carrion/administracion": 0.4723,
+      "cetpro-san-jeronimo-apurimac/curso-de-excel-nivel-avanzado": 0.4534,
+      "cetpro-cesar-vallejo-ucayali/logistica-y-almacenes": 0.4331,
+      "cetpro-juana-iris-cuadros-rivera-lima/logistica-y-almacenes": 0.4331,
+      "cetpro-r-f-s-de-yugoslavia-ancash/logistica-y-almacenes": 0.4331,
+      "capacita-t/logistica-de-un-restaurante": 0.4331,
+      "capacita-t/word-y-excel-para-el-trabajo-nivel-basico": 0.4245,
+      "cetpro-santa-rosa-de-lima-junin/electricidad-y-electronica": 0.4119,
+      "cetpro-acolla-junin/electricidad": 0.4101,
+      "cetpro-alejandro-taboada-piura/electricidad": 0.4101,
+      "cetpro-aucayo-loreto/electricidad": 0.4101,
+      "cetpro-buenos-aires-lima/electricidad": 0.4101,
+      "cetpro-cesar-vallejo-ucayali/electricidad": 0.4101,
+      "cetpro-chimbote-ancash/electricidad": 0.4101,
+      "cetpro-inca-garcilaso-de-la-vega-huanuco/electricidad": 0.4101,
+      "cetpro-indiana-loreto/electricidad": 0.4101,
+      "cetpro-jose-antonio-encinas-franco-lima/electricidad": 0.4101,
+      "cetpro-juan-pablo-mori-del-aguila-san-martin/electricidad": 0.4101,
+      "cetpro-kotosh-huanuco/electricidad": 0.4101,
+      "cetpro-naciones-unidas-callao/electricidad": 0.4101,
+      "cetpro-nuestra-sra-de-fatima-arequipa/electricidad": 0.4101,
+      "cetpro-pedro-ronceros-calderon-ica/electricidad": 0.4101
+    },
+    "semanticSignature": "02fc93d13dfe0e45bd76d8e52aa7f081865e89888bab325fec71f34369a60048",
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "tipId": "role",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "trainingIds": [
+      "cetpro-naciones-unidas-callao"
+    ],
+    "opportunityIds": [],
+    "careerSignature": "b80f978913d88065f08da86467c49bb42873db6d6f19fc0e911ed0c3366fa504",
+    "analysisSignature": "02fc93d13dfe0e45bd76d8e52aa7f081865e89888bab325fec71f34369a60048",
+    "analysis": {
+      "role": [
+        {
+          "evidence": "Elaborar presupuestos detallados",
+          "advice": "En la práctica, esta tarea sirve para documentar los costos totales de un tablero antes de cotizar al cliente, permitiendo comparar alternativas de suministro y respaldar la decisión técnica-económica con datos verificables."
+        }
+      ],
+      "skills": [
+        {
+          "evidence": "Manejo de AutoCAD y Excel",
+          "advice": "Practica metrados en tableros de ejemplo para generar listas de materiales en Excel y verificarlas contra planos en AutoCAD, entregando una comparativa de costos actualizada."
+        },
+        {
+          "evidence": "Cadena de suministro",
+          "advice": "Realiza ejercicios simulados de gestión de proveedores documentando precios y plazos, entregando un cuadro comparativo que muestre criterios de decisión para la compra de componentes."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "Experiencia mínima de 2 años",
+          "advice": "No sustituyas años con cursos; documenta prácticas supervisadas en proyectos eléctricos donde hayas cotizado, entregando reportes de diferencias de precios gestionados para acreditar esa experiencia."
+        },
+        {
+          "evidence": "Experiencia en suministro y abastecimiento",
+          "advice": "Si no tienes 2 años, busca voluntariado o tareas iniciales en fabricación de tableros para registrar cotizaciones reales, entregando un histórico de precios que demuestre capacidad de análisis."
+        }
+      ],
+      "company": "Investiga si la empresa fabrica internamente los tableros o los comercializa, para preparar una pregunta sobre si los presupuestos que elaboras incluyen costos de producción interna o solo de suministro externo.",
+      "visit": "Pregunta si la jornada sabatina incluye horas extra remuneradas o permisos compensatorios y si el puesto opera solo en la planta del Callao o requiere desplazamiento a otros sitios de proyecto minero."
+    }
+  },
+  "nv-BMPE-1118607019": {
+    "semantic": {
+      "chalhuahuacho/explotacion-minera": 0.5517,
+      "narciso-villanueva/explotacion-minera": 0.5474,
+      "capacita-t/introduccion-al-power-bi": 0.3935,
+      "castrovirreyna/explotacion-minera": 0.3791,
+      "cenfomin-centro-de-formacion-en-mineria/explotacion-minera": 0.3791,
+      "erasmo-arellano-guillen/explotacion-minera": 0.3791,
+      "essumin/explotacion-minera": 0.3791,
+      "instituto-de-formacion-minera-del-peru/explotacion-minera": 0.3791,
+      "lircay/explotacion-minera": 0.3791,
+      "manuel-nunez-butron/explotacion-minera": 0.3791,
+      "mario-samame-boggio/explotacion-minera": 0.3791,
+      "oyon/explotacion-minera": 0.3791,
+      "recuay/explotacion-minera": 0.3791,
+      "ricardo-ramos-plata/explotacion-minera": 0.3791,
+      "capacita-t/gestion-y-analisis-de-datos": 0.3619,
+      "capacita-t/analisis-de-datos-con-power-bi": 0.3481
+    },
+    "semanticSignature": "d3a66dafc5db005fa49bd4ee92f628d3d95f1d1bc275e529ed6491cdd968f77e",
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "analysisSignature": "d3a66dafc5db005fa49bd4ee92f628d3d95f1d1bc275e529ed6491cdd968f77e",
+    "analysis": {
+      "role": [],
+      "skills": [
+        {
+          "evidence": "Manejo de Deswik, AutoCAD y Power BI",
+          "advice": "Aprende a vincular modelos geológicos en Deswik con gráficos interactivos en Power BI. Practica construyendo un tablero simulado que conecte capas de datos de voladuras con indicadores de riesgo para generar reportes visuales claros que muestren tendencias de sismicidad a la gerencia técnica."
+        },
+        {
+          "evidence": "Dominio de plataformas de procesamiento geofísico",
+          "advice": "Estudia el flujo de trabajo de procesamiento de señales sísmicas para filtrar ruido. Ejercita la capacidad de localizar focos sísmicos en un modelo 3D usando datos de campo simulados y documenta el procedimiento para justificar la posición de los sensores instalados en las galerías activas."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "Experiencia mínima de 5 años en interpretación",
+          "advice": "Acredita tu trayectoria enumerando los años específicos que has dedicado a interpretar registros sísmicos en minas subterráneas. Si tienes menos de cinco años, prepara una carta que destaque tus logros en análisis de microsisma y explica que un curso especializado complementa tu experiencia técnica reciente."
+        },
+        {
+          "evidence": "Implementar sistemas de alerta de sismicidad inducida",
+          "advice": "Describe en tu currículum un proyecto donde diseñaste o optimizaste un protocolo de alarmas. Indica cómo definiste los umbrales de detección y el método de comunicación de avisos al personal en turno, diferenciando claramente si fue una implementación real o un ejercicio académico supervisado."
+        }
+      ],
+      "company": "Investiga el historial de operaciones de la empresa en Huancavelica y su especialidad en minería subterránea. Prepara una pregunta sobre cómo la organización articula el estudio de sismicidad inducida con las decisiones diarias de voladura para proteger la infraestructura de la mina.",
+      "visit": "Pregunta por el centro de operaciones donde se ejecuta el monitoreo geofísico, el sistema de traslado disponible para el personal técnico y el protocolo de comunicación que se utiliza ante la detección de eventos sísmicos de alta energía en el subsuelo."
+    }
+  },
+  "nv-BMPE-1118606502": {
+    "semantic": {
+      "cetpro-carabayllo-lima/asistencia-en-contabilidad": 0.4461,
+      "cetpro-mariscal-caceres-tacna/asistencia-en-contabilidad": 0.4461,
+      "cetpro-pedro-paulet-lima/asistencia-en-contabilidad": 0.4407,
+      "capacita-t/recursos-humanos-en-epocas-de-transformacion-digital": 0.44,
+      "capacita-t/excel-basico-lengua-de-senas-peruana-lsp": 0.4184,
+      "capacita-t/finanzas-personales-para-emprendedores-lengua-de-senas-peruana-lsp": 0.3997,
+      "capacita-t/excel-intermedio-lengua-de-senas-peruana-lsp": 0.3837,
+      "capacita-t/introduccion-y-conceptos-generales-de-finanzas": 0.3809,
+      "capacita-t/word-y-excel-para-el-trabajo-nivel-basico": 0.3612,
+      "capacita-t/contabilidad-de-costos": 0.3594,
+      "capacita-t/finanzas-para-emprender": 0.3585,
+      "cetpro-san-jeronimo-apurimac/curso-de-excel-nivel-avanzado": 0.3575,
+      "capacita-t/excel-basico-quechua": 0.3505,
+      "capacita-t/finanzas-personales-para-emprendedores-quechua": 0.348,
+      "capacita-t/excel-basico-aimara": 0.3468,
+      "capacita-t/excel-basico": 0.3467,
+      "capacita-t/excel-basico-2": 0.3467,
+      "capacita-t/contabilidad-financiera-basica": 0.3405,
+      "jose-carlos-mariategui/contabilidad": 0.3368,
+      "capacita-t/excel-intermedio-aimara": 0.3221,
+      "capacita-t/excel-intermedio-quechua": 0.3178,
+      "capacita-t/excel-intermedio": 0.3163,
+      "capacita-t/excel-intermedio-2": 0.3163,
+      "capacita-t/finanzas": 0.2415
+    },
+    "semanticSignature": "6a85034475aacce8de24b1688ee80fbb2f8cb9cc35d8b81fdb22b7b6539e31bf",
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "tipId": "software",
+    "questionIds": [
+      "placement",
+      "salary-missing"
+    ],
+    "trainingIds": [
+      "oyon",
+      "carlos-cueto-fernandini",
+      "jose-pardo",
+      "cetpro-naciones-unidas-lima"
+    ],
+    "opportunityIds": [],
+    "careerSignature": "6096b71443198ba5c5045272c424a39f69c3dcccaa364d2ba00a34918593c3ac",
+    "analysisSignature": "6a85034475aacce8de24b1688ee80fbb2f8cb9cc35d8b81fdb22b7b6539e31bf",
+    "analysis": {
+      "role": [
+        {
+          "evidence": "Realizar seguimiento a las empresas asignadas al área de RR. HH. y SS. GG.",
+          "advice": "Elige una empresa asignada y prepara un informe de seguimiento que incluya métricas clave como cumplimiento de contratos, satisfacción del cliente y desviaciones presupuestarias. Documenta cómo monitorearías estos indicadores y qué acciones tomarías en caso de desviaciones."
+        },
+        {
+          "evidence": "Controlar y verificar costos y presupuestos OPEX y CAPEX del área de RR. HH. y SS. GG.",
+          "advice": "Selecciona un proyecto específico y prepara un análisis de costos que incluya la comparación entre los costos reales y los presupuestados, identificando las principales causas de desviaciones y recomendaciones para su corrección."
+        }
+      ],
+      "skills": [
+        {
+          "evidence": "Microsoft Office intermedio (Excel con macros y presentaciones de alto impacto)",
+          "advice": "Crea una macro en Excel que automatice el cálculo de costos OPEX y CAPEX para un proyecto de servicios generales. Incluye una presentación que resuma los resultados y las recomendaciones basadas en los datos procesados."
+        },
+        {
+          "evidence": "Power BI intermedio (deseable)",
+          "advice": "Desarrolla un dashboard en Power BI que muestre el seguimiento de las empresas asignadas, incluyendo métricas como cumplimiento de contratos, satisfacción del cliente y desviaciones presupuestarias. Incluye un informe que explique cómo se recopilaron los datos y cómo se pueden usar para tomar decisiones."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "Experiencia mínima de 5 años administrando servicios de alimentación, transporte y/o campamentos",
+          "advice": "Busca un empleo anterior donde hayas administrado servicios de alimentación, transporte o campamentos y prepara un caso de estudio que describa cómo gestionaste los costos, monitoreaste el cumplimiento de contratos y mejoraste la satisfacción del cliente."
+        },
+        {
+          "evidence": "Experiencia indispensable en campamentos de operaciones mineras o de hidrocarburos",
+          "advice": "Si tienes experiencia en campamentos de operaciones mineras o de hidrocarburos, prepara un informe que describa cómo gestionaste los servicios de alimentación, transporte y mantenimiento en el campamento, incluyendo métricas de satisfacción del cliente y desviaciones presupuestarias."
+        }
+      ],
+      "company": "Investiga si Manpower Perú tiene prácticas internas de selección o evaluación de candidatos para el puesto de Analista de Servicios Generales en el sector minero. Si es así, prepara una pregunta específica sobre cómo se realiza este proceso.",
+      "visit": "Pregunta a selección si el puesto de Analista de Servicios Generales en el sector minero requiere experiencia previa en campamentos de operaciones mineras o de hidrocarburos, y qué tipo de herramientas o software se utilizan para el control de costos y presupuestos."
+    }
+  },
+  "nv-BMPE-1118606815": {
+    "semantic": {},
+    "semanticSignature": "8b45265e1d38df9d44bc9dc7953ecd7a6233db8e9dae95d94745f01b145d5b93",
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "analysisSignature": "8b45265e1d38df9d44bc9dc7953ecd7a6233db8e9dae95d94745f01b145d5b93",
+    "analysis": {
+      "role": [
+        {
+          "evidence": "Dominio de ERP SAP",
+          "advice": "Explica en la entrevista cómo registras en SAP la producción de la planta y las órdenes de trabajo para respaldar decisiones operativas y de inventario."
+        },
+        {
+          "evidence": "Conocimientos en TPM",
+          "advice": "Detalla una acción de mantenimiento preventivo realizada y su resultado técnico, vinculando el indicador de disponibilidad con la mejora del rendimiento del equipo."
+        }
+      ],
+      "skills": [
+        {
+          "evidence": "Gestión de Calidad",
+          "advice": "Estudia los principios de gestión de calidad y practica aplicándolos en un proyecto académico documentando indicadores de rechazo y sus causas raíz para mejorar el control."
+        },
+        {
+          "evidence": "Experiencia en plantas industriales",
+          "advice": "Realiza un ejercicio simulado supervisado donde apliques procedimientos de supervisión en un taller o planta local para evaluar y comparar el cumplimiento de estándares operativos."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "03 años en puestos similares",
+          "advice": "Acumula tres años en una planta real o certifícalo con un proyecto profesional donde documentes tu rol en la supervisión y el impacto en la eficiencia del proceso."
+        },
+        {
+          "evidence": "Educación superior indispensable",
+          "advice": "Si no tienes el título, inscribirte en una carrera técnica industrial y realizar un proyecto de grado aplicando la teoría a un caso real de operación industrial."
+        }
+      ],
+      "company": "Investiga el perfil del empleador a través de su historial de operaciones industriales y su enfoque en tecnología como SAP y TPM. Prepara una pregunta sobre cómo la planta integra estos sistemas para mejorar la eficiencia productiva diaria.",
+      "visit": "Pregunta a la bolsa de trabajo si el traslado a la sede en Ate Vitarte incluye transporte corporativo o reembolso. Indaga sobre el régimen de turnos y el proceso de integración para nuevos supervisores."
+    }
+  },
+  "nv-BMPE-1118607175": {
+    "semantic": {
+      "universidad-nacional-ciro-alegria/ingenieria-de-minas-y-maquinaria-pesada": 0.4271,
+      "pontificia-universidad-catolica-del-peru/ingenieria-de-minas": 0.4243,
+      "universidad-catolica-de-santa-maria/ingenieria-de-minas": 0.4243,
+      "universidad-catolica-de-trujillo-benedicto-xvi/ingenieria-de-minas": 0.4243,
+      "universidad-continental/ingenieria-de-minas": 0.4243,
+      "universidad-nacional-daniel-alcides-carrion/ingenieria-de-minas": 0.4243,
+      "universidad-nacional-de-huancavelica/ingenieria-de-minas": 0.4243,
+      "universidad-nacional-de-ingenieria/ingenieria-de-minas": 0.4243,
+      "universidad-nacional-de-moquegua/ingenieria-de-minas": 0.4243,
+      "universidad-nacional-de-piura/ingenieria-de-minas": 0.4243,
+      "universidad-nacional-de-san-agustin/ingenieria-de-minas": 0.4243,
+      "universidad-nacional-de-san-antonio-abad-del-cusco/ingenieria-de-minas": 0.4243,
+      "universidad-nacional-de-san-cristobal-de-huamanga/ingenieria-de-minas": 0.4243,
+      "universidad-nacional-de-trujillo/ingenieria-de-minas": 0.4243,
+      "universidad-nacional-del-altiplano/ingenieria-de-minas": 0.4243,
+      "universidad-nacional-del-centro-del-peru/ingenieria-de-minas": 0.4243,
+      "universidad-nacional-jorge-basadre-grohmann/ingenieria-de-minas": 0.4243,
+      "universidad-nacional-mayor-de-san-marcos/ingenieria-de-minas": 0.4243,
+      "universidad-nacional-micaela-bastidas-de-apurimac/ingenieria-de-minas": 0.4243,
+      "universidad-nacional-san-luis-gonzaga/ingenieria-de-minas": 0.4243,
+      "universidad-nacional-santiago-antunez-de-mayolo/ingenieria-de-minas": 0.4243,
+      "universidad-privada-del-norte/ingenieria-de-minas": 0.4243
+    },
+    "semanticSignature": "07487354481ba48b98aacf224a734314fa0d170adb59225f9ee2eccf8c4cf9d3",
+    "generatedAt": "2026-11-15T12:21:42.487Z",
+    "analysisSignature": "07487354481ba48b98aacf224a734314fa0d170adb59225f9ee2eccf8c4cf9d3",
+    "analysis": {
+      "role": [
+        {
+          "evidence": "control de cronogramas, valorizaciones y KPI's",
+          "advice": "Prepara un ejemplo de cómo monitoreas el avance físico contra el cronograma base. Describe qué indicadores (KPIs) usas para detectar desviaciones y cómo esa información técnica respalda la decisión de replanificar o escalar a gerencia para proteger el alcance del proyecto."
+        }
+      ],
+      "skills": [
+        {
+          "evidence": "presupuesto base y cronograma de ejecución",
+          "advice": "Practica en un ejercicio académico la construcción de un cronograma lógico y la asignación de costos a cada actividad. Esto te permitirá demostrar cómo se traduce el plan técnico en una herramienta de gestión financiera viable para el proyecto."
+        },
+        {
+          "evidence": "bases de licitación de los proyectos",
+          "advice": "Elabora una maqueta de términos de referencia para una obra civil menor. Identifica los criterios de evaluación técnica y económica para documentar cómo se garantiza la transparencia y la competitividad en la selección de proveedores del proyecto."
+        }
+      ],
+      "experience": [],
+      "company": "Investiga el portafolio de Mur Wy S.A.C. en servicios de infraestructura y minería. En la entrevista, pregunta por el alcance específico del proyecto a tajo abierto y cómo se integra el rol de residente con las áreas de producción y seguridad.",
+      "visit": "Pregunta a selección por los detalles del régimen atípico en Santiago de Chuco. Clarifica quién asume los costos de traslado, movilidad y hospedaje durante las rotaciones, y cuál es la frecuencia exacta de los días de descanso programados."
+    }
+  },
+  "nv-BMPE-1118606911": {
+    "analysisSignature": "8de6ebce5334c577bb308856d6d2fb89f322cbb936d58979d6b8b7c394770d81",
+    "analysis": {
+      "role": [
+        {
+          "evidence": "Gestionar vacaciones, descansos médicos, afiliaciones al SCTR y altas en T-Registro.",
+          "advice": "Verifica que cada trámite cumpla los plazos legales y documenta el resultado para asegurar que el estado laboral del colaborador esté correctamente actualizado en los sistemas de registro."
+        }
+      ],
+      "skills": [
+        {
+          "evidence": "Excel nivel Intermedio",
+          "advice": "Practica crear tablas dinámicas para consolidar datos de personal en hojas de cálculo y generar un informe visual que resuma la rotación o la asistencia del equipo."
+        },
+        {
+          "evidence": "afiliación de personal",
+          "advice": "Estudia los pasos para registrar un trabajador nuevo y prepara una lista de verificación con los documentos necesarios para completar la afiliación correctamente."
+        }
+      ],
+      "experience": [
+        {
+          "evidence": "Experiencia mínima de 1 año en el área de Talento Humano en UM",
+          "advice": "Identifica si tu pasantía o voluntariado en RRHH incluye gestión de personal y organiza un portafolio con ejemplos de tareas realizadas en unidades de trabajo similar."
+        }
+      ],
+      "company": "Investiga el régimen de trabajo 20x10 y el lugar de trabajo en Pasco para preparar una pregunta sobre la logística de residencia en la mina y el apoyo durante las rotaciones.",
+      "visit": "Pregunta a selección qué se requiere para el traslado inicial a Pasco y cómo se organiza el alojamiento durante el régimen de rotación 20x10 antes de aceptar la oferta."
+    },
+    "generatedAt": "2026-11-15T12:21:42.487Z"
   }
 }
