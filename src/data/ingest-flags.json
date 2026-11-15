@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-14",
+  "generatedAt": "2026-11-15",
   "flags": [
     {
       "id": "gh-koboldmetals-4746845005",
@@ -12,7 +12,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-10-24",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "gh-koboldmetals-4751244005",
@@ -25,7 +25,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-11-05",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "gh-koboldmetalsdrc-4737908005",
@@ -38,7 +38,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-09-26",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "gh-bluemoonmetals-4230013009",
@@ -51,20 +51,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-09-09",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "csb-freeport-mcm-1371729100",
-      "slug": "freeport-mcmoran-papua-technical-expert-2c-levee-construction-99967-global-csb-f",
-      "company": "Freeport-McMoRan",
-      "title": "Technical Expert, Levee Construction",
-      "source": "sapsf-csb",
-      "country": "ID",
-      "locationRaw": "Papua, ID, 99967",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-09-09",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "csb-freeport-mcm-1443888500",
@@ -77,7 +64,20 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-10-27",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "csb-freeport-mcm-1371729100",
+      "slug": "freeport-mcmoran-papua-technical-expert-2c-levee-construction-99967-global-csb-f",
+      "company": "Freeport-McMoRan",
+      "title": "Technical Expert, Levee Construction",
+      "source": "sapsf-csb",
+      "country": "ID",
+      "locationRaw": "Papua, ID, 99967",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-09-09",
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "csb-freeport-mcm-1448059900",
@@ -90,7 +90,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-11-06",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "csb-woodside-1370171266",
@@ -103,7 +103,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-11-10",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "csb-woodside-1370357466",
@@ -116,7 +116,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-11-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "csb-woodside-1367334066",
@@ -129,33 +129,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-09-15",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "csb-kinross-gold-1449316400",
-      "slug": "kinross-gold-specialist-contracts-red-lake-on-ca-ca-csb-kinross-gold-1449316",
-      "company": "Kinross Gold",
-      "title": "Specialist, Contracts (Red Lake, ON, CA)",
-      "source": "sapsf-csb",
-      "country": "CA",
-      "locationRaw": "Red Lake, ON, CA",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-11",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "csb-kinross-gold-1448622300",
-      "slug": "kinross-gold-operator-water-treatment-red-lake-on-ca-ca-csb-kinross-gold-1448622",
-      "company": "Kinross Gold",
-      "title": "Operator, Water Treatment (Red Lake, ON, CA)",
-      "source": "sapsf-csb",
-      "country": "CA",
-      "locationRaw": "Red Lake, ON, CA",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-07",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "csb-kinross-gold-1448621400",
@@ -168,7 +142,33 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-11-07",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "csb-kinross-gold-1448622300",
+      "slug": "kinross-gold-operator-water-treatment-red-lake-on-ca-ca-csb-kinross-gold-1448622",
+      "company": "Kinross Gold",
+      "title": "Operator, Water Treatment (Red Lake, ON, CA)",
+      "source": "sapsf-csb",
+      "country": "CA",
+      "locationRaw": "Red Lake, ON, CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-07",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "csb-kinross-gold-1449316400",
+      "slug": "kinross-gold-specialist-contracts-red-lake-on-ca-ca-csb-kinross-gold-1449316",
+      "company": "Kinross Gold",
+      "title": "Specialist, Contracts (Red Lake, ON, CA)",
+      "source": "sapsf-csb",
+      "country": "CA",
+      "locationRaw": "Red Lake, ON, CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-11",
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-240630",
@@ -181,20 +181,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-11-13",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "orc-1001-243158",
-      "slug": "barrick-gold-remote-loader-operator-cd-orc-1001-243158",
-      "company": "Barrick Gold",
-      "title": "Remote Loader Operator",
-      "source": "oracle-hcm",
-      "country": "CD",
-      "locationRaw": "Durba, Haut Uele, DR Congo-Kinshasa",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-12",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-243212",
@@ -207,7 +194,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-242851",
@@ -220,7 +207,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-10-26",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-242889",
@@ -233,7 +220,20 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-10-26",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "orc-1001-243158",
+      "slug": "barrick-gold-remote-loader-operator-cd-orc-1001-243158",
+      "company": "Barrick Gold",
+      "title": "Remote Loader Operator",
+      "source": "oracle-hcm",
+      "country": "CD",
+      "locationRaw": "Durba, Haut Uele, DR Congo-Kinshasa",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-12",
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-241700",
@@ -246,7 +246,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "pu-lead-group-business-evaluation",
@@ -259,7 +259,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-11-11",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "pu-specialist-sustainability-perf",
@@ -272,7 +272,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-11-11",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "pu-senior-long-term-planning-engi",
@@ -285,7 +285,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-11-11",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "pu-senior-sourcing-specialist-cap",
@@ -298,7 +298,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-11-05",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "pu-senior-specialist-contractor-a",
@@ -311,7 +311,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-11-05",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "pu-senior-advisor-hygienist",
@@ -324,7 +324,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-10-27",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "pu-advisor-training",
@@ -337,7 +337,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-10-27",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "pu-underground-operator-level-c-c",
@@ -350,7 +350,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-10-27",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "pu-expressions-of-interest-employ",
@@ -363,7 +363,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "pu-register-for-opportunities-in-",
@@ -376,306 +376,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "cm-284076",
-      "slug": "agnico-eagle-general-supervisor-electrical-maintenance-global-284076",
-      "company": "Agnico Eagle",
-      "title": "General Supervisor, Electrical Maintenance",
-      "source": "jobiqo",
-      "country": "CA",
-      "locationRaw": "Rankin Inlet, NU, CA",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-13",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "cm-286009",
-      "slug": "agnico-eagle-miner-3-mucker-nsur-global-286009",
-      "company": "Agnico Eagle",
-      "title": "Miner 3, Mucker - NSUR",
-      "source": "jobiqo",
-      "country": "CA",
-      "locationRaw": "Kirkland Lake, ON, CA",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-06",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "cm-288600",
-      "slug": "agnico-eagle-underground-emergency-response-specialist-global-288600",
-      "company": "Agnico Eagle",
-      "title": "Underground Emergency Response Specialist",
-      "source": "jobiqo",
-      "country": "CA",
-      "locationRaw": "Cochrane, ON, CA",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-11",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "cm-289753",
-      "slug": "agnico-eagle-engineering-superintendent-underground-operations-global-289753",
-      "company": "Agnico Eagle",
-      "title": "Engineering Superintendent, Underground Operations",
-      "source": "jobiqo",
-      "country": "CA",
-      "locationRaw": "Cochrane, ON, CA",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "cm-292329",
-      "slug": "agnico-eagle-community-relations-supervisor-global-292329",
-      "company": "Agnico Eagle",
-      "title": "Community Relations Supervisor",
-      "source": "jobiqo",
-      "country": "CA",
-      "locationRaw": "Cochrane, ON, CA",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-12",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "cm-292330",
-      "slug": "agnico-eagle-health-amp-safety-underground-trainer-global-292330",
-      "company": "Agnico Eagle",
-      "title": "Health &amp; Safety Underground Trainer",
-      "source": "jobiqo",
-      "country": "CA",
-      "locationRaw": "Kirkland Lake, ON, CA",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-12",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "cm-292331",
-      "slug": "agnico-eagle-senior-long-term-planning-engineer-global-292331",
-      "company": "Agnico Eagle",
-      "title": "Senior Long-Term Planning Engineer",
-      "source": "jobiqo",
-      "country": "CA",
-      "locationRaw": "ON, CA",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-12",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "cm-292589",
-      "slug": "agnico-eagle-longhole-blaster-miner-3-global-292589",
-      "company": "Agnico Eagle",
-      "title": "Longhole Blaster, Miner 3",
-      "source": "jobiqo",
-      "country": "CA",
-      "locationRaw": "Kirkland Lake, ON, CA",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-11",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "cm-292592",
-      "slug": "agnico-eagle-warehouse-administrator-global-292592",
-      "company": "Agnico Eagle",
-      "title": "Warehouse Administrator",
-      "source": "jobiqo",
-      "country": "CA",
-      "locationRaw": "Kirkland Lake, ON, CA",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-11",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "cm-292934",
-      "slug": "agnico-eagle-mine-planning-technician-global-292934",
-      "company": "Agnico Eagle",
-      "title": "Mine Planning Technician",
-      "source": "jobiqo",
-      "country": "CA",
-      "locationRaw": "Kirkland Lake, ON, CA",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-12",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "cm-293074",
-      "slug": "agnico-eagle-operator-waste-management-fly-in-fly-out-global-293074",
-      "company": "Agnico Eagle",
-      "title": "Operator, Waste Management (Fly-In Fly-Out)",
-      "source": "jobiqo",
-      "country": "CA",
-      "locationRaw": "NU, CA",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-11",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "cm-293076",
-      "slug": "agnico-eagle-specialist-asset-management-orp-global-293076",
-      "company": "Agnico Eagle",
-      "title": "Specialist, Asset Management (ORP)",
-      "source": "jobiqo",
-      "country": "CA",
-      "locationRaw": "NU, CA",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-12",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "cm-293224",
-      "slug": "agnico-eagle-information-technology-general-supervisor-global-293224",
-      "company": "Agnico Eagle",
-      "title": "Information Technology General Supervisor",
-      "source": "jobiqo",
-      "country": "CA",
-      "locationRaw": "Cochrane, ON, CA",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-12",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "cm-293225",
-      "slug": "agnico-eagle-new-or-recent-graduate-human-resources-professional-global-293225",
-      "company": "Agnico Eagle",
-      "title": "New or Recent Graduate Human Resources Professional",
-      "source": "jobiqo",
-      "country": "CA",
-      "locationRaw": "Kirkland Lake, ON, CA",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-11",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "cm-293512",
-      "slug": "agnico-eagle-specialist-talent-acquisition-temp-15-months-global-293512",
-      "company": "Agnico Eagle",
-      "title": "Specialist, Talent Acquisition (temp. 15 months)",
-      "source": "jobiqo",
-      "country": "CA",
-      "locationRaw": "Mirabel, QC, CA",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-12",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "cm-293513",
-      "slug": "agnico-eagle-business-analyst-global-293513",
-      "company": "Agnico Eagle",
-      "title": "Business Analyst",
-      "source": "jobiqo",
-      "country": "CA",
-      "locationRaw": "Mirabel, QC, CA",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-10",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "cm-293515",
-      "slug": "agnico-eagle-mine-supervisor-underground-global-293515",
-      "company": "Agnico Eagle",
-      "title": "Mine Supervisor, Underground",
-      "source": "jobiqo",
-      "country": "CA",
-      "locationRaw": "Cochrane, ON, CA",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-10",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "cm-293693",
-      "slug": "agnico-eagle-engineering-co-op-student-global-293693",
-      "company": "Agnico Eagle",
-      "title": "Engineering Co-op Student",
-      "source": "jobiqo",
-      "country": "CA",
-      "locationRaw": "Kirkland Lake, ON, CA",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-11",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "cm-293694",
-      "slug": "agnico-eagle-process-plant-trainer-global-293694",
-      "company": "Agnico Eagle",
-      "title": "Process Plant Trainer",
-      "source": "jobiqo",
-      "country": "CA",
-      "locationRaw": "Cochrane, ON, CA",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-11",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "cm-293843",
-      "slug": "agnico-eagle-general-supervisor-process-plant-global-293843",
-      "company": "Agnico Eagle",
-      "title": "General Supervisor, Process Plant",
-      "source": "jobiqo",
-      "country": "CA",
-      "locationRaw": "Rankin Inlet, NU, CA",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-12",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "cm-294051",
-      "slug": "agnico-eagle-geologist-open-pit-fly-in-fly-out-global-294051",
-      "company": "Agnico Eagle",
-      "title": "Geologist, Open Pit (Fly-In Fly-Out)",
-      "source": "jobiqo",
-      "country": "CA",
-      "locationRaw": "Rankin Inlet, NU, CA",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-13",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "cm-294235",
-      "slug": "agnico-eagle-underground-senior-geotechnical-engineer-global-294235",
-      "company": "Agnico Eagle",
-      "title": "Underground Senior Geotechnical Engineer",
-      "source": "jobiqo",
-      "country": "CA",
-      "locationRaw": "Cochrane, ON, CA",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "cm-294236",
-      "slug": "agnico-eagle-technician-ground-control-and-backfill-global-294236",
-      "company": "Agnico Eagle",
-      "title": "Technician, Ground Control and Backfill",
-      "source": "jobiqo",
-      "country": "CA",
-      "locationRaw": "NU, CA",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "cm-291312",
@@ -688,7 +389,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-10-24",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "cm-291418",
@@ -701,7 +402,293 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-10-25",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "cm-284076",
+      "slug": "agnico-eagle-general-supervisor-electrical-maintenance-global-284076",
+      "company": "Agnico Eagle",
+      "title": "General Supervisor, Electrical Maintenance",
+      "source": "jobiqo",
+      "country": "CA",
+      "locationRaw": "Rankin Inlet, NU, CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-13",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "cm-286009",
+      "slug": "agnico-eagle-miner-3-mucker-nsur-global-286009",
+      "company": "Agnico Eagle",
+      "title": "Miner 3, Mucker - NSUR",
+      "source": "jobiqo",
+      "country": "CA",
+      "locationRaw": "Kirkland Lake, ON, CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-06",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "cm-288600",
+      "slug": "agnico-eagle-underground-emergency-response-specialist-global-288600",
+      "company": "Agnico Eagle",
+      "title": "Underground Emergency Response Specialist",
+      "source": "jobiqo",
+      "country": "CA",
+      "locationRaw": "Cochrane, ON, CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-11",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "cm-292329",
+      "slug": "agnico-eagle-community-relations-supervisor-global-292329",
+      "company": "Agnico Eagle",
+      "title": "Community Relations Supervisor",
+      "source": "jobiqo",
+      "country": "CA",
+      "locationRaw": "Cochrane, ON, CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-12",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "cm-292330",
+      "slug": "agnico-eagle-health-amp-safety-underground-trainer-global-292330",
+      "company": "Agnico Eagle",
+      "title": "Health &amp; Safety Underground Trainer",
+      "source": "jobiqo",
+      "country": "CA",
+      "locationRaw": "Kirkland Lake, ON, CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-12",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "cm-292331",
+      "slug": "agnico-eagle-senior-long-term-planning-engineer-global-292331",
+      "company": "Agnico Eagle",
+      "title": "Senior Long-Term Planning Engineer",
+      "source": "jobiqo",
+      "country": "CA",
+      "locationRaw": "ON, CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-12",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "cm-292589",
+      "slug": "agnico-eagle-longhole-blaster-miner-3-global-292589",
+      "company": "Agnico Eagle",
+      "title": "Longhole Blaster, Miner 3",
+      "source": "jobiqo",
+      "country": "CA",
+      "locationRaw": "Kirkland Lake, ON, CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-11",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "cm-292592",
+      "slug": "agnico-eagle-warehouse-administrator-global-292592",
+      "company": "Agnico Eagle",
+      "title": "Warehouse Administrator",
+      "source": "jobiqo",
+      "country": "CA",
+      "locationRaw": "Kirkland Lake, ON, CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-11",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "cm-292934",
+      "slug": "agnico-eagle-mine-planning-technician-global-292934",
+      "company": "Agnico Eagle",
+      "title": "Mine Planning Technician",
+      "source": "jobiqo",
+      "country": "CA",
+      "locationRaw": "Kirkland Lake, ON, CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-12",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "cm-293074",
+      "slug": "agnico-eagle-operator-waste-management-fly-in-fly-out-global-293074",
+      "company": "Agnico Eagle",
+      "title": "Operator, Waste Management (Fly-In Fly-Out)",
+      "source": "jobiqo",
+      "country": "CA",
+      "locationRaw": "NU, CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-11",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "cm-293076",
+      "slug": "agnico-eagle-specialist-asset-management-orp-global-293076",
+      "company": "Agnico Eagle",
+      "title": "Specialist, Asset Management (ORP)",
+      "source": "jobiqo",
+      "country": "CA",
+      "locationRaw": "NU, CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-12",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "cm-293224",
+      "slug": "agnico-eagle-information-technology-general-supervisor-global-293224",
+      "company": "Agnico Eagle",
+      "title": "Information Technology General Supervisor",
+      "source": "jobiqo",
+      "country": "CA",
+      "locationRaw": "Cochrane, ON, CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-12",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "cm-293225",
+      "slug": "agnico-eagle-new-or-recent-graduate-human-resources-professional-global-293225",
+      "company": "Agnico Eagle",
+      "title": "New or Recent Graduate Human Resources Professional",
+      "source": "jobiqo",
+      "country": "CA",
+      "locationRaw": "Kirkland Lake, ON, CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-11",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "cm-293512",
+      "slug": "agnico-eagle-specialist-talent-acquisition-temp-15-months-global-293512",
+      "company": "Agnico Eagle",
+      "title": "Specialist, Talent Acquisition (temp. 15 months)",
+      "source": "jobiqo",
+      "country": "CA",
+      "locationRaw": "Mirabel, QC, CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-12",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "cm-293513",
+      "slug": "agnico-eagle-business-analyst-global-293513",
+      "company": "Agnico Eagle",
+      "title": "Business Analyst",
+      "source": "jobiqo",
+      "country": "CA",
+      "locationRaw": "Mirabel, QC, CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-10",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "cm-293515",
+      "slug": "agnico-eagle-mine-supervisor-underground-global-293515",
+      "company": "Agnico Eagle",
+      "title": "Mine Supervisor, Underground",
+      "source": "jobiqo",
+      "country": "CA",
+      "locationRaw": "Cochrane, ON, CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-10",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "cm-293693",
+      "slug": "agnico-eagle-engineering-co-op-student-global-293693",
+      "company": "Agnico Eagle",
+      "title": "Engineering Co-op Student",
+      "source": "jobiqo",
+      "country": "CA",
+      "locationRaw": "Kirkland Lake, ON, CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-11",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "cm-293694",
+      "slug": "agnico-eagle-process-plant-trainer-global-293694",
+      "company": "Agnico Eagle",
+      "title": "Process Plant Trainer",
+      "source": "jobiqo",
+      "country": "CA",
+      "locationRaw": "Cochrane, ON, CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-11",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "cm-293843",
+      "slug": "agnico-eagle-general-supervisor-process-plant-global-293843",
+      "company": "Agnico Eagle",
+      "title": "General Supervisor, Process Plant",
+      "source": "jobiqo",
+      "country": "CA",
+      "locationRaw": "Rankin Inlet, NU, CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-12",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "cm-294051",
+      "slug": "agnico-eagle-geologist-open-pit-fly-in-fly-out-global-294051",
+      "company": "Agnico Eagle",
+      "title": "Geologist, Open Pit (Fly-In Fly-Out)",
+      "source": "jobiqo",
+      "country": "CA",
+      "locationRaw": "Rankin Inlet, NU, CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-13",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "cm-294235",
+      "slug": "agnico-eagle-underground-senior-geotechnical-engineer-global-294235",
+      "company": "Agnico Eagle",
+      "title": "Underground Senior Geotechnical Engineer",
+      "source": "jobiqo",
+      "country": "CA",
+      "locationRaw": "Cochrane, ON, CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-14",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "cm-294236",
+      "slug": "agnico-eagle-technician-ground-control-and-backfill-global-294236",
+      "company": "Agnico Eagle",
+      "title": "Technician, Ground Control and Backfill",
+      "source": "jobiqo",
+      "country": "CA",
+      "locationRaw": "NU, CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-14",
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "cm-277787",
@@ -714,7 +701,33 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "cm-289340",
+      "slug": "artemis-gold-blackwater-project-hot-seat-coordinator-mine-operations-global-2893",
+      "company": "Artemis Gold - Blackwater Project",
+      "title": "Hot Seat Coordinator - Mine Operations",
+      "source": "jobiqo",
+      "country": "CA",
+      "locationRaw": "Vanderhoof, BC, CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-15",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "cm-289369",
+      "slug": "artemis-gold-blackwater-project-hot-seat-coordinator-mine-operations-global-2893",
+      "company": "Artemis Gold - Blackwater Project",
+      "title": "Hot Seat Coordinator - Mine Operations",
+      "source": "jobiqo",
+      "country": "CA",
+      "locationRaw": "Vanderhoof, BC, CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-15",
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "cm-291929",
@@ -727,7 +740,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "cm-291930",
@@ -740,7 +753,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "cm-293037",
@@ -753,7 +766,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "cm-293789",
@@ -766,7 +779,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "cm-294181",
@@ -779,98 +792,111 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
-      "id": "cm-294183",
-      "slug": "g-mining-ventures-corp-corporate-principal-mining-engineer-global-294183",
-      "company": "G Mining Ventures Corp",
-      "title": "Corporate - Principal Mining Engineer",
-      "source": "jobiqo",
-      "country": "CA",
-      "locationRaw": "Brossard, QC, CA",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "cm-294185",
-      "slug": "skeena-resources-limited-mining-supervisor-global-294185",
-      "company": "Skeena Resources Limited",
-      "title": "Mining Supervisor",
-      "source": "jobiqo",
-      "country": "CA",
-      "locationRaw": "Iskut, BC, CA",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "cm-294187",
-      "slug": "quadra-procurement-specialist-mining-global-294187",
-      "company": "Quadra",
-      "title": "Procurement Specialist - Mining",
+      "id": "cm-294308",
+      "slug": "glencore-req26-185-technician-mining-geology-global-294308",
+      "company": "Glencore",
+      "title": "REQ26-185 - Technician - Mining Geology",
       "source": "jobiqo",
       "country": "CA",
       "locationRaw": "QC, CA",
       "remote": false,
       "reason": "unverified-country",
-      "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
+      "firstSeenAt": "2026-11-15",
+      "lastSeenAt": "2026-11-15"
     },
     {
-      "id": "cm-294190",
-      "slug": "bba-inc-intermediate-process-engineer-mining-and-metals-global-294190",
-      "company": "BBA, Inc.",
-      "title": "Intermediate Process Engineer - Mining and Metals",
+      "id": "cm-294317",
+      "slug": "lycopodium-senior-project-manager-epcm-mining-minerals-global-294317",
+      "company": "Lycopodium",
+      "title": "Senior Project Manager (EPCM - Mining & Minerals)",
       "source": "jobiqo",
       "country": "CA",
-      "locationRaw": "Greater Sudbury, ON, CA",
+      "locationRaw": "Mississauga, ON, CA",
       "remote": false,
       "reason": "unverified-country",
-      "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
+      "firstSeenAt": "2026-11-15",
+      "lastSeenAt": "2026-11-15"
     },
     {
-      "id": "cm-294168",
-      "slug": "b2gold-corp-expatriate-mill-maintenance-senior-electrical-advisor-global-294168",
-      "company": "B2Gold Corp",
-      "title": "Expatriate - Mill Maintenance Senior Electrical Advisor",
+      "id": "cm-294319",
+      "slug": "nutrien-mine-engineer-in-training-global-294319",
+      "company": "Nutrien",
+      "title": "Mine Engineer-in-Training",
       "source": "jobiqo",
       "country": "CA",
-      "locationRaw": "Fakola, Bougouni Region, ML",
+      "locationRaw": "Rocanville, SK, CA",
       "remote": false,
       "reason": "unverified-country",
-      "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
+      "firstSeenAt": "2026-11-15",
+      "lastSeenAt": "2026-11-15"
     },
     {
-      "id": "cm-292850",
-      "slug": "impala-canada-heavy-equipment-operator-2-global-292850",
-      "company": "Impala Canada",
-      "title": "Heavy Equipment Operator - 2",
+      "id": "cm-294320",
+      "slug": "b2gold-sr-mine-engineer-op-global-294320",
+      "company": "B2Gold",
+      "title": "Sr. Mine Engineer, OP",
       "source": "jobiqo",
       "country": "CA",
-      "locationRaw": "Thunder Bay, ON, CA",
+      "locationRaw": "NU, CA",
       "remote": false,
       "reason": "unverified-country",
-      "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
+      "firstSeenAt": "2026-11-15",
+      "lastSeenAt": "2026-11-15"
     },
     {
-      "id": "cm-288440",
-      "slug": "hudbay-minerals-driller-global-288440",
-      "company": "HudBay Minerals",
-      "title": "Driller",
+      "id": "cm-289803",
+      "slug": "vale-base-metals-technologist-global-289803",
+      "company": "Vale Base Metals",
+      "title": "Technologist",
       "source": "jobiqo",
       "country": "CA",
-      "locationRaw": "Princeton, BC, CA",
+      "locationRaw": "CA",
       "remote": false,
       "reason": "unverified-country",
-      "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
+      "firstSeenAt": "2026-11-15",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "cm-294281",
+      "slug": "vale-base-metals-principal-engineer-global-294281",
+      "company": "Vale Base Metals",
+      "title": "Principal Engineer",
+      "source": "jobiqo",
+      "country": "CA",
+      "locationRaw": "CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-15",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "cm-294282",
+      "slug": "vale-base-metals-community-relations-coordinator-global-294282",
+      "company": "Vale Base Metals",
+      "title": "Community Relations Coordinator",
+      "source": "jobiqo",
+      "country": "CA",
+      "locationRaw": "CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-15",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "cm-294273",
+      "slug": "teck-resources-limited-sr-pay-analyst-global-294273",
+      "company": "Teck Resources Limited",
+      "title": "Sr. Pay Analyst",
+      "source": "jobiqo",
+      "country": "CA",
+      "locationRaw": "Trail, BC, CA",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-15",
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "cam-fertilizers-chemicals-process-design-fra",
@@ -883,7 +909,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-10-27",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "cam-s-cargo-manager-africa-logistics-maritim",
@@ -896,7 +922,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-10-27",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "cam--gold-mine-security-fifo-security-gold-g",
@@ -909,7 +935,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-11-10",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "cam-neer-structural-mechanical-piping-and-pl",
@@ -922,7 +948,33 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-11-10",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "ct-6936C72613E0F30F61373E686DCF3405",
+      "slug": "manpower-operario-a-de-voladura-sector-mineria-regimen-14-x-7-pe-ct-6936c72613e0",
+      "company": "Manpower",
+      "title": "Operario(a) de voladura / Sector: Mineria / Regimen 14 x 7",
+      "source": "computrabajo",
+      "country": "PE",
+      "locationRaw": "Huanuco, Huanuco",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-15",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "ct-39C621EF33B5F88561373E686DCF3405",
+      "slug": "prosegur-urgente-15-agentes-de-seguridad-para-unidad-minera-la-libertad-pe-ct-39",
+      "company": "Prosegur",
+      "title": "Urgente !!! 15 agentes de seguridad para unidad minera / La Libertad",
+      "source": "computrabajo",
+      "country": "PE",
+      "locationRaw": "Lambayeque, Chiclayo",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-15",
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "ct-D05639CC8BD359E661373E686DCF3405",
@@ -935,20 +987,111 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
-      "id": "ct-E3F11FA6503C524161373E686DCF3405",
-      "slug": "buro-temps-administrative-assistant-bilingue-proyecto-minero-las-condes-cl-ct-e3",
+      "id": "ct-035180A136679C3D61373E686DCF3405",
+      "slug": "buro-temps-administrative-assistant-proyecto-minero-cl-ct-035180a136679c3d61373",
       "company": "Burô Temps",
-      "title": "Administrative Assistant Bilingüe - Proyecto Minero Las Condes",
+      "title": "Administrative Assistant - Proyecto Minero",
       "source": "computrabajo",
       "country": "CL",
       "locationRaw": "R.Metropolitana, Santiago - Las condes",
       "remote": false,
       "reason": "unverified-country",
-      "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
+      "firstSeenAt": "2026-11-15",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "ct-FB86F224D7E3286D61373E686DCF3405",
+      "slug": "cadetech-s-a-prevencionista-de-riesgos-apr-mineria-concepcion-40-hrs-cl-ct-fb86f",
+      "company": "CADETECH S A",
+      "title": "Prevencionista de Riesgos (APR) Minería - Concepción (40 hrs)",
+      "source": "computrabajo",
+      "country": "CL",
+      "locationRaw": "Bíobío, Concepción",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-15",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "ct-9BC8655AF0D94F1061373E686DCF3405",
+      "slug": "geoblast-ingeniero-supervisor-geotecnico-mineria-operacion-de-depositos-de-lixiv",
+      "company": "GEOBLAST",
+      "title": "Ingeniero Supervisor Geotécnico Minería - Operación de Depósitos de Lixiviación y Botaderos Calama",
+      "source": "computrabajo",
+      "country": "CL",
+      "locationRaw": "R.Metropolitana, Santiago - Providencia",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-15",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "ct-65FAAAC0D9ACD6DC61373E686DCF3405",
+      "slug": "sos-group-capital-humano-ayudante-de-sondaje-mineria-turnos-14x14-cl-ct-65faaac0",
+      "company": "SOS GROUP CAPITAL HUMANO",
+      "title": "Ayudante de Sondaje Minería - Turnos 14x14",
+      "source": "computrabajo",
+      "country": "CL",
+      "locationRaw": "R.Metropolitana, Santiago Centro",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-15",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "ct-56E82EFC0F2B1D7061373E686DCF3405",
+      "slug": "sos-group-capital-humano-ayudante-de-sondaje-mineria-turnos-14x14-cl-ct-56e82efc",
+      "company": "SOS GROUP CAPITAL HUMANO",
+      "title": "Ayudante de Sondaje Minería - Turnos 14x14",
+      "source": "computrabajo",
+      "country": "CL",
+      "locationRaw": "Bíobío, Concepción",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-15",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "ct-DBF9ADC879F7CEED61373E686DCF3405",
+      "slug": "sos-group-capital-humano-ayudante-de-sondaje-mineria-turnos-14x14-cl-ct-dbf9adc8",
+      "company": "SOS GROUP CAPITAL HUMANO",
+      "title": "Ayudante de Sondaje Minería - Turnos 14x14",
+      "source": "computrabajo",
+      "country": "CL",
+      "locationRaw": "Valparaíso, Valparaíso",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-15",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "ct-6C8CF0176B6B815961373E686DCF3405",
+      "slug": "sos-group-capital-humano-operadores-de-sondaje-mineria-turnos-de-14-x-14-cl-ct-6",
+      "company": "SOS GROUP CAPITAL HUMANO",
+      "title": "Operadores de Sondaje Minería - Turnos de 14 x 14",
+      "source": "computrabajo",
+      "country": "CL",
+      "locationRaw": "Bíobío, Concepción",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-15",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "ct-18FF238830FD1B6961373E686DCF3405",
+      "slug": "sos-group-capital-humano-operadores-de-sondaje-mineria-turnos-de-14-x-14-cl-ct-1",
+      "company": "SOS GROUP CAPITAL HUMANO",
+      "title": "Operadores de Sondaje Minería - Turnos de 14 x 14",
+      "source": "computrabajo",
+      "country": "CL",
+      "locationRaw": "R.Metropolitana, Santiago Centro",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-15",
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "ct-2BF25358C6E239EA61373E686DCF3405",
@@ -961,7 +1104,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-11-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "ct-CAD5BA8C3C07CA4861373E686DCF3405",
@@ -974,7 +1117,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-10-27",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "ct-86F5D34C6AD5AAB161373E686DCF3405",
@@ -987,46 +1130,33 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-10-17",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
-      "id": "ct-436D04946ADED4F361373E686DCF3405",
-      "slug": "j-e-j-ingenieria-s-a-especialista-mecanico-santiago-5x2-cl-ct-436d04946aded4f361",
-      "company": "J.E.J INGENIERIA S.A",
-      "title": "Especialista Mecánico (Santiago) - 5x2",
+      "id": "ct-F504C72D7D014E7761373E686DCF3405",
+      "slug": "als-asistente-de-calidad-cl-ct-f504c72d7d014e7761373",
+      "company": "ALS",
+      "title": "Asistente de Calidad",
+      "source": "computrabajo",
+      "country": "CL",
+      "locationRaw": "R.Metropolitana, Santiago - Quilicura",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-15",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "ct-248A3B94A8138D3461373E686DCF3405",
+      "slug": "jpv-asociados-ingeniero-para-ajustador-para-area-especializada-de-siniestros-cl-",
+      "company": "JPV Asociados",
+      "title": "Ingeniero para Ajustador para área especializada de siniestros",
       "source": "computrabajo",
       "country": "CL",
       "locationRaw": "R.Metropolitana, Santiago - Las condes",
       "remote": false,
       "reason": "unverified-country",
-      "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "ct-D3546BB74B87BC7161373E686DCF3405",
-      "slug": "metso-industrial-services-ingeniero-programador-chuquicamata-subterranea-cl-ct-d",
-      "company": "METSO INDUSTRIAL SERVICES",
-      "title": "Ingeniero programador - Chuquicamata Subterránea",
-      "source": "computrabajo",
-      "country": "CL",
-      "locationRaw": "Valparaíso, concón",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "ct-5648B898B105095861373E686DCF3405",
-      "slug": "mam-pro-ejecutivo-comercial-b2b-cl-ct-5648b898b105095861373",
-      "company": "MAM PRO",
-      "title": "Ejecutivo Comercial B2B",
-      "source": "computrabajo",
-      "country": "CL",
-      "locationRaw": "R.Metropolitana, Santiago - Vitacura",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
+      "firstSeenAt": "2026-11-15",
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "ct-DA82DF1FB6A4D03061373E686DCF3405",
@@ -1039,7 +1169,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-11-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "ct-26D9373252B3FDC961373E686DCF3405",
@@ -1052,7 +1182,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-10-16",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "ct-35B28E85C29FE24C61373E686DCF3405",
@@ -1065,46 +1195,33 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-11-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
-      "id": "ct-9D052B2E15FB122A61373E686DCF3405",
-      "slug": "almar-water-servicios-latam-supervisor-electromecanico-noche-servicio-de-dewater",
-      "company": "Almar Water Servicios Latam",
-      "title": "Supervisor Electromecánico Noche – Servicio de Dewatering",
+      "id": "ct-3D011C2E7DB175C261373E686DCF3405",
+      "slug": "michael-page-project-manager-sap-s-4hana-senior-ingles-avanzado-cl-ct-3d011c2e7d",
+      "company": "Michael Page",
+      "title": "Project Manager SAP S/4Hana Senior - Ingles avanzado",
       "source": "computrabajo",
       "country": "CL",
-      "locationRaw": "R.Metropolitana, Santiago - Lo Barnechea",
+      "locationRaw": "R.Metropolitana, Santiago - Las condes",
       "remote": false,
       "reason": "unverified-country",
-      "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
+      "firstSeenAt": "2026-11-15",
+      "lastSeenAt": "2026-11-15"
     },
     {
-      "id": "ct-D5BE589032769A0B61373E686DCF3405",
-      "slug": "almar-water-servicios-latam-jefe-de-operaciones-servicio-de-dewatering-cl-ct-d5b",
-      "company": "Almar Water Servicios Latam",
-      "title": "Jefe de Operaciones – Servicio de Dewatering",
+      "id": "ct-0DB48764725722B361373E686DCF3405",
+      "slug": "j-e-j-ingenieria-s-a-especialista-mecanico-5x2-cl-ct-0db48764725722b361373",
+      "company": "J.E.J INGENIERIA S.A",
+      "title": "Especialista Mecánico - 5x2",
       "source": "computrabajo",
       "country": "CL",
-      "locationRaw": "R.Metropolitana, Santiago - Lo Barnechea",
+      "locationRaw": "R.Metropolitana, Santiago - Las condes",
       "remote": false,
       "reason": "unverified-country",
-      "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "ct-104010724F76537F61373E686DCF3405",
-      "slug": "xinerlink-especialista-de-servicio-a-las-personas-quilicura-cl-ct-104010724f7653",
-      "company": "XinerLink",
-      "title": "Especialista de servicio a las personas - Quilicura",
-      "source": "computrabajo",
-      "country": "CL",
-      "locationRaw": "R.Metropolitana, Santiago - Quilicura",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-06",
-      "lastSeenAt": "2026-11-14"
+      "firstSeenAt": "2026-11-15",
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "ct-C08D3B4593C940A761373E686DCF3405",
@@ -1117,20 +1234,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-10-08",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "ct-174EF930402FB13A61373E686DCF3405",
-      "slug": "promet-servicios-spa-jefe-de-operaciones-rental-cl-ct-174ef930402fb13a61373",
-      "company": "PROMET SERVICIOS SPA",
-      "title": "Jefe de Operaciones - Rental",
-      "source": "computrabajo",
-      "country": "CL",
-      "locationRaw": "R.Metropolitana, Santiago - Huechuraba",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "ct-980540E39D7E443661373E686DCF3405",
@@ -1143,7 +1247,20 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-09-22",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "ct-1D06091291C2CBBC61373E686DCF3405",
+      "slug": "almar-water-servicios-latam-administrador-de-contrato-servicio-de-dewatering-ang",
+      "company": "Almar Water Servicios Latam",
+      "title": "Administrador de Contrato – Servicio de Dewatering - Anglo American",
+      "source": "computrabajo",
+      "country": "CL",
+      "locationRaw": "R.Metropolitana, Santiago - Lo Barnechea",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-15",
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "ct-823D7228E606B0CB61373E686DCF3405",
@@ -1156,20 +1273,59 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
-      "id": "ct-416745825E65AF5F61373E686DCF3405",
-      "slug": "als-life-sciences-chile-s-a-jefe-hse-santiago-cl-ct-416745825e65af5f61373",
-      "company": "ALS Life Sciences Chile S.A.",
-      "title": "Jefe HSE (Santiago)",
+      "id": "ct-278BC484E7DD711C61373E686DCF3405",
+      "slug": "gyo-empresas-supervisor-terreno-obra-mantenimiento-chagres-cl-ct-278bc484e7dd711",
+      "company": "GYO empresas",
+      "title": "Supervisor terreno - Obra mantenimiento Chagres",
       "source": "computrabajo",
       "country": "CL",
-      "locationRaw": "R.Metropolitana, Colina",
+      "locationRaw": "Valparaíso, Catemu",
       "remote": false,
       "reason": "unverified-country",
-      "firstSeenAt": "2026-11-13",
-      "lastSeenAt": "2026-11-14"
+      "firstSeenAt": "2026-11-15",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "ct-12E4D7B70F7FC04961373E686DCF3405",
+      "slug": "j-e-j-ingenieria-s-a-especialista-civil-electrico-instrumentacion-5x2-cl-ct-12e4",
+      "company": "J.E.J INGENIERIA S.A",
+      "title": "Especialista Civil Eléctrico / Instrumentación - 5x2",
+      "source": "computrabajo",
+      "country": "CL",
+      "locationRaw": "R.Metropolitana, Santiago - Las condes",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-15",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "ct-436D04946ADED4F361373E686DCF3405",
+      "slug": "j-e-j-ingenieria-s-a-especialista-mecanico-santiago-5x2-cl-ct-436d04946aded4f361",
+      "company": "J.E.J INGENIERIA S.A",
+      "title": "Especialista Mecánico (Santiago) - 5x2",
+      "source": "computrabajo",
+      "country": "CL",
+      "locationRaw": "R.Metropolitana, Santiago - Las condes",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-14",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "ct-104010724F76537F61373E686DCF3405",
+      "slug": "xinerlink-especialista-de-servicio-a-las-personas-quilicura-cl-ct-104010724f7653",
+      "company": "XinerLink",
+      "title": "Especialista de servicio a las personas - Quilicura",
+      "source": "computrabajo",
+      "country": "CL",
+      "locationRaw": "R.Metropolitana, Santiago - Quilicura",
+      "remote": false,
+      "reason": "unverified-country",
+      "firstSeenAt": "2026-11-06",
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "ct-94DE8592D7922E2161373E686DCF3405",
@@ -1182,46 +1338,7 @@
       "remote": false,
       "reason": "unverified-country",
       "firstSeenAt": "2026-11-04",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "ct-DF43A5159C73AF9B61373E686DCF3405",
-      "slug": "progestion-chile-practicante-seleccion-de-personal-jornada-40-hrs-modalidad-hibr",
-      "company": "Progestion Chile",
-      "title": "Practicante Selección de personal/ Jornada 40 hrs modalidad híbrida",
-      "source": "computrabajo",
-      "country": "CL",
-      "locationRaw": "R.Metropolitana, Santiago - Ñuñoa",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-11",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "ct-0B03BE4221490B8E61373E686DCF3405",
-      "slug": "progestion-chile-practicante-seleccion-de-personal-jornada-40-hrs-modalidad-hibr",
-      "company": "Progestion Chile",
-      "title": "Practicante Selección de personal/ Jornada 40 hrs modalidad híbrida",
-      "source": "computrabajo",
-      "country": "CL",
-      "locationRaw": "R.Metropolitana, Santiago - Ñuñoa",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-09",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "ct-A7CAF95EEB771A0961373E686DCF3405",
-      "slug": "manpower-chile-especialista-tecnico-de-repuestos-industriales-rubro-energia-quin",
-      "company": "Manpower Chile",
-      "title": "Especialista Técnico de Repuestos Industriales, rubro energía - Quintero",
-      "source": "computrabajo",
-      "country": "CL",
-      "locationRaw": "Valparaíso, Quintero",
-      "remote": false,
-      "reason": "unverified-country",
-      "firstSeenAt": "2026-11-01",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     }
   ],
   "excluded": [
@@ -1235,7 +1352,7 @@
       "locationRaw": "Sweden - Remote",
       "reason": "unsupported-location:SE",
       "firstSeenAt": "2026-11-10",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "gh-koboldmetals-4678367005",
@@ -1247,7 +1364,7 @@
       "locationRaw": "Remote, United Kingdom",
       "reason": "unsupported-location:GB",
       "firstSeenAt": "2026-09-09",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "gh-bluemoonmetals-4397212009",
@@ -1259,7 +1376,7 @@
       "locationRaw": "Reporting to Nussir ASA, Hammerfest Municipality, Troms og Finnmark, Norway",
       "reason": "unsupported-location:NO",
       "firstSeenAt": "2026-09-09",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "gh-bluemoonmetals-4299363009",
@@ -1271,7 +1388,7 @@
       "locationRaw": "Nussir,  Hammerfest, Troms og Finnmark, Norway",
       "reason": "unsupported-location:NO",
       "firstSeenAt": "2026-09-09",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "gh-bluemoonmetals-4330567009",
@@ -1283,7 +1400,7 @@
       "locationRaw": "Nussir Project Site, Kvalsund, Hammerfest Region, Troms og Finnmark, Norway",
       "reason": "unsupported-location:NO",
       "firstSeenAt": "2026-09-09",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "gh-bluemoonmetals-4230362009",
@@ -1295,7 +1412,7 @@
       "locationRaw": "Nussir Project Site, Hammerfest Region, Finnmark, Norway",
       "reason": "unsupported-location:NO",
       "firstSeenAt": "2026-09-09",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "gh-bluemoonmetals-4469594009",
@@ -1307,7 +1424,7 @@
       "locationRaw": "Nussir, Hammerfest, Troms og Finnmark, Norway (On Site)",
       "reason": "unsupported-location:NO",
       "firstSeenAt": "2026-11-10",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "gh-bluemoonmetals-4229263009",
@@ -1319,7 +1436,7 @@
       "locationRaw": "Nussir Project Site, Hammerfest Region, Finnmark, Norway",
       "reason": "unsupported-location:NO",
       "firstSeenAt": "2026-09-09",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "gh-bluemoonmetals-4317867009",
@@ -1331,7 +1448,7 @@
       "locationRaw": "Nussir Project Site, Hammerfest Region, Finnmark, Norway",
       "reason": "unsupported-location:NO",
       "firstSeenAt": "2026-09-09",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "gh-bluemoonmetals-4369296009",
@@ -1343,19 +1460,7 @@
       "locationRaw": "Nussir,  Hammerfest, Troms og Finnmark, Norway",
       "reason": "unsupported-location:NO",
       "firstSeenAt": "2026-09-09",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "csb-bhp-1450439700",
-      "slug": "bhp-principal-portfolio-governance-manila-2c-philippines-global-csb-bhp-14504397",
-      "company": "BHP",
-      "title": "Principal Portfolio Governance | Manila, Philippines",
-      "source": "sapsf-csb",
-      "country": "GLOBAL",
-      "locationRaw": "Philippines",
-      "reason": "unsupported-location:PH",
-      "firstSeenAt": "2026-11-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "csb-bhp-1450439800",
@@ -1367,19 +1472,7 @@
       "locationRaw": "Philippines",
       "reason": "unsupported-location:PH",
       "firstSeenAt": "2026-11-13",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "csb-bhp-1450440500",
-      "slug": "bhp-principal-ai-engineer-manila-2c-philippines-global-csb-bhp-1450440500",
-      "company": "BHP",
-      "title": "Principal AI Engineer | Manila, Philippines",
-      "source": "sapsf-csb",
-      "country": "GLOBAL",
-      "locationRaw": "Philippines",
-      "reason": "unsupported-location:PH",
-      "firstSeenAt": "2026-11-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "csb-bhp-1450441100",
@@ -1391,7 +1484,31 @@
       "locationRaw": "Philippines",
       "reason": "unsupported-location:PH",
       "firstSeenAt": "2026-11-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "csb-bhp-1450439700",
+      "slug": "bhp-principal-portfolio-governance-manila-2c-philippines-global-csb-bhp-14504397",
+      "company": "BHP",
+      "title": "Principal Portfolio Governance | Manila, Philippines",
+      "source": "sapsf-csb",
+      "country": "GLOBAL",
+      "locationRaw": "Philippines",
+      "reason": "unsupported-location:PH",
+      "firstSeenAt": "2026-11-13",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "csb-bhp-1450440500",
+      "slug": "bhp-principal-ai-engineer-manila-2c-philippines-global-csb-bhp-1450440500",
+      "company": "BHP",
+      "title": "Principal AI Engineer | Manila, Philippines",
+      "source": "sapsf-csb",
+      "country": "GLOBAL",
+      "locationRaw": "Philippines",
+      "reason": "unsupported-location:PH",
+      "firstSeenAt": "2026-11-13",
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "csb-bhp-1450440700",
@@ -1403,7 +1520,7 @@
       "locationRaw": "Philippines",
       "reason": "unsupported-location:PH",
       "firstSeenAt": "2026-11-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "csb-fortescue-1369162166",
@@ -1415,7 +1532,7 @@
       "locationRaw": "Casablanca, CAS",
       "reason": "unsupported-location:MA",
       "firstSeenAt": "2026-10-21",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "csb-fortescue-1369579566",
@@ -1427,7 +1544,7 @@
       "locationRaw": "Kidlington, OXF",
       "reason": "unsupported-location:GB",
       "firstSeenAt": "2026-10-29",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "csb-fortescue-1370237366",
@@ -1439,7 +1556,7 @@
       "locationRaw": "Kidlington, OXF",
       "reason": "unsupported-location:GB",
       "firstSeenAt": "2026-11-11",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "csb-fortescue-1370307866",
@@ -1451,163 +1568,7 @@
       "locationRaw": "Kidlington, OXF",
       "reason": "unsupported-location:GB",
       "firstSeenAt": "2026-11-12",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "csb-fortescue-1366365566",
-      "slug": "fortescue-kidlington-industrial-placement-282027-2028-29-vehicle-performance-28s",
-      "company": "Fortescue",
-      "title": "Industrial Placement (2027-2028) - Vehicle Performance (Simulation & Modelling) Jaguar TCS Racing",
-      "source": "sapsf-csb",
-      "country": "GLOBAL",
-      "locationRaw": "Kidlington, UKM",
-      "reason": "unsupported-location:GB",
-      "firstSeenAt": "2026-09-14",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "csb-fortescue-1370055866",
-      "slug": "fortescue-kidlington-battery-systems-engineer-oxf-global-csb-fortescue-137005586",
-      "company": "Fortescue",
-      "title": "Battery Systems Engineer",
-      "source": "sapsf-csb",
-      "country": "GLOBAL",
-      "locationRaw": "Kidlington, OXF",
-      "reason": "unsupported-location:GB",
-      "firstSeenAt": "2026-11-07",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "csb-fortescue-1370184366",
-      "slug": "fortescue-kidlington-principal-engineer-hardware-amp-software-oxf-global-csb-for",
-      "company": "Fortescue",
-      "title": "Principal Engineer - Hardware & Software",
-      "source": "sapsf-csb",
-      "country": "GLOBAL",
-      "locationRaw": "KIDLINGTON, OXF",
-      "reason": "unsupported-location:GB",
-      "firstSeenAt": "2026-11-11",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "csb-fortescue-1362814666",
-      "slug": "fortescue-kidlington-senior-deployment-strategist-oxf-global-csb-fortescue-13628",
-      "company": "Fortescue",
-      "title": "Senior Deployment Strategist",
-      "source": "sapsf-csb",
-      "country": "GLOBAL",
-      "locationRaw": "Kidlington, OXF",
-      "reason": "unsupported-location:GB",
-      "firstSeenAt": "2026-10-23",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "csb-fortescue-1366778166",
-      "slug": "fortescue-kidlington-garage-technician-jaguar-tcs-racing-oxf-global-csb-fortescu",
-      "company": "Fortescue",
-      "title": "Garage Technician - Jaguar TCS Racing",
-      "source": "sapsf-csb",
-      "country": "GLOBAL",
-      "locationRaw": "Kidlington, OXF",
-      "reason": "unsupported-location:GB",
-      "firstSeenAt": "2026-11-09",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "csb-fortescue-1365608766",
-      "slug": "fortescue-kidlington-industrial-placement-282027-2028-29-control-systems-jaguar-",
-      "company": "Fortescue",
-      "title": "Industrial Placement (2027-2028) - Control Systems - Jaguar TCS Racing",
-      "source": "sapsf-csb",
-      "country": "GLOBAL",
-      "locationRaw": "Kidlington, OXF",
-      "reason": "unsupported-location:GB",
-      "firstSeenAt": "2026-09-14",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "csb-fortescue-1364897666",
-      "slug": "fortescue-kidlington-no-2-mechanic-jaguar-tcs-racing-oxf-global-csb-fortescue-13",
-      "company": "Fortescue",
-      "title": "No 2 Mechanic - Jaguar TCS Racing",
-      "source": "sapsf-csb",
-      "country": "GLOBAL",
-      "locationRaw": "Kidlington, OXF",
-      "reason": "unsupported-location:GB",
-      "firstSeenAt": "2026-11-10",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "csb-fortescue-1361274266",
-      "slug": "fortescue-kidlington-senior-engineer-motorsport-and-advanced-engineering-oxf-glo",
-      "company": "Fortescue",
-      "title": "Senior Engineer - Motorsport and Advanced Engineering",
-      "source": "sapsf-csb",
-      "country": "GLOBAL",
-      "locationRaw": "Kidlington, OXF",
-      "reason": "unsupported-location:GB",
-      "firstSeenAt": "2026-11-13",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "csb-fortescue-1370184166",
-      "slug": "fortescue-kidlington-strategic-partnerships-manager-power-systems-oxf-global-csb",
-      "company": "Fortescue",
-      "title": "Strategic Partnerships Manager - Power Systems",
-      "source": "sapsf-csb",
-      "country": "GLOBAL",
-      "locationRaw": "Kidlington, OXF",
-      "reason": "unsupported-location:GB",
-      "firstSeenAt": "2026-11-13",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "csb-fortescue-1367255566",
-      "slug": "fortescue-kidlington-c-amp-p-co-ordinator-oxf-global-csb-fortescue-1367255566",
-      "company": "Fortescue",
-      "title": "C&P Co-Ordinator",
-      "source": "sapsf-csb",
-      "country": "GLOBAL",
-      "locationRaw": "Kidlington, OXF",
-      "reason": "unsupported-location:GB",
-      "firstSeenAt": "2026-10-28",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "csb-fortescue-1362556866",
-      "slug": "fortescue-kidlington-commercial-operations-bid-manager-oxf-global-csb-fortescue-",
-      "company": "Fortescue",
-      "title": "Commercial Operations / Bid Manager",
-      "source": "sapsf-csb",
-      "country": "GLOBAL",
-      "locationRaw": "Kidlington, OXF",
-      "reason": "unsupported-location:GB",
-      "firstSeenAt": "2026-11-12",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "csb-fortescue-1369517466",
-      "slug": "fortescue-kidlington-junior-control-systems-engineer-jaguar-tcs-racing-oxf-globa",
-      "company": "Fortescue",
-      "title": "Junior Control Systems Engineer - Jaguar TCS Racing",
-      "source": "sapsf-csb",
-      "country": "GLOBAL",
-      "locationRaw": "Kidlington, OXF",
-      "reason": "unsupported-location:GB",
-      "firstSeenAt": "2026-10-28",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "csb-fortescue-1356398166",
-      "slug": "fortescue-kidlington-senior-engineer-electronics-hardware-oxf-global-csb-fortesc",
-      "company": "Fortescue",
-      "title": "Senior Engineer - Electronics Hardware",
-      "source": "sapsf-csb",
-      "country": "AU",
-      "locationRaw": "Kidlington, OXF",
-      "reason": "unsupported-location:GB",
-      "firstSeenAt": "2026-10-22",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "csb-fortescue-1370362466",
@@ -1619,7 +1580,163 @@
       "locationRaw": "Kidlington, OXF",
       "reason": "unsupported-location:GB",
       "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "csb-fortescue-1369517466",
+      "slug": "fortescue-kidlington-junior-control-systems-engineer-jaguar-tcs-racing-oxf-globa",
+      "company": "Fortescue",
+      "title": "Junior Control Systems Engineer - Jaguar TCS Racing",
+      "source": "sapsf-csb",
+      "country": "GLOBAL",
+      "locationRaw": "Kidlington, OXF",
+      "reason": "unsupported-location:GB",
+      "firstSeenAt": "2026-10-28",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "csb-fortescue-1366778166",
+      "slug": "fortescue-kidlington-garage-technician-jaguar-tcs-racing-oxf-global-csb-fortescu",
+      "company": "Fortescue",
+      "title": "Garage Technician - Jaguar TCS Racing",
+      "source": "sapsf-csb",
+      "country": "GLOBAL",
+      "locationRaw": "Kidlington, OXF",
+      "reason": "unsupported-location:GB",
+      "firstSeenAt": "2026-11-09",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "csb-fortescue-1370184366",
+      "slug": "fortescue-kidlington-principal-engineer-hardware-amp-software-oxf-global-csb-for",
+      "company": "Fortescue",
+      "title": "Principal Engineer - Hardware & Software",
+      "source": "sapsf-csb",
+      "country": "GLOBAL",
+      "locationRaw": "KIDLINGTON, OXF",
+      "reason": "unsupported-location:GB",
+      "firstSeenAt": "2026-11-11",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "csb-fortescue-1366365566",
+      "slug": "fortescue-kidlington-industrial-placement-282027-2028-29-vehicle-performance-28s",
+      "company": "Fortescue",
+      "title": "Industrial Placement (2027-2028) - Vehicle Performance (Simulation & Modelling) Jaguar TCS Racing",
+      "source": "sapsf-csb",
+      "country": "GLOBAL",
+      "locationRaw": "Kidlington, UKM",
+      "reason": "unsupported-location:GB",
+      "firstSeenAt": "2026-09-14",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "csb-fortescue-1356398166",
+      "slug": "fortescue-kidlington-senior-engineer-electronics-hardware-oxf-global-csb-fortesc",
+      "company": "Fortescue",
+      "title": "Senior Engineer - Electronics Hardware",
+      "source": "sapsf-csb",
+      "country": "AU",
+      "locationRaw": "Kidlington, OXF",
+      "reason": "unsupported-location:GB",
+      "firstSeenAt": "2026-10-22",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "csb-fortescue-1362814666",
+      "slug": "fortescue-kidlington-senior-deployment-strategist-oxf-global-csb-fortescue-13628",
+      "company": "Fortescue",
+      "title": "Senior Deployment Strategist",
+      "source": "sapsf-csb",
+      "country": "GLOBAL",
+      "locationRaw": "Kidlington, OXF",
+      "reason": "unsupported-location:GB",
+      "firstSeenAt": "2026-10-23",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "csb-fortescue-1361274266",
+      "slug": "fortescue-kidlington-senior-engineer-motorsport-and-advanced-engineering-oxf-glo",
+      "company": "Fortescue",
+      "title": "Senior Engineer - Motorsport and Advanced Engineering",
+      "source": "sapsf-csb",
+      "country": "GLOBAL",
+      "locationRaw": "Kidlington, OXF",
+      "reason": "unsupported-location:GB",
+      "firstSeenAt": "2026-11-13",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "csb-fortescue-1367255566",
+      "slug": "fortescue-kidlington-c-amp-p-co-ordinator-oxf-global-csb-fortescue-1367255566",
+      "company": "Fortescue",
+      "title": "C&P Co-Ordinator",
+      "source": "sapsf-csb",
+      "country": "GLOBAL",
+      "locationRaw": "Kidlington, OXF",
+      "reason": "unsupported-location:GB",
+      "firstSeenAt": "2026-10-28",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "csb-fortescue-1370055866",
+      "slug": "fortescue-kidlington-battery-systems-engineer-oxf-global-csb-fortescue-137005586",
+      "company": "Fortescue",
+      "title": "Battery Systems Engineer",
+      "source": "sapsf-csb",
+      "country": "GLOBAL",
+      "locationRaw": "Kidlington, OXF",
+      "reason": "unsupported-location:GB",
+      "firstSeenAt": "2026-11-07",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "csb-fortescue-1364897666",
+      "slug": "fortescue-kidlington-no-2-mechanic-jaguar-tcs-racing-oxf-global-csb-fortescue-13",
+      "company": "Fortescue",
+      "title": "No 2 Mechanic - Jaguar TCS Racing",
+      "source": "sapsf-csb",
+      "country": "GLOBAL",
+      "locationRaw": "Kidlington, OXF",
+      "reason": "unsupported-location:GB",
+      "firstSeenAt": "2026-11-10",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "csb-fortescue-1362556866",
+      "slug": "fortescue-kidlington-commercial-operations-bid-manager-oxf-global-csb-fortescue-",
+      "company": "Fortescue",
+      "title": "Commercial Operations / Bid Manager",
+      "source": "sapsf-csb",
+      "country": "GLOBAL",
+      "locationRaw": "Kidlington, OXF",
+      "reason": "unsupported-location:GB",
+      "firstSeenAt": "2026-11-12",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "csb-fortescue-1365608766",
+      "slug": "fortescue-kidlington-industrial-placement-282027-2028-29-control-systems-jaguar-",
+      "company": "Fortescue",
+      "title": "Industrial Placement (2027-2028) - Control Systems - Jaguar TCS Racing",
+      "source": "sapsf-csb",
+      "country": "GLOBAL",
+      "locationRaw": "Kidlington, OXF",
+      "reason": "unsupported-location:GB",
+      "firstSeenAt": "2026-09-14",
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "csb-fortescue-1370184166",
+      "slug": "fortescue-kidlington-strategic-partnerships-manager-power-systems-oxf-global-csb",
+      "company": "Fortescue",
+      "title": "Strategic Partnerships Manager - Power Systems",
+      "source": "sapsf-csb",
+      "country": "GLOBAL",
+      "locationRaw": "Kidlington, OXF",
+      "reason": "unsupported-location:GB",
+      "firstSeenAt": "2026-11-13",
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-238702",
@@ -1631,7 +1748,7 @@
       "locationRaw": "Shinyanga, Tanzania, United Republic of",
       "reason": "unsupported-location:TZ",
       "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-243148",
@@ -1643,7 +1760,7 @@
       "locationRaw": "Tarime, Mara Region, Tanzania, United Republic of",
       "reason": "unsupported-location:TZ",
       "firstSeenAt": "2026-11-12",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-243192",
@@ -1655,7 +1772,7 @@
       "locationRaw": "Shinyanga, Tanzania, United Republic of",
       "reason": "unsupported-location:TZ",
       "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-243213",
@@ -1667,7 +1784,7 @@
       "locationRaw": "London, United Kingdom",
       "reason": "unsupported-location:GB",
       "firstSeenAt": "2026-11-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-239932",
@@ -1679,7 +1796,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-240832",
@@ -1691,7 +1808,7 @@
       "locationRaw": "Porgera, Enga, Papua New Guinea",
       "reason": "unsupported-location:PG",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-243113",
@@ -1703,19 +1820,7 @@
       "locationRaw": "Shinyanga, Tanzania, United Republic of",
       "reason": "unsupported-location:TZ",
       "firstSeenAt": "2026-11-09",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "orc-1001-243114",
-      "slug": "barrick-gold-legal-counsel-francophone-africa-global-orc-1001-243114",
-      "company": "Barrick Gold",
-      "title": "Legal Counsel – Francophone Africa",
-      "source": "oracle-hcm",
-      "country": "GLOBAL",
-      "locationRaw": "London, United Kingdom",
-      "reason": "unsupported-location:GB",
-      "firstSeenAt": "2026-11-07",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-243117",
@@ -1727,7 +1832,7 @@
       "locationRaw": "Porgera, Enga, Papua New Guinea",
       "reason": "unsupported-location:PG",
       "firstSeenAt": "2026-11-08",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-242478",
@@ -1739,19 +1844,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-11-05",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "orc-1001-242789",
-      "slug": "barrick-gold-argentina-geologo-senior-global-orc-1001-242789",
-      "company": "Barrick Gold",
-      "title": "Argentina - Geólogo Senior",
-      "source": "oracle-hcm",
-      "country": "GLOBAL",
-      "locationRaw": "Argentina",
-      "reason": "unsupported-location:AR",
-      "firstSeenAt": "2026-11-04",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-243099",
@@ -1763,7 +1856,19 @@
       "locationRaw": "Porgera, Enga, Papua New Guinea",
       "reason": "unsupported-location:PG",
       "firstSeenAt": "2026-11-06",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "orc-1001-243114",
+      "slug": "barrick-gold-legal-counsel-francophone-africa-global-orc-1001-243114",
+      "company": "Barrick Gold",
+      "title": "Legal Counsel – Francophone Africa",
+      "source": "oracle-hcm",
+      "country": "GLOBAL",
+      "locationRaw": "London, United Kingdom",
+      "reason": "unsupported-location:GB",
+      "firstSeenAt": "2026-11-07",
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-236636",
@@ -1775,7 +1880,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-236815",
@@ -1787,7 +1892,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-237000",
@@ -1799,7 +1904,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-237052",
@@ -1811,7 +1916,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-237235",
@@ -1823,7 +1928,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-237236",
@@ -1835,19 +1940,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "orc-1001-237236",
-      "slug": "barrick-gold-ar-veladero-mecanico-multifuncion-mina-global-orc-1001-237236",
-      "company": "Barrick Gold",
-      "title": "AR - Veladero - Mecánico Multifunción Mina",
-      "source": "oracle-hcm",
-      "country": "GLOBAL",
-      "locationRaw": "Veladero, San Juan, Argentina",
-      "reason": "unsupported-location:AR",
-      "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-237238",
@@ -1859,7 +1952,19 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
+    },
+    {
+      "id": "orc-1001-237238",
+      "slug": "barrick-gold-ar-veladero-mecanico-multifuncion-mina-global-orc-1001-237238",
+      "company": "Barrick Gold",
+      "title": "AR - Veladero - Mecánico Multifunción Mina",
+      "source": "oracle-hcm",
+      "country": "GLOBAL",
+      "locationRaw": "Veladero, San Juan, Argentina",
+      "reason": "unsupported-location:AR",
+      "firstSeenAt": "2026-09-13",
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-237237",
@@ -1871,7 +1976,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-237694",
@@ -1883,7 +1988,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-237731",
@@ -1895,7 +2000,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-237872",
@@ -1907,7 +2012,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-237901",
@@ -1919,7 +2024,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-238084",
@@ -1931,7 +2036,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-238672",
@@ -1943,7 +2048,7 @@
       "locationRaw": "Iglesia, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-238670",
@@ -1955,7 +2060,7 @@
       "locationRaw": "Iglesia, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-238686",
@@ -1967,7 +2072,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-238685",
@@ -1979,7 +2084,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-238696",
@@ -1991,7 +2096,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-238724",
@@ -2003,7 +2108,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-238946",
@@ -2015,7 +2120,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-239233",
@@ -2027,7 +2132,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-239366",
@@ -2039,7 +2144,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-239935",
@@ -2051,7 +2156,7 @@
       "locationRaw": "Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-240014",
@@ -2063,7 +2168,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-240013",
@@ -2075,7 +2180,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-240039",
@@ -2087,7 +2192,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-240073",
@@ -2099,7 +2204,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-240354",
@@ -2111,7 +2216,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-240362",
@@ -2123,7 +2228,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-240438",
@@ -2135,7 +2240,7 @@
       "locationRaw": "Tanzania, United Republic of",
       "reason": "unsupported-location:TZ",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-240508",
@@ -2147,7 +2252,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-240545",
@@ -2159,7 +2264,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-240544",
@@ -2171,7 +2276,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-240586",
@@ -2183,7 +2288,7 @@
       "locationRaw": "San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-240597",
@@ -2195,7 +2300,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-240743",
@@ -2207,7 +2312,7 @@
       "locationRaw": "San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-240754",
@@ -2219,7 +2324,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-240756",
@@ -2231,7 +2336,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-240803",
@@ -2243,7 +2348,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-240804",
@@ -2255,7 +2360,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-240901",
@@ -2267,7 +2372,7 @@
       "locationRaw": "San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-240915",
@@ -2279,7 +2384,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-241293",
@@ -2291,7 +2396,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-241292",
@@ -2303,7 +2408,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-241291",
@@ -2315,7 +2420,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-241301",
@@ -2327,7 +2432,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-241427",
@@ -2339,7 +2444,7 @@
       "locationRaw": "San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-241457",
@@ -2351,7 +2456,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-241461",
@@ -2363,7 +2468,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-241928",
@@ -2375,7 +2480,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-20",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-241927",
@@ -2387,7 +2492,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-20",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-241960",
@@ -2399,7 +2504,7 @@
       "locationRaw": "Veladero, San Juan, Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-242290",
@@ -2411,7 +2516,7 @@
       "locationRaw": "Porgera, Enga, Papua New Guinea",
       "reason": "unsupported-location:PG",
       "firstSeenAt": "2026-09-14",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-242497",
@@ -2423,7 +2528,7 @@
       "locationRaw": "Port Moresby, National Capital District, Papua New Guinea",
       "reason": "unsupported-location:PG",
       "firstSeenAt": "2026-09-24",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-242656",
@@ -2435,7 +2540,7 @@
       "locationRaw": "Porgera, Enga, Papua New Guinea",
       "reason": "unsupported-location:PG",
       "firstSeenAt": "2026-10-08",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "orc-1001-242944",
@@ -2447,7 +2552,7 @@
       "locationRaw": "Argentina",
       "reason": "unsupported-location:AR",
       "firstSeenAt": "2026-10-31",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "cm-288240",
@@ -2459,7 +2564,7 @@
       "locationRaw": "Leeds, England, GB",
       "reason": "unsupported-location:GB",
       "firstSeenAt": "2026-09-23",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "cm-290344",
@@ -2471,7 +2576,7 @@
       "locationRaw": "Shanghai, Shanghai, CN",
       "reason": "unsupported-location:CN",
       "firstSeenAt": "2026-10-15",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "cm-290543",
@@ -2483,7 +2588,7 @@
       "locationRaw": "Leeds, England, GB",
       "reason": "unsupported-location:GB",
       "firstSeenAt": "2026-10-15",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "cm-290544",
@@ -2495,7 +2600,7 @@
       "locationRaw": "Leeds, England, GB",
       "reason": "unsupported-location:GB",
       "firstSeenAt": "2026-10-15",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "cm-290545",
@@ -2507,43 +2612,7 @@
       "locationRaw": "Leeds, England, GB",
       "reason": "unsupported-location:GB",
       "firstSeenAt": "2026-10-15",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "cm-294169",
-      "slug": "wsp-hydrogeologist-mining-global-294169",
-      "company": "WSP",
-      "title": "Hydrogeologist (Mining)",
-      "source": "jobiqo",
-      "country": "GLOBAL",
-      "locationRaw": "London, England, GB",
-      "reason": "unsupported-location:GB",
-      "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "cm-294170",
-      "slug": "wsp-principal-associate-hydrogeologist-mining-global-294170",
-      "company": "WSP",
-      "title": "Principal / Associate Hydrogeologist (Mining)",
-      "source": "jobiqo",
-      "country": "GLOBAL",
-      "locationRaw": "London, England, GB",
-      "reason": "unsupported-location:GB",
-      "firstSeenAt": "2026-11-14",
-      "lastSeenAt": "2026-11-14"
-    },
-    {
-      "id": "br-pr-293710",
-      "slug": "brunel-mining-market-leader-greater-china-global-pr-293710",
-      "company": "Brunel",
-      "title": "Mining Market Leader - Greater China",
-      "source": "brunel",
-      "country": "GLOBAL",
-      "locationRaw": "Shanghai",
-      "reason": "unsupported-location:CN",
-      "firstSeenAt": "2026-10-16",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "sr-744000161149552",
@@ -2555,7 +2624,7 @@
       "locationRaw": "Maidenhead, , United Kingdom",
       "reason": "unsupported-location:GB",
       "firstSeenAt": "2026-11-12",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "sr-744000161039449",
@@ -2567,7 +2636,7 @@
       "locationRaw": "London, , United Kingdom",
       "reason": "unsupported-location:GB",
       "firstSeenAt": "2026-11-11",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "sr-744000160572199",
@@ -2579,7 +2648,7 @@
       "locationRaw": "London, , United Kingdom",
       "reason": "unsupported-location:GB",
       "firstSeenAt": "2026-11-09",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "sr-744000159649196",
@@ -2591,7 +2660,7 @@
       "locationRaw": "London, , United Kingdom",
       "reason": "unsupported-location:GB",
       "firstSeenAt": "2026-11-05",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "sr-744000157816239",
@@ -2603,7 +2672,7 @@
       "locationRaw": "Whitby, North Yorkshire, United Kingdom",
       "reason": "unsupported-location:GB",
       "firstSeenAt": "2026-10-28",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "sr-744000157133949",
@@ -2615,7 +2684,7 @@
       "locationRaw": "London, , United Kingdom",
       "reason": "unsupported-location:GB",
       "firstSeenAt": "2026-10-23",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "sr-744000146946929",
@@ -2627,7 +2696,7 @@
       "locationRaw": "London, , United Kingdom",
       "reason": "unsupported-location:GB",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     },
     {
       "id": "sr-744000144296634",
@@ -2639,7 +2708,7 @@
       "locationRaw": "London, , United Kingdom",
       "reason": "unsupported-location:GB",
       "firstSeenAt": "2026-09-13",
-      "lastSeenAt": "2026-11-14"
+      "lastSeenAt": "2026-11-15"
     }
   ]
 }
