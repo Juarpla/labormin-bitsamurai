@@ -45,12 +45,29 @@ function unpack<K extends CatalogKind>(row: StoredRow): CatalogRow<K> {
   return { slug: row.slug, metadata: JSON.parse(row.metadata), payload: JSON.parse(row.payload) };
 }
 
+async function tryDatabaseRead<T>(kind: CatalogKind, read: () => Promise<T>) {
+  try {
+    return await read();
+  } catch (error) {
+    console.error('No se pudo leer el catálogo D1', kind, error);
+  }
+}
+
+function selectPayloads<K extends CatalogKind>(
+  rows: Map<string, CatalogRow<K>['payload']>, slugs: readonly string[],
+) {
+  return slugs.flatMap(slug => rows.has(slug) ? [rows.get(slug)!] : []);
+}
+
 export async function catalogRecord<K extends CatalogKind>(kind: K, slug: string) {
   const source = await databaseFor(kind);
   if (source) {
-    const row = await source.database.prepare(`SELECT slug, metadata, payload FROM catalog_${kind} WHERE slug = ?`)
-      .bind(slug).first<StoredRow>();
-    return row ? unpack<K>(row) : undefined;
+    const record = await tryDatabaseRead(kind, async () => {
+      const row = await source.database.prepare(`SELECT slug, metadata, payload FROM catalog_${kind} WHERE slug = ?`)
+        .bind(slug).first<StoredRow>();
+      return row ? unpack<K>(row) : null;
+    });
+    if (record !== undefined) return record ?? undefined;
   }
   return (await snapshotRows(kind)).find(row => row.slug === slug);
 }
@@ -68,6 +85,12 @@ async function readCatalog<K extends CatalogKind>(kind: K, { jobType, activeAt, 
 }) {
   const source = await databaseFor(kind);
   const scope = kind === 'jobs' && jobType;
+  const loadSnapshot = async () => (await snapshotRows(kind)).filter(row =>
+    (!scope || (row.metadata as JobMeta).type === scope) &&
+    (!activeAt || kind !== 'jobs' || isActiveJobRow(row.metadata as JobMeta, activeAt)) &&
+    (!center || row.slug.startsWith(`${center}/`)) &&
+    (!indexable || ('indexable' in row.metadata && row.metadata.indexable))
+  );
   if (source) {
     const { database, revision } = source;
     const clauses: string[] = [];
@@ -86,45 +109,49 @@ async function readCatalog<K extends CatalogKind>(kind: K, { jobType, activeAt, 
     if (indexable) clauses.push("json_extract(metadata, '$.indexable') = 1");
     const where = clauses.length ? ` WHERE ${clauses.join(' AND ')}` : '';
     const fields = kind === 'training' ? centerMetadata : 'metadata';
-    const results: Pick<StoredRow, 'slug' | 'metadata'>[] = await cachedCatalogSelection(
+    const results = await tryDatabaseRead<Pick<StoredRow, 'slug' | 'metadata'>[]>(kind, () => cachedCatalogSelection(
       [kind, revision, scope || null, Boolean(activeAt), center ?? null, Boolean(indexable)],
       async () => {
         const selection = database.prepare(`SELECT slug, ${fields} FROM catalog_${kind}${where} ORDER BY position, slug`);
         return (await (params.length ? selection.bind(...params) : selection).all<Pick<StoredRow, 'slug' | 'metadata'>>()).results;
       },
-    );
-    const entries = results.map(row => {
-      const metadata = JSON.parse(row.metadata);
-      return { slug: row.slug, metadata: kind === 'jobs' && revision === generatedAt ? currentJobMetadata(row.slug, metadata) : metadata };
-    }).filter(({ metadata }) => kind !== 'jobs' || !activeAt || isActiveJobRow(metadata, activeAt)) as CatalogEntry<K>[];
-    return {
-      entries,
-      revision,
-      async read(slugs: readonly string[]) {
-        if (!slugs.length) return [];
-        const rows = await Promise.all(Array.from({ length: Math.ceil(slugs.length / 80) }, (_, i) => {
-          const chunk = slugs.slice(i * 80, i * 80 + 80);
-          return database.prepare(`SELECT slug, payload FROM catalog_${kind} WHERE slug IN (${chunk.map(() => '?').join(',')})`)
-            .bind(...chunk).all<Pick<StoredRow, 'slug' | 'payload'>>();
-        }));
-        const payloads = new Map(rows.flatMap(row => row.results).map(row => [row.slug, JSON.parse(row.payload) as CatalogRow<K>['payload']]));
-        return slugs.flatMap(slug => payloads.has(slug) ? [payloads.get(slug)!] : []);
-      },
-    };
+    ));
+    if (results) {
+      const entries = results.map(row => {
+        const metadata = JSON.parse(row.metadata);
+        return { slug: row.slug, metadata: kind === 'jobs' && revision === generatedAt ? currentJobMetadata(row.slug, metadata) : metadata };
+      }).filter(({ metadata }) => kind !== 'jobs' || !activeAt || isActiveJobRow(metadata, activeAt)) as CatalogEntry<K>[];
+      let snapshotPayloads: Promise<Map<string, CatalogRow<K>['payload']>> | undefined;
+      return {
+        entries,
+        revision,
+        async read(slugs: readonly string[]) {
+          if (!slugs.length) return [];
+          const payloads = await tryDatabaseRead(kind, async () => {
+            const rows = await Promise.all(Array.from({ length: Math.ceil(slugs.length / 80) }, (_, i) => {
+              const chunk = slugs.slice(i * 80, i * 80 + 80);
+              return database.prepare(`SELECT slug, payload FROM catalog_${kind} WHERE slug IN (${chunk.map(() => '?').join(',')})`)
+                .bind(...chunk).all<Pick<StoredRow, 'slug' | 'payload'>>();
+            }));
+            return new Map(rows.flatMap(row => row.results).map(row => [
+              row.slug, JSON.parse(row.payload) as CatalogRow<K>['payload'],
+            ]));
+          });
+          if (payloads) return selectPayloads<K>(payloads, slugs);
+          snapshotPayloads ??= loadSnapshot().then(rows => new Map(rows.map(row => [row.slug, row.payload])));
+          return selectPayloads<K>(await snapshotPayloads, slugs);
+        },
+      };
+    }
   }
-  const fallback = (await snapshotRows(kind)).filter(row =>
-    (!scope || (row.metadata as JobMeta).type === scope) &&
-    (!activeAt || kind !== 'jobs' || isActiveJobRow(row.metadata as JobMeta, activeAt)) &&
-    (!center || row.slug.startsWith(`${center}/`)) &&
-    (!indexable || ('indexable' in row.metadata && row.metadata.indexable))
-  );
+  const fallback = await loadSnapshot();
   const payloads = new Map(fallback.map(row => [row.slug, row.payload]));
   const entries = fallback.map(({ slug, metadata }) => ({ slug, metadata }));
   return {
     entries,
     revision: kind === 'jobs' ? generatedAt : null,
     async read(slugs: readonly string[]) {
-      return slugs.flatMap(slug => payloads.has(slug) ? [payloads.get(slug)!] : []);
+      return selectPayloads<K>(payloads, slugs);
     },
   };
 }
