@@ -7,11 +7,12 @@ import { searchText } from './pagination';
 import trainingPrograms from '../data/training-programs.json';
 import { programKey, programMetadata, programSchema } from './training-program.mjs';
 import { jobTrainingEvidence } from './training-topics.mjs';
+import { jobExcerptKey, type JobRecommendations } from './job-recommendations.mjs';
 import type { Event, Job } from '../schemas';
 import type { z } from 'zod';
 
 export type CatalogKind = keyof CatalogTypes;
-export type JobRecord = { job: Job | null; clearView?: ReturnType<typeof clearViewFor> };
+export type JobRecord = { job: Job | null; clearView?: ReturnType<typeof clearViewFor>; recommendations?: JobRecommendations };
 export type JobMeta = {
   // Older D1 imports may still contain archived rows during a deployment.
   type: 'job' | 'internship' | 'archived';
@@ -60,11 +61,23 @@ function jobRow(job: Job): CatalogRow<'jobs'> {
       remoteFromPeru: job.remoteEligibility.status === 'peru-supported',
       tier: tierOf(job),
       search: searchText(`${titleFor(job, 'es')} ${job.title} ${job.company} ${job.city ?? ''} ${job.locationRaw ?? ''}`),
-      excerptKey: job.excerpt.trim().replace(/\s+/g, ' ').toLowerCase(),
+      excerptKey: jobExcerptKey(job),
       training: jobTrainingEvidence(job) ?? null,
     },
-    payload: { job, clearView: clearViewFor(job) },
+    payload: { job, clearView: clearViewFor(job), recommendations: jobRecommendations[job.slug] },
   };
+}
+
+export const jobRecommendations: Record<string, JobRecommendations | undefined> = import.meta.env.LABORMIN_JOB_RECOMMENDATIONS;
+const jobsBySlug = new Map(allJobs.map(job => [job.slug, job]));
+
+export function snapshotJob(slug: string) {
+  return jobsBySlug.get(slug);
+}
+
+export function snapshotJobRecord(slug: string) {
+  const job = snapshotJob(slug);
+  return job ? jobRow(job) : undefined;
 }
 
 const compareTraining = (a: Training, b: Training) => {

@@ -4,52 +4,33 @@ import JobDetailView from '../../components/pages/JobDetailView.astro';
 import JobUnavailableView from '../../components/pages/JobUnavailableView.astro';
 import { locationLine, titleFor } from '../../lib/jobs';
 import { useTranslations } from '../../lib/i18n';
-import { catalogRecord, openCatalog } from '../../lib/catalog';
-import { catalogNow, isActiveJobRow } from '../../lib/catalog-data';
-import { isExpired } from '../../lib/job-policy.mjs';
-import type { Job } from '../../schemas';
+import { openJobDetail } from '../../lib/catalog';
+import { catalogNow } from '../../lib/catalog-data';
 
 export const prerender = false;
 
 const slug = Astro.params.slug ?? '';
 const now = catalogNow();
-const at = now.toISOString();
-const entry = await catalogRecord('jobs', slug);
-const candidate = entry?.payload.job;
-const job = entry && candidate && isActiveJobRow(entry.metadata, at) && !isExpired(candidate, now) ? candidate : null;
+const detail = await openJobDetail(slug, now);
 const path = `/jobs/${encodeURIComponent(slug)}`;
 let title = 'Convocatoria no disponible | Labormin';
 let description = 'Consulta las ofertas de empleo y prácticas vigentes en Labormin.';
-let alternatives: Job[] = [];
-let guidancePool: Job[] = [];
 
-if (job && entry) {
-  const candidateType = job.internship && job.country === 'PE' ? 'internship' : 'job';
-  const catalog = await openCatalog('jobs', undefined, at);
-  const active = catalog.entries.filter(item => isActiveJobRow(item.metadata, at));
-  // Include live D1 rows even when they arrived after the Worker build.
-  const relevant = active.filter(item => item.slug !== slug && item.metadata.country === job.country &&
-    item.metadata.remote === job.remote && (item.metadata.type === 'internship' ||
-      /\b(?:trainee|auxiliar|ayudante|asistente|junior|jr|operari[oa])\b/i.test(item.slug)));
-  guidancePool = (await catalog.read(relevant.map(item => item.slug))).flatMap(row => row.job ? [row.job] : []);
-  const sameType = active.filter(item => item.metadata.type === candidateType);
-  const { excerptKey } = entry.metadata;
+if (detail) {
+  const { job } = detail;
   const name = titleFor(job, 'es');
   title = `${name} — ${job.company} | Labormin`;
-  description = excerptKey && sameType.filter(item => item.metadata.excerptKey === excerptKey).length === 1
+  description = detail.uniqueExcerpt
     ? job.excerpt
     : `${name} en ${job.company} · ${locationLine(job, useTranslations('es'))}. Consulta los requisitos y cómo postular.`;
-  if (!job.internship) {
-    const candidates = sameType.filter(item => item.slug !== slug &&
-      (item.metadata.country === job.country || item.metadata.category === job.category));
-    alternatives = (await catalog.read(candidates.slice(0, 10).map(item => item.slug)))
-      .flatMap(row => row.job && !isExpired(row.job, now) ? [row.job] : []);
+  if (detail.rowsRead !== undefined) {
+    Astro.response.headers.append('Server-Timing', `d1-job;desc="${detail.rowsRead} rows read"`);
   }
 } else {
   Astro.response.status = 404;
 }
 Astro.response.headers.set('Cache-Control', 'no-store');
 ---
-<Layout title={title} description={description} path={path} noindex={!job} ads={false}>
-  {job ? <JobDetailView job={job} relatedPool={alternatives} guidancePool={guidancePool} clearView={entry?.payload.clearView} now={now} /> : <JobUnavailableView />}
+<Layout title={title} description={description} path={path} noindex={!detail} ads={false}>
+  {detail ? <JobDetailView job={detail.job} related={detail.related} guidancePool={detail.guidance} clearView={detail.clearView} now={now} /> : <JobUnavailableView />}
 </Layout>

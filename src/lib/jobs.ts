@@ -136,25 +136,6 @@ export function getJob(slug: string): Job | undefined {
   return allJobs.find((j) => j.slug === slug);
 }
 
-export function relatedJobs(job: Job, n = 4, pool = job.internship ? internships : jobs): Job[] {
-  if (job.internship) {
-    const sameListing = (candidate: Job) =>
-      normalizeText(candidate.title).trim() === normalizeText(job.title).trim() &&
-      candidate.companySlug.replace(/-peru$/, '') === job.companySlug.replace(/-peru$/, '');
-    const relevance = (candidate: Job) =>
-      2 * Number(job.category !== 'other' && candidate.category === job.category) +
-      Number(Boolean(job.city) && candidate.city === job.city);
-
-    return pool
-      .filter(candidate => candidate.id !== job.id && !sameListing(candidate))
-      .sort((a, b) => relevance(b) - relevance(a))
-      .slice(0, n);
-  }
-  return pool
-    .filter((j) => j.id !== job.id && (j.country === job.country || j.category === job.category))
-    .slice(0, n);
-}
-
 export function formatSalary(job: Job): string | null {
   return formatSalaryValue(job.salary);
 }

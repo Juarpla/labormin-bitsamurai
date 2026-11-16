@@ -4,6 +4,7 @@ import { basename, join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { catalogWrangler, sqlText as quote } from './wrangler.mjs';
 import { isExpired } from '../../src/lib/job-policy.mjs';
+import { buildJobRecommendations } from '../../src/lib/job-recommendations.mjs';
 
 const args = process.argv.slice(2).filter(arg => arg !== '--');
 const remote = args.includes('--remote');
@@ -39,6 +40,10 @@ try {
   const now = new Date();
   const at = now.toISOString();
   const jobs = currentRows.filter(row => (!row.metadata.closesAt || row.metadata.closesAt > at) && !isExpired(row.payload.job, now));
+  if (jobs.some(row => !row.payload.recommendations)) {
+    const recommendations = buildJobRecommendations(jobs.map(row => row.payload.job), now);
+    for (const row of jobs) row.payload.recommendations = recommendations[row.slug];
+  }
   const kinds = jobsOnly ? ['jobs'] : ['jobs', 'training', 'events', 'guides'];
   const statements = [];
   const revision = quote(sourceRevision);
@@ -73,13 +78,15 @@ try {
   ).join(',')},
     (SELECT COUNT(*) FROM catalog_jobs WHERE json_extract(metadata, '$.type') = 'archived') AS archived,
     (SELECT COUNT(*) FROM catalog_jobs WHERE json_extract(metadata, '$.type') = 'internship') AS internships,
+    (SELECT COUNT(*) FROM catalog_jobs WHERE json_type(payload, '$.recommendations') IS NOT 'object') AS missing_recommendations,
     (SELECT COUNT(*) FROM catalog_jobs WHERE json_extract(metadata, '$.closesAt') <= ${quote(at)}) AS expired;`);
   const [stored] = wrangler.query("SELECT source_revision FROM catalog_ready WHERE name = 'jobs';");
   const superseded = stored?.source_revision > sourceRevision;
   if (superseded) {
     console.log('D1 ya tiene un feed más reciente; se conservó esa edición.');
   } else if (!counts || stored?.source_revision !== sourceRevision || counts.jobs !== jobs.length ||
-    counts.archived !== 0 || counts.expired !== 0 || kinds.some(kind => kind !== 'jobs' && !counts[kind])) {
+    counts.archived !== 0 || counts.expired !== 0 || counts.missing_recommendations !== 0 ||
+    kinds.some(kind => kind !== 'jobs' && !counts[kind])) {
     throw new Error('La verificación de D1 no coincide con la importación.');
   }
   console.log('Importación confirmada por D1:', counts);

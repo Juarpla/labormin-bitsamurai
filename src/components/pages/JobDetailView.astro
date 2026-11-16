@@ -13,19 +13,18 @@ import { analysisContext, analysisSignature, jobAnalysis } from '../../lib/job-a
 import cachedGuidance from '../../data/job-guidance.json';
 import JobCard from '../JobCard.astro';
 import { useTranslations, type Locale } from '../../lib/i18n';
-import { formatSalary, formatDate, relatedJobs, titleFor, isAutoTranslated, clearViewFor, locationLine, categoryLabel } from '../../lib/jobs';
+import { formatSalary, formatDate, titleFor, isAutoTranslated, clearViewFor, locationLine, categoryLabel } from '../../lib/jobs';
 
 interface Props {
   job: Job;
   locale?: Locale;
-  relatedPool: Job[];
+  related: Job[];
   guidancePool: Job[];
   clearView?: ReturnType<typeof clearViewFor>;
   now: Date;
 }
-const { job, relatedPool, guidancePool, clearView, now, locale = 'es' } = Astro.props;
+const { job, related, guidancePool, clearView, now, locale = 'es' } = Astro.props;
 const t = useTranslations(locale);
-const related = relatedJobs(job, 3, relatedPool);
 const backPath = job.internship ? '/practicas' : '/jobs';
 const backHref = locale === 'es' ? backPath : `/${locale}${backPath}`;
 const { sections } = clearView ?? clearViewFor(job);

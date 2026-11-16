@@ -3,8 +3,14 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import cloudflare from '@astrojs/cloudflare';
 import sitemap from '@astrojs/sitemap';
+import feed from './src/data/jobs.json' with { type: 'json' };
+import overrides from './src/data/overrides.json' with { type: 'json' };
+import { buildJobRecommendations } from './src/lib/job-recommendations.mjs';
 
 const buildTime = new Date();
+const recommendations = buildJobRecommendations(
+  feed.jobs.filter(job => !Object.hasOwn(overrides.exclude ?? {}, job.id)), buildTime,
+);
 
 // https://astro.build/config
 export default defineConfig({
@@ -37,7 +43,10 @@ export default defineConfig({
   vite: {
     // workerd may return the Unix epoch while evaluating modules. Fix the
     // catalogue clock in the build process and use it on every static route.
-    define: { 'import.meta.env.LABORMIN_BUILD_TIME': JSON.stringify(buildTime.toISOString()) },
+    define: {
+      'import.meta.env.LABORMIN_BUILD_TIME': JSON.stringify(buildTime.toISOString()),
+      'import.meta.env.LABORMIN_JOB_RECOMMENDATIONS': JSON.stringify(recommendations),
+    },
     plugins: [tailwindcss()],
   },
 });
