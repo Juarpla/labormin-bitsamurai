@@ -2,6 +2,7 @@ import { env } from 'cloudflare:workers';
 import { generatedAt } from './jobs';
 import feed from '../data/jobs.json';
 import { jobExpiration } from './job-policy.mjs';
+import { cachedCatalogSelection } from './catalog-cache.mjs';
 import { isActiveJobRow, snapshotRows, type CatalogEntry, type CatalogKind, type CatalogRow, type JobMeta } from './catalog-data';
 
 // This server-side module owns all access to the Worker binding.
@@ -77,8 +78,6 @@ async function readCatalog<K extends CatalogKind>(kind: K, { jobType, activeAt, 
     }
     if (kind === 'jobs' && activeAt) {
       clauses.push("json_extract(metadata, '$.type') IN ('job', 'internship')");
-      clauses.push("(json_extract(metadata, '$.closesAt') IS NULL OR json_extract(metadata, '$.closesAt') > ?)");
-      params.push(activeAt);
     }
     if (center) {
       clauses.push('center_slug = ?');
@@ -87,12 +86,17 @@ async function readCatalog<K extends CatalogKind>(kind: K, { jobType, activeAt, 
     if (indexable) clauses.push("json_extract(metadata, '$.indexable') = 1");
     const where = clauses.length ? ` WHERE ${clauses.join(' AND ')}` : '';
     const fields = kind === 'training' ? centerMetadata : 'metadata';
-    const selection = database.prepare(`SELECT slug, ${fields} FROM catalog_${kind}${where} ORDER BY position, slug`);
-    const { results } = await (params.length ? selection.bind(...params) : selection).all<Pick<StoredRow, 'slug' | 'metadata'>>();
-    const entries = results.map(row => ({
-      slug: row.slug,
-      metadata: kind === 'jobs' && revision === generatedAt ? currentJobMetadata(row.slug, JSON.parse(row.metadata)) : JSON.parse(row.metadata),
-    })) as CatalogEntry<K>[];
+    const results: Pick<StoredRow, 'slug' | 'metadata'>[] = await cachedCatalogSelection(
+      [kind, revision, scope || null, Boolean(activeAt), center ?? null, Boolean(indexable)],
+      async () => {
+        const selection = database.prepare(`SELECT slug, ${fields} FROM catalog_${kind}${where} ORDER BY position, slug`);
+        return (await (params.length ? selection.bind(...params) : selection).all<Pick<StoredRow, 'slug' | 'metadata'>>()).results;
+      },
+    );
+    const entries = results.map(row => {
+      const metadata = JSON.parse(row.metadata);
+      return { slug: row.slug, metadata: kind === 'jobs' && revision === generatedAt ? currentJobMetadata(row.slug, metadata) : metadata };
+    }).filter(({ metadata }) => kind !== 'jobs' || !activeAt || isActiveJobRow(metadata, activeAt)) as CatalogEntry<K>[];
     return {
       entries,
       revision,
