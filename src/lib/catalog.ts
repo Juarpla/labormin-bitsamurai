@@ -96,17 +96,19 @@ export async function openJobDetail(slug: string, now: Date) {
   const guidance = (plan?.guidance ?? []).filter(current).map(match => match.slug);
   const related = (plan?.related ?? []).filter(current).slice(0, 3).map(match => match.slug);
   const slugs = [...new Set([...guidance, ...related])];
+  // Look up the short list by slug. Adding the type condition here can make
+  // SQLite choose the catalog-wide type index. Check the type on the few rows returned.
   const loaded = source && stored && slugs.length ? await tryDatabaseRead('jobs', () => source.database.prepare(
     `SELECT slug, metadata, payload FROM catalog_jobs WHERE slug IN (${slugs.map(() => '?').join(',')})
-      AND json_extract(metadata, '$.type') IN ('job', 'internship')
       AND (json_extract(metadata, '$.closesAt') IS NULL OR json_extract(metadata, '$.closesAt') > ?)`,
   ).bind(...slugs, at).all<StoredRow>()) : undefined;
   const matches = new Map<string, Job>();
   if (loaded) {
     for (const row of loaded.results) {
       const match = (JSON.parse(row.payload) as JobRecord).job;
-      const live = source?.revision === generatedAt ? currentJobMetadata(row.slug, JSON.parse(row.metadata)) : undefined;
-      if (match && (!live || isActiveJobRow(live, at)) && !isExpired(match, now)) matches.set(row.slug, match);
+      const metadata = JSON.parse(row.metadata) as JobMeta;
+      const live = source?.revision === generatedAt ? currentJobMetadata(row.slug, metadata) : metadata;
+      if (match && isActiveJobRow(live, at) && !isExpired(match, now)) matches.set(row.slug, match);
     }
   } else {
     for (const slug of slugs) {
