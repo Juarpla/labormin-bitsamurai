@@ -3986,14 +3986,6 @@
     "reason": "unavailable"
   },
   {
-    "slug": "manpower-ejecutivo-a-de-cuenta-sector-mineria-region-norte-trujillo-ref-109039-p",
-    "id": "ct-27E6C31C9B65F97D61373E686DCF3405",
-    "firstReferenceAt": "2026-11-04",
-    "publishedAt": "2026-11-04",
-    "validThrough": "2027-01-03",
-    "reason": "unavailable"
-  },
-  {
     "slug": "stracon-peru-s-a-operador-de-montacarga-proyecto-minero-cusco-pe-ct-b39a7a5b667e",
     "id": "ct-B39A7A5B667EC39E61373E686DCF3405",
     "firstReferenceAt": "2026-11-04",
@@ -4063,7 +4055,7 @@
     "slug": "grupo-tawa-asistente-administrativo-sector-minero-regimen-14x7-cusco-pe-nv-bmpe-",
     "id": "nv-BMPE-1118493281",
     "firstReferenceAt": "2026-10-22",
-    "reason": "unavailable"
+    "reason": "stale"
   },
   {
     "slug": "manpower-ingeniero-a-de-control-de-proyectos-regimen-5x2-cajamarca-ref-112162-pe",
@@ -4302,22 +4294,6 @@
     "reason": "expired"
   },
   {
-    "slug": "zamine-service-peru-sac-tecnico-de-mantenimiento-cusco-maquinaria-pesada-a2b-min",
-    "id": "ct-F0B932808C864DA161373E686DCF3405",
-    "firstReferenceAt": "2026-11-05",
-    "publishedAt": "2026-11-05",
-    "validThrough": "2027-01-04",
-    "reason": "unavailable"
-  },
-  {
-    "slug": "compania-minera-bateas-s-a-c-ayudante-civil-peon-mineria-regimen-14x7-en-cayllom",
-    "id": "ct-0E04687C81BDE7E461373E686DCF3405",
-    "firstReferenceAt": "2026-11-05",
-    "publishedAt": "2026-11-05",
-    "validThrough": "2027-01-04",
-    "reason": "unavailable"
-  },
-  {
     "slug": "herts-servicios-integrales-ingeniero-de-seguridad-con-2-anos-de-experiencia-en-m",
     "id": "ct-C5050FFE25D2AA7B61373E686DCF3405",
     "firstReferenceAt": "2026-11-05",
@@ -4339,14 +4315,6 @@
     "firstReferenceAt": "2026-11-05",
     "publishedAt": "2026-11-05",
     "validThrough": "2027-01-04",
-    "reason": "unavailable"
-  },
-  {
-    "slug": "overall-strategy-auxiliar-de-almacen-almacenero-rubro-minero-transporte-pe-ct-fd",
-    "id": "ct-FD615878B82C41C161373E686DCF3405",
-    "firstReferenceAt": "2026-11-04",
-    "publishedAt": "2026-11-04",
-    "validThrough": "2027-01-03",
     "reason": "unavailable"
   },
   {
@@ -4403,30 +4371,6 @@
     "firstReferenceAt": "2026-10-29",
     "publishedAt": "2026-10-29",
     "validThrough": "2026-12-28",
-    "reason": "unavailable"
-  },
-  {
-    "slug": "resemin-ingeniero-residente-de-mantenimiento-equipos-trackless-mineria-subterran",
-    "id": "ct-844F7EF79617A26261373E686DCF3405",
-    "firstReferenceAt": "2026-10-28",
-    "publishedAt": "2026-10-28",
-    "validThrough": "2026-12-27",
-    "reason": "unavailable"
-  },
-  {
-    "slug": "opermin-jefe-de-guardia-ingeniero-de-minas-mineria-subterranea-pe-ct-17c2bf20b87",
-    "id": "ct-17C2BF20B87AFC2261373E686DCF3405",
-    "firstReferenceAt": "2026-10-28",
-    "publishedAt": "2026-10-28",
-    "validThrough": "2026-12-27",
-    "reason": "unavailable"
-  },
-  {
-    "slug": "enaex-asistente-de-control-de-calidad-rubro-minero-huacho-pe-ct-4a7c98d77fe5a659",
-    "id": "ct-4A7C98D77FE5A65961373E686DCF3405",
-    "firstReferenceAt": "2026-10-28",
-    "publishedAt": "2026-10-28",
-    "validThrough": "2026-12-27",
     "reason": "unavailable"
   },
   {
@@ -4503,7 +4447,7 @@
     "firstReferenceAt": "2026-10-22",
     "publishedAt": "2026-10-22",
     "validThrough": "2026-12-21",
-    "reason": "unavailable"
+    "reason": "stale"
   },
   {
     "slug": "sodexo-peru-s-a-c-auxiliar-general-campamento-minero-en-junin-planilla-completa-",
@@ -4675,14 +4619,6 @@
   {
     "slug": "tecniflow-ingeniero-electricista-proyecto-minero-sur-del-peru-pe-ct-4c4a86fb07f8",
     "id": "ct-4C4A86FB07F8010B61373E686DCF3405",
-    "firstReferenceAt": "2026-11-13",
-    "publishedAt": "2026-11-13",
-    "validThrough": "2027-01-12",
-    "reason": "unavailable"
-  },
-  {
-    "slug": "recuperada-sociedad-anonima-cerrada-recuperada-s-a-c-operario-de-limpieza-y-lava",
-    "id": "ct-19D9E082B70AFDB461373E686DCF3405",
     "firstReferenceAt": "2026-11-13",
     "publishedAt": "2026-11-13",
     "validThrough": "2027-01-12",
@@ -5092,7 +5028,7 @@
     "firstReferenceAt": "2026-10-22",
     "publishedAt": "2026-10-22",
     "validThrough": "2026-12-21",
-    "reason": "unavailable"
+    "reason": "stale"
   },
   {
     "slug": "seche-group-peru-conductor-ayudante-a2b-u-minera-regimen-14x7-pe-ct-9c3a80bdd060",
@@ -5100,7 +5036,7 @@
     "firstReferenceAt": "2026-10-22",
     "publishedAt": "2026-10-22",
     "validThrough": "2026-12-21",
-    "reason": "unavailable"
+    "reason": "stale"
   },
   {
     "slug": "grupo-tawa-ayudante-de-planta-operario-callao-pe-ct-81b0dbf8eb5b4e7e61373",
@@ -5108,7 +5044,7 @@
     "firstReferenceAt": "2026-10-22",
     "publishedAt": "2026-10-22",
     "validThrough": "2026-12-21",
-    "reason": "unavailable"
+    "reason": "stale"
   },
   {
     "slug": "grupo-tawa-operario-de-produccion-callao-pe-ct-6c7a4e8f1438248261373",
@@ -5116,7 +5052,7 @@
     "firstReferenceAt": "2026-10-22",
     "publishedAt": "2026-10-22",
     "validThrough": "2026-12-21",
-    "reason": "unavailable"
+    "reason": "stale"
   },
   {
     "slug": "helpnet-peru-s-a-c-operador-de-volquete-mineria-subterranea-socavon-pe-nv-bmpe-1",
@@ -5176,14 +5112,6 @@
     "firstReferenceAt": "2026-11-14",
     "publishedAt": "2026-11-14",
     "validThrough": "2027-01-13",
-    "reason": "unavailable"
-  },
-  {
-    "slug": "grupo-tawa-analista-senior-de-compras-paracas-suplencia-pe-ct-de9d3df05364a79561",
-    "id": "ct-DE9D3DF05364A79561373E686DCF3405",
-    "firstReferenceAt": "2026-11-13",
-    "publishedAt": "2026-11-13",
-    "validThrough": "2027-01-12",
     "reason": "unavailable"
   },
   {
@@ -5426,7 +5354,7 @@
     "firstReferenceAt": "2026-10-22",
     "publishedAt": "2026-10-22",
     "validThrough": "2026-12-21",
-    "reason": "unavailable"
+    "reason": "stale"
   },
   {
     "slug": "grupo-tawa-planificador-de-proyectos-sector-minero-regimen-14x7-cusco-pe-ct-cca9",
@@ -5836,7 +5764,7 @@
     "firstReferenceAt": "2026-10-22",
     "publishedAt": "2026-10-22",
     "validThrough": "2026-12-21",
-    "reason": "unavailable"
+    "reason": "stale"
   },
   {
     "slug": "p-s-produccion-y-servicios-generales-srl-supervisor-de-operaciones-mecanico-o-el",
@@ -6017,14 +5945,6 @@
     "reason": "unavailable"
   },
   {
-    "slug": "trizcon-sac-planner-de-construccion-pe-ct-4efdaa467972a6a461373",
-    "id": "ct-4EFDAA467972A6A461373E686DCF3405",
-    "firstReferenceAt": "2026-11-17",
-    "publishedAt": "2026-11-17",
-    "validThrough": "2027-01-16",
-    "reason": "unavailable"
-  },
-  {
     "slug": "p-a-peru-s-a-c-coordinador-logistico-proyectos-electricos-pe-ct-ac04f05eed399c1b",
     "id": "ct-AC04F05EED399C1B61373E686DCF3405",
     "firstReferenceAt": "2026-11-17",
@@ -6052,14 +5972,6 @@
     "firstReferenceAt": "2026-11-16",
     "publishedAt": "2026-11-16",
     "validThrough": "2027-01-15",
-    "reason": "unavailable"
-  },
-  {
-    "slug": "tecnifajas-s-a-ejecutivo-de-ventas-industriales-sede-lima-pe-ct-bba71ca2a97cd194",
-    "id": "ct-BBA71CA2A97CD19461373E686DCF3405",
-    "firstReferenceAt": "2026-11-13",
-    "publishedAt": "2026-11-13",
-    "validThrough": "2027-01-12",
     "reason": "unavailable"
   },
   {
@@ -6235,14 +6147,6 @@
     "reason": "unavailable"
   },
   {
-    "slug": "clinica-ocupacional-medcorp-psicologo-a-ocupacional-con-experiencia-en-unidades-",
-    "id": "ct-3F9994EF0D4DE5A561373E686DCF3405",
-    "firstReferenceAt": "2026-11-05",
-    "publishedAt": "2026-11-05",
-    "validThrough": "2027-01-04",
-    "reason": "unavailable"
-  },
-  {
     "slug": "iticsa-chem-masters-del-peru-s-a-operario-de-almacen-de-producto-terminado-huach",
     "id": "ct-64FF3EBD338CD31E61373E686DCF3405",
     "firstReferenceAt": "2026-11-03",
@@ -6283,14 +6187,6 @@
   {
     "slug": "neuma-peru-contratistas-generales-mecanico-llantero-o-t-r-minera-antamina-con-br",
     "id": "ct-061F1A992B1C018961373E686DCF3405",
-    "firstReferenceAt": "2026-11-02",
-    "publishedAt": "2026-11-02",
-    "validThrough": "2027-01-01",
-    "reason": "unavailable"
-  },
-  {
-    "slug": "seche-group-peru-tecnico-electromecanico-de-montaje-14x7-u-m-quellaveco-pe-ct-7e",
-    "id": "ct-7E50E79A0738C66F61373E686DCF3405",
     "firstReferenceAt": "2026-11-02",
     "publishedAt": "2026-11-02",
     "validThrough": "2027-01-01",
@@ -6348,7 +6244,7 @@
     "slug": "grupo-tawa-supervisor-de-seguridad-sector-minero-regimen-14x7-cusco-pe-nv-bmpe-1",
     "id": "nv-BMPE-1118493264",
     "firstReferenceAt": "2026-10-22",
-    "reason": "unavailable"
+    "reason": "stale"
   },
   {
     "slug": "compania-de-minas-buenaventura-14-lima-jefe-de-turno-mina-unidad-minera-pe-csb-c",
@@ -6532,7 +6428,7 @@
     "firstReferenceAt": "2026-11-13",
     "publishedAt": "2026-11-13",
     "validThrough": "2026-11-20",
-    "reason": "unavailable"
+    "reason": "expired"
   },
   {
     "slug": "apucorp-residente-proyecto-minero-zona-norte-pe-nv-bmpe-1118607175",
@@ -6703,14 +6599,6 @@
     "reason": "unavailable"
   },
   {
-    "slug": "tecnomin-data-ingeniero-de-calidad-unidad-minera-chungar-pe-ct-9207fb1f051e82c16",
-    "id": "ct-9207FB1F051E82C161373E686DCF3405",
-    "firstReferenceAt": "2026-10-30",
-    "publishedAt": "2026-10-30",
-    "validThrough": "2026-12-29",
-    "reason": "unavailable"
-  },
-  {
     "slug": "compania-minera-las-bravas-geologo-senior-de-modelamiento-pe-nv-bmpe-1118502334",
     "id": "nv-BMPE-1118502334",
     "firstReferenceAt": "2026-10-29",
@@ -6786,7 +6674,7 @@
     "slug": "consorcio-minero-horizonte-s-a-jefe-de-seccion-mina-pe-nv-bmpe-1118493156",
     "id": "nv-BMPE-1118493156",
     "firstReferenceAt": "2026-10-22",
-    "reason": "unavailable"
+    "reason": "stale"
   },
   {
     "slug": "mantenimiento-e-ingenieria-industrial-s-r-l-tecnico-enn-hvac-unidad-cajamarca-re",
@@ -6990,6 +6878,412 @@
     "slug": "volcan-compania-minera-s-a-a-practicante-de-ingenieria-y-planeamiento-pe-nv-bmpe",
     "id": "nv-BMPE-1118489809",
     "firstReferenceAt": "2026-10-21",
+    "reason": "stale"
+  },
+  {
+    "slug": "kinross-gold-corporation-ingeniero-a-planificacion-mina-global-295051",
+    "id": "cm-295051",
+    "firstReferenceAt": "2026-11-19",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "mantenimiento-e-ingenieria-industrial-s-r-l-supervisor-de-mantenimiento-y-planif",
+    "id": "ct-F52D93FE9607437161373E686DCF3405",
+    "firstReferenceAt": "2026-11-18",
+    "publishedAt": "2026-11-18",
+    "validThrough": "2027-01-17",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "promap-s-a-c-supervisor-civil-y-obras-mecanico-ingeniero-civil-pe-ct-2aa535fe89b",
+    "id": "ct-2AA535FE89BA2EE761373E686DCF3405",
+    "firstReferenceAt": "2026-11-18",
+    "publishedAt": "2026-11-18",
+    "validThrough": "2027-01-17",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "compania-de-minas-buenaventura-04-arequipa-ingeniero-jr-de-planeamiento-unidad-m",
+    "id": "csb-compania-de--1331338962",
+    "firstReferenceAt": "2026-11-17",
+    "publishedAt": "2026-11-17",
+    "validThrough": "2026-12-01",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "unidad-minera-contonga-biologo-para-operaciones-mineras-pe-nv-bmpe-1118665659",
+    "id": "nv-BMPE-1118665659",
+    "firstReferenceAt": "2026-11-17",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "m-h-group-practicante-de-tesoreria-pe-ct-960e0222e4c7024b61373",
+    "id": "ct-960E0222E4C7024B61373E686DCF3405",
+    "firstReferenceAt": "2026-11-16",
+    "publishedAt": "2026-11-16",
+    "validThrough": "2027-01-15",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "level-solutions-e-i-r-l-asistente-comercial-junior-villa-el-salvador-pe-ct-04668",
+    "id": "ct-0466808D095E886261373E686DCF3405",
+    "firstReferenceAt": "2026-11-14",
+    "publishedAt": "2026-11-14",
+    "validThrough": "2027-01-13",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "overall-strategy-auxiliar-de-almacen-almacenero-rubro-minero-transporte-pe-ct-b9",
+    "id": "ct-B99B2E7F9F61825E61373E686DCF3405",
+    "firstReferenceAt": "2026-11-13",
+    "publishedAt": "2026-11-13",
+    "validThrough": "2027-01-12",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "optimus-ayudantes-perforistas-mineria-pe-ct-c91f1d2115410cd861373",
+    "id": "ct-C91F1D2115410CD861373E686DCF3405",
+    "firstReferenceAt": "2026-11-12",
+    "publishedAt": "2026-11-12",
+    "validThrough": "2027-01-11",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "servicios-y-consultoria-corporativa-s-a-c-analista-de-compensaciones-y-people-an",
+    "id": "ct-A1B31089EB1423CB61373E686DCF3405",
+    "firstReferenceAt": "2026-11-12",
+    "publishedAt": "2026-11-12",
+    "validThrough": "2027-01-11",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "zicsa-contratistas-generales-s-a-operador-de-volquete-mineria-subterranea-socavo",
+    "id": "ct-164AE81EBCA1AB4761373E686DCF3405",
+    "firstReferenceAt": "2026-11-12",
+    "publishedAt": "2026-11-12",
+    "validThrough": "2027-01-11",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "marco-peruana-tecnico-de-mangueras-chinalco-pe-ct-bd673cc6ab9714df61373",
+    "id": "ct-BD673CC6AB9714DF61373E686DCF3405",
+    "firstReferenceAt": "2026-11-12",
+    "publishedAt": "2026-11-12",
+    "validThrough": "2027-01-11",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "expertise-peru-supervisor-tecnico-instrumentista-sector-minero-moquegua-pe-ct-d9",
+    "id": "ct-D9744C72FB68E9C161373E686DCF3405",
+    "firstReferenceAt": "2026-11-11",
+    "publishedAt": "2026-11-11",
+    "validThrough": "2027-01-10",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "p-a-peru-s-a-c-contador-proyecto-vial-pe-ct-75fe54697e7e8af461373",
+    "id": "ct-75FE54697E7E8AF461373E686DCF3405",
+    "firstReferenceAt": "2026-11-11",
+    "publishedAt": "2026-11-11",
+    "validThrough": "2027-01-10",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "nexa-resources-ingeniero-de-planeamiento-senior-corto-plazo-el-porvenir-pe-12863",
+    "id": "gupy-12863072",
+    "firstReferenceAt": "2026-11-10",
+    "publishedAt": "2026-11-10",
+    "validThrough": "2026-12-21",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "sodexo-peru-s-a-c-auxiliar-general-para-campamento-minero-en-ayacucho-planilla-c",
+    "id": "ct-123D226B1A57F76661373E686DCF3405",
+    "firstReferenceAt": "2026-11-10",
+    "publishedAt": "2026-11-10",
+    "validThrough": "2027-01-09",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "minera-shouxin-peru-s-a-abogado-laboralista-marcona-pe-ct-63ae74d7d60a3c6561373",
+    "id": "ct-63AE74D7D60A3C6561373E686DCF3405",
+    "firstReferenceAt": "2026-11-09",
+    "publishedAt": "2026-11-09",
+    "validThrough": "2027-01-08",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "minera-chinalco-practicante-de-licencias-y-permisos-pe-nv-bmpe-1118510590",
+    "id": "nv-BMPE-1118510590",
+    "firstReferenceAt": "2026-11-05",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "minera-chinalco-jefe-de-ingenieria-civil-y-estructural-its-pe-nv-bmpe-1118511274",
+    "id": "nv-BMPE-1118511274",
+    "firstReferenceAt": "2026-11-05",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "minera-chinalco-jefe-de-ingenieria-electrica-its-pe-nv-bmpe-1118510992",
+    "id": "nv-BMPE-1118510992",
+    "firstReferenceAt": "2026-11-05",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "confipetrol-andina-s-a-tecnicos-mecanicos-para-mineria-moquegua-regimen-14x7-pe-",
+    "id": "ct-C70D8DD1BDD7477C61373E686DCF3405",
+    "firstReferenceAt": "2026-11-04",
+    "publishedAt": "2026-11-04",
+    "validThrough": "2027-01-03",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "ambipar-chofer-ayudante-a2b-regimen-6-x-2-proyecto-minero-arequipa-pe-ct-c24aa18",
+    "id": "ct-C24AA18F870372F361373E686DCF3405",
+    "firstReferenceAt": "2026-11-04",
+    "publishedAt": "2026-11-04",
+    "validThrough": "2027-01-03",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "equans-peru-supervisor-de-izaje-lltt-proyecto-minero-pe-ct-58719003850b9a3f61373",
+    "id": "ct-58719003850B9A3F61373E686DCF3405",
+    "firstReferenceAt": "2026-11-04",
+    "publishedAt": "2026-11-04",
+    "validThrough": "2027-01-03",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "comsertran-s-a-c-tecnicos-especialistas-en-refrigeracion-y-hvac-pe-ct-bf44667315",
+    "id": "ct-BF4466731500BB6F61373E686DCF3405",
+    "firstReferenceAt": "2026-11-03",
+    "publishedAt": "2026-11-03",
+    "validThrough": "2027-01-02",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "metasil-sac-ingeniero-de-planificacion-y-control-pe-ct-2ddea7de2867050061373",
+    "id": "ct-2DDEA7DE2867050061373E686DCF3405",
+    "firstReferenceAt": "2026-11-03",
+    "publishedAt": "2026-11-03",
+    "validThrough": "2027-01-02",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "chamba-talent-sociedad-anonima-cerrada-electricista-automotriz-trujillo-pe-ct-19",
+    "id": "ct-19D05E73E4A521AD61373E686DCF3405",
+    "firstReferenceAt": "2026-11-03",
+    "publishedAt": "2026-11-03",
+    "validThrough": "2027-01-02",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "oa-people-staffing-e-i-r-l-ejecutivo-comercial-b2b-remoto-sector-educativo-pe-ct",
+    "id": "ct-32C9F58DF7EAB58361373E686DCF3405",
+    "firstReferenceAt": "2026-11-02",
+    "publishedAt": "2026-11-02",
+    "validThrough": "2027-01-01",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "overall-strategy-conductor-de-camioneta-4x4-temporal-talara-piura-pe-ct-368d34e2",
+    "id": "ct-368D34E27970AAAF61373E686DCF3405",
+    "firstReferenceAt": "2026-11-02",
+    "publishedAt": "2026-11-02",
+    "validThrough": "2027-01-01",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "san-martin-contratistas-generales-s-a-operador-de-cargador-frontal-mineria-14x7-",
+    "id": "ct-9A0E2915236A617A61373E686DCF3405",
+    "firstReferenceAt": "2026-10-27",
+    "publishedAt": "2026-10-27",
+    "validThrough": "2026-12-26",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "sig-servicios-generales-eirl-panadero-a-campamento-minero-pe-ct-c1600357ed1d1f61",
+    "id": "ct-C1600357ED1D1F6161373E686DCF3405",
+    "firstReferenceAt": "2026-10-27",
+    "publishedAt": "2026-10-27",
+    "validThrough": "2026-12-26",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "enaex-operador-de-planta-rubro-minero-huaura-pe-ct-34ff58901489caa961373",
+    "id": "ct-34FF58901489CAA961373E686DCF3405",
+    "firstReferenceAt": "2026-10-27",
+    "publishedAt": "2026-10-27",
+    "validThrough": "2026-12-26",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "hudbay-peru-operador-de-mina-iv-equipo-pesado-tractor-sobre-ruedas-cat-824k-854k",
+    "id": "nv-BMPE-1118498871",
+    "firstReferenceAt": "2026-10-27",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "geoblast-sac-subgerente-a-tecnico-comercial-con-experiencia-en-sector-minero-pe-",
+    "id": "ct-BC30E13B7ABC126261373E686DCF3405",
+    "firstReferenceAt": "2026-10-23",
+    "publishedAt": "2026-10-23",
+    "validThrough": "2026-12-22",
+    "reason": "unavailable"
+  },
+  {
+    "slug": "tumi-contratistas-mineros-sac-operario-de-infraestructurada-exp-gasfitero-y-alba",
+    "id": "ct-B32C885AAC14FD4161373E686DCF3405",
+    "firstReferenceAt": "2026-10-22",
+    "publishedAt": "2026-10-22",
+    "validThrough": "2026-12-21",
+    "reason": "stale"
+  },
+  {
+    "slug": "minera-shouxin-peru-s-a-jefe-de-gestion-de-activos-e-inversiones-marcona-pe-ct-0",
+    "id": "ct-05FEC951E04ED25161373E686DCF3405",
+    "firstReferenceAt": "2026-10-22",
+    "publishedAt": "2026-10-22",
+    "validThrough": "2026-12-21",
+    "reason": "stale"
+  },
+  {
+    "slug": "zicsa-geomecanico-mineria-subterranea-pe-nv-bmpe-1118493147",
+    "id": "nv-BMPE-1118493147",
+    "firstReferenceAt": "2026-10-22",
+    "reason": "stale"
+  },
+  {
+    "slug": "manpowergroup-peru-supervisor-de-mantenimiento-mineria-pe-nv-bmpe-1118492806",
+    "id": "nv-BMPE-1118492806",
+    "firstReferenceAt": "2026-10-22",
+    "reason": "stale"
+  },
+  {
+    "slug": "zicsa-supervisor-de-mantenimiento-mineria-subterranea-pe-nv-bmpe-1118493199",
+    "id": "nv-BMPE-1118493199",
+    "firstReferenceAt": "2026-10-22",
+    "reason": "stale"
+  },
+  {
+    "slug": "rcs-capital-humano-ingeniero-de-seguridad-mineria-subterranea-pe-nv-bmpe-1118492",
+    "id": "nv-BMPE-1118492367",
+    "firstReferenceAt": "2026-10-22",
+    "reason": "stale"
+  },
+  {
+    "slug": "grupo-tawa-asistente-de-logistica-mineria-14x7-cusco-pe-nv-bmpe-1118493261",
+    "id": "nv-BMPE-1118493261",
+    "firstReferenceAt": "2026-10-22",
+    "reason": "stale"
+  },
+  {
+    "slug": "gestion-minera-integral-analista-senior-de-gestion-humana-mineria-pe-nv-bmpe-111",
+    "id": "nv-BMPE-1118492255",
+    "firstReferenceAt": "2026-10-22",
+    "reason": "stale"
+  },
+  {
+    "slug": "confidencial-operador-de-volquete-mineria-subterranea-socavon-pe-nv-bmpe-1118492",
+    "id": "nv-BMPE-1118492193",
+    "firstReferenceAt": "2026-10-22",
+    "reason": "stale"
+  },
+  {
+    "slug": "bureau-veritas-del-peru-sa-jefe-de-proyecto-lider-del-servicio-mineria-pe-nv-bmp",
+    "id": "nv-BMPE-1118492165",
+    "firstReferenceAt": "2026-10-22",
+    "reason": "stale"
+  },
+  {
+    "slug": "sodexo-peru-asistente-de-recursos-y-seleccion-temporal-sector-mineria-pe-nv-bmpe",
+    "id": "nv-BMPE-1118493381",
+    "firstReferenceAt": "2026-10-22",
+    "reason": "stale"
+  },
+  {
+    "slug": "ahp-headhunting-ingeniero-de-productividad-y-tecnologia-minera-pe-nv-bmpe-111849",
+    "id": "nv-BMPE-1118493001",
+    "firstReferenceAt": "2026-10-22",
+    "reason": "stale"
+  },
+  {
+    "slug": "bureau-veritas-del-peru-sa-inspector-de-operaciones-sin-experiencia-minera-alpay",
+    "id": "nv-BMPE-1118493341",
+    "firstReferenceAt": "2026-10-22",
+    "reason": "stale"
+  },
+  {
+    "slug": "ferreyros-sa-tecnico-mecanico-operacion-minera-zona-sur-pe-nv-bmpe-1118492397",
+    "id": "nv-BMPE-1118492397",
+    "firstReferenceAt": "2026-10-22",
+    "reason": "stale"
+  },
+  {
+    "slug": "grupo-tawa-planificador-de-proyectos-sector-minero-regimen-14x7-cusco-pe-nv-bmpe",
+    "id": "nv-BMPE-1118493258",
+    "firstReferenceAt": "2026-10-22",
+    "reason": "stale"
+  },
+  {
+    "slug": "flores-group-sac-ingeniero-ssoma-hse-para-sector-electrico-minero-y-aeroportuari",
+    "id": "nv-BMPE-1118491577",
+    "firstReferenceAt": "2026-10-22",
+    "reason": "stale"
+  },
+  {
+    "slug": "grupo-divemotor-supervisor-de-ssoma-viajes-a-proyectos-mineros-surco-trek-rental",
+    "id": "nv-BMPE-1118491972",
+    "firstReferenceAt": "2026-10-22",
+    "reason": "stale"
+  },
+  {
+    "slug": "grupo-tawa-supervisor-de-servicios-tecnicos-maquinaria-pesada-sector-minero-regi",
+    "id": "nv-BMPE-1118493266",
+    "firstReferenceAt": "2026-10-22",
+    "reason": "stale"
+  },
+  {
+    "slug": "volcan-compania-minera-s-a-a-geologo-de-mina-pe-nv-bmpe-1118493286",
+    "id": "nv-BMPE-1118493286",
+    "firstReferenceAt": "2026-10-22",
+    "reason": "stale"
+  },
+  {
+    "slug": "compania-minera-kolpa-s-a-practicante-profesional-de-planeamiento-mina-pe-nv-bmp",
+    "id": "nv-BMPE-1118493385",
+    "firstReferenceAt": "2026-10-22",
+    "reason": "stale"
+  },
+  {
+    "slug": "alpayana-sac-ingeniero-de-planeamiento-mina-um-yauricocha-pe-nv-bmpe-1118491651",
+    "id": "nv-BMPE-1118491651",
+    "firstReferenceAt": "2026-10-22",
+    "reason": "stale"
+  },
+  {
+    "slug": "consorcio-minero-horizonte-s-a-especialista-de-costos-y-control-de-gestion-pe-nv",
+    "id": "nv-BMPE-1118493326",
+    "firstReferenceAt": "2026-10-22",
+    "reason": "stale"
+  },
+  {
+    "slug": "volcan-compania-minera-s-a-a-practicante-profesional-gestion-de-contratistas-pe-",
+    "id": "nv-BMPE-1118493278",
+    "firstReferenceAt": "2026-10-22",
+    "reason": "stale"
+  },
+  {
+    "slug": "volcan-compania-minera-s-a-a-practicante-profesional-administracion-de-personal-",
+    "id": "nv-BMPE-1118492171",
+    "firstReferenceAt": "2026-10-22",
+    "reason": "stale"
+  },
+  {
+    "slug": "volcan-compania-minera-s-a-a-ingeniero-senior-de-geotecnia-y-gest-de-relaves-pe-",
+    "id": "nv-BMPE-1118492045",
+    "firstReferenceAt": "2026-10-22",
     "reason": "stale"
   }
 ]
